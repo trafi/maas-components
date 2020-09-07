@@ -4,12 +4,18 @@ plugins {
     id 'kotlin-android-extensions'
 }
 
+def generatedModelPath = "src/main/java/generated"
+
 android {
     compileSdkVersion 30
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main.java.srcDirs += generatedModelPath
     }
 }
 
