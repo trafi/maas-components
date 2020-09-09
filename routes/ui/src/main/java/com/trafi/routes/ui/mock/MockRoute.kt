@@ -18,6 +18,7 @@ import com.trafi.core.model.RouteSegmentDisruption
 import com.trafi.core.model.RouteSegmentStop
 import com.trafi.core.model.RouteSegmentTransit
 import com.trafi.core.model.RouteSegmentWalking
+import com.trafi.core.model.RoutesResult
 import com.trafi.core.model.Schedule
 import com.trafi.core.model.Stop
 import com.trafi.core.model.Track
@@ -333,4 +334,11 @@ internal val mockRoute = Route(
             )
         )
     )
+)
+
+internal val mockResult = RoutesResult(
+    id = "08b66834-5d0b-4225-bb2e-0d9e73fe0034",
+    now = "2020-07-31T09:16:15+02:00",
+    routes = listOf(mockRoute, mockRoute.copy(id = "60cbd9dd-7885-4547-816e-229a3c7bcf35")),
+    groups = null
 )
