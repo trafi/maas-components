@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSizeConstraints
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.MaterialTheme
@@ -13,7 +14,6 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.ui.tooling.preview.Preview
 import com.trafi.core.model.Route
@@ -21,10 +21,11 @@ import com.trafi.routes.ui.mock.mockRoute
 import com.trafi.ui.unit
 
 @Composable
-fun Route(route: Route) {
-    Surface(modifier = Modifier.clickable(onClick = {})) {
+fun Route(route: Route, modifier: Modifier = Modifier) {
+    Surface(modifier = modifier.clickable(onClick = {})) {
         Cell(
             modifier = Modifier
+                .defaultMinSizeConstraints(minHeight = 16.unit)
                 .padding(horizontal = 6.unit, vertical = 3.unit),
             body = {
                 Row {
@@ -65,7 +66,7 @@ fun Route(route: Route) {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, widthDp = 320)
 @Composable
 fun RoutePreview() {
     Route(mockRoute)
@@ -80,7 +81,7 @@ fun Cell(
 ) {
     Row(modifier) {
         prefix?.let { Column { it() } }
-        Column { body() }
+        Column(modifier = Modifier.weight(1f)) { body() }
         suffix?.let { Column { it() } }
     }
 }

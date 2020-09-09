@@ -6,6 +6,7 @@ import androidx.compose.foundation.contentColor
 import androidx.compose.foundation.layout.ExperimentalLayout
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSizeConstraints
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -22,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.VectorAsset
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
@@ -69,8 +71,8 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
         RouteSegment.Mode.WALKING -> {
             val walking = segment.walking ?: return
             val vector = vectorResource(R.drawable.ic_route_search_walking_s)
-            Row(modifier = modifier) {
-                Image(vector)
+            Row(modifier = modifier.defaultMinSizeConstraints(minHeight = 6.unit)) {
+                Image(vector, modifier = Modifier.gravity(Alignment.CenterVertically))
                 Text(
                     text = walking.distance.text,
                     style = MaterialTheme.typography.caption,
@@ -116,7 +118,7 @@ fun Badge(color: Color, vector: VectorAsset?, text: String?, modifier: Modifier 
             text?.let {
                 Text(
                     text = text,
-                    style = MaterialTheme.typography.body2
+                    style = MaterialTheme.typography.body2.copy(fontWeight = FontWeight.SemiBold)
                 )
             }
         }
