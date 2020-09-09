@@ -28,6 +28,7 @@ import androidx.ui.tooling.preview.Preview
 import androidx.ui.tooling.preview.PreviewParameter
 import com.trafi.core.model.RouteSegment
 import com.trafi.routes.ui.mock.RouteSegmentPreviewParameterProvider
+import com.trafi.ui.unit
 
 @Composable
 fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
@@ -90,12 +91,12 @@ fun Badge(color: Color, vector: VectorAsset?, text: String?, modifier: Modifier 
     Surface(
         color = color,
         contentColor = Color.White,
-        shape = RoundedCornerShape(4.dp),
+        shape = RoundedCornerShape(1.unit),
         modifier = modifier
     ) {
         Row(
             modifier = Modifier
-                .padding(4.dp)
+                .padding(1.unit)
                 .preferredHeight(IntrinsicSize.Min)
         ) {
             vector?.let {
@@ -107,7 +108,7 @@ fun Badge(color: Color, vector: VectorAsset?, text: String?, modifier: Modifier 
                 Divider(
                     color = contentColor(),
                     modifier = Modifier
-                        .padding(horizontal = 4.dp)
+                        .padding(horizontal = 1.unit)
                         .fillMaxHeight()
                         .preferredWidth(1.dp)
                 )
