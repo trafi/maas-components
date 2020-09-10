@@ -2,9 +2,12 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'org.openapi.generator' version '4.3.1'
+    id 'org.jlleitschuh.gradle.ktlint' version '9.3.0'
 }
 
 def generatedModelPath = "src/main/java/generated"
+def swaggerSchemaPath = "build/swagger.json"
 
 android {
     compileSdkVersion 30
@@ -32,4 +35,61 @@ androidExtensions {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'com.squareup.moshi:moshi:1.10.0'
+}
+
+task generateModels(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
+    inputSpec = project.file(swaggerSchemaPath).path
+    outputDir = project.file(generatedModelPath).path
+    modelPackage = "com.trafi.core.model"
+
+    logToStderr = true
+    validateSpec = false
+
+    // Generate models without docs or tests
+    systemProperties = [
+            models    : "",
+            modelDocs : "false",
+            modelTests: "false"
+    ]
+
+    // Kotlin generator config
+    generatorName = "kotlin"
+    configOptions = [
+            dateLibrary       : "string",
+            collectionType    : "list",
+            enumPropertyNaming: "original",
+            parcelizeModels   : "true",
+            sourceFolder      : ""
+    ]
+}
+
+task fetchSwaggerSchema {
+    doLast {
+        Properties localProperties = new Properties()
+        project.rootProject.file("local.properties").withReader { localProperties.load(it) }
+
+        def envVar = "TRAFI_SWAGGER_SPEC_URL"
+        def localProp = "trafi.swaggerSpecUrl"
+        def schemaUrl = System.hasProperty(envVar) ? System.getenv(envVar) : localProperties.getProperty(localProp)
+
+        if (schemaUrl == null) {
+            throw new GradleException("Specify $localProp in local.properties or $envVar to fetch the Swagger schema")
+        }
+
+        def swaggerSchemaFile = project.file(swaggerSchemaPath)
+        swaggerSchemaFile.parentFile.mkdirs()
+        swaggerSchemaFile.createNewFile()
+
+        println("Fetching Swagger schema from $schemaUrl")
+        new URL(schemaUrl).withInputStream { i ->
+            swaggerSchemaFile.withOutputStream {
+                it << i
+            }
+        }
+    }
+}
+
+task swagen {
+    dependsOn(fetchSwaggerSchema, generateModels)
+    finalizedBy(ktlintFormat)
 }
