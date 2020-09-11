@@ -14,6 +14,8 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+
+        buildConfigField("String", "API_BASE_URL", "\"${apiBaseUrl()}\"")
     }
 
     buildTypes {
@@ -71,4 +73,14 @@ dependencies {
     implementation 'com.squareup.moshi:moshi-kotlin:1.10.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.2.0'
+}
+
+String apiBaseUrl() {
+    Properties localProperties = new Properties()
+    rootProject.file("local.properties").withReader { localProperties.load(it) }
+
+    def envVar = "TRAFI_API_BASE_URL"
+    def localProp = "trafi.apiBaseUrl"
+    def apiBaseUrl = System.hasProperty(envVar) ? System.getenv(envVar) : localProperties.getProperty(localProp)
+    return apiBaseUrl ?: ""
 }
