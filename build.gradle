@@ -27,3 +27,19 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+@SuppressWarnings('unused')
+String resolveProperty(String propertyKey, String environmentVariable = null) {
+    def gradleProp = project.findProperty(propertyKey)
+    if (gradleProp) {
+        return gradleProp
+    }
+
+    if (environmentVariable && System.hasProperty(environmentVariable)) {
+        return System.getenv(environmentVariable)
+    }
+
+    Properties localProperties = new Properties()
+    rootProject.file("local.properties").withReader { localProperties.load(it) }
+    return localProperties.getProperty(propertyKey)
+}
