@@ -40,12 +40,6 @@ android {
         kotlinCompilerVersion kotlin_version
         kotlinCompilerExtensionVersion compose_version
     }
-
-    packagingOptions {
-        // conflict between :ui and :routes:ui module both specifying e.g. ui_debug.kotlin_module
-        // https://discuss.kotlinlang.org/t/dealing-with-kotlin-module-conflict-when-building-apk-for-project-with-non-unique-project-names/11247
-        merge "/META-INF/*.kotlin_module"
-    }
 }
 
 androidExtensions {
