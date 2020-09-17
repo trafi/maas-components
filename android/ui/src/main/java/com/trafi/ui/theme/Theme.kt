@@ -4,7 +4,6 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Providers
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
@@ -13,8 +12,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticAmbientOf
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.Dp
-import com.trafi.ui.unit
 
 @Composable
 fun MaasTheme(
@@ -107,8 +104,5 @@ class MaasColorPalette(
 }
 
 private val ColorAmbient = staticAmbientOf { MaasTheme.lightColors() }
-
-@Immutable
-data class MaasCornerRadius(val radius: Dp = 4.unit)
 
 private val CornerRadiusAmbient = staticAmbientOf { MaasCornerRadius() }

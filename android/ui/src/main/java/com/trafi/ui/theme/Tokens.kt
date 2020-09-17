@@ -2,8 +2,11 @@
 
 package com.trafi.ui.theme
 
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 
 @Stable val Grey100 = Color(0xfff5f5f5)
 @Stable val Grey200 = Color(0xffeeeeee)
@@ -42,4 +45,15 @@ fun MaasTheme.lightColors(
     onSurface = onSurface,
     onError = onError,
     isLight = true
+)
+
+@Immutable
+data class MaasCornerRadius(
+    val none: Dp = 0.dp,
+    val xxs: Dp = 4.dp,
+    val xs: Dp = 6.dp,
+    val sm: Dp = 8.dp,
+    val lg: Dp = 12.dp,
+    val xl: Dp = 20.dp,
+    val round: Dp = 200.dp,
 )
