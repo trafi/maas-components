@@ -45,7 +45,7 @@ fun ButtonStyledCornerRadiusPreview() {
 @Preview
 @Composable
 fun ButtonStyledColorPreview() {
-    val jelbiColors = lightColors(
+    val jelbiColors = MaasTheme.lightColors(
         primary1 = Color(0xff6ca130),
         primary2 = Color(0xfff0d722)
     )
