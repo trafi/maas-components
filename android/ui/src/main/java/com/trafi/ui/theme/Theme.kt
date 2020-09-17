@@ -48,60 +48,60 @@ object MaasTheme {
 
 @Stable
 class MaasColorPalette(
-    primary1: Color,
-    primary2: Color,
-    primary3: Color,
-    info1: Color,
-    info2: Color,
-    info3: Color,
-    dark1: Color,
-    dark2: Color,
-    dark3: Color,
-    dark4: Color,
-    background1: Color,
-    background2: Color,
+    primary: Color,
+    primaryVariant: Color,
+    secondary: Color,
+    secondaryVariant: Color,
+    background: Color,
+    surface: Color,
+    error: Color,
+    onPrimary: Color,
+    onSecondary: Color,
+    onBackground: Color,
+    onSurface: Color,
+    onError: Color,
     isLight: Boolean
 ) {
-    var primary1 by mutableStateOf(primary1)
+    var primary by mutableStateOf(primary)
         private set
-    var primary2 by mutableStateOf(primary2)
+    var primaryVariant by mutableStateOf(primaryVariant)
         private set
-    var primary3 by mutableStateOf(primary3)
+    var secondary by mutableStateOf(secondary)
         private set
-    var info1 by mutableStateOf(info1)
+    var secondaryVariant by mutableStateOf(secondaryVariant)
         private set
-    var info2 by mutableStateOf(info2)
+    var background by mutableStateOf(background)
         private set
-    var info3 by mutableStateOf(info3)
+    var surface by mutableStateOf(surface)
         private set
-    var dark1 by mutableStateOf(dark1)
+    var error by mutableStateOf(error)
         private set
-    var dark2 by mutableStateOf(dark2)
+    var onPrimary by mutableStateOf(onPrimary)
         private set
-    var dark3 by mutableStateOf(dark3)
+    var onSecondary by mutableStateOf(onSecondary)
         private set
-    var dark4 by mutableStateOf(dark4)
+    var onBackground by mutableStateOf(onBackground)
         private set
-    var background1 by mutableStateOf(background1)
+    var onSurface by mutableStateOf(onSurface)
         private set
-    var background2 by mutableStateOf(background2)
+    var onError by mutableStateOf(onError)
         private set
     var isLight by mutableStateOf(isLight)
         private set
 
     fun updateColorsFrom(other: MaasColorPalette) {
-        primary1 = other.primary1
-        primary2 = other.primary2
-        primary3 = other.primary3
-        info1 = other.info1
-        info2 = other.info2
-        info3 = other.info3
-        dark1 = other.dark1
-        dark2 = other.dark2
-        dark3 = other.dark3
-        dark4 = other.dark4
-        background1 = other.background1
-        background2 = other.background2
+        primary = other.primary
+        primaryVariant = other.primaryVariant
+        secondary = other.secondary
+        secondaryVariant = other.secondaryVariant
+        background = other.background
+        surface = other.surface
+        error = other.error
+        onPrimary = other.onPrimary
+        onSecondary = other.onSecondary
+        onBackground = other.onBackground
+        onSurface = other.onSurface
+        onError = other.onError
         isLight = other.isLight
     }
 }

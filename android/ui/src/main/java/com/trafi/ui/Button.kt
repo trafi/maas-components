@@ -13,7 +13,7 @@ import com.trafi.ui.theme.lightColors
 fun Button(
     text: String,
     onClick: () -> Unit,
-    color: Color = MaasTheme.colors.primary1,
+    color: Color = MaasTheme.colors.primary,
     modifier: Modifier = Modifier
 ) {
     androidx.compose.material.Button(
@@ -46,8 +46,8 @@ fun ButtonStyledCornerRadiusPreview() {
 @Composable
 fun ButtonStyledColorPreview() {
     val jelbiColors = MaasTheme.lightColors(
-        primary1 = Color(0xff6ca130),
-        primary2 = Color(0xfff0d722)
+        primary = Color(0xff6ca130),
+        primaryVariant = Color(0xfff0d722)
     )
     MaasTheme(colors = jelbiColors) {
         Button("Unlock now", onClick = {})

@@ -1,33 +1,45 @@
+@file:Suppress("unused")
+
 package com.trafi.ui.theme
 
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
 
-@Suppress("unused")
+@Stable val Grey100 = Color(0xfff5f5f5)
+@Stable val Grey200 = Color(0xffeeeeee)
+@Stable val Grey300 = Color(0xffe0e0e0)
+@Stable val Grey400 = Color(0xffbdbdbd)
+@Stable val Grey500 = Color(0xff9e9e9e)
+@Stable val Grey600 = Color(0xff757575)
+@Stable val Grey700 = Color(0xff616161)
+@Stable val Grey800 = Color(0xff424242)
+@Stable val Grey900 = Color(0xff212121)
+
 fun MaasTheme.lightColors(
-    primary1: Color = Color(0xff999199),
-    primary2: Color = Color(0xff665f66),
-    primary3: Color = Color(0xff252424),
-    info1: Color = Color(0xffffbe15),
-    info2: Color = Color(0xfff22e46),
-    info3: Color = Color(0xff17304d),
-    dark1: Color = Color(0xff110711),
-    dark2: Color = Color(0xff665f66),
-    dark3: Color = Color(0xff999199),
-    dark4: Color = Color(0xffe6e1e6),
-    background1: Color = Color(0xffffffff),
-    background2: Color = Color(0xfffaf8fa)
+    primary: Color = Color(0xff73008b),
+    primaryVariant: Color = Color(0xff59006c),
+    secondary: Color = Color(0xffff1499),
+    secondaryVariant: Color = Color(0xffd20077),
+    background: Color = Color.White,
+    surface: Color = Color.White,
+    error: Color = Color(0xfff22e46),
+    onPrimary: Color = Color.White,
+    onSecondary: Color = Color.Black,
+    onBackground: Color = Grey900,
+    onSurface: Color = Grey900,
+    onError: Color = Color.White
 ): MaasColorPalette = MaasColorPalette(
-    primary1 = primary1,
-    primary2 = primary2,
-    primary3 = primary3,
-    info1 = info1,
-    info2 = info2,
-    info3 = info3,
-    dark1 = dark1,
-    dark2 = dark2,
-    dark3 = dark3,
-    dark4 = dark4,
-    background1 = background1,
-    background2 = background2,
+    primary = primary,
+    primaryVariant = primaryVariant,
+    secondary = secondary,
+    secondaryVariant = secondaryVariant,
+    background = background,
+    surface = surface,
+    error = error,
+    onPrimary = onPrimary,
+    onSecondary = onSecondary,
+    onBackground = onBackground,
+    onSurface = onSurface,
+    onError = onError,
     isLight = true
 )
