@@ -48,6 +48,7 @@ androidExtensions {
 
 dependencies {
     implementation project(":core")
+    implementation project(":ui")
     implementation project(":routes")
     implementation project(":routes:ui")
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

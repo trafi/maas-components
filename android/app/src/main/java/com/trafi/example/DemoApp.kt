@@ -30,7 +30,7 @@ import com.trafi.core.ApiResult
 import com.trafi.core.model.LatLng
 import com.trafi.core.model.Location
 import com.trafi.core.model.RoutesResult
-import com.trafi.example.ui.MaasTheme
+import com.trafi.example.ui.DemoMaasTheme
 import com.trafi.routes.RoutesApi
 import com.trafi.routes.ui.RoutesResult
 import kotlinx.coroutines.launch
@@ -108,7 +108,7 @@ fun BodyContent(
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    MaasTheme {
+    DemoMaasTheme {
         BodyContent(
             start = pragueTechMuseum,
             end = pragueCastle,
