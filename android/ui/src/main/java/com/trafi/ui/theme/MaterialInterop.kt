@@ -53,4 +53,10 @@ internal val MaasTypography.materialTypography
     )
 
 internal val MaasCornerRadius.materialShapes
-    get() = Shapes(small = RoundedCornerShape(buttonRadius))
+    get() = Shapes(
+        small = if (buttonRadius.isRound) {
+            RoundedCornerShape(percent = 50)
+        } else {
+            RoundedCornerShape(buttonRadius)
+        }
+    )

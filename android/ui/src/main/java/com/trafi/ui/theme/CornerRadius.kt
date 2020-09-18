@@ -21,3 +21,7 @@ object CornerRadius {
 data class MaasCornerRadius(
     val buttonRadius: Dp = CornerRadius.round
 )
+
+@Stable
+internal val Dp.isRound: Boolean
+    get() = this == Dp.Infinity
