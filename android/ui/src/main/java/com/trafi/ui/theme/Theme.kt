@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 fun MaasTheme(
     colors: MaasColorPalette = MaasTheme.colors,
     typography: MaasTypography = MaasTheme.typography,
+    spacing: MaasSpacing = MaasTheme.spacing,
     cornerRadius: MaasCornerRadius = MaasTheme.cornerRadius,
     content: @Composable () -> Unit
 ) {
@@ -23,6 +24,7 @@ fun MaasTheme(
     Providers(
         ColorAmbient provides colorPalette,
         TypographyAmbient provides typography,
+        SpacingAmbient provides spacing,
         CornerRadiusAmbient provides cornerRadius
     ) {
         MaterialTheme(
@@ -42,6 +44,10 @@ object MaasTheme {
     @Composable
     val typography: MaasTypography
         get() = TypographyAmbient.current
+
+    @Composable
+    val spacing: MaasSpacing
+        get() = SpacingAmbient.current
 
     @Composable
     val cornerRadius: MaasCornerRadius
@@ -111,5 +117,7 @@ class MaasColorPalette(
 private val ColorAmbient = staticAmbientOf { MaasTheme.lightColors() }
 
 private val TypographyAmbient = staticAmbientOf { MaasTypography() }
+
+private val SpacingAmbient = staticAmbientOf { MaasSpacing() }
 
 private val CornerRadiusAmbient = staticAmbientOf { MaasCornerRadius() }
