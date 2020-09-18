@@ -1,6 +1,8 @@
 package com.trafi.ui
 
 import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -41,7 +43,7 @@ fun Button(
 ) {
     androidx.compose.material.Button(
         onClick = onClick,
-        modifier = modifier,
+        modifier = modifier.heightIn(minHeight = 48.dp).fillMaxWidth(),
         enabled = enabled,
         shape = if (ButtonConstants.isRound) {
             RoundedCornerShape(percent = 50)
