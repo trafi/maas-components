@@ -16,6 +16,7 @@ import androidx.ui.tooling.preview.Preview
 import com.trafi.ui.theme.Grey200
 import com.trafi.ui.theme.MaasCornerRadius
 import com.trafi.ui.theme.MaasTheme
+import com.trafi.ui.theme.isRound
 import com.trafi.ui.theme.lightColors
 
 object ButtonConstants {
@@ -57,7 +58,7 @@ fun Button(
         onClick = onClick,
         modifier = modifier.heightIn(minHeight = ButtonConstants.minHeight).fillMaxWidth(),
         enabled = enabled,
-        shape = if (ButtonConstants.cornerRadius == Dp.Infinity) {
+        shape = if (ButtonConstants.cornerRadius.isRound) {
             RoundedCornerShape(percent = 50)
         } else {
             RoundedCornerShape(ButtonConstants.cornerRadius)
