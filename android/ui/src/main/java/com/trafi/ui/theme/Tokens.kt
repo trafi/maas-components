@@ -47,6 +47,35 @@ fun MaasTheme.lightColors(
     isLight = true
 )
 
+fun MaasTheme.darkColors(
+    primary: Color = Color(0xffff1499),
+    primaryVariant: Color = Color(0xffd20077),
+    secondary: Color = Color(0xff73008b),
+    secondaryVariant: Color = Color(0xff59006c),
+    background: Color = Color.Black,
+    surface: Color = Color.Black,
+    error: Color = Color(0xfff22e46),
+    onPrimary: Color = Color.White,
+    onSecondary: Color = Color.Black,
+    onBackground: Color = Color.White,
+    onSurface: Color = Color.White,
+    onError: Color = Color.White
+): MaasColorPalette = MaasColorPalette(
+    primary = primary,
+    primaryVariant = primaryVariant,
+    secondary = secondary,
+    secondaryVariant = secondaryVariant,
+    background = background,
+    surface = surface,
+    error = error,
+    onPrimary = onPrimary,
+    onSecondary = onSecondary,
+    onBackground = onBackground,
+    onSurface = onSurface,
+    onError = onError,
+    isLight = false
+)
+
 object CornerRadius {
     @Stable val none: Dp = 0.dp
     @Stable val xxs: Dp = 4.dp
