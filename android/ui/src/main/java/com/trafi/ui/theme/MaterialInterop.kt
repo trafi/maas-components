@@ -30,8 +30,4 @@ internal fun debugMaterialColors(
 )
 
 internal val MaasCornerRadius.materialShapes
-    get() = Shapes(
-        small = RoundedCornerShape(xxs),
-        medium = RoundedCornerShape(sm),
-        large = RoundedCornerShape(lg)
-    )
+    get() = Shapes(small = RoundedCornerShape(buttonRadius))

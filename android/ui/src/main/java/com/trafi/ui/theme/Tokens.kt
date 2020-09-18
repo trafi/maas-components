@@ -47,13 +47,17 @@ fun MaasTheme.lightColors(
     isLight = true
 )
 
+object CornerRadius {
+    @Stable val none: Dp = 0.dp
+    @Stable val xxs: Dp = 4.dp
+    @Stable val xs: Dp = 6.dp
+    @Stable val sm: Dp = 8.dp
+    @Stable val lg: Dp = 12.dp
+    @Stable val xl: Dp = 20.dp
+    @Stable val round: Dp = Dp.Infinity
+}
+
 @Immutable
 data class MaasCornerRadius(
-    val none: Dp = 0.dp,
-    val xxs: Dp = 4.dp,
-    val xs: Dp = 6.dp,
-    val sm: Dp = 8.dp,
-    val lg: Dp = 12.dp,
-    val xl: Dp = 20.dp,
-    val round: Dp = 200.dp,
+    val buttonRadius: Dp = CornerRadius.round
 )
