@@ -4,6 +4,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Shapes
+import androidx.compose.material.Typography
 import androidx.compose.ui.graphics.Color
 
 /**
@@ -28,6 +29,11 @@ internal fun debugMaterialColors(
     onError = debugColor,
     isLight = !darkTheme
 )
+
+internal val MaasTypography.materialTypography
+    get() = Typography(
+        defaultFontFamily = Inter
+    )
 
 internal val MaasCornerRadius.materialShapes
     get() = Shapes(small = RoundedCornerShape(buttonRadius))
