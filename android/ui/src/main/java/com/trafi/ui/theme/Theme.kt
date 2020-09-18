@@ -1,6 +1,5 @@
 package com.trafi.ui.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Providers
@@ -23,7 +22,7 @@ fun MaasTheme(
         CornerRadiusAmbient provides cornerRadius
     ) {
         MaterialTheme(
-            colors = debugMaterialColors(isSystemInDarkTheme()),
+            colors = colors.materialColors,
             typography = typography.materialTypography,
             shapes = cornerRadius.materialShapes,
             content = content

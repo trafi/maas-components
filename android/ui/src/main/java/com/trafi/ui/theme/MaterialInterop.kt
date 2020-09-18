@@ -30,6 +30,23 @@ internal fun debugMaterialColors(
     isLight = !darkTheme
 )
 
+internal val MaasColorPalette.materialColors
+    get() = Colors(
+        primary = primary,
+        primaryVariant = primaryVariant,
+        secondary = secondary,
+        secondaryVariant = secondaryVariant,
+        background = background,
+        surface = surface,
+        error = error,
+        onPrimary = onPrimary,
+        onSecondary = onSecondary,
+        onBackground = onBackground,
+        onSurface = onSurface,
+        onError = onError,
+        isLight = isLight
+    )
+
 internal val MaasTypography.materialTypography
     get() = Typography(
         defaultFontFamily = Inter
