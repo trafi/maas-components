@@ -4,9 +4,7 @@ import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
@@ -33,6 +31,8 @@ import com.trafi.core.model.RoutesResult
 import com.trafi.example.ui.DemoMaasTheme
 import com.trafi.routes.RoutesApi
 import com.trafi.routes.ui.RoutesResult
+import com.trafi.ui.Button
+import com.trafi.ui.theme.MaasTheme
 import kotlinx.coroutines.launch
 
 @Composable
@@ -70,24 +70,28 @@ private fun BodyContent(
     modifier: Modifier = Modifier,
 ) {
     Column(modifier) {
-        start?.let { Waypoint(it, Modifier.padding(16.dp)) }
+        start?.let {
+            Waypoint(
+                it,
+                Modifier.padding(horizontal = MaasTheme.spacing.globalMargin, vertical = 16.dp)
+            )
+        }
         end?.let {
             Waypoint(
-                it, Modifier.padding(
-                    start = 16.dp,
-                    end = 16.dp,
-                    top = if (start == null) 16.dp else 0.dp
-                )
+                it, Modifier
+                    .padding(horizontal = MaasTheme.spacing.globalMargin)
+                    .padding(top = if (start == null) 16.dp else 0.dp)
             )
         }
         Button(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
+            text = "Search",
+            modifier = Modifier.padding(
+                horizontal = MaasTheme.spacing.globalMargin,
+                vertical = 16.dp
+            ),
             enabled = state !is RoutesResultState.Loading,
-            onClick = { onSearchClick() }) {
-            Text("Search")
-        }
+            onClick = { onSearchClick() },
+        )
         when (state) {
             RoutesResultState.NoResults -> {
                 Text(
