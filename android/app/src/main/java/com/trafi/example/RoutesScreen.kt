@@ -36,8 +36,8 @@ import com.trafi.routes.ui.RoutesResult
 import kotlinx.coroutines.launch
 
 @Composable
-fun DemoApp() {
-    val viewModel: DemoViewModel = viewModel()
+fun RoutesScreen() {
+    val viewModel: RoutesViewModel = viewModel()
     Scaffold(
         topBar = {
             TopAppBar(
@@ -62,7 +62,7 @@ fun DemoApp() {
 }
 
 @Composable
-fun BodyContent(
+private fun BodyContent(
     start: Location?,
     end: Location?,
     state: RoutesResultState,
@@ -107,7 +107,7 @@ fun BodyContent(
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
+private fun DefaultPreview() {
     DemoMaasTheme {
         BodyContent(
             start = pragueTechMuseum,
@@ -136,7 +136,7 @@ sealed class RoutesResultState {
     data class Loaded(val result: RoutesResult) : RoutesResultState()
 }
 
-class DemoViewModel : ViewModel() {
+class RoutesViewModel : ViewModel() {
 
     private val routesApi = RoutesApi(baseUrl = BuildConfig.API_BASE_URL)
 

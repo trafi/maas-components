@@ -8,6 +8,10 @@ import com.trafi.example.ui.DemoMaasTheme
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { DemoMaasTheme { DemoApp() } }
+        setContent {
+            DemoMaasTheme {
+                RoutesScreen()
+            }
+        }
     }
 }
