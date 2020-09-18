@@ -13,7 +13,6 @@ fun DemoMaasTheme(
 ) {
     MaasTheme(
         colors = if (darkTheme) MaasTheme.darkColors() else MaasTheme.lightColors(),
-        typography = typography,
         content = content
     )
 }
