@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -22,21 +23,25 @@ object ButtonConstants {
     val defaultColor: Color
         get() = MaasTheme.colors.primary
 
-    @Composable
+    @Stable
     val disabledColor: Color
         get() = Grey200
+
+    @Composable
+    val defaultContentColor: Color
+        get() = MaasTheme.colors.onPrimary
 
     @Composable
     val textStyle: TextStyle
         get() = MaasTheme.typography.textL.copy(fontWeight = FontWeight.Bold)
 
+    @Stable
+    val minHeight: Dp
+        get() = 48.dp
+
     @Composable
     val cornerRadius: Dp
         get() = MaasTheme.cornerRadius.buttonRadius
-
-    @Composable
-    internal val isRound: Boolean
-        get() = cornerRadius == Dp.Infinity
 }
 
 @Composable
@@ -46,18 +51,19 @@ fun Button(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     color: Color = ButtonConstants.defaultColor,
+    contentColor: Color = ButtonConstants.defaultContentColor,
 ) {
     androidx.compose.material.Button(
         onClick = onClick,
-        modifier = modifier.heightIn(minHeight = 48.dp).fillMaxWidth(),
+        modifier = modifier.heightIn(minHeight = ButtonConstants.minHeight).fillMaxWidth(),
         enabled = enabled,
-        shape = if (ButtonConstants.isRound) {
+        shape = if (ButtonConstants.cornerRadius == Dp.Infinity) {
             RoundedCornerShape(percent = 50)
         } else {
             RoundedCornerShape(ButtonConstants.cornerRadius)
         },
         backgroundColor = color,
-        contentColor = Color.White,
+        contentColor = contentColor,
         disabledBackgroundColor = ButtonConstants.disabledColor
     ) {
         Text(
