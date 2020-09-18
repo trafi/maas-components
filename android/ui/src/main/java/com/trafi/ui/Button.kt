@@ -7,6 +7,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
@@ -23,6 +25,10 @@ object ButtonConstants {
     @Composable
     val disabledColor: Color
         get() = Grey200
+
+    @Composable
+    val textStyle: TextStyle
+        get() = MaasTheme.typography.textL.copy(fontWeight = FontWeight.Bold)
 
     @Composable
     val cornerRadius: Dp
@@ -54,7 +60,10 @@ fun Button(
         contentColor = Color.White,
         disabledBackgroundColor = ButtonConstants.disabledColor
     ) {
-        Text(text)
+        Text(
+            text,
+            style = ButtonConstants.textStyle
+        )
     }
 }
 
