@@ -2,11 +2,11 @@
 
 package com.trafi.ui.theme
 
-import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 
 @Stable val Grey100 = Color(0xfff5f5f5)
 @Stable val Grey200 = Color(0xffeeeeee)
@@ -76,17 +76,62 @@ fun MaasTheme.darkColors(
     isLight = false
 )
 
-object CornerRadius {
-    @Stable val none: Dp = 0.dp
-    @Stable val xxs: Dp = 4.dp
-    @Stable val xs: Dp = 6.dp
-    @Stable val sm: Dp = 8.dp
-    @Stable val lg: Dp = 12.dp
-    @Stable val xl: Dp = 20.dp
-    @Stable val round: Dp = Dp.Infinity
-}
+@Stable
+class MaasColorPalette(
+    primary: Color,
+    primaryVariant: Color,
+    secondary: Color,
+    secondaryVariant: Color,
+    background: Color,
+    surface: Color,
+    error: Color,
+    onPrimary: Color,
+    onSecondary: Color,
+    onBackground: Color,
+    onSurface: Color,
+    onError: Color,
+    isLight: Boolean
+) {
+    var primary by mutableStateOf(primary)
+        private set
+    var primaryVariant by mutableStateOf(primaryVariant)
+        private set
+    var secondary by mutableStateOf(secondary)
+        private set
+    var secondaryVariant by mutableStateOf(secondaryVariant)
+        private set
+    var background by mutableStateOf(background)
+        private set
+    var surface by mutableStateOf(surface)
+        private set
+    var error by mutableStateOf(error)
+        private set
+    var onPrimary by mutableStateOf(onPrimary)
+        private set
+    var onSecondary by mutableStateOf(onSecondary)
+        private set
+    var onBackground by mutableStateOf(onBackground)
+        private set
+    var onSurface by mutableStateOf(onSurface)
+        private set
+    var onError by mutableStateOf(onError)
+        private set
+    var isLight by mutableStateOf(isLight)
+        private set
 
-@Immutable
-data class MaasCornerRadius(
-    val buttonRadius: Dp = CornerRadius.round
-)
+    fun updateColorsFrom(other: MaasColorPalette) {
+        primary = other.primary
+        primaryVariant = other.primaryVariant
+        secondary = other.secondary
+        secondaryVariant = other.secondaryVariant
+        background = other.background
+        surface = other.surface
+        error = other.error
+        onPrimary = other.onPrimary
+        onSecondary = other.onSecondary
+        onBackground = other.onBackground
+        onSurface = other.onSurface
+        onError = other.onError
+        isLight = other.isLight
+    }
+}
