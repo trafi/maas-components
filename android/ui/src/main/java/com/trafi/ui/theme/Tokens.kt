@@ -19,10 +19,10 @@ import androidx.compose.ui.unit.dp
 @Stable val Grey900 = Color(0xff212121)
 
 fun MaasTheme.lightColors(
-    primary: Color = Color(0xff73008b),
-    primaryVariant: Color = Color(0xff59006c),
-    secondary: Color = Color(0xffff1499),
-    secondaryVariant: Color = Color(0xffd20077),
+    primary: Color = Color(0xffff1499),
+    primaryVariant: Color = Color(0xffd20077),
+    secondary: Color = Color(0xff73008b),
+    secondaryVariant: Color = Color(0xff59006c),
     background: Color = Color.White,
     surface: Color = Color.White,
     error: Color = Color(0xfff22e46),
