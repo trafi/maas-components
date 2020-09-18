@@ -24,4 +24,4 @@ data class MaasCornerRadius(
 
 @Stable
 internal val Dp.isRound: Boolean
-    get() = this == Dp.Infinity
+    get() = this == CornerRadius.round
