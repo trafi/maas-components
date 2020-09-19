@@ -15,18 +15,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.trafi.core.model.Route
 import com.trafi.routes.ui.mock.mockRoute
-import com.trafi.ui.unit
 
 @Composable
 fun Route(route: Route, modifier: Modifier = Modifier) {
     Surface(modifier = modifier.clickable(onClick = {})) {
         Cell(
             modifier = Modifier
-                .defaultMinSizeConstraints(minHeight = 16.unit)
-                .padding(horizontal = 6.unit, vertical = 3.unit),
+                .defaultMinSizeConstraints(minHeight = 64.dp)
+                .padding(horizontal = 24.dp, vertical = 12.dp),
             body = {
                 Row {
                     route.segments.forEachIndexed { index, segment ->
@@ -35,15 +35,15 @@ fun Route(route: Route, modifier: Modifier = Modifier) {
                             modifier = Modifier.gravity(Alignment.CenterVertically)
                         )
                         if (index != route.segments.lastIndex) {
-                            Spacer(modifier = Modifier.size(1.unit))
+                            Spacer(modifier = Modifier.size(4.dp))
                         }
                     }
                 }
                 route.disruption?.let { disruption ->
                     disruption.title?.let { disruptionTitle ->
-                        Row(modifier = Modifier.padding(top = 2.unit)) {
+                        Row(modifier = Modifier.padding(top = 8.dp)) {
                             Text(disruption.severity.toString())
-                            Spacer(modifier = Modifier.size(1.unit))
+                            Spacer(modifier = Modifier.size(4.dp))
                             Text(disruptionTitle)
                         }
                     }
