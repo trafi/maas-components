@@ -17,11 +17,11 @@ object CornerRadius {
     @Stable val round: Dp = Dp.Infinity
 }
 
+@Stable
+internal val Dp.isRound: Boolean
+    get() = this == CornerRadius.round
+
 @Immutable
 data class MaasCornerRadius(
     val buttonRadius: Dp = CornerRadius.round
 )
-
-@Stable
-internal val Dp.isRound: Boolean
-    get() = this == CornerRadius.round
