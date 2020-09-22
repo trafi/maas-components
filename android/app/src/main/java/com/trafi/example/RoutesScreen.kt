@@ -96,12 +96,12 @@ private fun BodyContent(
             RoutesResultState.NoResults -> {
                 Text(
                     "No results",
-                    modifier = Modifier.gravity(Alignment.CenterHorizontally)
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
             }
             RoutesResultState.Loading -> {
                 CircularProgressIndicator(
-                    modifier = Modifier.gravity(Alignment.CenterHorizontally)
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
             }
             is RoutesResultState.Loaded -> RoutesResult(state.result)

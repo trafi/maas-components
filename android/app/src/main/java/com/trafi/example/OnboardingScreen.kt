@@ -28,7 +28,7 @@ fun OnboardingScreen(onComplete: () -> Unit = {}) {
             .padding(horizontal = MaasTheme.spacing.globalMargin)
             .padding(top = 128.dp, bottom = 62.dp),
         verticalArrangement = Arrangement.SpaceBetween,
-        horizontalGravity = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(asset)
         Text(

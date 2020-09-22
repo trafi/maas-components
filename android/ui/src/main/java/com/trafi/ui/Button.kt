@@ -56,16 +56,15 @@ fun Button(
 ) {
     androidx.compose.material.Button(
         onClick = onClick,
-        modifier = modifier.heightIn(minHeight = ButtonConstants.minHeight).fillMaxWidth(),
+        modifier = modifier.heightIn(min = ButtonConstants.minHeight).fillMaxWidth(),
         enabled = enabled,
         shape = if (ButtonConstants.cornerRadius.isRound) {
             RoundedCornerShape(percent = 50)
         } else {
             RoundedCornerShape(ButtonConstants.cornerRadius)
         },
-        backgroundColor = color,
-        contentColor = contentColor,
-        disabledBackgroundColor = ButtonConstants.disabledColor
+        backgroundColor = if (enabled) color else ButtonConstants.disabledColor,
+        contentColor = contentColor
     ) {
         Text(
             text,
