@@ -30,7 +30,6 @@ import androidx.ui.tooling.preview.Preview
 import androidx.ui.tooling.preview.PreviewParameter
 import com.trafi.core.model.RouteSegment
 import com.trafi.routes.ui.mock.RouteSegmentPreviewParameterProvider
-import com.trafi.ui.unit
 
 @Composable
 fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
@@ -71,7 +70,7 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
         RouteSegment.Mode.WALKING -> {
             val walking = segment.walking ?: return
             val vector = vectorResource(R.drawable.ic_route_search_walking_s)
-            Row(modifier = modifier.defaultMinSizeConstraints(minHeight = 6.unit)) {
+            Row(modifier = modifier.defaultMinSizeConstraints(minHeight = 24.dp)) {
                 Image(vector, modifier = Modifier.gravity(Alignment.CenterVertically))
                 Text(
                     text = walking.distance.text,
@@ -93,12 +92,12 @@ fun Badge(color: Color, vector: VectorAsset?, text: String?, modifier: Modifier 
     Surface(
         color = color,
         contentColor = Color.White,
-        shape = RoundedCornerShape(1.unit),
+        shape = RoundedCornerShape(4.dp),
         modifier = modifier
     ) {
         Row(
             modifier = Modifier
-                .padding(1.unit)
+                .padding(4.dp)
                 .preferredHeight(IntrinsicSize.Min)
         ) {
             vector?.let {
@@ -110,7 +109,7 @@ fun Badge(color: Color, vector: VectorAsset?, text: String?, modifier: Modifier 
                 Divider(
                     color = contentColor(),
                     modifier = Modifier
-                        .padding(horizontal = 1.unit)
+                        .padding(horizontal = 4.dp)
                         .fillMaxHeight()
                         .preferredWidth(1.dp)
                 )

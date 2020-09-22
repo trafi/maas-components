@@ -1,44 +1,29 @@
 package com.trafi.example.ui
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-
-private val DarkColorPalette = darkColors(
-        primary = purple200,
-        primaryVariant = purple700,
-        secondary = teal200
-)
-
-private val LightColorPalette = lightColors(
-        primary = purple500,
-        primaryVariant = purple700,
-        secondary = teal200
-
-        /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
-)
+import androidx.compose.ui.platform.ConfigurationAmbient
+import com.trafi.ui.theme.MaasSpacing
+import com.trafi.ui.theme.MaasTheme
+import com.trafi.ui.theme.Spacing
+import com.trafi.ui.theme.darkColors
+import com.trafi.ui.theme.lightColors
 
 @Composable
-fun MaasTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
-
-    MaterialTheme(
-            colors = colors,
-            typography = typography,
-            shapes = shapes,
-            content = content
+fun DemoMaasTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    narrowScreen: Boolean = isScreenWidthNarrow(),
+    content: @Composable () -> Unit
+) {
+    MaasTheme(
+        colors = if (darkTheme) MaasTheme.darkColors() else MaasTheme.lightColors(),
+        spacing = MaasSpacing(globalMargin = if (narrowScreen) Spacing.md else Spacing.xl),
+        content = content
     )
+}
+
+@Composable
+fun isScreenWidthNarrow(): Boolean {
+    val configuration = ConfigurationAmbient.current
+    return configuration.screenWidthDp <= 280
 }
