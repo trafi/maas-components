@@ -54,11 +54,12 @@ task generateModels(type: org.openapitools.generator.gradle.plugin.tasks.Generat
 
     // Kotlin generator config
     generatorName = "kotlin"
+    library = "multiplatform"
     configOptions = [
             dateLibrary       : "string",
             collectionType    : "list",
             enumPropertyNaming: "original",
-            parcelizeModels   : "true",
+            parcelizeModels   : "false",
             sourceFolder      : ""
     ]
 }
