@@ -74,7 +74,7 @@ val packForXcode by tasks.creating(Sync::class) {
     val framework = kotlin.targets.getByName<KotlinNativeTarget>(targetName).binaries.getFramework(mode)
     inputs.property("mode", mode)
     dependsOn(framework.linkTask)
-    val targetDir = File(buildDir, "xcode-frameworks")
+    val targetDir = File(buildDir, "xcode-frameworks/" + targetName)
     from({ framework.outputDirectory })
     into(targetDir)
 }
