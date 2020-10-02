@@ -51,7 +51,7 @@ data class SharedVehicle(
     @SerialName(value = "fuel") val fuel: Fuel? = null,
     @SerialName(value = "rangeRemaining") val rangeRemaining: kotlin.Int? = null,
     @SerialName(value = "stationId") val stationId: kotlin.String? = null,
-    @SerialName(value = "ext") val ext: kotlin.collections.Map<kotlin.String, kotlin.String>? = null
+    @SerialName(value = "ext") val ext: kotlin.collections.Map<kotlin.String, kotlin.String?>? = null
 ) {
 
     /**

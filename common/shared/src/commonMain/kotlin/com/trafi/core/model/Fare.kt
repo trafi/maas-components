@@ -23,8 +23,5 @@ import kotlinx.serialization.*
 @Serializable
 data class Fare(
     @SerialName(value = "id") @Required val id: kotlin.String,
-    @SerialName(value = "price") @Required val price: Money,
-    @SerialName(value = "transit") val transit: kotlin.String? = null,
-    @SerialName(value = "rideHailing") val rideHailing: RideHailingFare? = null,
-    @SerialName(value = "sharing") val sharing: kotlin.String? = null
+    @SerialName(value = "price") @Required val price: Money
 )
