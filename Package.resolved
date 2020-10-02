@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "shared",
+        "repositoryURL": "git@github.com:trafi/maas-framework.git",
+        "state": {
+          "branch": "main",
+          "revision": "17dfb8e23d4ced410d78bad7115c0c372a6aa66f",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
