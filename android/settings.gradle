@@ -4,3 +4,7 @@ include ':core'
 include ':ui'
 include ':routes'
 include ':routes:ui'
+
+include ':common'
+project(':common').projectDir = file("../common")
+include ':common:shared'
