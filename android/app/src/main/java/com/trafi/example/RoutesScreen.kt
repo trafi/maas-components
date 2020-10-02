@@ -20,6 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -42,7 +43,10 @@ fun RoutesScreen() {
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = "maas-components-android")
+                    Text(
+                        text = "maas-components-android",
+                        style = MaasTheme.typography.headingM.copy(fontSize = 20.sp)
+                    )
                 },
                 actions = {
                     IconButton(onClick = {}) {
@@ -96,7 +100,8 @@ private fun BodyContent(
             RoutesResultState.NoResults -> {
                 Text(
                     "No results",
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                    style = MaasTheme.typography.textL
                 )
             }
             RoutesResultState.Loading -> {
@@ -128,9 +133,12 @@ fun Waypoint(location: Location, modifier: Modifier = Modifier) {
             Icons.Filled.Place,
             modifier = Modifier.padding(end = 16.dp)
         )
-        Text(location.name
-            ?: location.address
-            ?: location.coordinate.run { "$lat,$lng" })
+        Text(
+            location.name
+                ?: location.address
+                ?: location.coordinate.run { "$lat,$lng" },
+            style = MaasTheme.typography.textL
+        )
     }
 }
 
