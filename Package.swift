@@ -16,16 +16,18 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(name: "shared", path: "../common/shared/swift-package")
+        .package(name: "shared", path: "common/shared/swift-package")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "MaaS",
-            dependencies: [.product(name: "shared", package: "shared")]),
+            dependencies: [.product(name: "shared", package: "shared")],
+            path: "ios/Sources/MaaS"),
         .testTarget(
             name: "MaaSTests",
-            dependencies: ["MaaS"]),
+            dependencies: ["MaaS"],
+            path: "ios/Tests/MaaSTests"),
     ]
 )
