@@ -17,6 +17,8 @@ android {
 
         buildConfigField("String", "API_BASE_URL",
                 "\"${resolveProperty("trafi.apiBaseUrl", "TRAFI_API_BASE_URL") ?: ""}\"")
+        buildConfigField("String", "API_KEY",
+                "\"${resolveProperty("trafi.apiKey", "TRAFI_API_KEY") ?: ""}\"")
     }
 
     buildTypes {
