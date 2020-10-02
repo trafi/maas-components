@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.foundation.layout.preferredWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,6 +28,7 @@ import androidx.ui.tooling.preview.Preview
 import androidx.ui.tooling.preview.PreviewParameter
 import com.trafi.core.model.RouteSegment
 import com.trafi.routes.ui.mock.RouteSegmentPreviewParameterProvider
+import com.trafi.ui.theme.MaasTheme
 
 @Composable
 fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
@@ -73,7 +73,7 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
                 Image(vector, modifier = Modifier.align(Alignment.CenterVertically))
                 Text(
                     text = walking.distance.text,
-                    style = MaterialTheme.typography.caption,
+                    style = MaasTheme.typography.textS,
                     fontSize = 8.sp,
                     modifier = Modifier.align(Alignment.Bottom)
                 )
@@ -116,7 +116,7 @@ fun Badge(color: Color, vector: VectorAsset?, text: String?, modifier: Modifier 
             text?.let {
                 Text(
                     text = text,
-                    style = MaterialTheme.typography.body2.copy(fontWeight = FontWeight.SemiBold)
+                    style = MaasTheme.typography.textM.copy(fontWeight = FontWeight.SemiBold)
                 )
             }
         }

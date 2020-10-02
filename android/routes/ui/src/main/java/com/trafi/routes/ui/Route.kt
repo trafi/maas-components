@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSizeConstraints
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.trafi.core.model.Route
 import com.trafi.routes.ui.mock.mockRoute
+import com.trafi.ui.theme.MaasTheme
 
 @Composable
 fun Route(route: Route, modifier: Modifier = Modifier) {
@@ -26,7 +26,7 @@ fun Route(route: Route, modifier: Modifier = Modifier) {
         Cell(
             modifier = Modifier
                 .defaultMinSizeConstraints(minHeight = 64.dp)
-                .padding(horizontal = 24.dp, vertical = 12.dp),
+                .padding(horizontal = MaasTheme.spacing.globalMargin, vertical = 12.dp),
             body = {
                 Row {
                     route.segments.forEachIndexed { index, segment ->
@@ -42,9 +42,15 @@ fun Route(route: Route, modifier: Modifier = Modifier) {
                 route.disruption?.let { disruption ->
                     disruption.title?.let { disruptionTitle ->
                         Row(modifier = Modifier.padding(top = 8.dp)) {
-                            Text(disruption.severity.toString())
+                            Text(
+                                disruption.severity.toString(),
+                                style = MaasTheme.typography.textM
+                            )
                             Spacer(modifier = Modifier.size(4.dp))
-                            Text(disruptionTitle)
+                            Text(
+                                disruptionTitle,
+                                style = MaasTheme.typography.textM
+                            )
                         }
                     }
                 }
@@ -53,12 +59,13 @@ fun Route(route: Route, modifier: Modifier = Modifier) {
                 Text(
                     route.duration.text,
                     modifier = Modifier.align(Alignment.End),
-                    style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Bold)
+                    style = MaasTheme.typography.textL.copy(fontWeight = FontWeight.Bold),
                 )
                 route.fare?.total?.text?.let {
                     Text(
                         it,
-                        modifier = Modifier.align(Alignment.End)
+                        modifier = Modifier.align(Alignment.End),
+                        style = MaasTheme.typography.textM
                     )
                 }
             }
