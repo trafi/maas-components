@@ -9,7 +9,7 @@ struct RouteSegmentView: View {
         if let transit = segment.transit {
             Badge(color: transit.schedule.color.parseColor(),
                   icon: UIImage(systemName: "bus"),
-                  text: nil)
+                  text: transit.schedule.name)
         } else if let rideHailing = segment.rideHailing {
             Badge(color: rideHailing.provider?.color?.parseColor() ?? .black,
                   icon: UIImage(systemName: "car"),
@@ -69,7 +69,7 @@ struct RouteSegmentView_Previews: PreviewProvider {
             RouteSegmentView(segment: MockRouteKt.mockSegment2)
             RouteSegmentView(segment: MockRouteKt.mockSegment3)
         }
-        .previewLayout(.fixed(width: 100, height: 50))
+        .previewLayout(.fixed(width: 100, height: 100))
     }
 }
 
@@ -115,6 +115,6 @@ struct Badge_Previews: PreviewProvider {
             Badge(color: .red, icon: UIImage(systemName: "tram"), text: "12")
             Badge(color: .green, icon: UIImage(systemName: "bus"), text: "3G")
         }
-        .previewLayout(.fixed(width: 100, height: 50))
+        .previewLayout(.fixed(width: 100, height: 100))
     }
 }
