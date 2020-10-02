@@ -6,7 +6,7 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class SharedAcceptedPlatformTerms, SharedAcceptedProviderTerms, SharedTerms, SharedAccountProviderFeatures, SharedDeepLink, SharedAccountProvider, SharedAddDrivingLicenceParameters, SharedAddPaymentMethodRequestType, SharedAddPaymentMethodRequest, SharedKotlinEnum<E>, SharedKotlinArray<T>, SharedCommonEnumSerializer<T>, SharedAdditionalFee, SharedAddress, SharedSchedule, SharedAffectedSchedule, SharedAutoCompleteLocationType, SharedScheduleAtStop, SharedTransport, SharedLatLng, SharedAutoCompleteLocation, SharedAutoCompleteLocations, SharedBattery, SharedSharingBooking, SharedRideHailingBooking, SharedBookingsResponse, SharedBreakdownItemType, SharedBreakdownItem, SharedLocation, SharedCancelledTrip, SharedCapacity, SharedCar, SharedConnectAccountParameters, SharedNotificationSettings, SharedCreateDrivingLicenceVerificationSessionRequest, SharedDocumentVerificationSession, SharedCreateDrivingLicenceVerificationSessionResponse, SharedIdentityVerificationDocument, SharedCreateIdentityVerificationSessionRequest, SharedCreateIdentityVerificationSessionResponse, SharedCreateRideHailingBookingRequest, SharedSurgeInfo, SharedCreateRideHailingBookingResponse, SharedCreateSharingBookingRequestInitialBookingStatus, SharedCreateSharingBookingRequest, SharedCreditCardInfo, SharedDeclinedPlatformTerms, SharedDeclinedProviderTerms, SharedTrackWithDepartures, SharedDestinationWithDepartures, SharedDirectDebitInfo, SharedPath, SharedDirectionsResponse, SharedDiscountInfo, SharedDisruptionSeverity, SharedDisruption, SharedDistance, SharedRating, SharedDriver, SharedDrivingInfo, SharedDrivingLicenceCategory, SharedDrivingLicenceVerificationStatus, SharedDrivingLicence, SharedDuration, SharedError, SharedUiError, SharedErrorsError, SharedEstimateParkingPriceRequest, SharedParkingOption, SharedEstimateParkingPriceResponse, SharedEta, SharedExactDepartureDisruption, SharedExactDeparture, SharedExactDepartureDisruptionSeverity, SharedExactTime, SharedExtendedExactDepartureScheduledDepartureStatus, SharedExtendedExactDeparture, SharedExtendedIntervalDepartureScheduledDepartureStatus, SharedIntervalDeparture, SharedExtendedIntervalDeparture, SharedLocalizedFaq, SharedFaq, SharedMoney, SharedRideHailingFare, SharedFare, SharedPrice, SharedFareBreakdownItem, SharedFareEstimate, SharedFeeType, SharedFee, SharedFeeInfo, SharedFuel, SharedFuelCard, SharedGetTicketPriceRequest, SharedParkingPrice, SharedGetTicketPriceResponse, SharedGroup, SharedHistorySharingPart, SharedHistoryAllowanceParts, SharedHistoryBalanceDuration, SharedHistoryBalanceMeters, SharedHistoryBreakdownItemType, SharedHistoryBreakdownItem, SharedHistoryCar, SharedHistoryDriver, SharedHistoryMoney, SharedHistoryPaymentMethodType, SharedHistoryPaymentMethod, SharedHistorySharingPurchaseBreakdownInfo, SharedHistoryPaymentPurchaseBreakdownItem, SharedHistoryPriceBreakdown, SharedHistorySubscriptionPurchaseBreakdownItem, SharedHistoryPurchaseBreakdown, SharedHistorySharingProvider, SharedHistorySharingProviderVehicleType, SharedPropertyValue, SharedLocalizedPropertyValues, SharedHistoryTicket, SharedHistoryZone, SharedHoursOfControl, SharedIdentityVerificationStatus, SharedIdentity, SharedIdentityVerificationDocumentType, SharedInitiateAddPaymentMethodRequest, SharedInitiateAddPaymentMethodResponse, SharedIntervalTime, SharedLatLngBounds, SharedLocalizedDeepLink, SharedLocalizedPropertyValue, SharedLocalizedTerms, SharedMembershipType, SharedMembership, SharedResourceSpecifier, SharedRequirementStatus, SharedMspRequirements, SharedOperationTime, SharedOperationRestrictions, SharedParkingTimeIntervalPricing, SharedParkingPricing, SharedPayment, SharedParkingRecord, SharedParkingSessionStatus, SharedSessionStatusInfo, SharedParkingSession, SharedParkingSessionsResponse, SharedParkingSpotVehicleType, SharedParkingSpot, SharedTariff, SharedParkingZone, SharedParkingZonesResponse, SharedPayForParkingRequest, SharedPayPalInfo, SharedSharingBreakdownItem, SharedPaymentBreakdownItem, SharedPaymentConfirmation, SharedPaymentMethodType, SharedPaymentMethod, SharedPaymentMethods, SharedPhoneNumberVerificationStatus, SharedPhoneNumber, SharedPlatformTermsType, SharedPlatformTerms, SharedPriceInterval, SharedPriceBreakdown, SharedProfileGender, SharedProfile, SharedProviderFeatures, SharedSharingProviderOptions, SharedRideHailingProviderOptions, SharedSharingPricingInfo, SharedRideHailingPricingInfo, SharedProvider, SharedProviderAccountType, SharedProviderAccount, SharedProviderPaymentMethod, SharedUsersMoney, SharedProviderPaymentMethods, SharedProviderRequirementStatus, SharedProviderWithVehicleTypeVehicleType, SharedProviderWithVehicleType, SharedUser, SharedProvidersRequirementStatusResponse, SharedSubscriptionBreakdownItem, SharedPurchaseBreakdown, SharedRideHailingRecord, SharedSharingRecord, SharedTicketsRecord, SharedTicketActivationsRecord, SharedSubscriptionRenewalRecord, SharedRecords, SharedRequirementStatusResponse, SharedReturnOptions, SharedReverseGeocodeResponse, SharedRideOptions, SharedRideEstimateRequest, SharedRideHailingAllowedActionBookingStatus, SharedRideHailingAllowedActionAction, SharedRideHailingAllowedAction, SharedRideHailingProduct, SharedRideHailingBookingStatus, SharedRideHailingBookingEstimate, SharedRideHailingBookingOptions, SharedRideHailingPricing, SharedRideHailingProductWithEta, SharedRideHailingProductsResponse, SharedRideHailingProductsWithEtaResponse, SharedTrip, SharedRideHailingRecordStatus, SharedRouteSegment, SharedRouteFare, SharedRouteDisruption, SharedRoute, SharedRouteDisruptionSeverity, SharedRouteExactDeparture, SharedRouteIntervalDeparture, SharedRouteSegmentMode, SharedRouteSegmentTransit, SharedRouteSegmentWalking, SharedRouteSegmentSharing, SharedRouteSegmentRideHailing, SharedRouteSegmentDisruption, SharedRouteSegmentDisruptionSeverity, SharedStation, SharedSharedVehicle, SharedStop, SharedRouteSegmentStop, SharedTrack, SharedTransitAlternative, SharedWalkingPath, SharedRoutesResult, SharedScheduleWithDepartures, SharedScheduleWithDeparturesByDestination, SharedScheduleWithStopWithDepartures, SharedTimes, SharedScheduleWithStopWithTimes, SharedTrackWithStops, SharedScheduleWithStops, SharedScheduleWithTracks, SharedStopWithSchedules, SharedSchedulesAndStops, SharedSharedVehicleVehicleType, SharedSharedVehicleWithDirections, SharedSharedVehiclesAndDirectionsResponse, SharedSharedVehiclesResponse, SharedSharingAllowedActionAction, SharedSharingAllowedActionBookingStatus, SharedSharingAllowedAction, SharedSharingBookingStatus, SharedUnlockInfo, SharedSharingBookingOptions, SharedTimeIntervalPricing, SharedSharingPricing, SharedSharingProviderOptionsVehicleType, SharedSharingRoutingOptions, SharedSharingVehicleSelectionOptions, SharedVehicle, SharedSpaceTime, SharedStationVehicleType, SharedStationWithDirections, SharedStationsResponse, SharedStationsWithDirectionsResponse, SharedStopType, SharedStopWithSchedulesWithDepartures, SharedStopWithSchedulesWithDeparturesByDestination, SharedStopWithSchedulesWithDeparturesByDestinationWithDirections, SharedStopWithSchedulesWithDeparturesWithDirections, SharedSubregion, SharedSubscriptionRenewalRecordRenewalType, SharedTermsResponse, SharedTrackDirection, SharedTrackWithDeparturesDisruption, SharedTrackWithDeparturesDisruptionSeverity, SharedTransitRegionConfig, SharedTransitConfig, SharedTransitTripExactTime, SharedTransitTripIntervalDuration, SharedTransitVehiclePosition, SharedTransitTripDisruption, SharedTransitTrip, SharedTransitVehiclePositionWithScheduleAndTrack, SharedTransitVehiclePositionsWithSchedule, SharedUpdatePaymentMethodRequest, SharedUpdatePlatformTermsAction, SharedUpdatePlatformTerms, SharedUpdatePlatformTermsRequest, SharedUpdateProfileParameters, SharedUpdateProviderTermsAction, SharedUpdateProviderTerms, SharedUpdateProviderTermsRequest, SharedUpdateRideHailingBookingRequest, SharedUpdateSharingBookingRequestSharingBookingStatus, SharedUpdateSharingBookingRequest, SharedUpdateVerificationSessionRequest, SharedUserTerms, SharedUserImportResponseResult, SharedUserImportResponse, SharedUserImportStatusResponseState, SharedUserImportStatusResponse, SharedVehicleVehicleType, SharedVerificationProvider, SharedVerificationProvidersResponse, SharedVerifyPhoneNumberParameters, SharedVerifyProviderRequirementsResponse, SharedWalkingPathWalkType, SharedZone, SharedZonesResponse, SharedKotlinx_serialization_coreSerializersModule, SharedKotlinx_serialization_coreSerialKind, SharedKotlinNothing, SharedKotlinx_serialization_coreUpdateMode;
+@class SharedAcceptedPlatformTerms, SharedAcceptedProviderTerms, SharedTerms, SharedAccountProviderFeatures, SharedDeepLink, SharedAccountProvider, SharedAddDrivingLicenceParameters, SharedAddPaymentMethodRequestType, SharedAddPaymentMethodRequest, SharedKotlinEnum<E>, SharedKotlinArray<T>, SharedCommonEnumSerializer<T>, SharedAdditionalFee, SharedAddress, SharedSchedule, SharedAffectedSchedule, SharedAutoCompleteLocationType, SharedScheduleAtStop, SharedTransport, SharedLatLng, SharedAutoCompleteLocation, SharedAutoCompleteLocations, SharedBattery, SharedSharingBooking, SharedRideHailingBooking, SharedBookingsResponse, SharedBreakdownItemType, SharedBreakdownItem, SharedLocation, SharedCancelledTrip, SharedCapacity, SharedCar, SharedConnectAccountParameters, SharedNotificationSettings, SharedCreateDrivingLicenceVerificationSessionRequest, SharedDocumentVerificationSession, SharedCreateDrivingLicenceVerificationSessionResponse, SharedIdentityVerificationDocument, SharedCreateIdentityVerificationSessionRequest, SharedCreateIdentityVerificationSessionResponse, SharedCreateRideHailingBookingRequest, SharedSurgeInfo, SharedCreateRideHailingBookingResponse, SharedCreateSharingBookingRequestInitialBookingStatus, SharedCreateSharingBookingRequest, SharedCreditCardInfo, SharedDeclinedPlatformTerms, SharedDeclinedProviderTerms, SharedTrackWithDepartures, SharedDestinationWithDepartures, SharedDirectDebitInfo, SharedPath, SharedDirectionsResponse, SharedDiscountInfo, SharedDisruptionSeverity, SharedDisruption, SharedDistance, SharedRating, SharedDriver, SharedDrivingInfo, SharedDrivingLicenceCategory, SharedDrivingLicenceVerificationStatus, SharedDrivingLicence, SharedDuration, SharedError, SharedUiError, SharedErrorsError, SharedEstimateParkingPriceRequest, SharedParkingOption, SharedEstimateParkingPriceResponse, SharedEta, SharedExactDepartureDisruption, SharedExactDeparture, SharedExactDepartureDisruptionSeverity, SharedExactTime, SharedExtendedExactDepartureScheduledDepartureStatus, SharedExtendedExactDeparture, SharedExtendedIntervalDepartureScheduledDepartureStatus, SharedIntervalDeparture, SharedExtendedIntervalDeparture, SharedLocalizedFaq, SharedFaq, SharedMoney, SharedFare, SharedPrice, SharedFareBreakdownItem, SharedFareEstimate, SharedFeeType, SharedFee, SharedFeeInfo, SharedFuel, SharedFuelCard, SharedGetTicketPriceRequest, SharedParkingPrice, SharedGetTicketPriceResponse, SharedGroup, SharedHistorySharingPart, SharedHistoryAllowanceParts, SharedHistoryBalanceDuration, SharedHistoryBalanceMeters, SharedHistoryBreakdownItemType, SharedHistoryBreakdownItem, SharedHistoryCar, SharedHistoryDriver, SharedHistoryMoney, SharedHistoryPaymentMethodType, SharedHistoryPaymentMethod, SharedHistorySharingPurchaseBreakdownInfo, SharedHistoryPaymentPurchaseBreakdownItem, SharedHistoryPriceBreakdown, SharedHistorySubscriptionPurchaseBreakdownItem, SharedHistoryPurchaseBreakdown, SharedHistorySharingProvider, SharedHistorySharingProviderVehicleType, SharedPropertyValue, SharedLocalizedPropertyValues, SharedHistoryTicket, SharedHistoryZone, SharedHoursOfControl, SharedIdentityVerificationStatus, SharedIdentity, SharedIdentityVerificationDocumentType, SharedInitiateAddPaymentMethodRequest, SharedInitiateAddPaymentMethodResponse, SharedIntervalTime, SharedLatLngBounds, SharedLocalizedDeepLink, SharedLocalizedPropertyValue, SharedLocalizedTerms, SharedMembershipType, SharedMembership, SharedResourceSpecifier, SharedRequirementStatus, SharedMspRequirements, SharedOperationTime, SharedOperationRestrictions, SharedParkingTimeIntervalPricing, SharedParkingPricing, SharedPayment, SharedParkingRecord, SharedParkingSessionStatus, SharedSessionStatusInfo, SharedParkingSession, SharedParkingSessionsResponse, SharedParkingSpotVehicleType, SharedParkingSpot, SharedTariff, SharedParkingZone, SharedParkingZonesResponse, SharedPayForParkingRequest, SharedPayPalInfo, SharedSharingBreakdownItem, SharedPaymentBreakdownItem, SharedPaymentConfirmation, SharedPaymentMethodType, SharedPaymentMethod, SharedPaymentMethods, SharedPhoneNumberVerificationStatus, SharedPhoneNumber, SharedPlatformTermsType, SharedPlatformTerms, SharedPriceInterval, SharedPriceBreakdown, SharedProfileGender, SharedProfile, SharedProviderFeatures, SharedSharingProviderOptions, SharedRideHailingProviderOptions, SharedSharingPricingInfo, SharedRideHailingPricingInfo, SharedProvider, SharedProviderAccountType, SharedProviderAccount, SharedProviderPaymentMethod, SharedUsersMoney, SharedProviderPaymentMethods, SharedProviderRequirementStatus, SharedProviderWithVehicleTypeVehicleType, SharedProviderWithVehicleType, SharedUser, SharedProvidersRequirementStatusResponse, SharedSubscriptionBreakdownItem, SharedPurchaseBreakdown, SharedRideHailingRecord, SharedSharingRecord, SharedTicketsRecord, SharedTicketActivationsRecord, SharedSubscriptionRenewalRecord, SharedRecords, SharedRequirementStatusResponse, SharedReturnOptions, SharedReverseGeocodeResponse, SharedRideOptions, SharedRideEstimateRequest, SharedRideHailingAllowedActionBookingStatus, SharedRideHailingAllowedActionAction, SharedRideHailingAllowedAction, SharedRideHailingProduct, SharedRideHailingBookingStatus, SharedRideHailingBookingEstimate, SharedRideHailingBookingOptions, SharedRideHailingFare, SharedRideHailingPricing, SharedRideHailingProductWithEta, SharedRideHailingProductsResponse, SharedRideHailingProductsWithEtaResponse, SharedTrip, SharedRideHailingRecordStatus, SharedRouteSegment, SharedRouteFare, SharedRouteDisruption, SharedRoute, SharedRouteDisruptionSeverity, SharedRouteExactDeparture, SharedRouteIntervalDeparture, SharedRouteSegmentMode, SharedRouteSegmentTransit, SharedRouteSegmentWalking, SharedRouteSegmentSharing, SharedRouteSegmentRideHailing, SharedRouteSegmentDisruption, SharedRouteSegmentDisruptionSeverity, SharedStation, SharedSharedVehicle, SharedStop, SharedRouteSegmentStop, SharedTrack, SharedTransitAlternative, SharedWalkingPath, SharedRoutesResult, SharedScheduleWithDepartures, SharedScheduleWithDeparturesByDestination, SharedScheduleWithStopWithDepartures, SharedTimes, SharedScheduleWithStopWithTimes, SharedTrackWithStops, SharedScheduleWithStops, SharedScheduleWithTracks, SharedStopWithSchedules, SharedSchedulesAndStops, SharedSharedVehicleVehicleType, SharedSharedVehicleWithDirections, SharedSharedVehiclesAndDirectionsResponse, SharedSharedVehiclesResponse, SharedSharingAllowedActionAction, SharedSharingAllowedActionBookingStatus, SharedSharingAllowedAction, SharedSharingBookingStatus, SharedUnlockInfo, SharedSharingBookingOptions, SharedTimeIntervalPricing, SharedSharingPricing, SharedSharingProviderOptionsVehicleType, SharedSharingRoutingOptions, SharedSharingVehicleSelectionOptions, SharedVehicle, SharedSpaceTime, SharedStationVehicleType, SharedStationWithDirections, SharedStationsResponse, SharedStationsWithDirectionsResponse, SharedStopType, SharedStopWithSchedulesWithDepartures, SharedStopWithSchedulesWithDeparturesByDestination, SharedStopWithSchedulesWithDeparturesByDestinationWithDirections, SharedStopWithSchedulesWithDeparturesWithDirections, SharedSubregion, SharedSubscriptionRenewalRecordRenewalType, SharedTermsResponse, SharedTrackDirection, SharedTrackWithDeparturesDisruption, SharedTrackWithDeparturesDisruptionSeverity, SharedTransitRegionConfig, SharedTransitConfig, SharedTransitTripExactTime, SharedTransitTripIntervalDuration, SharedTransitVehiclePosition, SharedTransitTripDisruption, SharedTransitTrip, SharedTransitVehiclePositionWithScheduleAndTrack, SharedTransitVehiclePositionsWithSchedule, SharedUpdatePaymentMethodRequest, SharedUpdatePlatformTermsAction, SharedUpdatePlatformTerms, SharedUpdatePlatformTermsRequest, SharedUpdateProfileParameters, SharedUpdateProviderTermsAction, SharedUpdateProviderTerms, SharedUpdateProviderTermsRequest, SharedUpdateRideHailingBookingRequest, SharedUpdateSharingBookingRequestSharingBookingStatus, SharedUpdateSharingBookingRequest, SharedUpdateVerificationSessionRequest, SharedUserTerms, SharedUserImportResponseResult, SharedUserImportResponse, SharedUserImportStatusResponseState, SharedUserImportStatusResponse, SharedVehicleVehicleType, SharedVerificationProvider, SharedVerificationProvidersResponse, SharedVerifyPhoneNumberParameters, SharedVerifyProviderRequirementsResponse, SharedWalkingPathWalkType, SharedZone, SharedZonesResponse, SharedApiResult<__covariant T>, SharedKotlinThrowable, SharedKotlinx_serialization_coreSerializersModule, SharedKotlinx_serialization_coreSerialKind, SharedKotlinNothing, SharedKotlinx_serialization_coreUpdateMode, SharedKotlinException, SharedKotlinRuntimeException, SharedKotlinIllegalStateException;
 
 @protocol SharedKotlinx_serialization_coreKSerializer, SharedKotlinComparable, SharedKotlinx_serialization_coreEncoder, SharedKotlinx_serialization_coreSerialDescriptor, SharedKotlinx_serialization_coreSerializationStrategy, SharedKotlinx_serialization_coreDecoder, SharedKotlinx_serialization_coreDeserializationStrategy, SharedKotlinx_serialization_coreCompositeEncoder, SharedKotlinAnnotation, SharedKotlinx_serialization_coreCompositeDecoder, SharedKotlinIterator, SharedKotlinx_serialization_coreSerializersModuleCollector, SharedKotlinKClass, SharedKotlinKDeclarationContainer, SharedKotlinKAnnotatedElement, SharedKotlinKClassifier;
 
@@ -351,12 +351,13 @@ __attribute__((swift_name("Kotlinx_serialization_coreKSerializer")))
 
 __attribute__((swift_name("CommonEnumSerializer")))
 @interface SharedCommonEnumSerializer<T> : SharedBase <SharedKotlinx_serialization_coreKSerializer>
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<T> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<T> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer));
 - (T _Nullable)deserializeDecoder:(id<SharedKotlinx_serialization_coreDecoder>)decoder __attribute__((swift_name("deserialize(decoder:)")));
 - (void)serializeEncoder:(id<SharedKotlinx_serialization_coreEncoder>)encoder value:(T _Nullable)value __attribute__((swift_name("serialize(encoder:value:)")));
-@property (readonly) SharedKotlinArray<T> *choices __attribute__((swift_name("choices")));
+@property (readonly) SharedKotlinArray<NSString *> *choicesNames __attribute__((swift_name("choicesNames")));
 @property (readonly) id<SharedKotlinx_serialization_coreSerialDescriptor> descriptor __attribute__((swift_name("descriptor")));
 @property (readonly) NSString *serialName __attribute__((swift_name("serialName")));
+@property (readonly) SharedKotlinArray<T> *values __attribute__((swift_name("values")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -364,7 +365,7 @@ __attribute__((swift_name("AddPaymentMethodRequest.Type_Serializer")))
 @interface SharedAddPaymentMethodRequestTypeSerializer : SharedCommonEnumSerializer<SharedAddPaymentMethodRequestType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -498,7 +499,7 @@ __attribute__((swift_name("AutoCompleteLocation.Type_Serializer")))
 @interface SharedAutoCompleteLocationTypeSerializer : SharedCommonEnumSerializer<SharedAutoCompleteLocationType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -611,7 +612,7 @@ __attribute__((swift_name("BreakdownItem.Type_Serializer")))
 @interface SharedBreakdownItemTypeSerializer : SharedCommonEnumSerializer<SharedBreakdownItemType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -915,7 +916,7 @@ __attribute__((swift_name("CreateSharingBookingRequest.InitialBookingStatusSeria
 @interface SharedCreateSharingBookingRequestInitialBookingStatusSerializer : SharedCommonEnumSerializer<SharedCreateSharingBookingRequestInitialBookingStatus *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -1162,7 +1163,7 @@ __attribute__((swift_name("Disruption.SeveritySerializer")))
 @interface SharedDisruptionSeveritySerializer : SharedCommonEnumSerializer<SharedDisruptionSeverity *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -1317,7 +1318,7 @@ __attribute__((swift_name("DrivingLicence.VerificationStatusSerializer")))
 @interface SharedDrivingLicenceVerificationStatusSerializer : SharedCommonEnumSerializer<SharedDrivingLicenceVerificationStatus *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -1570,7 +1571,7 @@ __attribute__((swift_name("ExactDepartureDisruption.SeveritySerializer")))
 @interface SharedExactDepartureDisruptionSeveritySerializer : SharedCommonEnumSerializer<SharedExactDepartureDisruptionSeverity *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -1647,7 +1648,7 @@ __attribute__((swift_name("ExtendedExactDeparture.ScheduledDepartureStatusSerial
 @interface SharedExtendedExactDepartureScheduledDepartureStatusSerializer : SharedCommonEnumSerializer<SharedExtendedExactDepartureScheduledDepartureStatus *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -1695,7 +1696,7 @@ __attribute__((swift_name("ExtendedIntervalDeparture.ScheduledDepartureStatusSer
 @interface SharedExtendedIntervalDepartureScheduledDepartureStatusSerializer : SharedCommonEnumSerializer<SharedExtendedIntervalDepartureScheduledDepartureStatus *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -1723,21 +1724,15 @@ __attribute__((swift_name("Faq.Companion")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Fare")))
 @interface SharedFare : SharedBase
-- (instancetype)initWithId:(NSString *)id price:(SharedMoney *)price transit:(NSString * _Nullable)transit rideHailing:(SharedRideHailingFare * _Nullable)rideHailing sharing:(NSString * _Nullable)sharing __attribute__((swift_name("init(id:price:transit:rideHailing:sharing:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithId:(NSString *)id price:(SharedMoney *)price __attribute__((swift_name("init(id:price:)"))) __attribute__((objc_designated_initializer));
 - (NSString *)component1 __attribute__((swift_name("component1()")));
 - (SharedMoney *)component2 __attribute__((swift_name("component2()")));
-- (NSString * _Nullable)component3 __attribute__((swift_name("component3()")));
-- (SharedRideHailingFare * _Nullable)component4 __attribute__((swift_name("component4()")));
-- (NSString * _Nullable)component5 __attribute__((swift_name("component5()")));
-- (SharedFare *)doCopyId:(NSString *)id price:(SharedMoney *)price transit:(NSString * _Nullable)transit rideHailing:(SharedRideHailingFare * _Nullable)rideHailing sharing:(NSString * _Nullable)sharing __attribute__((swift_name("doCopy(id:price:transit:rideHailing:sharing:)")));
+- (SharedFare *)doCopyId:(NSString *)id price:(SharedMoney *)price __attribute__((swift_name("doCopy(id:price:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *id __attribute__((swift_name("id")));
 @property (readonly) SharedMoney *price __attribute__((swift_name("price")));
-@property (readonly) SharedRideHailingFare * _Nullable rideHailing __attribute__((swift_name("rideHailing")));
-@property (readonly) NSString * _Nullable sharing __attribute__((swift_name("sharing")));
-@property (readonly) NSString * _Nullable transit __attribute__((swift_name("transit")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -1843,7 +1838,7 @@ __attribute__((swift_name("Fee.Type_Serializer")))
 @interface SharedFeeTypeSerializer : SharedCommonEnumSerializer<SharedFeeType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -2092,7 +2087,7 @@ __attribute__((swift_name("HistoryBreakdownItem.Type_Serializer")))
 @interface SharedHistoryBreakdownItemTypeSerializer : SharedCommonEnumSerializer<SharedHistoryBreakdownItemType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -2213,7 +2208,7 @@ __attribute__((swift_name("HistoryPaymentMethod.Type_Serializer")))
 @interface SharedHistoryPaymentMethodTypeSerializer : SharedCommonEnumSerializer<SharedHistoryPaymentMethodType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -2356,7 +2351,7 @@ __attribute__((swift_name("HistorySharingProvider.VehicleTypeSerializer")))
 @interface SharedHistorySharingProviderVehicleTypeSerializer : SharedCommonEnumSerializer<SharedHistorySharingProviderVehicleType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -2544,7 +2539,7 @@ __attribute__((swift_name("Identity.VerificationStatusSerializer")))
 @interface SharedIdentityVerificationStatusSerializer : SharedCommonEnumSerializer<SharedIdentityVerificationStatus *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -2591,7 +2586,7 @@ __attribute__((swift_name("IdentityVerificationDocument.Type_Serializer")))
 @interface SharedIdentityVerificationDocumentTypeSerializer : SharedCommonEnumSerializer<SharedIdentityVerificationDocumentType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -2937,7 +2932,7 @@ __attribute__((swift_name("Membership.Type_Serializer")))
 @interface SharedMembershipTypeSerializer : SharedCommonEnumSerializer<SharedMembershipType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -3226,7 +3221,7 @@ __attribute__((swift_name("ParkingSession.StatusSerializer")))
 @interface SharedParkingSessionStatusSerializer : SharedCommonEnumSerializer<SharedParkingSessionStatus *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -3300,7 +3295,7 @@ __attribute__((swift_name("ParkingSpot.VehicleTypeSerializer")))
 @interface SharedParkingSpotVehicleTypeSerializer : SharedCommonEnumSerializer<SharedParkingSpotVehicleType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -3595,7 +3590,7 @@ __attribute__((swift_name("PaymentMethod.Type_Serializer")))
 @interface SharedPaymentMethodTypeSerializer : SharedCommonEnumSerializer<SharedPaymentMethodType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -3667,7 +3662,7 @@ __attribute__((swift_name("PhoneNumber.VerificationStatusSerializer")))
 @interface SharedPhoneNumberVerificationStatusSerializer : SharedCommonEnumSerializer<SharedPhoneNumberVerificationStatus *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -3723,7 +3718,7 @@ __attribute__((swift_name("PlatformTerms.Type_Serializer")))
 @interface SharedPlatformTermsTypeSerializer : SharedCommonEnumSerializer<SharedPlatformTermsType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -3849,7 +3844,7 @@ __attribute__((swift_name("Profile.GenderSerializer")))
 @interface SharedProfileGenderSerializer : SharedCommonEnumSerializer<SharedProfileGender *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -3962,7 +3957,7 @@ __attribute__((swift_name("ProviderAccount.Type_Serializer")))
 @interface SharedProviderAccountTypeSerializer : SharedCommonEnumSerializer<SharedProviderAccountType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -4109,7 +4104,7 @@ __attribute__((swift_name("ProviderWithVehicleType.VehicleTypeSerializer")))
 @interface SharedProviderWithVehicleTypeVehicleTypeSerializer : SharedCommonEnumSerializer<SharedProviderWithVehicleTypeVehicleType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -4399,7 +4394,7 @@ __attribute__((swift_name("RideHailingAllowedAction.ActionSerializer")))
 @interface SharedRideHailingAllowedActionActionSerializer : SharedCommonEnumSerializer<SharedRideHailingAllowedActionAction *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -4426,7 +4421,7 @@ __attribute__((swift_name("RideHailingAllowedAction.BookingStatusSerializer")))
 @interface SharedRideHailingAllowedActionBookingStatusSerializer : SharedCommonEnumSerializer<SharedRideHailingAllowedActionBookingStatus *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -4531,7 +4526,7 @@ __attribute__((swift_name("RideHailingBooking.StatusSerializer")))
 @interface SharedRideHailingBookingStatusSerializer : SharedCommonEnumSerializer<SharedRideHailingBookingStatus *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -4878,7 +4873,7 @@ __attribute__((swift_name("RideHailingRecord.StatusSerializer")))
 @interface SharedRideHailingRecordStatusSerializer : SharedCommonEnumSerializer<SharedRideHailingRecordStatus *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -4989,7 +4984,7 @@ __attribute__((swift_name("RouteDisruption.SeveritySerializer")))
 @interface SharedRouteDisruptionSeveritySerializer : SharedCommonEnumSerializer<SharedRouteDisruptionSeverity *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -5131,7 +5126,7 @@ __attribute__((swift_name("RouteSegment.ModeSerializer")))
 @interface SharedRouteSegmentModeSerializer : SharedCommonEnumSerializer<SharedRouteSegmentMode *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -5174,7 +5169,7 @@ __attribute__((swift_name("RouteSegmentDisruption.SeveritySerializer")))
 @interface SharedRouteSegmentDisruptionSeveritySerializer : SharedCommonEnumSerializer<SharedRouteSegmentDisruptionSeverity *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -5601,7 +5596,7 @@ __attribute__((swift_name("SessionStatusInfo.Companion")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SharedVehicle")))
 @interface SharedSharedVehicle : SharedBase
-- (instancetype)initWithId:(NSString *)id providerId:(NSString *)providerId location:(SharedLocation *)location imageUrls:(NSArray<NSString *> *)imageUrls tags:(NSArray<NSString *> *)tags deepLinks:(NSArray<SharedLocalizedDeepLink *> *)deepLinks name:(NSString * _Nullable)name vehicleType:(SharedSharedVehicleVehicleType * _Nullable)vehicleType vehicleSubtype:(NSString * _Nullable)vehicleSubtype licencePlate:(NSString * _Nullable)licencePlate pricing:(SharedSharingPricingInfo * _Nullable)pricing iconUrl:(NSString * _Nullable)iconUrl battery:(SharedBattery * _Nullable)battery fuel:(SharedFuel * _Nullable)fuel rangeRemaining:(SharedInt * _Nullable)rangeRemaining stationId:(NSString * _Nullable)stationId ext:(NSDictionary<NSString *, NSString *> * _Nullable)ext __attribute__((swift_name("init(id:providerId:location:imageUrls:tags:deepLinks:name:vehicleType:vehicleSubtype:licencePlate:pricing:iconUrl:battery:fuel:rangeRemaining:stationId:ext:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithId:(NSString *)id providerId:(NSString *)providerId location:(SharedLocation *)location imageUrls:(NSArray<NSString *> *)imageUrls tags:(NSArray<NSString *> *)tags deepLinks:(NSArray<SharedLocalizedDeepLink *> *)deepLinks name:(NSString * _Nullable)name vehicleType:(SharedSharedVehicleVehicleType * _Nullable)vehicleType vehicleSubtype:(NSString * _Nullable)vehicleSubtype licencePlate:(NSString * _Nullable)licencePlate pricing:(SharedSharingPricingInfo * _Nullable)pricing iconUrl:(NSString * _Nullable)iconUrl battery:(SharedBattery * _Nullable)battery fuel:(SharedFuel * _Nullable)fuel rangeRemaining:(SharedInt * _Nullable)rangeRemaining stationId:(NSString * _Nullable)stationId ext:(NSDictionary<NSString *, id> * _Nullable)ext __attribute__((swift_name("init(id:providerId:location:imageUrls:tags:deepLinks:name:vehicleType:vehicleSubtype:licencePlate:pricing:iconUrl:battery:fuel:rangeRemaining:stationId:ext:)"))) __attribute__((objc_designated_initializer));
 - (NSString *)component1 __attribute__((swift_name("component1()")));
 - (NSString * _Nullable)component10 __attribute__((swift_name("component10()")));
 - (SharedSharingPricingInfo * _Nullable)component11 __attribute__((swift_name("component11()")));
@@ -5610,7 +5605,7 @@ __attribute__((swift_name("SharedVehicle")))
 - (SharedFuel * _Nullable)component14 __attribute__((swift_name("component14()")));
 - (SharedInt * _Nullable)component15 __attribute__((swift_name("component15()")));
 - (NSString * _Nullable)component16 __attribute__((swift_name("component16()")));
-- (NSDictionary<NSString *, NSString *> * _Nullable)component17 __attribute__((swift_name("component17()")));
+- (NSDictionary<NSString *, id> * _Nullable)component17 __attribute__((swift_name("component17()")));
 - (NSString *)component2 __attribute__((swift_name("component2()")));
 - (SharedLocation *)component3 __attribute__((swift_name("component3()")));
 - (NSArray<NSString *> *)component4 __attribute__((swift_name("component4()")));
@@ -5619,13 +5614,13 @@ __attribute__((swift_name("SharedVehicle")))
 - (NSString * _Nullable)component7 __attribute__((swift_name("component7()")));
 - (SharedSharedVehicleVehicleType * _Nullable)component8 __attribute__((swift_name("component8()")));
 - (NSString * _Nullable)component9 __attribute__((swift_name("component9()")));
-- (SharedSharedVehicle *)doCopyId:(NSString *)id providerId:(NSString *)providerId location:(SharedLocation *)location imageUrls:(NSArray<NSString *> *)imageUrls tags:(NSArray<NSString *> *)tags deepLinks:(NSArray<SharedLocalizedDeepLink *> *)deepLinks name:(NSString * _Nullable)name vehicleType:(SharedSharedVehicleVehicleType * _Nullable)vehicleType vehicleSubtype:(NSString * _Nullable)vehicleSubtype licencePlate:(NSString * _Nullable)licencePlate pricing:(SharedSharingPricingInfo * _Nullable)pricing iconUrl:(NSString * _Nullable)iconUrl battery:(SharedBattery * _Nullable)battery fuel:(SharedFuel * _Nullable)fuel rangeRemaining:(SharedInt * _Nullable)rangeRemaining stationId:(NSString * _Nullable)stationId ext:(NSDictionary<NSString *, NSString *> * _Nullable)ext __attribute__((swift_name("doCopy(id:providerId:location:imageUrls:tags:deepLinks:name:vehicleType:vehicleSubtype:licencePlate:pricing:iconUrl:battery:fuel:rangeRemaining:stationId:ext:)")));
+- (SharedSharedVehicle *)doCopyId:(NSString *)id providerId:(NSString *)providerId location:(SharedLocation *)location imageUrls:(NSArray<NSString *> *)imageUrls tags:(NSArray<NSString *> *)tags deepLinks:(NSArray<SharedLocalizedDeepLink *> *)deepLinks name:(NSString * _Nullable)name vehicleType:(SharedSharedVehicleVehicleType * _Nullable)vehicleType vehicleSubtype:(NSString * _Nullable)vehicleSubtype licencePlate:(NSString * _Nullable)licencePlate pricing:(SharedSharingPricingInfo * _Nullable)pricing iconUrl:(NSString * _Nullable)iconUrl battery:(SharedBattery * _Nullable)battery fuel:(SharedFuel * _Nullable)fuel rangeRemaining:(SharedInt * _Nullable)rangeRemaining stationId:(NSString * _Nullable)stationId ext:(NSDictionary<NSString *, id> * _Nullable)ext __attribute__((swift_name("doCopy(id:providerId:location:imageUrls:tags:deepLinks:name:vehicleType:vehicleSubtype:licencePlate:pricing:iconUrl:battery:fuel:rangeRemaining:stationId:ext:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) SharedBattery * _Nullable battery __attribute__((swift_name("battery")));
 @property (readonly) NSArray<SharedLocalizedDeepLink *> *deepLinks __attribute__((swift_name("deepLinks")));
-@property (readonly) NSDictionary<NSString *, NSString *> * _Nullable ext __attribute__((swift_name("ext")));
+@property (readonly) NSDictionary<NSString *, id> * _Nullable ext __attribute__((swift_name("ext")));
 @property (readonly) SharedFuel * _Nullable fuel __attribute__((swift_name("fuel")));
 @property (readonly) NSString * _Nullable iconUrl __attribute__((swift_name("iconUrl")));
 @property (readonly) NSString *id __attribute__((swift_name("id")));
@@ -5669,7 +5664,7 @@ __attribute__((swift_name("SharedVehicle.VehicleTypeSerializer")))
 @interface SharedSharedVehicleVehicleTypeSerializer : SharedCommonEnumSerializer<SharedSharedVehicleVehicleType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -5771,7 +5766,7 @@ __attribute__((swift_name("SharingAllowedAction.ActionSerializer")))
 @interface SharedSharingAllowedActionActionSerializer : SharedCommonEnumSerializer<SharedSharingAllowedActionAction *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -5794,7 +5789,7 @@ __attribute__((swift_name("SharingAllowedAction.BookingStatusSerializer")))
 @interface SharedSharingAllowedActionBookingStatusSerializer : SharedCommonEnumSerializer<SharedSharingAllowedActionBookingStatus *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -5889,7 +5884,7 @@ __attribute__((swift_name("SharingBooking.StatusSerializer")))
 @interface SharedSharingBookingStatusSerializer : SharedCommonEnumSerializer<SharedSharingBookingStatus *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -6062,7 +6057,7 @@ __attribute__((swift_name("SharingProviderOptions.VehicleTypeSerializer")))
 @interface SharedSharingProviderOptionsVehicleTypeSerializer : SharedCommonEnumSerializer<SharedSharingProviderOptionsVehicleType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -6219,7 +6214,7 @@ __attribute__((swift_name("Station.VehicleTypeSerializer")))
 @interface SharedStationVehicleTypeSerializer : SharedCommonEnumSerializer<SharedStationVehicleType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -6351,7 +6346,7 @@ __attribute__((swift_name("Stop.Type_Serializer")))
 @interface SharedStopTypeSerializer : SharedCommonEnumSerializer<SharedStopType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -6575,7 +6570,7 @@ __attribute__((swift_name("SubscriptionRenewalRecord.RenewalTypeSerializer")))
 @interface SharedSubscriptionRenewalRecordRenewalTypeSerializer : SharedCommonEnumSerializer<SharedSubscriptionRenewalRecordRenewalType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -6835,7 +6830,7 @@ __attribute__((swift_name("Track.DirectionSerializer")))
 @interface SharedTrackDirectionSerializer : SharedCommonEnumSerializer<SharedTrackDirection *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -6903,7 +6898,7 @@ __attribute__((swift_name("TrackWithDeparturesDisruption.SeveritySerializer")))
 @interface SharedTrackWithDeparturesDisruptionSeveritySerializer : SharedCommonEnumSerializer<SharedTrackWithDeparturesDisruptionSeverity *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -7339,7 +7334,7 @@ __attribute__((swift_name("UpdatePlatformTerms.ActionSerializer")))
 @interface SharedUpdatePlatformTermsActionSerializer : SharedCommonEnumSerializer<SharedUpdatePlatformTermsAction *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -7428,7 +7423,7 @@ __attribute__((swift_name("UpdateProviderTerms.ActionSerializer")))
 @interface SharedUpdateProviderTermsActionSerializer : SharedCommonEnumSerializer<SharedUpdateProviderTermsAction *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -7527,7 +7522,7 @@ __attribute__((swift_name("UpdateSharingBookingRequest.SharingBookingStatusSeria
 @interface SharedUpdateSharingBookingRequestSharingBookingStatusSerializer : SharedCommonEnumSerializer<SharedUpdateSharingBookingRequestSharingBookingStatus *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -7631,7 +7626,7 @@ __attribute__((swift_name("UserImportResponse.ResultSerializer")))
 @interface SharedUserImportResponseResultSerializer : SharedCommonEnumSerializer<SharedUserImportResponseResult *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -7674,7 +7669,7 @@ __attribute__((swift_name("UserImportStatusResponse.StateSerializer")))
 @interface SharedUserImportStatusResponseStateSerializer : SharedCommonEnumSerializer<SharedUserImportStatusResponseState *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -7773,7 +7768,7 @@ __attribute__((swift_name("Vehicle.VehicleTypeSerializer")))
 @interface SharedVehicleVehicleTypeSerializer : SharedCommonEnumSerializer<SharedVehicleVehicleType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -7918,7 +7913,7 @@ __attribute__((swift_name("WalkingPath.WalkTypeSerializer")))
 @interface SharedWalkingPathWalkTypeSerializer : SharedCommonEnumSerializer<SharedWalkingPathWalkType *>
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithSerialName:(NSString *)serialName choices:(SharedKotlinArray<id> *)choices choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:choices:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSerialName:(NSString *)serialName values:(SharedKotlinArray<id> *)values choicesNames:(SharedKotlinArray<NSString *> *)choicesNames __attribute__((swift_name("init(serialName:values:choicesNames:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)serializer __attribute__((swift_name("init()")));
 @end;
 
@@ -7980,6 +7975,24 @@ __attribute__((swift_name("ZonesResponse.Companion")))
 - (id<SharedKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end;
 
+__attribute__((swift_name("ApiResult")))
+@interface SharedApiResult<__covariant T> : SharedBase
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ApiResultFailure")))
+@interface SharedApiResultFailure<T> : SharedApiResult<T>
+- (instancetype)initWithException:(SharedKotlinThrowable *)exception __attribute__((swift_name("init(exception:)"))) __attribute__((objc_designated_initializer));
+@property (readonly) SharedKotlinThrowable *exception __attribute__((swift_name("exception")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ApiResultSuccess")))
+@interface SharedApiResultSuccess<T> : SharedApiResult<T>
+- (instancetype)initWithValue:(T _Nullable)value __attribute__((swift_name("init(value:)"))) __attribute__((objc_designated_initializer));
+@property (readonly) T _Nullable value __attribute__((swift_name("value")));
+@end;
+
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Greeting")))
 @interface SharedGreeting : SharedBase
@@ -7994,6 +8007,18 @@ __attribute__((swift_name("Platform")))
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 @property (readonly) NSString *platform __attribute__((swift_name("platform")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("RoutesApi")))
+@interface SharedRoutesApi : SharedBase
+- (instancetype)initWithBaseApiUrl:(NSString *)baseApiUrl apiKey:(NSString *)apiKey __attribute__((swift_name("init(baseApiUrl:apiKey:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ @note This method converts instances of CancellationException to errors.
+ Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)searchStart:(SharedLocation *)start end:(SharedLocation *)end completionHandler:(void (^)(SharedApiResult<SharedRoutesResult *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("search(start:end:completionHandler:)")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -8080,6 +8105,56 @@ __attribute__((swift_name("KotlinArray")))
 - (id<SharedKotlinIterator>)iterator __attribute__((swift_name("iterator()")));
 - (void)setIndex:(int32_t)index value:(T _Nullable)value __attribute__((swift_name("set(index:value:)")));
 @property (readonly) int32_t size __attribute__((swift_name("size")));
+@end;
+
+__attribute__((swift_name("KotlinThrowable")))
+@interface SharedKotlinThrowable : SharedBase
+- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithCause:(SharedKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SharedKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
+- (SharedKotlinArray<NSString *> *)getStackTrace __attribute__((swift_name("getStackTrace()")));
+- (void)printStackTrace __attribute__((swift_name("printStackTrace()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) SharedKotlinThrowable * _Nullable cause __attribute__((swift_name("cause")));
+@property (readonly) NSString * _Nullable message __attribute__((swift_name("message")));
+@end;
+
+__attribute__((swift_name("KotlinException")))
+@interface SharedKotlinException : SharedKotlinThrowable
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SharedKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithCause:(SharedKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+@end;
+
+__attribute__((swift_name("KotlinRuntimeException")))
+@interface SharedKotlinRuntimeException : SharedKotlinException
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SharedKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithCause:(SharedKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+@end;
+
+__attribute__((swift_name("KotlinIllegalStateException")))
+@interface SharedKotlinIllegalStateException : SharedKotlinRuntimeException
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SharedKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithCause:(SharedKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+@end;
+
+__attribute__((swift_name("KotlinCancellationException")))
+@interface SharedKotlinCancellationException : SharedKotlinIllegalStateException
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SharedKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithCause:(SharedKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
 @end;
 
 __attribute__((swift_name("Kotlinx_serialization_coreCompositeEncoder")))

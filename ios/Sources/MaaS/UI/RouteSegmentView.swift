@@ -69,7 +69,7 @@ struct RouteSegmentView_Previews: PreviewProvider {
             RouteSegmentView(segment: MockRouteKt.mockSegment2)
             RouteSegmentView(segment: MockRouteKt.mockSegment3)
         }
-        .previewLayout(.fixed(width: 320, height: 100))
+        .previewLayout(.fixed(width: 100, height: 50))
     }
 }
 
