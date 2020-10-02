@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import com.trafi.core.model.Route
+import com.trafi.core.android.model.Route
 import com.trafi.routes.ui.mock.mockRoute
 import com.trafi.ui.theme.MaasTheme
 

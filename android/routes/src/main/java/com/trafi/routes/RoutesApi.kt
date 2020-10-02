@@ -4,8 +4,8 @@ import android.util.Log
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.trafi.core.ApiResult
-import com.trafi.core.model.Location
-import com.trafi.core.model.RoutesResult
+import com.trafi.core.android.model.Location
+import com.trafi.core.android.model.RoutesResult
 import retrofit2.HttpException
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory

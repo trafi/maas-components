@@ -1,6 +1,6 @@
 package com.trafi.routes
 
-import com.trafi.core.model.RoutesResult
+import com.trafi.core.android.model.RoutesResult
 import retrofit2.http.GET
 import retrofit2.http.Query
 
