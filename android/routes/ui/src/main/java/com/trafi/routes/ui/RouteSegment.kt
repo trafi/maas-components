@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSizeConstraints
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.foundation.layout.preferredWidth
@@ -71,12 +70,12 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
             val walking = segment.walking ?: return
             val vector = vectorResource(R.drawable.ic_route_search_walking_s)
             Row(modifier = modifier.defaultMinSizeConstraints(minHeight = 24.dp)) {
-                Image(vector, modifier = Modifier.gravity(Alignment.CenterVertically))
+                Image(vector, modifier = Modifier.align(Alignment.CenterVertically))
                 Text(
                     text = walking.distance.text,
                     style = MaterialTheme.typography.caption,
                     fontSize = 8.sp,
-                    modifier = Modifier.gravity(Alignment.Bottom)
+                    modifier = Modifier.align(Alignment.Bottom)
                 )
             }
         }
@@ -104,7 +103,7 @@ fun Badge(color: Color, vector: VectorAsset?, text: String?, modifier: Modifier 
                 Image(
                     vector,
                     colorFilter = ColorFilter.tint(contentColor()),
-                    modifier = Modifier.gravity(Alignment.CenterVertically)
+                    modifier = Modifier.align(Alignment.CenterVertically)
                 )
                 Divider(
                     color = contentColor(),

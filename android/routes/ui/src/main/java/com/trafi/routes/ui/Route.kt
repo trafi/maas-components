@@ -32,7 +32,7 @@ fun Route(route: Route, modifier: Modifier = Modifier) {
                     route.segments.forEachIndexed { index, segment ->
                         RouteSegment(
                             segment,
-                            modifier = Modifier.gravity(Alignment.CenterVertically)
+                            modifier = Modifier.align(Alignment.CenterVertically)
                         )
                         if (index != route.segments.lastIndex) {
                             Spacer(modifier = Modifier.size(4.dp))
@@ -52,13 +52,13 @@ fun Route(route: Route, modifier: Modifier = Modifier) {
             suffix = {
                 Text(
                     route.duration.text,
-                    modifier = Modifier.gravity(Alignment.End),
+                    modifier = Modifier.align(Alignment.End),
                     style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Bold)
                 )
                 route.fare?.total?.text?.let {
                     Text(
                         it,
-                        modifier = Modifier.gravity(Alignment.End)
+                        modifier = Modifier.align(Alignment.End)
                     )
                 }
             }
