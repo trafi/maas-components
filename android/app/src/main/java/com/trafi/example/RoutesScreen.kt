@@ -2,23 +2,28 @@ package com.trafi.example
 
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.ColumnScope.align
+import androidx.compose.foundation.layout.ConstraintLayout
+import androidx.compose.foundation.layout.Dimension
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSizeConstraints
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
+import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.IconButton
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
-import androidx.compose.material.TextField
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
@@ -27,9 +32,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.SoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -41,8 +47,9 @@ import com.trafi.core.android.model.RoutesResult
 import com.trafi.example.ui.DemoMaasTheme
 import com.trafi.routes.RoutesApi
 import com.trafi.routes.ui.Cell
+import com.trafi.routes.ui.R
 import com.trafi.routes.ui.RoutesResult
-import com.trafi.ui.Button
+import com.trafi.ui.OutlinedTextField
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.Spacing
 import kotlinx.coroutines.Job
@@ -50,7 +57,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
-fun RoutesScreen() {
+fun RoutesScreen(onBackClick: () -> Unit) {
     val viewModel: RoutesViewModel = viewModel()
     val locationViewModel: LocationSearchViewModel = viewModel()
     var searchingForStart by mutableStateOf(false)
@@ -59,26 +66,17 @@ fun RoutesScreen() {
     var startText by mutableStateOf(viewModel.start.displayText)
     var endText by mutableStateOf(viewModel.end.displayText)
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = "maas-components-android",
-                        style = MaasTheme.typography.headingM.copy(fontSize = 20.sp)
-                    )
-                },
-                actions = {
-                    IconButton(onClick = {}) {
-                        Icon(Icons.Filled.Favorite)
-                    }
-                }
-            )
-        }) { innerPadding ->
-        RoutesScreenBodyLayout(
-            startText = startText,
-            endText = endText,
-            onStartChange = {
+    var softwareKeyboardController by mutableStateOf<SoftwareKeyboardController?>(null)
+
+    Column(
+        modifier = Modifier
+            .background(MaasTheme.colors.background)
+            .fillMaxHeight()
+    ) {
+        RouteSearchHeader(
+            originText = startText,
+            destinationText = endText,
+            onOriginTextChange = {
                 searchingForEnd = false
                 endText = viewModel.end.displayText
 
@@ -86,7 +84,7 @@ fun RoutesScreen() {
                 searchingForStart = true
                 locationViewModel.search(it)
             },
-            onEndChange = {
+            onDestinationTextChange = {
                 searchingForStart = false
                 startText = viewModel.start.displayText
 
@@ -94,94 +92,102 @@ fun RoutesScreen() {
                 searchingForEnd = true
                 locationViewModel.search(it)
             },
-            body = {
-                if (searchingForStart || searchingForEnd) {
-                    LocationSearchBody(
-                        state = locationViewModel.state,
-                        onClick = { location ->
-                            when {
-                                searchingForStart -> {
-                                    viewModel.start = location
-                                    startText = location.displayText
-                                    viewModel.search()
-                                    searchingForStart = false
-                                }
-                                searchingForEnd -> {
-                                    viewModel.end = location
-                                    endText = location.displayText
-                                    viewModel.search()
-                                    searchingForEnd = false
-                                }
-                            }
-                        }
-                    )
-                } else {
-                    RouteSearchBody(
-                        state = viewModel.routesResultState,
-                        onSearchClick = { viewModel.search() }
-                    )
-                }
+            onTextInputStarted = { keyboardController ->
+                softwareKeyboardController = keyboardController
             },
-            modifier = Modifier.padding(innerPadding),
+            onSwitchClick = {
+                searchingForEnd = false
+                searchingForStart = false
+                val prevStart = viewModel.start
+                viewModel.start = viewModel.end
+                viewModel.end = prevStart
+
+                startText = viewModel.start.displayText
+                endText = viewModel.end.displayText
+                viewModel.search()
+            },
+            onBackClick = onBackClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = MaasTheme.spacing.globalMargin)
         )
+
+        if (searchingForStart || searchingForEnd) {
+            LocationSearchBody(
+                state = locationViewModel.state,
+                modifier = Modifier
+                    .padding(top = Spacing.md),
+                onClick = { location ->
+                    softwareKeyboardController?.hideSoftwareKeyboard()
+                    when {
+                        searchingForStart -> {
+                            viewModel.start = location
+                            startText = location.displayText
+                            viewModel.search()
+                            searchingForStart = false
+                        }
+                        searchingForEnd -> {
+                            viewModel.end = location
+                            endText = location.displayText
+                            viewModel.search()
+                            searchingForEnd = false
+                        }
+                    }
+                }
+            )
+        } else {
+            RouteSearchBody(
+                state = viewModel.routesResultState,
+            )
+        }
     }
 }
 
 @Composable
 private fun RouteSearchBody(
     state: RoutesResultState,
-    onSearchClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    Button(
-        text = "Search",
-        modifier = Modifier.padding(
-            horizontal = MaasTheme.spacing.globalMargin,
-            vertical = 16.dp
-        ),
-        enabled = state !is RoutesResultState.Loading,
-        onClick = { onSearchClick() },
-    )
     when (state) {
         RoutesResultState.NoResults -> {
             Text(
                 "No results",
-                modifier = Modifier.align(Alignment.CenterHorizontally),
+                modifier = modifier.align(Alignment.CenterHorizontally),
                 style = MaasTheme.typography.textL
             )
         }
         RoutesResultState.Loading -> {
             CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.CenterHorizontally)
+                modifier = modifier.align(Alignment.CenterHorizontally)
             )
         }
-        is RoutesResultState.Loaded -> RoutesResult(state.result)
+        is RoutesResultState.Loaded -> RoutesResult(state.result, modifier)
     }
 }
 
 @Composable
 private fun LocationSearchBody(
     state: LocationSearchResultState,
-    onClick: (Location) -> Unit
+    onClick: (Location) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     when (state) {
         LocationSearchResultState.NoResults -> {
             Text(
                 "No locations found",
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(top = Spacing.md),
+                modifier = modifier
+                    .align(Alignment.CenterHorizontally),
                 style = MaasTheme.typography.textL
             )
         }
         LocationSearchResultState.Loading -> {
             CircularProgressIndicator(
-                modifier = Modifier
+                modifier = modifier
                     .align(Alignment.CenterHorizontally)
-                    .padding(top = Spacing.md)
             )
         }
         is LocationSearchResultState.Loaded -> LazyColumnFor(
-            modifier = Modifier.padding(top = Spacing.md),
+            modifier = modifier,
             items = state.result
         ) { location ->
             LocationResult(location, onClick = { onClick(location) })
@@ -225,69 +231,131 @@ private val Location.displayText: String
         ?: address
         ?: coordinate.run { "$lat,$lng" }
 
-@Composable
-private fun RoutesScreenBodyLayout(
-    startText: String,
-    endText: String,
-    onStartChange: (String) -> Unit,
-    onEndChange: (String) -> Unit,
-    body: @Composable ColumnScope.() -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Column(modifier) {
-        Waypoint(
-            startText,
-            onValueChange = onStartChange,
-            modifier = Modifier.padding(
-                horizontal = MaasTheme.spacing.globalMargin,
-                vertical = 16.dp
-            )
-        )
-        Waypoint(
-            endText,
-            onValueChange = onEndChange,
-            modifier = Modifier
-                .padding(horizontal = MaasTheme.spacing.globalMargin)
-                // .padding(top = if (start == null) 16.dp else 0.dp)
-        )
-        body()
-    }
-}
-
 @Preview(showBackground = true)
 @Composable
-private fun DefaultPreview() {
+private fun RouteSearchHeaderPreview() {
     DemoMaasTheme {
-        RoutesScreenBodyLayout(
-            startText = vilniusCathedral.displayText,
-            endText = vilniusAkropolis.displayText,
-            onStartChange = {},
-            onEndChange = {},
-            body = {
-                RouteSearchBody(
-                    state = RoutesResultState.NoResults,
-                    onSearchClick = {}
-                )
-            }
+        RouteSearchHeader(
+            originText = vilniusAirport.displayText,
+            destinationText = vilniusCathedral.displayText,
+            onOriginTextChange = {},
+            onDestinationTextChange = {},
+            onTextInputStarted = {},
+            onSwitchClick = {},
+            onBackClick = {},
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = MaasTheme.spacing.globalMargin)
         )
     }
 }
 
 @Composable
-fun Waypoint(text: String, onValueChange: (String) -> Unit, modifier: Modifier = Modifier) {
-    Row(modifier) {
+private fun RouteSearchHeader(
+    originText: String,
+    destinationText: String,
+    onOriginTextChange: (String) -> Unit,
+    onDestinationTextChange: (String) -> Unit,
+    onTextInputStarted: (SoftwareKeyboardController) -> Unit,
+    onSwitchClick: () -> Unit,
+    onBackClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val timeVector = vectorResource(R.drawable.ic_route_search_trip_time_s)
+    val switchVector = vectorResource(R.drawable.ic_route_search_switch_20)
+
+    ConstraintLayout(modifier) {
+        val (back, title, origin, destination, switch) = createRefs()
+        val (originIcon, destinationIcon) = createRefs()
+        val departureTime = createRef()
+
+        Text(
+            "Where to?",
+            style = MaasTheme.typography.headingM,
+            modifier = Modifier
+                .padding(vertical = 16.dp)
+                .constrainAs(title) {
+                    centerHorizontallyTo(parent)
+                }
+        )
+
+        IconButton(
+            onClick = onBackClick,
+            modifier = Modifier.size(32.dp).constrainAs(back) {
+                centerHorizontallyTo(destinationIcon)
+                centerVerticallyTo(title)
+            }) {
+            Icon(Icons.Filled.ArrowBack)
+        }
+
+        Icon(
+            Icons.Filled.CheckCircle,
+            modifier = Modifier.size(8.dp).constrainAs(originIcon) {
+                centerHorizontallyTo(destinationIcon)
+                centerVerticallyTo(origin)
+            })
         Icon(
             Icons.Filled.Place,
+            tint = MaasTheme.colors.primary,
             modifier = Modifier
-                .padding(end = 16.dp)
-                .align(Alignment.CenterVertically)
-        )
-        TextField(
-            text,
-            modifier = Modifier.weight(1f),
-            onValueChange = onValueChange,
+                .size(width = 32.dp, height = 16.dp)
+                .constrainAs(destinationIcon) {
+                    start.linkTo(parent.start)
+                    end.linkTo(destination.start)
+                    centerVerticallyTo(destination)
+                })
+
+        val barrier = createEndBarrier(originIcon, destinationIcon)
+
+        OutlinedTextField(
+            originText,
+            modifier = Modifier.constrainAs(origin) {
+                start.linkTo(barrier)
+                end.linkTo(parent.end)
+                width = Dimension.fillToConstraints
+                top.linkTo(title.bottom)
+            },
+            onValueChange = onOriginTextChange,
+            onTextInputStarted = onTextInputStarted,
             textStyle = MaasTheme.typography.textL,
         )
+        OutlinedTextField(
+            destinationText,
+            modifier = Modifier.constrainAs(destination) {
+                start.linkTo(barrier)
+                end.linkTo(parent.end)
+                width = Dimension.fillToConstraints
+                top.linkTo(origin.bottom, margin = Spacing.xs)
+            },
+            onValueChange = onDestinationTextChange,
+            onTextInputStarted = onTextInputStarted,
+            textStyle = MaasTheme.typography.textL,
+        )
+        FloatingActionButton(
+            backgroundColor = MaasTheme.colors.background,
+            contentColor = MaasTheme.colors.onBackground,
+            onClick = onSwitchClick,
+            modifier = Modifier
+                .size(40.dp)
+                .constrainAs(switch) {
+                    top.linkTo(origin.bottom)
+                    bottom.linkTo(destination.top)
+                    end.linkTo(parent.end, margin = Spacing.sm)
+                }
+        ) {
+            Icon(switchVector)
+        }
+        TextButton(
+            onClick = {},
+            modifier = Modifier.constrainAs(departureTime) {
+                top.linkTo(destination.bottom, margin = Spacing.sm)
+                start.linkTo(parent.start)
+            }) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(timeVector, modifier = Modifier.padding(end = Spacing.xs))
+                Text("Leave now", style = MaasTheme.typography.textM)
+            }
+        }
     }
 }
 
