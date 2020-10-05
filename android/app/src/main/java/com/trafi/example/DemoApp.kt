@@ -28,7 +28,9 @@ private fun AppContent(
                 is Screen.Onboarding -> OnboardingScreen(
                     onComplete = { navigationViewModel.navigateTo(Screen.Routes) },
                 )
-                is Screen.Routes -> RoutesScreen()
+                is Screen.Routes -> RoutesScreen(
+                    onBackClick = { navigationViewModel.onBack() }
+                )
             }
         }
     }
