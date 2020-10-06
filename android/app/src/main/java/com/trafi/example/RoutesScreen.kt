@@ -29,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -60,13 +61,13 @@ import kotlinx.coroutines.launch
 fun RoutesScreen(onBackClick: () -> Unit) {
     val viewModel: RoutesViewModel = viewModel()
     val locationViewModel: LocationSearchViewModel = viewModel()
-    var searchingForStart by mutableStateOf(false)
-    var searchingForEnd by mutableStateOf(false)
+    var searchingForStart by remember { mutableStateOf(false) }
+    var searchingForEnd by remember { mutableStateOf(false) }
 
-    var startText by mutableStateOf(viewModel.start.displayText)
-    var endText by mutableStateOf(viewModel.end.displayText)
+    var startText by remember { mutableStateOf(viewModel.start.displayText) }
+    var endText by remember { mutableStateOf(viewModel.end.displayText) }
 
-    var softwareKeyboardController by mutableStateOf<SoftwareKeyboardController?>(null)
+    var softwareKeyboardController by remember { mutableStateOf<SoftwareKeyboardController?>(null) }
 
     Column(
         modifier = Modifier
