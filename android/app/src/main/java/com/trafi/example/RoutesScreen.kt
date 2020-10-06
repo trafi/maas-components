@@ -407,7 +407,7 @@ class LocationSearchViewModel : ViewModel() {
         job?.cancel()
         state = LocationSearchResultState.Loading
         job = viewModelScope.launch {
-            delay(2000)
+            delay(500)
             val results = locations.filter { location ->
                 listOfNotNull(
                     location.name,
