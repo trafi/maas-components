@@ -25,6 +25,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Place
+import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
@@ -47,10 +48,10 @@ import com.trafi.core.android.model.Location
 import com.trafi.core.android.model.RoutesResult
 import com.trafi.example.ui.DemoMaasTheme
 import com.trafi.routes.RoutesApi
-import com.trafi.routes.ui.Cell
 import com.trafi.routes.ui.R
 import com.trafi.routes.ui.RoutesResult
 import com.trafi.ui.OutlinedTextField
+import com.trafi.ui.theme.Grey500
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.Spacing
 import kotlinx.coroutines.Job
@@ -191,7 +192,11 @@ private fun LocationSearchBody(
             modifier = modifier,
             items = state.result
         ) { location ->
-            LocationResult(location, onClick = { onClick(location) })
+            LocationResult(
+                location,
+                onClick = { onClick(location) },
+                modifier = Modifier.fillParentMaxWidth()
+            )
             if (state.result.indexOf(location) != state.result.lastIndex) {
                 Divider(
                     modifier = Modifier
@@ -202,14 +207,25 @@ private fun LocationSearchBody(
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+private fun LocationResultPreview() {
+    DemoMaasTheme {
+        LocationResult(location = vilniusCathedral, onClick = {})
+    }
+}
+
 @Composable
 private fun LocationResult(location: Location, onClick: () -> Unit, modifier: Modifier = Modifier) {
     Surface(modifier = modifier.clickable(onClick = onClick)) {
-        Cell(
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .defaultMinSizeConstraints(minHeight = 48.dp)
-                .padding(horizontal = MaasTheme.spacing.globalMargin, vertical = 12.dp),
-            body = {
+                .defaultMinSizeConstraints(minHeight = 60.dp)
+                .padding(horizontal = MaasTheme.spacing.globalMargin, vertical = 12.dp)
+        ) {
+            Icon(Icons.Outlined.LocationOn, modifier = Modifier.size(24.dp))
+            Column(modifier = Modifier.padding(start = 12.dp)) {
                 location.name?.let {
                     Text(
                         it,
@@ -219,11 +235,11 @@ private fun LocationResult(location: Location, onClick: () -> Unit, modifier: Mo
                 location.address?.let {
                     Text(
                         it,
-                        style = MaasTheme.typography.textM,
+                        style = MaasTheme.typography.textM.copy(color = Grey500),
                     )
                 }
             }
-        )
+        }
     }
 }
 
