@@ -26,9 +26,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.ui.tooling.preview.Preview
 import com.trafi.core.ApiResult
-import com.trafi.core.model.LatLng
-import com.trafi.core.model.Location
-import com.trafi.core.model.RoutesResult
+import com.trafi.core.android.model.LatLng
+import com.trafi.core.android.model.Location
+import com.trafi.core.android.model.RoutesResult
 import com.trafi.example.ui.DemoMaasTheme
 import com.trafi.routes.RoutesApi
 import com.trafi.routes.ui.RoutesResult

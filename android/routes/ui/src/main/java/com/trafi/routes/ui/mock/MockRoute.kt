@@ -1,28 +1,28 @@
 package com.trafi.routes.ui.mock
 
 import androidx.ui.tooling.preview.PreviewParameterProvider
-import com.trafi.core.model.AffectedSchedule
-import com.trafi.core.model.Disruption
-import com.trafi.core.model.Distance
-import com.trafi.core.model.Duration
-import com.trafi.core.model.Fare
-import com.trafi.core.model.LatLng
-import com.trafi.core.model.Location
-import com.trafi.core.model.Money
-import com.trafi.core.model.Route
-import com.trafi.core.model.RouteDisruption
-import com.trafi.core.model.RouteExactDeparture
-import com.trafi.core.model.RouteFare
-import com.trafi.core.model.RouteSegment
-import com.trafi.core.model.RouteSegmentDisruption
-import com.trafi.core.model.RouteSegmentStop
-import com.trafi.core.model.RouteSegmentTransit
-import com.trafi.core.model.RouteSegmentWalking
-import com.trafi.core.model.RoutesResult
-import com.trafi.core.model.Schedule
-import com.trafi.core.model.Stop
-import com.trafi.core.model.Track
-import com.trafi.core.model.WalkingPath
+import com.trafi.core.android.model.AffectedSchedule
+import com.trafi.core.android.model.Disruption
+import com.trafi.core.android.model.Distance
+import com.trafi.core.android.model.Duration
+import com.trafi.core.android.model.Fare
+import com.trafi.core.android.model.LatLng
+import com.trafi.core.android.model.Location
+import com.trafi.core.android.model.Money
+import com.trafi.core.android.model.Route
+import com.trafi.core.android.model.RouteDisruption
+import com.trafi.core.android.model.RouteExactDeparture
+import com.trafi.core.android.model.RouteFare
+import com.trafi.core.android.model.RouteSegment
+import com.trafi.core.android.model.RouteSegmentDisruption
+import com.trafi.core.android.model.RouteSegmentStop
+import com.trafi.core.android.model.RouteSegmentTransit
+import com.trafi.core.android.model.RouteSegmentWalking
+import com.trafi.core.android.model.RoutesResult
+import com.trafi.core.android.model.Schedule
+import com.trafi.core.android.model.Stop
+import com.trafi.core.android.model.Track
+import com.trafi.core.android.model.WalkingPath
 
 internal class RouteSegmentPreviewParameterProvider : PreviewParameterProvider<RouteSegment> {
     override val values: Sequence<RouteSegment>
