@@ -140,6 +140,7 @@ fun RoutesScreen(onBackClick: () -> Unit) {
         } else {
             RouteSearchBody(
                 state = viewModel.routesResultState,
+                modifier = Modifier.padding(top = Spacing.md)
             )
         }
     }
