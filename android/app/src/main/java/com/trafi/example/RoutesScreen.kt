@@ -451,10 +451,18 @@ private val vilniusAirport = Location(
     address = "Rodūnios kl. 2, Vilnius 02189"
 )
 
+@Stable
+private val vilniusHallMarket = Location(
+    coordinate = LatLng(54.673959, 25.285805),
+    name = "Vilnius Hall Market",
+    address = "Pylimo g. 58, Vilnius 01136"
+)
+
 private val locations: List<Location> =
     listOf(
         vilniusCathedral,
         vilniusAkropolis,
         vilniusStation,
         vilniusAirport,
+        vilniusHallMarket,
     )
