@@ -119,8 +119,8 @@ private fun BodyContent(
 private fun DefaultPreview() {
     DemoMaasTheme {
         BodyContent(
-            start = pragueTechMuseum,
-            end = pragueCastle,
+            start = vilniusCathedral,
+            end = vilniusAkropolis,
             state = RoutesResultState.NoResults,
             onSearchClick = {})
     }
@@ -150,10 +150,13 @@ sealed class RoutesResultState {
 
 class RoutesViewModel : ViewModel() {
 
-    private val routesApi = RoutesApi(baseUrl = BuildConfig.API_BASE_URL)
+    private val routesApi = RoutesApi(
+        baseUrl = BuildConfig.API_BASE_URL,
+        apiKey = BuildConfig.API_KEY
+    )
 
-    var start: Location by mutableStateOf(pragueTechMuseum)
-    var end: Location by mutableStateOf(pragueCastle)
+    var start: Location by mutableStateOf(vilniusCathedral)
+    var end: Location by mutableStateOf(vilniusAkropolis)
 
     var routesResultState: RoutesResultState by mutableStateOf(RoutesResultState.NoResults)
         private set
@@ -171,15 +174,15 @@ class RoutesViewModel : ViewModel() {
 }
 
 @Stable
-private val pragueTechMuseum = Location(
-    coordinate = LatLng(50.096943, 14.425130),
-    name = "National Technical Museum",
-    address = "Kostelní 1320/42, 170 00 Praha 7-Letná, Czechia"
+private val vilniusCathedral = Location(
+    coordinate = LatLng(54.685563, 25.287704),
+    name = "Vilnius Cathedral",
+    address = "Šventaragio g., Vilnius 01143"
 )
 
 @Stable
-private val pragueCastle = Location(
-    coordinate = LatLng(50.064356, 14.420030),
-    name = "Vyšehrad",
-    address = "V Pevnosti 159/5b, 128 00 Praha 2-Vyšehrad, Czechia"
+private val vilniusAkropolis = Location(
+    coordinate = LatLng(54.710258, 25.262192),
+    name = "AKROPOLIS Vilnius",
+    address = "Ozo g. 25, Vilnius 08217"
 )
