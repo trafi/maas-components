@@ -10,7 +10,7 @@ Ready-built UI components to get you started quickly out of the box, built with 
 Search for routes.
 
 ```kotlin
-val routesApi = RoutesApi(baseUrl = "$API_BASE_URL")
+val routesApi = RoutesApi(baseUrl = "$API_BASE_URL", apiKey = "$API_KEY")
 
 lifecycleScope.launch {
   val result = routesApi.search(start, end)
