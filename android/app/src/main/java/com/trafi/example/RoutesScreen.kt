@@ -309,7 +309,8 @@ private fun RouteSearchHeader(
         Icon(
             Icons.Filled.CheckCircle,
             modifier = Modifier.size(8.dp).constrainAs(originIcon) {
-                centerHorizontallyTo(destinationIcon)
+                start.linkTo(parent.start)
+                end.linkTo(origin.start)
                 centerVerticallyTo(origin)
             })
         Icon(
