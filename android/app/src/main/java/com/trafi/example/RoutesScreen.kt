@@ -1,5 +1,6 @@
 package com.trafi.example
 
+import androidx.compose.foundation.Box
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.background
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
 import androidx.compose.material.FloatingActionButton
@@ -34,6 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.SoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
@@ -306,8 +309,9 @@ private fun RouteSearchHeader(
             Icon(Icons.Filled.ArrowBack)
         }
 
-        Icon(
-            Icons.Filled.CheckCircle,
+        Box(
+            shape = CircleShape,
+            backgroundColor = Color.Black,
             modifier = Modifier.size(8.dp).constrainAs(originIcon) {
                 start.linkTo(parent.start)
                 end.linkTo(origin.start)
