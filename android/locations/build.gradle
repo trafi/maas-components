@@ -28,3 +28,9 @@ dependencies {
     implementation 'com.squareup.moshi:moshi:1.10.0'
     implementation 'com.squareup.moshi:moshi-kotlin:1.10.0'
 }
+
+ext {
+    PUBLISH_ARTIFACT_ID = 'locations-android'
+}
+
+apply from: "${rootProject.projectDir}/scripts/maven.gradle"
