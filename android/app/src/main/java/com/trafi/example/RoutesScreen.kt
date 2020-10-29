@@ -45,10 +45,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.ui.tooling.preview.Preview
 import com.trafi.core.ApiResult
+import com.trafi.core.android.model.AutoCompleteLocation
 import com.trafi.core.android.model.LatLng
 import com.trafi.core.android.model.Location
 import com.trafi.core.android.model.RoutesResult
 import com.trafi.example.ui.DemoMaasTheme
+import com.trafi.locations.LocationsApi
 import com.trafi.routes.RoutesApi
 import com.trafi.routes.ui.R
 import com.trafi.routes.ui.RoutesResult
@@ -57,7 +59,6 @@ import com.trafi.ui.theme.Grey500
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.Spacing
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
@@ -123,22 +124,25 @@ fun RoutesScreen(onBackClick: () -> Unit) {
                     .padding(top = Spacing.md),
                 onClick = { location ->
                     softwareKeyboardController?.hideSoftwareKeyboard()
-                    when {
-                        searchingForStart -> {
-                            viewModel.start = location
-                            startText = location.displayText
-                            viewModel.search()
-                            searchingForStart = false
-                        }
-                        searchingForEnd -> {
-                            viewModel.end = location
-                            endText = location.displayText
-                            viewModel.search()
-                            searchingForEnd = false
-                        }
-                    }
+                    locationViewModel.resolveLocation(location)
                 }
             )
+            locationViewModel.resolvedLocation?.let { location ->
+                when {
+                    searchingForStart -> {
+                        viewModel.start = location
+                        startText = location.displayText
+                        viewModel.search()
+                        searchingForStart = false
+                    }
+                    searchingForEnd -> {
+                        viewModel.end = location
+                        endText = location.displayText
+                        viewModel.search()
+                        searchingForEnd = false
+                    }
+                }
+            }
         } else {
             RouteSearchBody(
                 state = viewModel.routesResultState,
@@ -173,7 +177,7 @@ private fun RouteSearchBody(
 @Composable
 private fun LocationSearchBody(
     state: LocationSearchResultState,
-    onClick: (Location) -> Unit,
+    onClick: (AutoCompleteLocation) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     when (state) {
@@ -219,7 +223,26 @@ private fun LocationResultPreview() {
 }
 
 @Composable
-private fun LocationResult(location: Location, onClick: () -> Unit, modifier: Modifier = Modifier) {
+private fun LocationResult(
+    location: Location,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) = LocationResult(location.name ?: location.coordinate.toString(), null, onClick, modifier)
+
+@Composable
+private fun LocationResult(
+    location: AutoCompleteLocation,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) = LocationResult(location.name, location.address, onClick, modifier)
+
+@Composable
+private fun LocationResult(
+    name: String,
+    address: String?,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Surface(modifier = modifier.clickable(onClick = onClick)) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -229,13 +252,11 @@ private fun LocationResult(location: Location, onClick: () -> Unit, modifier: Mo
         ) {
             Icon(Icons.Outlined.LocationOn, modifier = Modifier.size(24.dp))
             Column(modifier = Modifier.padding(start = 12.dp)) {
-                location.name?.let {
-                    Text(
-                        it,
-                        style = MaasTheme.typography.textL.copy(fontWeight = FontWeight.SemiBold),
-                    )
-                }
-                location.address?.let {
+                Text(
+                    name,
+                    style = MaasTheme.typography.textL.copy(fontWeight = FontWeight.SemiBold),
+                )
+                address?.let {
                     Text(
                         it,
                         style = MaasTheme.typography.textM.copy(color = Grey500),
@@ -415,31 +436,47 @@ class RoutesViewModel : ViewModel() {
 sealed class LocationSearchResultState {
     object NoResults : LocationSearchResultState()
     object Loading : LocationSearchResultState()
-    data class Loaded(val result: List<Location>) : LocationSearchResultState()
+    data class Loaded(val result: List<AutoCompleteLocation>) : LocationSearchResultState()
 }
 
 class LocationSearchViewModel : ViewModel() {
 
+    private val locationsApi = LocationsApi(
+        baseUrl = BuildConfig.API_BASE_URL,
+        apiKey = BuildConfig.API_KEY,
+        regionId = "vilnius"
+    )
+
     private var job: Job? = null
-    var state: LocationSearchResultState
-            by mutableStateOf(LocationSearchResultState.NoResults)
+    var state: LocationSearchResultState by mutableStateOf(LocationSearchResultState.NoResults)
+        private set
+    var resolvedLocation: Location? by mutableStateOf(null)
+        private set
 
     fun search(query: String) {
         job?.cancel()
         state = LocationSearchResultState.Loading
         job = viewModelScope.launch {
-            delay(500)
-            val results = locations.filter { location ->
-                listOfNotNull(
-                    location.name,
-                    location.address
-                ).any { it.contains(query, ignoreCase = true) }
+            val result = locationsApi.search(query)
+            state = when (result) {
+                is ApiResult.Success -> {
+                    val results = result.value
+                    if (results.isNotEmpty()) {
+                        LocationSearchResultState.Loaded(results)
+                    } else {
+                        LocationSearchResultState.NoResults
+                    }
+                }
+                is ApiResult.Failure -> LocationSearchResultState.NoResults
             }
-            state = if (results.isNotEmpty()) {
-                LocationSearchResultState.Loaded(results)
-            } else {
-                LocationSearchResultState.NoResults
-            }
+        }
+    }
+
+    fun resolveLocation(location: AutoCompleteLocation) {
+        job?.cancel()
+        state = LocationSearchResultState.Loading
+        job = viewModelScope.launch {
+            resolvedLocation = (locationsApi.resolveLocation(location) as? ApiResult.Success)?.value
         }
     }
 }
