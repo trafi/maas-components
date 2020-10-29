@@ -89,3 +89,9 @@ task swagen {
     dependsOn(fetchSwaggerSchema, generateModels)
     finalizedBy(ktlintFormat)
 }
+
+ext {
+    PUBLISH_ARTIFACT_ID = 'core-android'
+}
+
+apply from: "${rootProject.projectDir}/scripts/maven.gradle"
