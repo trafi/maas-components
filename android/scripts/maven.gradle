@@ -1,0 +1,91 @@
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.source
+}
+
+artifacts {
+    archives androidSourcesJar
+}
+
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+ext["signing.keyId"] = resolveProperty("signing.keyId", "MAVEN_SIGNING_KEY_ID")
+ext["signing.password"] = resolveProperty("signing.password", "MAVEN_SIGNING_KEY_PASSOWRD")
+ext["signing.secretKeyRingFile"] = resolveProperty("signing.secretKeyRingFile", "MAVEN_SIGNING_KEY_RING_FILE")
+ext["sonatypeUsername"] = resolveProperty("sonatypeUsername", "SONATYPE_USERNAME")
+ext["sonatypePassword"] = resolveProperty("sonatypePassword", "SONATYPE_PASSWORD")
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId 'com.trafi.maas'
+            artifactId PUBLISH_ARTIFACT_ID
+            version '0.1.0-dev01'
+
+            artifact("$buildDir/outputs/aar/${project.name}-release.aar")
+            artifact androidSourcesJar
+
+            pom {
+                name = 'MaaS Components'
+                description = 'Mobility-as-a-service SDK & UI components'
+                url = 'https://github.com/trafi/maas-components'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'trafi'
+                        name = 'Trafi Ltd.'
+                        email = 'development@trafi.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/trafi/maas-components.git'
+                    developerConnection = 'scm:git:ssh://github.com/trafi/maas-components.git'
+                    url = 'https://github.com/trafi/maas-components'
+                }
+
+                // A slightly hacky fix so that your POM will include any transitive dependencies
+                // that your library builds upon
+                withXml {
+                    def dependenciesNode = asNode().appendNode('dependencies')
+
+                    project.configurations.implementation.allDependencies.each {
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        if (it.group == 'maas-components-android') {
+                            dependencyNode.appendNode('groupId', groupId)
+                            dependencyNode.appendNode('artifactId', it.name == 'core' ? 'core-android' : it.name)
+                            dependencyNode.appendNode('version', version)
+                        } else {
+                            dependencyNode.appendNode('groupId', it.group)
+                            dependencyNode.appendNode('artifactId', it.name)
+                            dependencyNode.appendNode('version', it.version)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "sonatype"
+
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+            credentials {
+                username sonatypeUsername
+                password sonatypePassword
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications
+}
