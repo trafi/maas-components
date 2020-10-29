@@ -25,7 +25,6 @@ import androidx.compose.material.Surface
 import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.runtime.Composable
