@@ -58,7 +58,12 @@ publishing {
                         def dependencyNode = dependenciesNode.appendNode('dependency')
                         if (it.group == 'maas-components-android') {
                             dependencyNode.appendNode('groupId', groupId)
-                            dependencyNode.appendNode('artifactId', it.name == 'core' ? 'core-android' : it.name)
+                            dependencyNode.appendNode('artifactId',
+                                    it.name == 'core'
+                                            ? 'core-android'
+                                            : it.name == 'ui'
+                                            ? 'ui-android'
+                                            : it.name)
                             dependencyNode.appendNode('version', version)
                         } else {
                             dependencyNode.appendNode('groupId', it.group)
