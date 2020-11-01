@@ -1,12 +1,11 @@
 package com.trafi.example
 
-import androidx.compose.foundation.Box
-import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope.align
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.ConstraintLayout
 import androidx.compose.foundation.layout.Dimension
 import androidx.compose.foundation.layout.Row
@@ -20,6 +19,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
 import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Surface
 import androidx.compose.material.TextButton
@@ -153,7 +153,7 @@ fun RoutesScreen(onBackClick: () -> Unit) {
 }
 
 @Composable
-private fun RouteSearchBody(
+private fun ColumnScope.RouteSearchBody(
     state: RoutesResultState,
     modifier: Modifier = Modifier,
 ) {
@@ -175,7 +175,7 @@ private fun RouteSearchBody(
 }
 
 @Composable
-private fun LocationSearchBody(
+private fun ColumnScope.LocationSearchBody(
     state: LocationSearchResultState,
     onClick: (AutoCompleteLocation) -> Unit,
     modifier: Modifier = Modifier,
@@ -330,9 +330,10 @@ private fun RouteSearchHeader(
         }
 
         Box(
-            shape = CircleShape,
-            backgroundColor = Color.Black,
-            modifier = Modifier.size(8.dp).constrainAs(originIcon) {
+            modifier = Modifier
+                .background(Color.Black, CircleShape)
+                .size(8.dp)
+                .constrainAs(originIcon) {
                 start.linkTo(parent.start)
                 end.linkTo(origin.start)
                 centerVerticallyTo(origin)
