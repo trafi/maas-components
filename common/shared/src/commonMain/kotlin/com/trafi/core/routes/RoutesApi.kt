@@ -1,8 +1,8 @@
-package com.trafi.shared.routes
+package com.trafi.core.routes
 
+import com.trafi.core.ApiResult
 import com.trafi.core.model.Location
 import com.trafi.core.model.RoutesResult
-import com.trafi.shared.ApiResult
 import io.ktor.client.HttpClient
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
