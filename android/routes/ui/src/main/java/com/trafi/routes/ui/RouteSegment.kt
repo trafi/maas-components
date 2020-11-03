@@ -1,5 +1,6 @@
 package com.trafi.routes.ui
 
+import androidx.compose.foundation.AmbientContentColor
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.contentColor
@@ -102,11 +103,11 @@ fun Badge(color: Color, vector: VectorAsset?, text: String?, modifier: Modifier 
             vector?.let {
                 Image(
                     vector,
-                    colorFilter = ColorFilter.tint(contentColor()),
+                    colorFilter = ColorFilter.tint(AmbientContentColor.current),
                     modifier = Modifier.align(Alignment.CenterVertically)
                 )
                 Divider(
-                    color = contentColor(),
+                    color = AmbientContentColor.current,
                     modifier = Modifier
                         .padding(horizontal = 4.dp)
                         .fillMaxHeight()

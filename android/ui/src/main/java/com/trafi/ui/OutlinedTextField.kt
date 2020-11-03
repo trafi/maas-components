@@ -1,0 +1,205 @@
+package com.trafi.ui
+
+import androidx.compose.foundation.BaseTextField
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.currentTextStyle
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.preferredSizeIn
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.drawBehind
+import androidx.compose.ui.focus.ExperimentalFocus
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.isFocused
+import androidx.compose.ui.focusObserver
+import androidx.compose.ui.focusRequester
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.node.Ref
+import androidx.compose.ui.text.InternalTextApi
+import androidx.compose.ui.text.SoftwareKeyboardController
+import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.constrain
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import androidx.ui.tooling.preview.Preview
+import com.trafi.ui.theme.Grey300
+import com.trafi.ui.theme.MaasTheme
+
+@OptIn(ExperimentalFoundationApi::class, ExperimentalFocus::class)
+@Composable
+fun OutlinedTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    textStyle: TextStyle = currentTextStyle(),
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    keyboardType: KeyboardType = KeyboardType.Text,
+    imeAction: ImeAction = ImeAction.Unspecified,
+    onImeActionPerformed: (ImeAction, SoftwareKeyboardController?) -> Unit = { _, _ -> },
+    onTextInputStarted: (SoftwareKeyboardController) -> Unit = {},
+    activeColor: Color = MaasTheme.colors.primary,
+    inactiveColor: Color = Grey300,
+) {
+    val keyboardController: Ref<SoftwareKeyboardController> = remember { Ref() }
+    var selection by remember { mutableStateOf(TextRange.Zero) }
+    var composition by remember { mutableStateOf<TextRange?>(null) }
+
+    @OptIn(InternalTextApi::class)
+    val textFieldValue = TextFieldValue(
+        text = value,
+        selection = selection.constrain(0, value.length),
+        composition = composition?.constrain(0, value.length)
+    )
+
+    var isFocused by remember { mutableStateOf(false) }
+    val focusRequester = FocusRequester()
+    val textFieldModifier = modifier
+        .padding(horizontal = 12.dp, vertical = 8.dp)
+        .focusRequester(focusRequester)
+        .focusObserver { isFocused = it.isFocused }
+        .clickable(indication = null) {
+            focusRequester.requestFocus()
+            // TODO(b/163109449): Showing and hiding keyboard should be handled by BaseTextField.
+            //  The requestFocus() call here should be enough to trigger the software keyboard.
+            //  Investiate why this is needed here. If it is really needed, instead of doing
+            //  this in the onClick callback, we should move this logic to the focusObserver
+            //  so that it can show or hide the keyboard based on the focus state.
+            keyboardController.value?.showSoftwareKeyboard()
+        }
+
+    val borderColor = if (isFocused) activeColor else inactiveColor
+    val borderWidth = 1.dp
+    val borderRadius = 10.dp
+
+    val outlinedBorderParams = remember {
+        OutlinedBorderParams(
+            borderWidth,
+            borderColor,
+            borderRadius,
+        )
+    }
+
+    if (borderColor != outlinedBorderParams.color.value ||
+        borderWidth != outlinedBorderParams.borderWidth.value
+    ) {
+        outlinedBorderParams.color.value = borderColor
+        outlinedBorderParams.borderWidth.value = borderWidth
+    }
+
+    Row(
+        modifier = modifier
+            .preferredSizeIn(
+                minWidth = TextFieldMinWidth,
+                minHeight = TextFieldMinHeight
+            )
+            .drawOutlinedBorder(outlinedBorderParams),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        BaseTextField(
+            value = textFieldValue,
+            onValueChange = {
+                selection = it.selection
+                composition = it.composition
+                if (value != it.text) {
+                    onValueChange(it.text)
+                }
+            },
+            modifier = textFieldModifier,
+            textStyle = textStyle,
+            visualTransformation = visualTransformation,
+            keyboardType = keyboardType,
+            imeAction = imeAction,
+            onImeActionPerformed = {
+                onImeActionPerformed(it, keyboardController.value)
+            },
+            onTextInputStarted = {
+                keyboardController.value = it
+                onTextInputStarted(it)
+            },
+            cursorColor = activeColor,
+        )
+    }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFFFFF)
+@Composable
+private fun OutlinedTextFieldPreview() {
+    MaasTheme {
+        OutlinedTextField(
+            value = "Insert text here..",
+            onValueChange = {},
+            modifier = Modifier.padding(16.dp)
+        )
+    }
+}
+
+private fun Modifier.drawOutlinedBorder(
+    borderParams: OutlinedBorderParams
+): Modifier = drawBehind {
+    val lineWidth = borderParams.borderWidth.value.value * density
+    val width: Float = size.width
+    val height: Float = size.height
+
+    val radius = borderParams.cornerRadius.value * density
+    val dx = if (radius > width / 2) width / 2 else radius
+    val dy = if (radius > height / 2) height / 2 else radius
+
+    val path = Path().apply {
+        // width and height minus corners and line width
+        val effectiveWidth: Float = width - 2 * dx - lineWidth
+        val effectiveHeight: Float = height - 2 * dy - lineWidth
+
+        // top-right corner
+        moveTo(width - lineWidth / 2, dy + lineWidth / 2)
+        relativeQuadraticBezierTo(0f, -dy, -dx, -dy)
+
+        // top line
+        relativeLineTo(-effectiveWidth, 0f)
+
+        // top-left corner and left line
+        relativeQuadraticBezierTo(-dx, 0f, -dx, dy)
+        relativeLineTo(0f, effectiveHeight)
+
+        // bottom-left corner and bottom line
+        relativeQuadraticBezierTo(0f, dy, dx, dy)
+        relativeLineTo(effectiveWidth, 0f)
+
+        // bottom-right corner and right line
+        relativeQuadraticBezierTo(dx, 0f, dx, -dy)
+        relativeLineTo(0f, -effectiveHeight)
+    }
+
+    drawPath(
+        path = path,
+        color = borderParams.color.value,
+        style = Stroke(width = lineWidth)
+    )
+}
+
+@Stable
+private class OutlinedBorderParams(
+    initialBorderWidth: Dp,
+    initialColor: Color,
+    val cornerRadius: Dp = 4.dp
+) {
+    val borderWidth = mutableStateOf(initialBorderWidth)
+    val color = mutableStateOf(initialColor)
+}
+
+private val TextFieldMinHeight = 40.dp
+private val TextFieldMinWidth = 280.dp
