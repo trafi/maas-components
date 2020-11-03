@@ -62,6 +62,12 @@ lifecycleScope.launch {
 
 Display those routes with [Jetpack Compose][compose].
 
+```groovy
+dependencies {
+  implementation 'com.trafi.maas:routes-ui-android:0.1.0-dev01'
+}
+```
+
 ```kotlin
 setContent {
   RoutesResult(result)
