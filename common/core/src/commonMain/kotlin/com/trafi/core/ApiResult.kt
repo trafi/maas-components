@@ -1,4 +1,4 @@
-package com.trafi.shared
+package com.trafi.core
 
 sealed class ApiResult<out T> {
     class Success<T>(val value: T) : ApiResult<T>()

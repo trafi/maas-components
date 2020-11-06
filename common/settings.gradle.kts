@@ -15,4 +15,4 @@ pluginManagement {
 }
 rootProject.name = "maas-components-common"
 
-include(":shared")
+include(":core")
