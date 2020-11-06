@@ -16,8 +16,8 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(name: "shared", path: "common/shared/swift-package")
-//        .package(name: "shared", url: "git@github.com:trafi/maas-framework.git", .branch("main"))
+//        .package(name: "shared", path: "common/shared/swift-package")
+        .package(name: "shared", url: "git@github.com:trafi/maas-framework.git", .branch("main"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
