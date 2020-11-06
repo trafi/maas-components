@@ -8,4 +8,4 @@ include ':routes:ui'
 
 include ':common'
 project(':common').projectDir = file("../common")
-include ':common:shared'
+include ':common:core'
