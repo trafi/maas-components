@@ -4,6 +4,7 @@ import com.trafi.core.ApiResult
 import com.trafi.core.model.Location
 import com.trafi.core.model.RoutesResult
 import io.ktor.client.HttpClient
+import io.ktor.client.features.defaultRequest
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.request.get
@@ -22,12 +23,14 @@ class RoutesApi(private val baseApiUrl: String, private val apiKey: String) {
             }
             serializer = KotlinxSerializer(json)
         }
+        defaultRequest {
+            contentType(ContentType.Application.Json)
+            header("x-api-key", apiKey)
+        }
     }
 
     suspend fun search(start: Location, end: Location): ApiResult<RoutesResult> = try {
         val result = httpClient.get<RoutesResult>(baseApiUrl + "v1/routes") {
-            contentType(ContentType.Application.Json)
-            header("x-api-key", apiKey)
             parameter("start.lat", start.coordinate.lat)
             parameter("start.lng", start.coordinate.lng)
             parameter("start.name", start.name ?: start.address)
