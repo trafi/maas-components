@@ -1,4 +1,4 @@
-package com.trafi.core.routes
+package com.trafi.routes
 
 import com.trafi.core.ApiResult
 import com.trafi.core.model.Location
