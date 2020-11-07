@@ -1,5 +1,6 @@
 task androidSourcesJar(type: Jar) {
-    archiveClassifier.set('sources')
+    //noinspection GrDeprecatedAPIUsage
+    classifier = 'sources'
     from android.sourceSets.main.java.source
 }
 
