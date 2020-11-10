@@ -14,13 +14,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
 }
 
 dependencies {
-    implementation project(":core")
+    api project(":core")
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -28,3 +25,9 @@ dependencies {
     implementation 'com.squareup.moshi:moshi:1.10.0'
     implementation 'com.squareup.moshi:moshi-kotlin:1.10.0'
 }
+
+ext {
+    PUBLISH_ARTIFACT_ID = 'routes-android'
+}
+
+apply from: "${rootProject.projectDir}/scripts/maven.gradle"
