@@ -80,6 +80,13 @@ android {
 
 val xcframeworkPath = "build/bin/xcframework/Core.xcframework"
 
+val cleanXcframework by tasks.creating(Exec::class) {
+
+    group = "cleanup"
+
+    commandLine("rm", "-rf", xcframeworkPath)
+}
+
 val xcframework by tasks.creating(Exec::class) {
 
     group = "build"
@@ -100,11 +107,4 @@ val xcframework by tasks.creating(Exec::class) {
         "-debug-symbols", x64.outputFile.path + ".dSYM",
         "-output", xcframeworkPath
     )
-}
-
-val cleanXcframework by tasks.creating(Exec::class) {
-
-    group = "cleanup"
-
-    commandLine("rm", "-rf", xcframeworkPath)
 }
