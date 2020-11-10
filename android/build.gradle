@@ -1,4 +1,3 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
         compose_version = '1.0.0-alpha06'
@@ -11,16 +10,30 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.0-alpha15'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
 allprojects {
+    version = '0.1.0-dev02-SNAPSHOT'
+
     repositories {
         google()
         jcenter()
+    }
+}
+
+subprojects { project ->
+    afterEvaluate {
+        tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+            kotlinOptions {
+                jvmTarget = '1.8'
+                // avoid kotlin_module clash for projects with the same name, e.g. 'ui' & 'routes:ui"
+                // https://discuss.kotlinlang.org/t/dealing-with-kotlin-module-conflict-when-building-apk-for-project-with-non-unique-project-names/11247
+                if (project.hasProperty('PUBLISH_ARTIFACT_ID')) {
+                    freeCompilerArgs += ['-module-name', "com.trafi.maas.$PUBLISH_ARTIFACT_ID"]
+                }
+            }
+        }
     }
 }
 
