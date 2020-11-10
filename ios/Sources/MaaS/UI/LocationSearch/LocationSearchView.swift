@@ -1,20 +1,14 @@
-//
-//  SwiftUIView.swift
-//  
-//
-//  Created by Eimantas Vaiciunas on 2020-11-06.
-//
-
 import SwiftUI
+import shared
 
-struct SwiftUIView: View {
+struct LocationSearchView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        EmptyView()
     }
 }
 
-struct SwiftUIView_Previews: PreviewProvider {
+struct LocationSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SwiftUIView()
+        LocationSearchView()
     }
 }
