@@ -1,5 +1,5 @@
 import SwiftUI
-import shared
+import MaasCore
 
 struct RouteView: View {
 

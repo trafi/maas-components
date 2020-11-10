@@ -13,22 +13,18 @@ let package = Package(
         .library(
             name: "MaaS",
             targets: ["MaaS"]),
-    ],
-    dependencies: [
-        // Dependencies declare other packages that this package depends on.
-//        .package(name: "shared", path: "common/shared/swift-package")
-        .package(name: "shared", url: "git@github.com:trafi/maas-framework.git", .branch("main"))
+        .library(
+            name: "MaasCore",
+            targets: ["MaasCore"]),
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
+        .binaryTarget(
+            name: "MaasCore",
+            url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev01/MaasCore.xcframework.zip",
+            checksum: "85deadc84b588c66a15536e1377b98a86bb8e4045aa4b2f7aa91e5278cece37d"),
         .target(
             name: "MaaS",
-            dependencies: [.product(name: "shared", package: "shared")],
+            dependencies: ["MaasCore"],
             path: "ios/Sources/MaaS"),
-        .testTarget(
-            name: "MaaSTests",
-            dependencies: ["MaaS"],
-            path: "ios/Tests/MaaSTests"),
     ]
 )

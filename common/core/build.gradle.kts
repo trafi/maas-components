@@ -24,7 +24,7 @@ kotlin {
     ios {
         binaries {
             framework {
-                baseName = "Core"
+                baseName = "MaasCore"
             }
         }
     }
@@ -78,7 +78,7 @@ android {
     }
 }
 
-val xcframeworkPath = "build/bin/xcframework/Core.xcframework"
+val xcframeworkPath = "build/bin/xcframework/MaasCore.xcframework"
 
 val cleanXcframework by tasks.creating(Exec::class) {
 
