@@ -1,4 +1,4 @@
-package com.trafi.locations
+package com.trafi.locations.android
 
 import android.util.Log
 import com.squareup.moshi.Moshi
@@ -7,6 +7,7 @@ import com.trafi.core.ApiResult
 import com.trafi.core.android.model.AutoCompleteLocation
 import com.trafi.core.android.model.LatLng
 import com.trafi.core.android.model.Location
+import com.trafi.locations.LocationsService
 import okhttp3.OkHttpClient
 import retrofit2.HttpException
 import retrofit2.Retrofit

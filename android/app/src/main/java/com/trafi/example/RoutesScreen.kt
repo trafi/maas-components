@@ -50,8 +50,8 @@ import com.trafi.core.android.model.LatLng
 import com.trafi.core.android.model.Location
 import com.trafi.core.android.model.RoutesResult
 import com.trafi.example.ui.DemoMaasTheme
-import com.trafi.locations.LocationsApi
-import com.trafi.routes.RoutesApi
+import com.trafi.locations.android.LocationsApi
+import com.trafi.routes.android.RoutesApi
 import com.trafi.routes.ui.R
 import com.trafi.routes.ui.RoutesResult
 import com.trafi.ui.OutlinedTextField
