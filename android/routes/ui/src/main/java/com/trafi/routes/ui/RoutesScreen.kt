@@ -71,9 +71,9 @@ fun RoutesScreen(
     ) {
         Providers(AmbientContentColor provides MaasTheme.colors.onBackground) {
             RouteSearchHeader(
-                originText = startText,
-                destinationText = endText,
-                onOriginTextChange = {
+                startText = startText,
+                endText = endText,
+                onStartTextChange = {
                     searchingForEnd = false
                     endText = end.displayText
 
@@ -81,7 +81,7 @@ fun RoutesScreen(
                     searchingForStart = true
                     locationViewModel.search(it)
                 },
-                onDestinationTextChange = {
+                onEndTextChange = {
                     searchingForStart = false
                     startText = start.displayText
 

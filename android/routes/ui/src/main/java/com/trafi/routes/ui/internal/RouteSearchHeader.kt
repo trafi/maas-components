@@ -35,10 +35,10 @@ import com.trafi.ui.theme.Spacing
 
 @Composable
 internal fun RouteSearchHeader(
-    originText: String,
-    destinationText: String,
-    onOriginTextChange: (String) -> Unit,
-    onDestinationTextChange: (String) -> Unit,
+    startText: String,
+    endText: String,
+    onStartTextChange: (String) -> Unit,
+    onEndTextChange: (String) -> Unit,
     onTextInputStarted: (SoftwareKeyboardController) -> Unit,
     onSwitchClick: () -> Unit,
     onBackClick: () -> Unit,
@@ -48,8 +48,8 @@ internal fun RouteSearchHeader(
     val switchVector = vectorResource(R.drawable.ic_route_search_switch_20)
 
     ConstraintLayout(modifier) {
-        val (back, title, origin, destination, switch) = createRefs()
-        val (originIcon, destinationIcon) = createRefs()
+        val (back, title, startField, endField, switch) = createRefs()
+        val (startIcon, endIcon) = createRefs()
         val departureTime = createRef()
 
         Text(
@@ -65,7 +65,7 @@ internal fun RouteSearchHeader(
         IconButton(
             onClick = onBackClick,
             modifier = Modifier.size(32.dp).constrainAs(back) {
-                centerHorizontallyTo(destinationIcon)
+                centerHorizontallyTo(endIcon)
                 centerVerticallyTo(title)
             }) {
             Icon(Icons.Filled.ArrowBack)
@@ -75,20 +75,20 @@ internal fun RouteSearchHeader(
             modifier = Modifier
                 .background(AmbientContentColor.current, CircleShape)
                 .size(8.dp)
-                .constrainAs(originIcon) {
+                .constrainAs(startIcon) {
                     start.linkTo(parent.start)
-                    end.linkTo(origin.start)
-                    centerVerticallyTo(origin)
+                    end.linkTo(startField.start)
+                    centerVerticallyTo(startField)
                 })
         Icon(
             Icons.Filled.Place,
             tint = MaasTheme.colors.primary,
             modifier = Modifier
                 .size(width = 32.dp, height = 16.dp)
-                .constrainAs(destinationIcon) {
+                .constrainAs(endIcon) {
                     start.linkTo(parent.start)
-                    end.linkTo(destination.start)
-                    centerVerticallyTo(destination)
+                    end.linkTo(endField.start)
+                    centerVerticallyTo(endField)
                 })
 
         @Composable
@@ -102,45 +102,45 @@ internal fun RouteSearchHeader(
                     .background(AmbientContentColor.current, CircleShape)
                     .size(2.dp)
                     .constrainAs(ref) {
-                        centerHorizontallyTo(originIcon)
+                        centerHorizontallyTo(startIcon)
                         top.linkTo(prev.bottom)
                         bottom.linkTo(next.top)
                     })
         }
 
         val dotCount = 5
-        var prevRef = originIcon
+        var prevRef = startIcon
         var nextRef = createRef()
         for (i in 1..dotCount) {
             val ref = nextRef
-            nextRef = if (i == dotCount) destinationIcon else createRef()
+            nextRef = if (i == dotCount) endIcon else createRef()
             Dot(ref = ref, prev = prevRef, next = nextRef)
             prevRef = ref
         }
 
-        val barrier = createEndBarrier(originIcon, destinationIcon)
+        val barrier = createEndBarrier(startIcon, endIcon)
 
         OutlinedTextField(
-            originText,
-            modifier = Modifier.constrainAs(origin) {
+            startText,
+            modifier = Modifier.constrainAs(startField) {
                 start.linkTo(barrier)
                 end.linkTo(parent.end)
                 width = Dimension.fillToConstraints
                 top.linkTo(title.bottom)
             },
-            onValueChange = onOriginTextChange,
+            onValueChange = onStartTextChange,
             onTextInputStarted = onTextInputStarted,
             textStyle = MaasTheme.typography.textL,
         )
         OutlinedTextField(
-            destinationText,
-            modifier = Modifier.constrainAs(destination) {
+            endText,
+            modifier = Modifier.constrainAs(endField) {
                 start.linkTo(barrier)
                 end.linkTo(parent.end)
                 width = Dimension.fillToConstraints
-                top.linkTo(origin.bottom, margin = Spacing.xs)
+                top.linkTo(startField.bottom, margin = Spacing.xs)
             },
-            onValueChange = onDestinationTextChange,
+            onValueChange = onEndTextChange,
             onTextInputStarted = onTextInputStarted,
             textStyle = MaasTheme.typography.textL,
         )
@@ -151,8 +151,8 @@ internal fun RouteSearchHeader(
             modifier = Modifier
                 .size(40.dp)
                 .constrainAs(switch) {
-                    top.linkTo(origin.bottom)
-                    bottom.linkTo(destination.top)
+                    top.linkTo(startField.bottom)
+                    bottom.linkTo(endField.top)
                     end.linkTo(parent.end, margin = Spacing.sm)
                 }
         ) {
@@ -161,7 +161,7 @@ internal fun RouteSearchHeader(
         TextButton(
             onClick = {},
             modifier = Modifier.constrainAs(departureTime) {
-                top.linkTo(destination.bottom, margin = Spacing.sm)
+                top.linkTo(endField.bottom, margin = Spacing.sm)
                 start.linkTo(parent.start)
             }) {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -177,10 +177,10 @@ internal fun RouteSearchHeader(
 private fun RouteSearchHeaderPreview() {
     MaasTheme {
         RouteSearchHeader(
-            originText = vilniusAirport.displayText,
-            destinationText = vilniusCathedral.displayText,
-            onOriginTextChange = {},
-            onDestinationTextChange = {},
+            startText = vilniusAirport.displayText,
+            endText = vilniusCathedral.displayText,
+            onStartTextChange = {},
+            onEndTextChange = {},
             onTextInputStarted = {},
             onSwitchClick = {},
             onBackClick = {},
