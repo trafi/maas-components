@@ -1,8 +1,6 @@
 package com.trafi.routes.ui
 
-import androidx.compose.foundation.AmbientContentColor
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.ExperimentalLayout
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -12,8 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.foundation.layout.preferredWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.AmbientContentColor
 import androidx.compose.material.Divider
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
