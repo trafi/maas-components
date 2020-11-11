@@ -3,7 +3,6 @@ package com.trafi.routes.ui
 import androidx.compose.foundation.AmbientContentColor
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.Text
-import androidx.compose.foundation.contentColor
 import androidx.compose.foundation.layout.ExperimentalLayout
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -71,7 +70,9 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
             val walking = segment.walking ?: return
             val vector = vectorResource(R.drawable.ic_route_search_walking_s)
             Row(modifier = modifier.defaultMinSizeConstraints(minHeight = 24.dp)) {
-                Image(vector, modifier = Modifier.align(Alignment.CenterVertically))
+                Image(vector,
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                colorFilter = ColorFilter.tint(AmbientContentColor.current))
                 Text(
                     text = walking.distance.text,
                     style = MaasTheme.typography.textS,
