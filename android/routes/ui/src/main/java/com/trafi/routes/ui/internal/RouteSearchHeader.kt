@@ -50,7 +50,6 @@ internal fun RouteSearchHeader(
     ConstraintLayout(modifier) {
         val (back, title, origin, destination, switch) = createRefs()
         val (originIcon, destinationIcon) = createRefs()
-        val (dot1, dot2, dot3) = createRefs()
         val departureTime = createRef()
 
         Text(
