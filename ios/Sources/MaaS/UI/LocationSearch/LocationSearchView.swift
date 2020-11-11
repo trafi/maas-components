@@ -1,5 +1,4 @@
 import SwiftUI
-import MaasCore
 
 struct LocationSearchView: View {
     var body: some View {

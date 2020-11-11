@@ -1,5 +1,4 @@
 import SwiftUI
-import MaasCore
 
 struct RouteSegmentView: View {
 
