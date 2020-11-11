@@ -27,6 +27,6 @@ fun RoutesResult(result: RoutesResult, modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-fun RoutesResultPreview() {
+private fun RoutesResultPreview() {
     RoutesResult(mockResult)
 }

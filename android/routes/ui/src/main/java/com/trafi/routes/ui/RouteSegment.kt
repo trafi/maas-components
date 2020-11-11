@@ -140,7 +140,7 @@ private fun String.parseColor(): Color =
 
 @OptIn(ExperimentalLayout::class)
 @Composable
-fun Badge(color: Color, vector: VectorAsset?, text: String?, modifier: Modifier = Modifier) {
+private fun Badge(color: Color, vector: VectorAsset?, text: String?, modifier: Modifier = Modifier) {
     Surface(
         color = color,
         contentColor = Color.White,
@@ -178,6 +178,8 @@ fun Badge(color: Color, vector: VectorAsset?, text: String?, modifier: Modifier 
 
 @Preview(showBackground = false)
 @Composable
-fun RouteSegmentPreview(@PreviewParameter(RouteSegmentPreviewParameterProvider::class) segment: RouteSegment) {
+private fun RouteSegmentPreview(
+    @PreviewParameter(RouteSegmentPreviewParameterProvider::class) segment: RouteSegment
+) {
     RouteSegment(segment)
 }
