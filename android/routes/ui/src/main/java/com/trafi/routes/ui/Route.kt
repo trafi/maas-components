@@ -75,12 +75,12 @@ fun Route(route: Route, modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true, widthDp = 320)
 @Composable
-fun RoutePreview() {
+private fun RoutePreview() {
     Route(mockRoute)
 }
 
 @Composable
-fun Cell(
+private fun Cell(
     modifier: Modifier = Modifier,
     prefix: (@Composable ColumnScope.() -> Unit)? = null,
     suffix: (@Composable ColumnScope.() -> Unit)? = null,

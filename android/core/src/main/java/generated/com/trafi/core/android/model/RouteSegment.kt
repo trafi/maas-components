@@ -58,6 +58,8 @@ data class RouteSegment (
     val sharing: RouteSegmentSharing? = null,
     @Json(name = "rideHailing")
     val rideHailing: RouteSegmentRideHailing? = null,
+    @Json(name = "personalVehicle")
+    val personalVehicle: RouteSegmentPersonalVehicle? = null,
     @Json(name = "fareId")
     val fareId: kotlin.String? = null,
     @Json(name = "transportGroup")
@@ -75,7 +77,8 @@ data class RouteSegment (
         @Json(name = "TRANSIT") TRANSIT("TRANSIT"),
         @Json(name = "RIDE_HAILING") RIDE_HAILING("RIDE_HAILING"),
         @Json(name = "SHARING") SHARING("SHARING"),
-        @Json(name = "WALKING") WALKING("WALKING");
+        @Json(name = "WALKING") WALKING("WALKING"),
+        @Json(name = "PERSONAL_VEHICLE") PERSONAL_VEHICLE("PERSONAL_VEHICLE");
     }
 }
 

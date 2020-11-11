@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import com.trafi.example.ui.DemoMaasTheme
 import com.trafi.example.util.NavigationViewModel
 import com.trafi.example.util.Screen
+import com.trafi.routes.ui.RoutesScreen
 import com.trafi.ui.theme.MaasTheme
 
 @Composable
@@ -29,6 +30,9 @@ private fun AppContent(
                     onComplete = { navigationViewModel.navigateTo(Screen.Routes) },
                 )
                 is Screen.Routes -> RoutesScreen(
+                    baseUrl = BuildConfig.API_BASE_URL,
+                    apiKey = BuildConfig.API_KEY,
+                    regionId = BuildConfig.REGION_ID,
                     onBackClick = { navigationViewModel.onBack() }
                 )
             }
