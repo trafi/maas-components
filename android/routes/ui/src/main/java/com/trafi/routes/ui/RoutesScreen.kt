@@ -32,7 +32,6 @@ import com.trafi.routes.ui.internal.RouteSearchHeader
 import com.trafi.routes.ui.internal.RoutesResultState
 import com.trafi.routes.ui.internal.RoutesViewModel
 import com.trafi.routes.ui.internal.displayText
-import com.trafi.routes.ui.mock.vilniusAirport
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.Spacing
 
@@ -43,7 +42,7 @@ fun RoutesScreen(
     regionId: String,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
-    initialStart: Location? = vilniusAirport,
+    initialStart: Location? = null,
     initialEnd: Location? = null,
 ) {
     val factory = ViewModelFactory(baseUrl, apiKey, regionId)
