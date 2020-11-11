@@ -124,12 +124,14 @@ fun RoutesScreen(
                         startText = location.displayText
                         tryRouteSearch()
                         searchingForStart = false
+                        locationViewModel.resolvedLocationHandled()
                     }
                     searchingForEnd -> {
                         end = location
                         endText = location.displayText
                         tryRouteSearch()
                         searchingForEnd = false
+                        locationViewModel.resolvedLocationHandled()
                     }
                 }
             }

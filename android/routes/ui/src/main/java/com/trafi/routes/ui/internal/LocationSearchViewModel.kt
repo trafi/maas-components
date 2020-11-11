@@ -47,6 +47,10 @@ internal class LocationSearchViewModel(private val locationsApi: LocationsApi) :
             resolvedLocation = (locationsApi.resolveLocation(location) as? ApiResult.Success)?.value
         }
     }
+
+    fun resolvedLocationHandled() {
+        resolvedLocation = null
+    }
 }
 
 internal sealed class LocationSearchResultState {
