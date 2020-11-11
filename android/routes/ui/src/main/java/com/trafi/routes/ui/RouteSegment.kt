@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.tooling.preview.PreviewParameter
 import com.trafi.core.android.model.RouteSegment
+import com.trafi.core.android.model.RouteSegmentPersonalVehicle
 import com.trafi.routes.ui.mock.RouteSegmentPreviewParameterProvider
 import com.trafi.ui.theme.MaasTheme
 
@@ -75,6 +76,24 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
                 colorFilter = ColorFilter.tint(AmbientContentColor.current))
                 Text(
                     text = walking.distance.text,
+                    style = MaasTheme.typography.textS,
+                    fontSize = 8.sp,
+                    modifier = Modifier.align(Alignment.Bottom)
+                )
+            }
+        }
+        RouteSegment.Mode.PERSONAL_VEHICLE -> {
+            val personalVehicle = segment.personalVehicle ?: return
+            val vector = vectorResource(when(personalVehicle.vehicle) {
+                RouteSegmentPersonalVehicle.Vehicle.BICYCLE -> R.drawable.ic_route_search_bike_s
+                RouteSegmentPersonalVehicle.Vehicle.KICK_SCOOTER -> R.drawable.ic_route_search_scooter_s
+            })
+            Row(modifier = modifier.defaultMinSizeConstraints(minHeight = 24.dp)) {
+                Image(vector,
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    colorFilter = ColorFilter.tint(AmbientContentColor.current))
+                Text(
+                    text = personalVehicle.distance.text,
                     style = MaasTheme.typography.textS,
                     fontSize = 8.sp,
                     modifier = Modifier.align(Alignment.Bottom)
