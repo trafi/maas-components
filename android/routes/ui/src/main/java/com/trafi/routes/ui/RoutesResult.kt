@@ -1,5 +1,6 @@
 package com.trafi.routes.ui
 
+import androidx.compose.foundation.AmbientContentColor
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.material.Divider
@@ -16,6 +17,7 @@ fun RoutesResult(result: RoutesResult, modifier: Modifier = Modifier) {
         Route(route, modifier = Modifier.fillParentMaxWidth())
         if (result.routes.indexOf(route) != result.routes.lastIndex) {
             Divider(
+                color = AmbientContentColor.current,
                 modifier = Modifier
                     .padding(horizontal = MaasTheme.spacing.globalMargin)
             )
