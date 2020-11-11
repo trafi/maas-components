@@ -1,5 +1,6 @@
 package com.trafi.routes.ui
 
+import androidx.compose.foundation.AmbientContentColor
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Providers
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -68,78 +70,80 @@ fun RoutesScreen(
             .background(MaasTheme.colors.background)
             .fillMaxHeight()
     ) {
-        RouteSearchHeader(
-            originText = startText,
-            destinationText = endText,
-            onOriginTextChange = {
-                searchingForEnd = false
-                endText = end.displayText
+        Providers(AmbientContentColor provides MaasTheme.colors.onBackground) {
+            RouteSearchHeader(
+                originText = startText,
+                destinationText = endText,
+                onOriginTextChange = {
+                    searchingForEnd = false
+                    endText = end.displayText
 
-                startText = it
-                searchingForStart = true
-                locationViewModel.search(it)
-            },
-            onDestinationTextChange = {
-                searchingForStart = false
-                startText = start.displayText
+                    startText = it
+                    searchingForStart = true
+                    locationViewModel.search(it)
+                },
+                onDestinationTextChange = {
+                    searchingForStart = false
+                    startText = start.displayText
 
-                endText = it
-                searchingForEnd = true
-                locationViewModel.search(it)
-            },
-            onTextInputStarted = { keyboardController ->
-                softwareKeyboardController = keyboardController
-            },
-            onSwitchClick = {
-                searchingForEnd = false
-                searchingForStart = false
-                val prevStart = start
-                start = end
-                end = prevStart
+                    endText = it
+                    searchingForEnd = true
+                    locationViewModel.search(it)
+                },
+                onTextInputStarted = { keyboardController ->
+                    softwareKeyboardController = keyboardController
+                },
+                onSwitchClick = {
+                    searchingForEnd = false
+                    searchingForStart = false
+                    val prevStart = start
+                    start = end
+                    end = prevStart
 
-                startText = start.displayText
-                endText = end.displayText
-                tryRouteSearch()
-            },
-            onBackClick = onBackClick,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = MaasTheme.spacing.globalMargin)
-        )
-
-        if (searchingForStart || searchingForEnd) {
-            LocationSearchBody(
-                state = locationViewModel.state,
+                    startText = start.displayText
+                    endText = end.displayText
+                    tryRouteSearch()
+                },
+                onBackClick = onBackClick,
                 modifier = Modifier
-                    .padding(top = Spacing.md),
-                onClick = { location ->
-                    softwareKeyboardController?.hideSoftwareKeyboard()
-                    locationViewModel.resolveLocation(location)
-                }
+                    .fillMaxWidth()
+                    .padding(horizontal = MaasTheme.spacing.globalMargin)
             )
-            locationViewModel.resolvedLocation?.let { location ->
-                when {
-                    searchingForStart -> {
-                        start = location
-                        startText = location.displayText
-                        tryRouteSearch()
-                        searchingForStart = false
-                        locationViewModel.resolvedLocationHandled()
+
+            if (searchingForStart || searchingForEnd) {
+                LocationSearchBody(
+                    state = locationViewModel.state,
+                    modifier = Modifier
+                        .padding(top = Spacing.md),
+                    onClick = { location ->
+                        softwareKeyboardController?.hideSoftwareKeyboard()
+                        locationViewModel.resolveLocation(location)
                     }
-                    searchingForEnd -> {
-                        end = location
-                        endText = location.displayText
-                        tryRouteSearch()
-                        searchingForEnd = false
-                        locationViewModel.resolvedLocationHandled()
+                )
+                locationViewModel.resolvedLocation?.let { location ->
+                    when {
+                        searchingForStart -> {
+                            start = location
+                            startText = location.displayText
+                            tryRouteSearch()
+                            searchingForStart = false
+                            locationViewModel.resolvedLocationHandled()
+                        }
+                        searchingForEnd -> {
+                            end = location
+                            endText = location.displayText
+                            tryRouteSearch()
+                            searchingForEnd = false
+                            locationViewModel.resolvedLocationHandled()
+                        }
                     }
                 }
+            } else {
+                RouteSearchBody(
+                    state = routesViewModel.state,
+                    modifier = Modifier.padding(top = Spacing.md)
+                )
             }
-        } else {
-            RouteSearchBody(
-                state = routesViewModel.state,
-                modifier = Modifier.padding(top = Spacing.md)
-            )
         }
     }
 }
