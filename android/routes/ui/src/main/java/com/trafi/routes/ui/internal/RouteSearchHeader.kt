@@ -1,8 +1,10 @@
 package com.trafi.routes.ui.internal
 
+import androidx.compose.foundation.AmbientContentColor
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.ConstrainedLayoutReference
 import androidx.compose.foundation.layout.ConstraintLayout
 import androidx.compose.foundation.layout.Dimension
 import androidx.compose.foundation.layout.Row
@@ -20,7 +22,6 @@ import androidx.compose.material.icons.filled.Place
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.SoftwareKeyboardController
 import androidx.compose.ui.unit.dp
@@ -49,6 +50,7 @@ internal fun RouteSearchHeader(
     ConstraintLayout(modifier) {
         val (back, title, origin, destination, switch) = createRefs()
         val (originIcon, destinationIcon) = createRefs()
+        val (dot1, dot2, dot3) = createRefs()
         val departureTime = createRef()
 
         Text(
@@ -72,7 +74,7 @@ internal fun RouteSearchHeader(
 
         Box(
             modifier = Modifier
-                .background(Color.Black, CircleShape)
+                .background(AmbientContentColor.current, CircleShape)
                 .size(8.dp)
                 .constrainAs(originIcon) {
                     start.linkTo(parent.start)
@@ -89,6 +91,33 @@ internal fun RouteSearchHeader(
                     end.linkTo(destination.start)
                     centerVerticallyTo(destination)
                 })
+
+        @Composable
+        fun Dot(
+            ref: ConstrainedLayoutReference,
+            prev: ConstrainedLayoutReference,
+            next: ConstrainedLayoutReference
+        ) {
+            Box(
+                modifier = Modifier
+                    .background(AmbientContentColor.current, CircleShape)
+                    .size(2.dp)
+                    .constrainAs(ref) {
+                        centerHorizontallyTo(originIcon)
+                        top.linkTo(prev.bottom)
+                        bottom.linkTo(next.top)
+                    })
+        }
+
+        val dotCount = 5
+        var prevRef = originIcon
+        var nextRef = createRef()
+        for (i in 1..dotCount) {
+            val ref = nextRef
+            nextRef = if (i == dotCount) destinationIcon else createRef()
+            Dot(ref = ref, prev = prevRef, next = nextRef)
+            prevRef = ref
+        }
 
         val barrier = createEndBarrier(originIcon, destinationIcon)
 
