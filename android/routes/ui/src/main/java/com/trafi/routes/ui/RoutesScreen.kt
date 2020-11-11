@@ -40,6 +40,7 @@ fun RoutesScreen(
     apiKey: String,
     regionId: String,
     onBackClick: () -> Unit,
+    modifier: Modifier = Modifier,
     initialStart: Location? = vilniusAirport,
     initialEnd: Location? = null,
 ) {
@@ -63,7 +64,7 @@ fun RoutesScreen(
     }
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .background(MaasTheme.colors.background)
             .fillMaxHeight()
     ) {
