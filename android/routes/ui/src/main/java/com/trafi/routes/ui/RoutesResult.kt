@@ -6,14 +6,19 @@ import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.ui.tooling.preview.Preview
+import com.trafi.core.android.model.Route
 import com.trafi.core.android.model.RoutesResult
 import com.trafi.routes.ui.mock.mockResult
 import com.trafi.ui.theme.MaasTheme
 
 @Composable
-fun RoutesResult(result: RoutesResult, modifier: Modifier = Modifier) {
+fun RoutesResult(
+    result: RoutesResult,
+    onRouteClick: (Route) -> Unit,
+    modifier: Modifier = Modifier
+) {
     LazyColumnFor(result.routes, modifier) { route ->
-        Route(route, modifier = Modifier.fillParentMaxWidth())
+        Route(route, onClick = { onRouteClick(route) }, modifier = Modifier.fillParentMaxWidth())
         if (result.routes.indexOf(route) != result.routes.lastIndex) {
             Divider(
                 modifier = Modifier
@@ -26,5 +31,5 @@ fun RoutesResult(result: RoutesResult, modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun RoutesResultPreview() {
-    RoutesResult(mockResult)
+    RoutesResult(mockResult, onRouteClick = {})
 }

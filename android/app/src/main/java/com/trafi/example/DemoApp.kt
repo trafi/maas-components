@@ -33,7 +33,8 @@ private fun AppContent(
                     baseUrl = BuildConfig.API_BASE_URL,
                     apiKey = BuildConfig.API_KEY,
                     regionId = BuildConfig.REGION_ID,
-                    onBackClick = { navigationViewModel.onBack() }
+                    onRouteClick = {},
+                    onBackClick = { navigationViewModel.onBack() },
                 )
             }
         }

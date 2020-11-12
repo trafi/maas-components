@@ -30,12 +30,12 @@ import java.util.Date
 import java.util.TimeZone
 
 @Composable
-fun Route(route: Route, modifier: Modifier = Modifier) {
+fun Route(route: Route, onClick: () -> Unit, modifier: Modifier = Modifier) {
     Surface(modifier = modifier
         .semantics(mergeAllDescendants = true) {
             accessibilityLabel = route.accessibilityLabel
         }
-        .clickable(onClick = {})) {
+        .clickable(onClick = onClick)) {
         Cell(
             modifier = Modifier
                 .defaultMinSizeConstraints(minHeight = 64.dp)
@@ -89,7 +89,7 @@ fun Route(route: Route, modifier: Modifier = Modifier) {
 @Preview(showBackground = true, widthDp = 320)
 @Composable
 private fun RoutePreview() {
-    Route(mockRoute)
+    Route(mockRoute, onClick = {})
 }
 
 @Composable

@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.trafi.core.android.model.AutoCompleteLocation
 import com.trafi.core.android.model.Location
+import com.trafi.core.android.model.Route
 import com.trafi.locations.android.LocationsApi
 import com.trafi.routes.android.RoutesApi
 import com.trafi.routes.ui.internal.LocationSearchResultState
@@ -41,6 +42,7 @@ fun RoutesScreen(
     apiKey: String,
     regionId: String,
     onBackClick: () -> Unit,
+    onRouteClick: (Route) -> Unit,
     modifier: Modifier = Modifier,
     initialStart: Location? = null,
     initialEnd: Location? = null,
@@ -140,6 +142,7 @@ fun RoutesScreen(
             } else {
                 RouteSearchBody(
                     state = routesViewModel.state,
+                    onRouteClick = onRouteClick,
                     modifier = Modifier.padding(top = Spacing.md)
                 )
             }
@@ -150,6 +153,7 @@ fun RoutesScreen(
 @Composable
 private fun ColumnScope.RouteSearchBody(
     state: RoutesResultState,
+    onRouteClick: (Route) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     when (state) {
@@ -165,7 +169,7 @@ private fun ColumnScope.RouteSearchBody(
                 modifier = modifier.align(Alignment.CenterHorizontally)
             )
         }
-        is RoutesResultState.Loaded -> RoutesResult(state.result, modifier)
+        is RoutesResultState.Loaded -> RoutesResult(state.result, onRouteClick, modifier)
     }
 }
 
