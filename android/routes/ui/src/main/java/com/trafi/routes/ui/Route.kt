@@ -13,16 +13,29 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.accessibilityLabel
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.trafi.core.android.model.Route
+import com.trafi.core.android.model.RouteSegment
+import com.trafi.core.android.model.RouteSegmentPersonalVehicle
+import com.trafi.routes.ui.internal.endTimeMillis
+import com.trafi.routes.ui.internal.startTimeMillis
 import com.trafi.routes.ui.mock.mockRoute
 import com.trafi.ui.theme.MaasTheme
+import java.text.DateFormat
+import java.util.Date
+import java.util.TimeZone
 
 @Composable
 fun Route(route: Route, modifier: Modifier = Modifier) {
-    Surface(modifier = modifier.clickable(onClick = {})) {
+    Surface(modifier = modifier
+        .semantics(mergeAllDescendants = true) {
+            accessibilityLabel = route.accessibilityLabel
+        }
+        .clickable(onClick = {})) {
         Cell(
             modifier = Modifier
                 .defaultMinSizeConstraints(minHeight = 64.dp)
@@ -91,4 +104,41 @@ private fun Cell(
         Column(modifier = Modifier.weight(1f)) { body() }
         suffix?.let { Column { it() } }
     }
+}
+
+private val Route.accessibilityLabel: String get() {
+    val costLabel = listOfNotNull(duration.text, fare?.total?.text).joinToString(separator = " ")
+    val segmentsLabel = segments.mapNotNull { it.accessibilityLabel }.joinToString(separator = ", ")
+    val disruptionLabel = disruption?.title
+    val timeLabel =
+        "leave at ${formatShortTime(startTimeMillis)} arrive at ${formatShortTime(endTimeMillis)}"
+    return listOfNotNull(costLabel, segmentsLabel, disruptionLabel, timeLabel)
+        .joinToString(separator = ", ", postfix = ".")
+}
+
+private val RouteSegment.accessibilityLabel: String? get() {
+    val minutes = maxOf((endTimeMillis - startTimeMillis).millisToMins, 1)
+    return when (mode) {
+        RouteSegment.Mode.TRANSIT -> transit?.schedule?.run {
+            listOfNotNull(transportType, name).joinToString(separator = " ")
+        }
+        RouteSegment.Mode.RIDE_HAILING -> rideHailing?.provider?.name
+        RouteSegment.Mode.SHARING -> sharing?.provider?.name
+        RouteSegment.Mode.WALKING -> "Walk $minutes min"
+        RouteSegment.Mode.PERSONAL_VEHICLE -> when (personalVehicle?.vehicle) {
+            RouteSegmentPersonalVehicle.Vehicle.BICYCLE -> "Ride bicycle $minutes min"
+            RouteSegmentPersonalVehicle.Vehicle.KICK_SCOOTER -> "Ride kick-scooter $minutes min"
+            null -> null
+        }
+    }
+}
+
+private val Long.millisToMins: Long get() = this / 1000 / 60
+
+/**
+ * HH:mm
+ */
+private fun formatShortTime(millis: Long): String = DateFormat.getTimeInstance(DateFormat.SHORT).run {
+    timeZone = TimeZone.getTimeZone("UTC")
+    format(Date(millis))
 }
