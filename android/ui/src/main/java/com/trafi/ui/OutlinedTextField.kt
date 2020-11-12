@@ -1,12 +1,13 @@
 package com.trafi.ui
 
-import androidx.compose.foundation.AmbientTextStyle
-import androidx.compose.foundation.BaseTextField
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.preferredSizeIn
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.AmbientTextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
@@ -31,7 +32,6 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.constrain
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.Dp
@@ -48,8 +48,7 @@ fun OutlinedTextField(
     modifier: Modifier = Modifier,
     textStyle: TextStyle = AmbientTextStyle.current,
     visualTransformation: VisualTransformation = VisualTransformation.None,
-    keyboardType: KeyboardType = KeyboardType.Text,
-    imeAction: ImeAction = ImeAction.Unspecified,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     onImeActionPerformed: (ImeAction, SoftwareKeyboardController?) -> Unit = { _, _ -> },
     onTextInputStarted: (SoftwareKeyboardController) -> Unit = {},
     activeColor: Color = MaasTheme.colors.primary,
@@ -110,7 +109,7 @@ fun OutlinedTextField(
             .drawOutlinedBorder(outlinedBorderParams),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        BaseTextField(
+        BasicTextField(
             value = textFieldValue,
             onValueChange = {
                 selection = it.selection
@@ -121,12 +120,11 @@ fun OutlinedTextField(
             },
             modifier = textFieldModifier,
             textStyle = textStyle,
-            visualTransformation = visualTransformation,
-            keyboardType = keyboardType,
-            imeAction = imeAction,
+            keyboardOptions = keyboardOptions,
             onImeActionPerformed = {
                 onImeActionPerformed(it, keyboardController.value)
             },
+            visualTransformation = visualTransformation,
             onTextInputStarted = {
                 keyboardController.value = it
                 onTextInputStarted(it)
