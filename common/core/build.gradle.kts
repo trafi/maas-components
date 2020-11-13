@@ -24,7 +24,7 @@ kotlin {
     ios {
         binaries {
             framework {
-                baseName = "Core"
+                baseName = "MaasCore"
             }
         }
     }
@@ -77,16 +77,34 @@ android {
         }
     }
 }
-val packForXcode by tasks.creating(Sync::class) {
-    group = "build"
-    val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
-    val sdkName = System.getenv("SDK_NAME") ?: "iphonesimulator"
-    val targetName = "ios" + if (sdkName.startsWith("iphoneos")) "Arm64" else "X64"
-    val framework = kotlin.targets.getByName<KotlinNativeTarget>(targetName).binaries.getFramework(mode)
-    inputs.property("mode", mode)
-    dependsOn(framework.linkTask)
-    val targetDir = File(buildDir, "xcode-frameworks/" + targetName)
-    from({ framework.outputDirectory })
-    into(targetDir)
+
+val xcframeworkPath = "build/bin/xcframework/MaasCore.xcframework"
+
+val cleanXcframework by tasks.creating(Exec::class) {
+
+    group = "cleanup"
+
+    commandLine("rm", "-rf", xcframeworkPath)
 }
-tasks.getByName("build").dependsOn(packForXcode)
+
+val xcframework by tasks.creating(Exec::class) {
+
+    group = "build"
+
+    val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
+    val arm64 = kotlin.targets.getByName<KotlinNativeTarget>("iosArm64").binaries.getFramework(mode)
+    val x64 = kotlin.targets.getByName<KotlinNativeTarget>("iosX64").binaries.getFramework(mode)
+
+    dependsOn(cleanXcframework)
+    dependsOn(arm64.linkTask)
+    dependsOn(x64.linkTask)
+
+    commandLine(
+        "xcodebuild", "-create-xcframework",
+        "-framework", arm64.outputFile,
+        "-debug-symbols", arm64.outputFile.path + ".dSYM",
+        "-framework", x64.outputFile,
+        "-debug-symbols", x64.outputFile.path + ".dSYM",
+        "-output", xcframeworkPath
+    )
+}
