@@ -1,0 +1,46 @@
+name: Build Android
+on:
+  workflow_dispatch:
+  push:
+    branches: master
+  pull_request:
+    branches: master
+jobs:
+  Build:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 12
+      - name: ktlint
+        if: always()
+        uses: eskatos/gradle-command-action@v1
+        with:
+          build-root-directory: android
+          wrapper-directory: android
+          arguments: ktlintCheck
+      - name: Lint
+        if: always()
+        uses: eskatos/gradle-command-action@v1
+        with:
+          build-root-directory: android
+          wrapper-directory: android
+          arguments: lint
+      - name: Test
+        if: always()
+        uses: eskatos/gradle-command-action@v1
+        with:
+          build-root-directory: android
+          wrapper-directory: android
+          arguments: test
+      - name: Assemble
+        if: always()
+        uses: eskatos/gradle-command-action@v1
+        with:
+          build-root-directory: android
+          wrapper-directory: android
+          arguments: assemble
