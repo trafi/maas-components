@@ -25,6 +25,13 @@ android {
     }
 }
 
+ktlint {
+    filter {
+        exclude { element -> element.file.path.contains(generatedModelPath) }
+    }
+}
+
+
 androidExtensions {
     features = ["parcelize"]
 }
@@ -84,7 +91,6 @@ task fetchSwaggerSchema {
 
 task swagen {
     dependsOn(fetchSwaggerSchema, generateModels)
-    finalizedBy(ktlintFormat)
 }
 
 ext {
