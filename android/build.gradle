@@ -63,7 +63,10 @@ String resolveProperty(String propertyKey, String environmentVariable = null) {
         return System.getenv(environmentVariable)
     }
 
+    def local = rootProject.file("local.properties")
+    if (!local.canRead()) return null
+
     Properties localProperties = new Properties()
-    rootProject.file("local.properties").withReader { localProperties.load(it) }
+    local.withReader { localProperties.load(it) }
     return localProperties.getProperty(propertyKey)
 }
