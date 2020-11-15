@@ -67,7 +67,8 @@ internal fun RouteSearchHeader(
             modifier = Modifier.size(32.dp).constrainAs(back) {
                 centerHorizontallyTo(endIcon)
                 centerVerticallyTo(title)
-            }) {
+            }
+        ) {
             Icon(Icons.Filled.ArrowBack)
         }
 
@@ -79,7 +80,8 @@ internal fun RouteSearchHeader(
                     start.linkTo(parent.start)
                     end.linkTo(startField.start)
                     centerVerticallyTo(startField)
-                })
+                }
+        )
         Icon(
             Icons.Filled.Place,
             tint = MaasTheme.colors.primary,
@@ -89,7 +91,8 @@ internal fun RouteSearchHeader(
                     start.linkTo(parent.start)
                     end.linkTo(endField.start)
                     centerVerticallyTo(endField)
-                })
+                }
+        )
 
         @Composable
         fun Dot(
@@ -105,7 +108,8 @@ internal fun RouteSearchHeader(
                         centerHorizontallyTo(startIcon)
                         top.linkTo(prev.bottom)
                         bottom.linkTo(next.top)
-                    })
+                    }
+            )
         }
 
         val dotCount = 5
@@ -163,7 +167,8 @@ internal fun RouteSearchHeader(
             modifier = Modifier.constrainAs(departureTime) {
                 top.linkTo(endField.bottom, margin = Spacing.sm)
                 start.linkTo(parent.start)
-            }) {
+            }
+        ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(timeVector, modifier = Modifier.padding(end = Spacing.xs))
                 Text("Leave now", style = MaasTheme.typography.textM)

@@ -3,7 +3,6 @@ package com.trafi.locations
 import com.trafi.core.android.model.AutoCompleteLocation
 import com.trafi.core.android.model.AutoCompleteLocations
 import com.trafi.core.android.model.ReverseGeocodeResponse
-import com.trafi.core.android.model.RoutesResult
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

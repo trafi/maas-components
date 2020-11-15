@@ -31,11 +31,13 @@ import java.util.TimeZone
 
 @Composable
 fun Route(route: Route, onClick: () -> Unit, modifier: Modifier = Modifier) {
-    Surface(modifier = modifier
-        .semantics(mergeAllDescendants = true) {
-            accessibilityLabel = route.accessibilityLabel
-        }
-        .clickable(onClick = onClick)) {
+    Surface(
+        modifier = modifier
+            .semantics(mergeAllDescendants = true) {
+                accessibilityLabel = route.accessibilityLabel
+            }
+            .clickable(onClick = onClick)
+    ) {
         Cell(
             modifier = Modifier
                 .defaultMinSizeConstraints(minHeight = 64.dp)
@@ -138,7 +140,7 @@ private val Long.millisToMins: Long get() = this / 1000 / 60
 /**
  * HH:mm
  */
-private fun formatShortTime(millis: Long): String = DateFormat.getTimeInstance(DateFormat.SHORT).run {
+private fun formatShortTime(millis: Long) = DateFormat.getTimeInstance(DateFormat.SHORT).run {
     timeZone = TimeZone.getTimeZone("UTC")
     format(Date(millis))
 }
