@@ -1,4 +1,6 @@
-## MaaS Components
+# MaaS Components
+
+[![Android Build](https://github.com/trafi/maas-components/workflows/Android%20Build/badge.svg?event=push)](https://github.com/trafi/maas-components/actions?query=workflow%3A%22Android+Build%22)
 
 *Work in progress, not ready for use in production.*
 
