@@ -26,10 +26,14 @@ allprojects {
 }
 
 subprojects {
-    apply plugin: "org.jlleitschuh.gradle.ktlint"
-    ktlint {
-        version "0.39.0"
-        android = true
+    afterEvaluate { project ->
+        if (project.hasProperty('android')) {
+            apply plugin: "org.jlleitschuh.gradle.ktlint"
+            ktlint {
+                version "0.39.0"
+                android = true
+            }
+        }
     }
 }
 
