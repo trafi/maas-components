@@ -30,6 +30,11 @@ jobs:
           build-root-directory: android
           wrapper-directory: android
           arguments: lint
+      - name: Retain lint artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: lint.html
+          path: android/routes/ui/build/reports/lint-results.html
       - name: Test
         if: always()
         uses: eskatos/gradle-command-action@v1
