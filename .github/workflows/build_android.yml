@@ -30,7 +30,7 @@ jobs:
       - name: Retain lint artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: lint.html
+          name: lint
           path: android/routes/ui/build/reports/lint-results.html
       - name: Test
         if: always()
