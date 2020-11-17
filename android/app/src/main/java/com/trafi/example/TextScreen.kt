@@ -44,7 +44,8 @@ fun TextScreen() {
                     .background(Grey300)
             )
             Text(
-                text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
+                    "tempor incididunt ut labore et dolore magna aliqua.",
                 style = style
             )
         }

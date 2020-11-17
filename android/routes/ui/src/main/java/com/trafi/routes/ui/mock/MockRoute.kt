@@ -84,7 +84,11 @@ internal val mockSegment2: RouteSegment = RouteSegment(
     ),
     startTime = "2020-07-31T09:22:00+02:00",
     endTime = "2020-07-31T09:41:00+02:00",
-    shape = "kjq_IcczpA??Tb@Vj@HPnA~C\\v@n@dB|BzFl@xA??BHdC~FVd@l@gARw@hDsFJTKU`@q@`@Wx@sAZu@|CyEf@YV_@PPv@PjBxB\\p@Vp@nEhF`BvBhB|C??v@lAPVrGrKx@tAb@vAVnAJx@Fb@@l@??@HFrA@d@FtBLrFVlJBpB??FjALbGF|BLxD@RBPNJFJ@NJn@?LBXNhE?j@?\\??HnBDnBDtABhA?FHz@B|A?rADz@BpAVxJ?H?TDlAJrEBxA??DfA\\fND~@DrADhB@p@??Bx@Dv@Af@BjAB`CXnIDzA??Bh@",
+    shape = "kjq_IcczpA??Tb@Vj@HPnA~C\\v@n@dB|BzFl@xA??BHdC~FVd@l@gARw@hDsFJTKU`" +
+        "@q@`@Wx@sAZu@|CyEf@YV_@PPv@PjBxB\\p@Vp@nEhF`BvBhB|C??v@lAPVrGrKx@tAb@vA" +
+        "VnAJx@Fb@@l@??@HFrA@d@FtBLrFVlJBpB??FjALbGF|BLxD@RBPNJFJ@NJn@?LBXNhE?j@" +
+        "?\\??HnBDnBDtABhA?FHz@B|A?rADz@BpAVxJ?H?TDlAJrEBxA??DfA\\fND~@DrADhB@p@" +
+        "??Bx@Dv@Af@BjAB`CXnIDzA??Bh@",
     transit = RouteSegmentTransit(
         schedule = Schedule(
             id = "debe_17350_700",
@@ -98,7 +102,8 @@ internal val mockSegment2: RouteSegment = RouteSegment(
             id = "2-070101005461-070101007309-070101003687",
             destination = "S+U Zoologischer Garten via Potsdamer Platz",
             name = "Prenzlauer Berg, Michelangelostr. - S+U Zoologischer Garten",
-            shape = "cau_I{mbqARk@DOAKiAoAESB]hBmGJWVSVIZDVPvHlNf@fAj@|@LR??`@`@TX`BrCpCdFN^|A|C??lOzX??DFtBvD",
+            shape = "cau_I{mbqARk@DOAKiAoAESB]hBmGJWVSVIZDVPvHlNf@fAj@|@LR??`@`" +
+                "@TX`BrCpCdFN^|A|C??lOzX??DFtBvD",
             direction = Track.Direction.BACKWARD,
             visible = true
         ),
@@ -316,7 +321,8 @@ internal val mockRoute = Route(
             Disruption(
                 severity = Disruption.Severity.INFORMATION,
                 title = "Archäologische Ausgrabungen",
-                description = "Bus 200: Haltestelle Nikolaiviertel ist (in Richtung Hertzallee) aufgehoben.",
+                description = "Bus 200: Haltestelle Nikolaiviertel ist " +
+                    "(in Richtung Hertzallee) aufgehoben.",
                 fromTime = "2019-08-04T04:00:00+02:00",
                 toTime = "2100-01-01T00:00:00+02:00",
                 eventId = "940290",

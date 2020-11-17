@@ -9,7 +9,6 @@ import com.trafi.core.ApiResult
 import com.trafi.core.android.model.AutoCompleteLocation
 import com.trafi.core.android.model.Location
 import com.trafi.locations.android.LocationsApi
-import com.trafi.routes.ui.BuildConfig
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 

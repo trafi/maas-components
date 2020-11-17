@@ -53,7 +53,12 @@ class LocationsApi(baseUrl: String, apiKey: String, private val regionId: String
     suspend fun resolveLocation(location: AutoCompleteLocation): ApiResult<Location> = try {
         location.toLocation()?.let { ApiResult.Success(it) }
             ?: service.resolveCoordinate(location.id).toLocation()?.let { ApiResult.Success(it) }
-            ?: ApiResult.Failure(IllegalArgumentException("Failed to resolve coordinate for location id ${location.id}"))
+            ?: ApiResult.Failure(
+                IllegalArgumentException(
+                    "Failed to resolve coordinate for " +
+                        "location id ${location.id}"
+                )
+            )
     } catch (e: Throwable) {
         e.logError()
         ApiResult.Failure(e)

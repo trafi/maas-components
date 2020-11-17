@@ -32,6 +32,8 @@ import com.trafi.core.android.model.SharedVehicle
 import com.trafi.routes.ui.mock.RouteSegmentPreviewParameterProvider
 import com.trafi.ui.theme.MaasTheme
 
+typealias PersonalVehicleType = RouteSegmentPersonalVehicle.Vehicle
+
 @Composable
 fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
     when (segment.mode) {
@@ -103,9 +105,11 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
             val walking = segment.walking ?: return
             val vector = vectorResource(R.drawable.ic_route_search_walking_s)
             Row(modifier = modifier.defaultMinSizeConstraints(minHeight = 24.dp)) {
-                Image(vector,
+                Image(
+                    vector,
                     modifier = Modifier.align(Alignment.CenterVertically),
-                colorFilter = ColorFilter.tint(AmbientContentColor.current))
+                    colorFilter = ColorFilter.tint(AmbientContentColor.current)
+                )
                 Text(
                     text = walking.distance.text,
                     style = MaasTheme.typography.textS,
@@ -116,14 +120,18 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
         }
         RouteSegment.Mode.PERSONAL_VEHICLE -> {
             val personalVehicle = segment.personalVehicle ?: return
-            val vector = vectorResource(when(personalVehicle.vehicle) {
-                RouteSegmentPersonalVehicle.Vehicle.BICYCLE -> R.drawable.ic_route_search_bike_s
-                RouteSegmentPersonalVehicle.Vehicle.KICK_SCOOTER -> R.drawable.ic_route_search_scooter_s
-            })
+            val vector = vectorResource(
+                when (personalVehicle.vehicle) {
+                    PersonalVehicleType.BICYCLE -> R.drawable.ic_route_search_bike_s
+                    PersonalVehicleType.KICK_SCOOTER -> R.drawable.ic_route_search_scooter_s
+                }
+            )
             Row(modifier = modifier.defaultMinSizeConstraints(minHeight = 24.dp)) {
-                Image(vector,
+                Image(
+                    vector,
                     modifier = Modifier.align(Alignment.CenterVertically),
-                    colorFilter = ColorFilter.tint(AmbientContentColor.current))
+                    colorFilter = ColorFilter.tint(AmbientContentColor.current)
+                )
                 Text(
                     text = personalVehicle.distance.text,
                     style = MaasTheme.typography.textS,
@@ -140,7 +148,12 @@ private fun String.parseColor(): Color =
 
 @OptIn(ExperimentalLayout::class)
 @Composable
-private fun Badge(color: Color, vector: VectorAsset?, text: String?, modifier: Modifier = Modifier) {
+private fun Badge(
+    color: Color,
+    vector: VectorAsset?,
+    text: String?,
+    modifier: Modifier = Modifier
+) {
     Surface(
         color = color,
         contentColor = Color.White,
