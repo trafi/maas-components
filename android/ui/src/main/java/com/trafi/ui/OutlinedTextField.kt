@@ -70,7 +70,7 @@ fun OutlinedTextField(
 
     var isFocused by remember { mutableStateOf(false) }
     val focusRequester = FocusRequester()
-    val textFieldModifier = modifier
+    val textFieldModifier = Modifier
         .padding(horizontal = 12.dp, vertical = 8.dp)
         .focusRequester(focusRequester)
         .focusObserver { isFocused = it.isFocused }
