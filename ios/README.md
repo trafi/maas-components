@@ -32,7 +32,7 @@ let end = locationsApi.resolveAddress(coordinate).flatMap { address in
 Search for routes.
 
 ```swift
-let routesApi = RoutesApi(baseUrl: "<#API_BASE_URL#>", apiKey: "<#API_KEY#>")
+let routesApi = RoutesApi(baseUrl: "<#APIBaseURL#>", apiKey: "<#APIKey#>")
 
 let result = routesApi.search(start, end) { result in
   switch result {
