@@ -10,7 +10,7 @@ Ready-built UI components to get you started quickly out of the box, built with 
 Search for locations.
 
 ```swift
-let locationsApi = LocationsApi(baseUrl: "<#API_BASE_URL#>", apiKey: "<#API_KEY#>", regionId = "<#REGION_ID#>")
+let locationsApi = LocationsApi(baseUrl: "<#APIBaseURL#>", apiKey: "<#APIKey#>", regionId = "<#RegionID#>")
 
 let result = locationsApi.search(query) { result in
   switch result {
