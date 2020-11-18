@@ -29,6 +29,8 @@ import androidx.ui.tooling.preview.PreviewParameter
 import com.trafi.core.android.model.RouteSegment
 import com.trafi.core.android.model.RouteSegmentPersonalVehicle
 import com.trafi.core.android.model.SharedVehicle
+import com.trafi.routes.ui.internal.endTimeMillis
+import com.trafi.routes.ui.internal.startTimeMillis
 import com.trafi.routes.ui.mock.RouteSegmentPreviewParameterProvider
 import com.trafi.ui.theme.MaasTheme
 
@@ -102,8 +104,8 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
             )
         }
         RouteSegment.Mode.WALKING -> {
-            val walking = segment.walking ?: return
             val vector = vectorResource(R.drawable.ic_route_search_walking_s)
+            val durationMillis = segment.endTimeMillis - segment.startTimeMillis
             Row(modifier = modifier.defaultMinSizeConstraints(minHeight = 24.dp)) {
                 Image(
                     vector,
@@ -111,8 +113,8 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
                     colorFilter = ColorFilter.tint(AmbientContentColor.current)
                 )
                 Text(
-                    text = walking.distance.text,
-                    style = MaasTheme.typography.textS,
+                    text = durationMillis.millisToDurationText,
+                    style = MaasTheme.typography.textS.copy(fontWeight = FontWeight.SemiBold),
                     fontSize = 8.sp,
                     modifier = Modifier.align(Alignment.Bottom)
                 )
@@ -126,6 +128,7 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
                     PersonalVehicleType.KICK_SCOOTER -> R.drawable.ic_route_search_scooter_s
                 }
             )
+            val durationMillis = segment.endTimeMillis - segment.startTimeMillis
             Row(modifier = modifier.defaultMinSizeConstraints(minHeight = 24.dp)) {
                 Image(
                     vector,
@@ -133,8 +136,8 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
                     colorFilter = ColorFilter.tint(AmbientContentColor.current)
                 )
                 Text(
-                    text = personalVehicle.distance.text,
-                    style = MaasTheme.typography.textS,
+                    text = durationMillis.millisToDurationText,
+                    style = MaasTheme.typography.textS.copy(fontWeight = FontWeight.SemiBold),
                     fontSize = 8.sp,
                     modifier = Modifier.align(Alignment.Bottom)
                 )
@@ -142,6 +145,9 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
         }
     }
 }
+
+private val Long.millisToDurationText: String
+    get() = maxOf(1, ((this / 1000 + 30) / 60)).toString()
 
 private fun String.parseColor(): Color =
     Color(android.graphics.Color.parseColor("#$this"))
