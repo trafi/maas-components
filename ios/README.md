@@ -34,7 +34,7 @@ Search for routes.
 ```swift
 let routesApi = RoutesApi(baseUrl: "<#APIBaseURL#>", apiKey: "<#APIKey#>")
 
-let result = routesApi.search(start, end) { result in
+routesApi.search(start, end) { result in
   switch result {
     case .success(let results): print("Found \(results.routes.size) routes.")
     case .failure(let error): print("Error: \(error.localizedDescription)")
