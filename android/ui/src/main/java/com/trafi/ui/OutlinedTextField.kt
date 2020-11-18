@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.preferredSizeIn
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.AmbientContentAlpha
+import androidx.compose.material.AmbientContentColor
 import androidx.compose.material.AmbientTextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
@@ -25,6 +27,7 @@ import androidx.compose.ui.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.useOrElse
 import androidx.compose.ui.node.Ref
 import androidx.compose.ui.text.InternalTextApi
 import androidx.compose.ui.text.SoftwareKeyboardController
@@ -100,6 +103,10 @@ fun OutlinedTextField(
         outlinedBorderParams.borderWidth.value = borderWidth
     }
 
+    val textColor = textStyle.color.useOrElse {
+        AmbientContentColor.current.copy(alpha = AmbientContentAlpha.current)
+    }
+
     Row(
         modifier = modifier
             .preferredSizeIn(
@@ -119,7 +126,7 @@ fun OutlinedTextField(
                 }
             },
             modifier = textFieldModifier,
-            textStyle = textStyle,
+            textStyle = textStyle.copy(color = textColor),
             keyboardOptions = keyboardOptions,
             onImeActionPerformed = {
                 onImeActionPerformed(it, keyboardController.value)
