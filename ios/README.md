@@ -23,7 +23,7 @@ let result = locationsApi.search(query) { result in
 Geocode and reverse geocode locations.
 
 ```swift
-let coordinate = LatLng(54.685563, 25.287704)
+let coordinate = LatLng(lat: 54.685563, lng: 25.287704)
 let end = locationsApi.resolveAddress(coordinate).flatMap { address in
   Location(coordinate, address: address)
 }
