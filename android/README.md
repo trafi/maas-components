@@ -11,7 +11,7 @@ Search for locations.
 
 ```groovy
 dependencies {
-  implementation 'com.trafi.maas:locations-android:0.1.0-dev01'
+  implementation 'com.trafi.maas:locations-android:0.1.0-dev02'
 }
 ```
 
@@ -44,7 +44,7 @@ Search for routes.
 
 ```groovy
 dependencies {
-  implementation 'com.trafi.maas:routes-android:0.1.0-dev01'
+  implementation 'com.trafi.maas:routes-android:0.1.0-dev02'
 }
 ```
 
@@ -64,7 +64,7 @@ Display those routes with [Jetpack Compose][compose].
 
 ```groovy
 dependencies {
-  implementation 'com.trafi.maas:routes-ui-android:0.1.0-dev01'
+  implementation 'com.trafi.maas:routes-ui-android:0.1.0-dev02'
 }
 ```
 
