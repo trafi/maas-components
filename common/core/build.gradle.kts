@@ -5,9 +5,10 @@ plugins {
     kotlin("plugin.serialization") version "1.4.10"
     id("com.android.library")
     id("kotlin-android-extensions")
+    id("maven-publish")
 }
-group = "com.trafi"
-version = "1.0-SNAPSHOT"
+group = "com.trafi.maas"
+version = rootProject.version
 
 val ktorVersion = "1.4.1"
 val serializationVersion = "1.0.0-RC2"
@@ -20,7 +21,9 @@ repositories {
     mavenCentral()
 }
 kotlin {
-    android()
+    android {
+        publishLibraryVariants("release")
+    }
     ios {
         binaries {
             framework {
