@@ -1,5 +1,6 @@
 package com.trafi.routes.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -13,12 +14,14 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.semantics.accessibilityLabel
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.trafi.core.android.model.Route
+import com.trafi.core.android.model.RouteDisruption
 import com.trafi.core.android.model.RouteSegment
 import com.trafi.core.android.model.RouteSegmentPersonalVehicle
 import com.trafi.routes.ui.internal.endTimeMillis
@@ -56,10 +59,17 @@ fun Route(route: Route, onClick: () -> Unit, modifier: Modifier = Modifier) {
                 }
                 route.disruption?.let { disruption ->
                     disruption.title?.let { disruptionTitle ->
+                        val vector = vectorResource(
+                            when (disruption.severity) {
+                                RouteDisruption.Severity.NOT_AFFECTED, RouteDisruption.Severity.INFORMATION -> R.drawable.warning_info_s
+                                RouteDisruption.Severity.WARNING -> R.drawable.warning_warning_s
+                                RouteDisruption.Severity.ALERT -> R.drawable.warning_alert_s
+                            }
+                        )
                         Row(modifier = Modifier.padding(top = 8.dp)) {
-                            Text(
-                                disruption.severity.toString(),
-                                style = MaasTheme.typography.textM
+                            Image(
+                                vector,
+                                modifier = Modifier.align(Alignment.CenterVertically)
                             )
                             Spacer(modifier = Modifier.size(4.dp))
                             Text(
