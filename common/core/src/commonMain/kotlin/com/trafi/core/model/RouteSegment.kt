@@ -44,6 +44,7 @@ data class RouteSegment(
     @SerialName(value = "walking") val walking: RouteSegmentWalking? = null,
     @SerialName(value = "sharing") val sharing: RouteSegmentSharing? = null,
     @SerialName(value = "rideHailing") val rideHailing: RouteSegmentRideHailing? = null,
+    @SerialName(value = "personalVehicle") val personalVehicle: RouteSegmentPersonalVehicle? = null,
     @SerialName(value = "fareId") val fareId: kotlin.String? = null,
     @SerialName(value = "transportGroup") val transportGroup: kotlin.String? = null,
     @SerialName(value = "disruption") val disruption: RouteSegmentDisruption? = null
@@ -58,7 +59,8 @@ data class RouteSegment(
         TRANSIT("TRANSIT"),
         RIDE_HAILING("RIDE_HAILING"),
         SHARING("SHARING"),
-        WALKING("WALKING");
+        WALKING("WALKING"),
+        PERSONAL_VEHICLE("PERSONAL_VEHICLE");
 
         object Serializer : CommonEnumSerializer<Mode>("Mode", values(), values().map { it.value.toString() }.toTypedArray())
     }
