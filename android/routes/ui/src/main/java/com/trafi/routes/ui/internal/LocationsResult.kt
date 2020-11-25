@@ -19,8 +19,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import com.trafi.core.android.model.AutoCompleteLocation
-import com.trafi.core.android.model.Location
+import com.trafi.core.model.AutoCompleteLocation
+import com.trafi.core.model.Location
 import com.trafi.routes.ui.mock.vilniusCathedral
 import com.trafi.ui.theme.Grey500
 import com.trafi.ui.theme.MaasTheme

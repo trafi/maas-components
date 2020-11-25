@@ -6,9 +6,9 @@ import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.ui.tooling.preview.Preview
-import com.trafi.core.android.model.Route
-import com.trafi.core.android.model.RoutesResult
-import com.trafi.routes.ui.mock.mockResult
+import com.trafi.core.model.Route
+import com.trafi.core.model.RoutesResult
+import com.trafi.core.model.mockResult
 import com.trafi.ui.theme.MaasTheme
 
 @Composable
