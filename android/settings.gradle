@@ -3,7 +3,6 @@ include ':app'
 include ':core'
 include ':ui'
 include ':locations'
-include ':routes'
 include ':routes:ui'
 
 include ':common'
