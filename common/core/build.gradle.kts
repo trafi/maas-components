@@ -71,8 +71,7 @@ android {
     defaultConfig {
         minSdkVersion(23)
         targetSdkVersion(30)
-        versionCode = 1
-        versionName = "1.0"
+        consumerProguardFiles("consumer-rules.pro")
     }
     buildTypes {
         getByName("release") {
