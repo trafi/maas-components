@@ -10,6 +10,7 @@ import com.trafi.core.android.model.AutoCompleteLocation
 import com.trafi.core.android.model.Location
 import com.trafi.locations.android.LocationsApi
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 internal class LocationSearchViewModel(private val locationsApi: LocationsApi) : ViewModel() {
@@ -24,6 +25,7 @@ internal class LocationSearchViewModel(private val locationsApi: LocationsApi) :
         job?.cancel()
         state = LocationSearchResultState.Loading
         job = viewModelScope.launch {
+            delay(500)
             val result = locationsApi.search(query)
             state = when (result) {
                 is ApiResult.Success -> {
