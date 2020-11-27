@@ -39,6 +39,7 @@ let package = Package(
         .testTarget(
             name: "MaasTests",
             dependencies: ["MaaS", "SnapshotTesting"],
-            path: "ios/Tests/MaasTests"),
+            path: "ios/Tests/MaasTests",
+            exclude: ["__Snapshots__"]),
     ]
 )
