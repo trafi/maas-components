@@ -88,11 +88,11 @@ struct Badge: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 16, height: 16)
             }
-            if color != nil && icon != nil && text != nil {
+            if color != nil && icon != nil && showText {
                 Rectangle()
                     .frame(width: 2, height: 16)
             }
-            if text != nil {
+            if showText {
                 Text(text!)
                     .font(color == nil ? .caption : .body)
                     .bold()
@@ -106,6 +106,8 @@ struct Badge: View {
                 .fill(color ?? .clear)
         )
     }
+
+    private var showText: Bool { 1...6 ~= (text?.count ?? 0) }
 }
 
 struct Badge_Previews: PreviewProvider {
@@ -113,6 +115,7 @@ struct Badge_Previews: PreviewProvider {
         Group {
             Badge(color: .red, icon: UIImage(systemName: "tram"), text: "12")
             Badge(color: .green, icon: UIImage(systemName: "bus"), text: "3G")
+            Badge(color: .blue, icon: UIImage(systemName: "bus"), text: "3G long")
         }
         .previewLayout(.fixed(width: 100, height: 100))
     }
