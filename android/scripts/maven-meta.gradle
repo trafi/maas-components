@@ -10,13 +10,7 @@ ext["sonatypePassword"] = resolveProperty("sonatypePassword", "SONATYPE_PASSWORD
 afterEvaluate {
     publishing {
         publications {
-            release(MavenPublication) {
-                groupId 'com.trafi.maas'
-                artifactId PUBLISH_ARTIFACT_ID
-
-                from components.release
-                artifact androidSourcesJar
-
+            androidRelease(MavenPublication) {
                 pom {
                     name = 'MaaS Components'
                     description = 'Mobility-as-a-service SDK & UI components'
@@ -61,14 +55,4 @@ afterEvaluate {
 
 signing {
     sign publishing.publications
-}
-
-task androidSourcesJar(type: Jar) {
-    //noinspection GrDeprecatedAPIUsage
-    classifier = 'sources'
-    from android.sourceSets.main.java.source
-}
-
-artifacts {
-    archives androidSourcesJar
 }
