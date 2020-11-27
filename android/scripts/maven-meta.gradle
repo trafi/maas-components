@@ -1,6 +1,6 @@
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
-apply from: "${rootProject.projectDir}/scripts/resolve-property.gradle"
+apply from: "${rootProject.projectDir}/../android/scripts/resolve-property.gradle"
 
 ext["signing.keyId"] = resolveProperty("signing.keyId", "MAVEN_SIGNING_KEY_ID")
 ext["signing.password"] = resolveProperty("signing.password", "MAVEN_SIGNING_KEY_PASSOWRD")
