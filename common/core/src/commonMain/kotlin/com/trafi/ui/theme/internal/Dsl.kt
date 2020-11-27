@@ -1,5 +1,7 @@
 package com.trafi.ui.theme.internal
 
+internal const val infinity = Float.POSITIVE_INFINITY
+
 internal fun textStyle(builder: BasicTextStyle.Builder.() -> Unit): BasicTextStyle =
     BasicTextStyle.Builder().apply(builder).build()
 

@@ -13,5 +13,3 @@ object CornerRadiusScale {
         const val ButtonRadius = round
     }
 }
-
-private const val infinity = Float.POSITIVE_INFINITY
