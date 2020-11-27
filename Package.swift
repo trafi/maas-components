@@ -17,6 +17,11 @@ let package = Package(
             name: "MaasCore",
             targets: ["MaasCore"]),
     ],
+    dependencies: [
+        .package(
+            name: "SnapshotTesting",
+            url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.8.2"),
+    ],
     targets: [
         // Used for production
         .binaryTarget(
@@ -31,5 +36,9 @@ let package = Package(
             name: "MaaS",
             dependencies: ["MaasCore"],
             path: "ios/Sources/MaaS"),
+        .testTarget(
+            name: "MaasTests",
+            dependencies: ["MaaS", "SnapshotTesting"],
+            path: "ios/Tests/MaasTests"),
     ]
 )
