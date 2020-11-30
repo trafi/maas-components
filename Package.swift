@@ -21,6 +21,9 @@ let package = Package(
         .package(
             name: "SnapshotTesting",
             url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.8.2"),
+        .package(
+            name: "Quick",
+            url: "https://github.com/Quick/Quick.git", from: "3.0.0"),
     ],
     targets: [
         // Used for production
@@ -38,7 +41,7 @@ let package = Package(
             path: "ios/Sources/MaaS"),
         .testTarget(
             name: "MaasTests",
-            dependencies: ["MaaS", "SnapshotTesting"],
+            dependencies: ["MaaS", "SnapshotTesting", "Quick"],
             path: "ios/Tests/MaasTests",
             exclude: ["__Snapshots__"]),
     ]

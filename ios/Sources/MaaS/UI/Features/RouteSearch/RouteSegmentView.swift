@@ -60,63 +60,14 @@ extension Color {
     }
 }
 
-
-struct RouteSegmentView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            RouteSegmentView(segment: MockRouteKt.mockSegment1)
-            RouteSegmentView(segment: MockRouteKt.mockSegment2)
-            RouteSegmentView(segment: MockRouteKt.mockSegment3)
-        }
-        .previewLayout(.fixed(width: 100, height: 100))
+#if DEBUG
+struct RouteSegmentView_Previews: PreviewProvider, Snapped {
+    static var snapped: [String: RouteSegmentView] {
+        [
+            "Mock1": RouteSegmentView(segment: MockRouteKt.mockSegment1),
+            "Mock2": RouteSegmentView(segment: MockRouteKt.mockSegment2),
+            "Mock3": RouteSegmentView(segment: MockRouteKt.mockSegment3),
+        ]
     }
 }
-
-struct Badge: View {
-
-    let color: Color?
-    let icon: UIImage?
-    let text: String?
-
-    var body: some View {
-
-        HStack(spacing: 4) {
-            if icon != nil {
-                Image(uiImage: icon!)
-                    .renderingMode(.template)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 16, height: 16)
-            }
-            if color != nil && icon != nil && showText {
-                Rectangle()
-                    .frame(width: 2, height: 16)
-            }
-            if showText {
-                Text(text!)
-                    .font(color == nil ? .caption : .body)
-                    .bold()
-                    .offset(y: color == nil ? 4 : 0)
-            }
-        }
-        .foregroundColor(color == nil ? .black : .white)
-        .padding(4)
-        .background(
-            RoundedRectangle(cornerRadius: 4)
-                .fill(color ?? .clear)
-        )
-    }
-
-    private var showText: Bool { 1...6 ~= (text?.count ?? 0) }
-}
-
-struct Badge_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            Badge(color: .red, icon: UIImage(systemName: "tram"), text: "12")
-            Badge(color: .green, icon: UIImage(systemName: "bus"), text: "3G")
-            Badge(color: .blue, icon: UIImage(systemName: "bus"), text: "3G long")
-        }
-        .previewLayout(.fixed(width: 100, height: 100))
-    }
-}
+#endif

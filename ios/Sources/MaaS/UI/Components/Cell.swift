@@ -55,6 +55,8 @@ struct Cell<P: View, S: View, C: View>: View {
     }
 }
 
+#if DEBUG
+// TODO: Snapped doesn't work well with generics :(
 struct Cell_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -85,3 +87,4 @@ struct Cell_Previews: PreviewProvider {
         .previewLayout(.fixed(width: 320, height: 60))
     }
 }
+#endif
