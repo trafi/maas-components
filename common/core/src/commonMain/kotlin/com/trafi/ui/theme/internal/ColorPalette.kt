@@ -4,15 +4,15 @@ object ColorPalette {
     const val White = 0xffffffff
     const val Black = 0xff000000
 
-    const val Grey100 = 0xfff5f5f5
-    const val Grey200 = 0xffeeeeee
-    const val Grey300 = 0xffe0e0e0
-    const val Grey400 = 0xffbdbdbd
-    const val Grey500 = 0xff9e9e9e
-    const val Grey600 = 0xff757575
-    const val Grey700 = 0xff616161
-    const val Grey800 = 0xff424242
-    const val Grey900 = 0xff212121
+    const val Gray100 = 0xfff5f5f5
+    const val Gray200 = 0xffeeeeee
+    const val Gray300 = 0xffe0e0e0
+    const val Gray400 = 0xffbdbdbd
+    const val Gray500 = 0xff9e9e9e
+    const val Gray600 = 0xff757575
+    const val Gray700 = 0xff616161
+    const val Gray800 = 0xff424242
+    const val Gray900 = 0xff212121
 
     object DefaultLight {
         const val Primary = 0xffff1499
@@ -24,8 +24,8 @@ object ColorPalette {
         const val Error = 0xfff22e46
         const val OnPrimary = White
         const val OnSecondary = Black
-        const val OnBackground = Grey900
-        const val OnSurface = Grey900
+        const val OnBackground = Gray900
+        const val OnSurface = Gray900
         const val OnError = White
     }
 

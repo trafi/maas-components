@@ -9,15 +9,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import com.trafi.ui.theme.internal.ColorPalette
 
-@Stable val Grey100 = Color(ColorPalette.Grey100)
-@Stable val Grey200 = Color(ColorPalette.Grey200)
-@Stable val Grey300 = Color(ColorPalette.Grey300)
-@Stable val Grey400 = Color(ColorPalette.Grey400)
-@Stable val Grey500 = Color(ColorPalette.Grey500)
-@Stable val Grey600 = Color(ColorPalette.Grey600)
-@Stable val Grey700 = Color(ColorPalette.Grey700)
-@Stable val Grey800 = Color(ColorPalette.Grey800)
-@Stable val Grey900 = Color(ColorPalette.Grey900)
+@Stable val Grey100 = Color(ColorPalette.Gray100)
+@Stable val Grey200 = Color(ColorPalette.Gray200)
+@Stable val Grey300 = Color(ColorPalette.Gray300)
+@Stable val Grey400 = Color(ColorPalette.Gray400)
+@Stable val Grey500 = Color(ColorPalette.Gray500)
+@Stable val Grey600 = Color(ColorPalette.Gray600)
+@Stable val Grey700 = Color(ColorPalette.Gray700)
+@Stable val Grey800 = Color(ColorPalette.Gray800)
+@Stable val Grey900 = Color(ColorPalette.Gray900)
 
 fun MaasTheme.lightColors(
     primary: Color = Color(ColorPalette.DefaultLight.Primary),

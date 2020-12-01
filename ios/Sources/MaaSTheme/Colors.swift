@@ -5,15 +5,15 @@ import MaasCore
 extension Color {
 
     // Shades
-    static var grey100: Color { .init(.grey100) }
-    static var grey200: Color { .init(.grey200) }
-    static var grey300: Color { .init(.grey300) }
-    static var grey400: Color { .init(.grey400) }
-    static var grey500: Color { .init(.grey500) }
-    static var grey600: Color { .init(.grey600) }
-    static var grey700: Color { .init(.grey700) }
-    static var grey800: Color { .init(.grey800) }
-    static var grey900: Color { .init(.grey900) }
+    static var gray100: Color { .init(.gray100) }
+    static var gray200: Color { .init(.gray200) }
+    static var gray300: Color { .init(.gray300) }
+    static var gray400: Color { .init(.gray400) }
+    static var gray500: Color { .init(.gray500) }
+    static var gray600: Color { .init(.gray600) }
+    static var gray700: Color { .init(.gray700) }
+    static var gray800: Color { .init(.gray800) }
+    static var gray900: Color { .init(.gray900) }
 
     // Light
     static var primaryLight: Color { .init(.primaryLight) }
@@ -47,15 +47,15 @@ extension Color {
 extension UIColor {
 
     // Shades
-    static var grey100: UIColor { .init(ColorPalette().Grey100) }
-    static var grey200: UIColor { .init(ColorPalette().Grey200) }
-    static var grey300: UIColor { .init(ColorPalette().Grey300) }
-    static var grey400: UIColor { .init(ColorPalette().Grey400) }
-    static var grey500: UIColor { .init(ColorPalette().Grey500) }
-    static var grey600: UIColor { .init(ColorPalette().Grey600) }
-    static var grey700: UIColor { .init(ColorPalette().Grey700) }
-    static var grey800: UIColor { .init(ColorPalette().Grey800) }
-    static var grey900: UIColor { .init(ColorPalette().Grey900) }
+    static var gray100: UIColor { .init(ColorPalette().Gray100) }
+    static var gray200: UIColor { .init(ColorPalette().Gray200) }
+    static var gray300: UIColor { .init(ColorPalette().Gray300) }
+    static var gray400: UIColor { .init(ColorPalette().Gray400) }
+    static var gray500: UIColor { .init(ColorPalette().Gray500) }
+    static var gray600: UIColor { .init(ColorPalette().Gray600) }
+    static var gray700: UIColor { .init(ColorPalette().Gray700) }
+    static var gray800: UIColor { .init(ColorPalette().Gray800) }
+    static var gray900: UIColor { .init(ColorPalette().Gray900) }
 
     // Light
     static var primaryLight: UIColor { .init(ColorPalette.DefaultLight().Primary) }
@@ -67,8 +67,8 @@ extension UIColor {
     static var errorLight: UIColor { .init(ColorPalette.DefaultLight().Error) }
     static var onPrimaryLight: UIColor { .white }
     static var onSecondaryLight: UIColor { .black }
-    static var onBackgroundLight: UIColor { .grey900 }
-    static var onSurfaceLight: UIColor { .grey900 }
+    static var onBackgroundLight: UIColor { .gray900 }
+    static var onSurfaceLight: UIColor { .gray900 }
     static var onErrorLight: UIColor { .white }
 
     // Dark
