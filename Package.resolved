@@ -14,9 +14,9 @@
         "package": "Snapped",
         "repositoryURL": "https://github.com/trafi/snapped.git",
         "state": {
-          "branch": "main",
+          "branch": null,
           "revision": "cf575ef92718bdc926a3bcb9f4f994dbd776e27d",
-          "version": null
+          "version": "0.0.1"
         }
       },
       {

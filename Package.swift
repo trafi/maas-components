@@ -20,7 +20,7 @@ let package = Package(
     dependencies: [
         .package(
             name: "Snapped",
-            url: "https://github.com/trafi/snapped.git", .branch("main")),
+            url: "https://github.com/trafi/snapped.git", .exact("0.0.1")),
     ],
     targets: [
         // Used for production
