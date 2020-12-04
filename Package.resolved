@@ -12,10 +12,19 @@
       },
       {
         "package": "Snapped",
-        "repositoryURL": "https://github.com/trafi/snapped.git",
+        "repositoryURL": "git@github.com:trafi/snapped.git",
         "state": {
           "branch": null,
           "revision": "cf575ef92718bdc926a3bcb9f4f994dbd776e27d",
+          "version": "0.0.1"
+        }
+      },
+      {
+        "package": "Swappable",
+        "repositoryURL": "git@github.com:trafi/swappable.git",
+        "state": {
+          "branch": null,
+          "revision": "45deb5066790451f406cb77cb4ecbca12d503b9f",
           "version": "0.0.1"
         }
       },

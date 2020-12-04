@@ -20,7 +20,10 @@ let package = Package(
     dependencies: [
         .package(
             name: "Snapped",
-            url: "https://github.com/trafi/snapped.git", .exact("0.0.1")),
+            url: "git@github.com:trafi/snapped.git", .exact("0.0.1")),
+        .package(
+            name: "Swappable",
+            url: "git@github.com:trafi/swappable.git", .exact("0.0.1")),
     ],
     targets: [
         // Used for production
@@ -34,7 +37,7 @@ let package = Package(
 //            path: "common/core/build/bin/xcframework/MaasCore.xcframework"),
         .target(
             name: "MaaS",
-            dependencies: ["MaasCore", "Snapped"],
+            dependencies: ["MaasCore", "Snapped", "Swappable"],
             path: "ios/Sources/MaaS"),
         .testTarget(
             name: "MaasTests",
