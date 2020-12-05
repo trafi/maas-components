@@ -52,20 +52,6 @@ subprojects { project ->
     }
 }
 
-// maven-publish treats a dependency on a Kotlin Multiplatform project as a dependency on the
-// kotlinMultiplatform publication. However, we only publish the androidRelease publication. To
-// ensure correct dependencies in the POM files, we declare a direct dependency on the Android
-// publication, then substitute it back to have a "project" dependency.
-// Idea borrowed from kotlinx.coroutines
-// https://github.com/Kotlin/kotlinx.coroutines/blob/72238976ac6c06f7b1f6a72d51a41b0573bbc225/build.gradle#L252
-subprojects {
-    configurations.all {
-        resolutionStrategy.dependencySubstitution {
-            substitute module("com.trafi.maas:core-android:$version") with project(':common:core')
-        }
-    }
-}
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
