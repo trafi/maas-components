@@ -10,7 +10,7 @@ buildscript {
         classpath("com.android.tools.build:gradle:4.0.1")
     }
 }
-group = "com.trafi"
+group = "com.trafi.maas"
 version = "1.0-SNAPSHOT"
 
 repositories {
