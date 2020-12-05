@@ -16,6 +16,9 @@ let package = Package(
         .library(
             name: "MaasCore",
             targets: ["MaasCore"]),
+        .library(
+            name: "MaasTheme",
+            targets: ["MaasTheme"]),
     ],
     targets: [
         // Used for production
@@ -29,7 +32,11 @@ let package = Package(
 //            path: "common/core/build/bin/xcframework/MaasCore.xcframework"),
         .target(
             name: "MaaS",
-            dependencies: ["MaasCore"],
+            dependencies: ["MaasCore", "MaasTheme"],
             path: "ios/Sources/MaaS"),
+        .target(
+            name: "MaasTheme",
+            dependencies: ["MaasCore"],
+            path: "ios/Sources/MaasTheme"),
     ]
 )
