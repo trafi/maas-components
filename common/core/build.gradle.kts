@@ -82,6 +82,21 @@ android {
 
 apply(from = "../../android/scripts/maven-meta.gradle")
 
+val mammoth by tasks.registering(JavaExec::class) {
+    group = "analytics"
+    val outputPath = project.file("src/commonMain/kotlin/com/trafi/analytics")
+    outputs.dir(outputPath)
+    outputs.upToDateWhen { false }
+
+    main = "-jar"
+    args(
+        "mammoth-kt-2.0.jar",
+        "--project", "open-sdk",
+        "--output-path", outputPath.path,
+        "--output-filename", "AnalyticsEvent.kt"
+    )
+}
+
 val xcframeworkPath = "build/bin/xcframework/MaasCore.xcframework"
 
 val cleanXcframework by tasks.creating(Exec::class) {

@@ -6,6 +6,8 @@ import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.ui.tooling.preview.Preview
+import com.trafi.analytics.Analytics
+import com.trafi.analytics.AnalyticsEvent
 import com.trafi.core.model.Route
 import com.trafi.core.model.RoutesResult
 import com.trafi.core.model.mockResult
@@ -18,7 +20,15 @@ fun RoutesResult(
     modifier: Modifier = Modifier
 ) {
     LazyColumnFor(result.routes, modifier) { route ->
-        Route(route, onClick = { onRouteClick(route) }, modifier = Modifier.fillParentMaxWidth())
+        Route(route, onClick = {
+            Analytics.consume(
+                AnalyticsEvent.routeTap(
+                    routeResultId = result.id,
+                    routeId = route.id
+                )
+            )
+            onRouteClick(route)
+        }, modifier = Modifier.fillParentMaxWidth())
         if (result.routes.indexOf(route) != result.routes.lastIndex) {
             Divider(
                 modifier = Modifier
