@@ -1,6 +1,6 @@
 package com.trafi.routes.ui.internal
 
-import com.trafi.core.android.model.Location
+import com.trafi.core.model.Location
 
 internal val Location?.displayText: String
     get() = this?.run {

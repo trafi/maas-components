@@ -55,22 +55,3 @@ subprojects { project ->
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
-@SuppressWarnings('unused')
-String resolveProperty(String propertyKey, String environmentVariable = null) {
-    def gradleProp = project.findProperty(propertyKey)
-    if (gradleProp) {
-        return gradleProp
-    }
-
-    if (environmentVariable && System.hasProperty(environmentVariable)) {
-        return System.getenv(environmentVariable)
-    }
-
-    def local = rootProject.file("local.properties")
-    if (!local.canRead()) return null
-
-    Properties localProperties = new Properties()
-    local.withReader { localProperties.load(it) }
-    return localProperties.getProperty(propertyKey)
-}

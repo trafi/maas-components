@@ -6,9 +6,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.trafi.core.ApiResult
-import com.trafi.core.android.model.Location
-import com.trafi.core.android.model.RoutesResult
-import com.trafi.routes.android.RoutesApi
+import com.trafi.core.model.Location
+import com.trafi.core.model.RoutesResult
+import com.trafi.routes.RoutesApi
 import kotlinx.coroutines.launch
 
 internal class RoutesViewModel(private val routesApi: RoutesApi) : ViewModel() {

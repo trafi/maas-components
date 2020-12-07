@@ -16,6 +16,9 @@ let package = Package(
         .library(
             name: "MaasCore",
             targets: ["MaasCore"]),
+        .library(
+            name: "MaasTheme",
+            targets: ["MaasTheme"]),
     ],
     dependencies: [
         .package(
@@ -37,12 +40,16 @@ let package = Package(
 //            path: "common/core/build/bin/xcframework/MaasCore.xcframework"),
         .target(
             name: "MaaS",
-            dependencies: ["MaasCore", "Snapped", "Swappable"],
+            dependencies: ["MaasCore", "Snapped", "Swappable", "MaasTheme"],
             path: "ios/Sources/MaaS"),
         .testTarget(
             name: "MaasTests",
             dependencies: ["MaaS", .product(name: "SnapSpec", package: "Snapped")],
             path: "ios/Tests/MaasTests",
             exclude: ["__Snapshots__"]),
+        .target(
+            name: "MaasTheme",
+            dependencies: ["MaasCore"],
+            path: "ios/Sources/MaasTheme"),
     ]
 )

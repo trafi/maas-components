@@ -1,8 +1,8 @@
 package com.trafi.routes.ui.internal
 
-import com.trafi.core.android.model.Route
-import com.trafi.core.android.model.RouteSegment
-import com.trafi.core.android.model.RoutesResult
+import com.trafi.core.model.Route
+import com.trafi.core.model.RouteSegment
+import com.trafi.core.model.RoutesResult
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone

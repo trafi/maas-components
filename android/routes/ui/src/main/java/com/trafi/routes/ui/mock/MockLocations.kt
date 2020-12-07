@@ -1,8 +1,8 @@
 package com.trafi.routes.ui.mock
 
 import androidx.compose.runtime.Stable
-import com.trafi.core.android.model.LatLng
-import com.trafi.core.android.model.Location
+import com.trafi.core.model.LatLng
+import com.trafi.core.model.Location
 
 @Stable
 internal val vilniusCathedral = Location(

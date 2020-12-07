@@ -6,9 +6,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.trafi.core.ApiResult
-import com.trafi.core.android.model.AutoCompleteLocation
-import com.trafi.core.android.model.Location
-import com.trafi.locations.android.LocationsApi
+import com.trafi.core.model.AutoCompleteLocation
+import com.trafi.core.model.Location
+import com.trafi.locations.LocationsApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

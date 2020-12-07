@@ -21,11 +21,11 @@ import androidx.compose.ui.text.SoftwareKeyboardController
 import androidx.compose.ui.viewinterop.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.trafi.core.android.model.AutoCompleteLocation
-import com.trafi.core.android.model.Location
-import com.trafi.core.android.model.Route
-import com.trafi.locations.android.LocationsApi
-import com.trafi.routes.android.RoutesApi
+import com.trafi.core.model.AutoCompleteLocation
+import com.trafi.core.model.Location
+import com.trafi.core.model.Route
+import com.trafi.locations.LocationsApi
+import com.trafi.routes.RoutesApi
 import com.trafi.routes.ui.internal.LocationSearchResultState
 import com.trafi.routes.ui.internal.LocationSearchViewModel
 import com.trafi.routes.ui.internal.LocationsResult

@@ -26,9 +26,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.tooling.preview.PreviewParameter
-import com.trafi.core.android.model.RouteSegment
-import com.trafi.core.android.model.RouteSegmentPersonalVehicle
-import com.trafi.core.android.model.SharedVehicle
+import com.trafi.core.model.RouteSegment
+import com.trafi.core.model.RouteSegmentPersonalVehicle
+import com.trafi.core.model.SharedVehicle
 import com.trafi.routes.ui.internal.endTimeMillis
 import com.trafi.routes.ui.internal.startTimeMillis
 import com.trafi.routes.ui.mock.RouteSegmentPreviewParameterProvider
