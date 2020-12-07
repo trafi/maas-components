@@ -5,7 +5,7 @@ import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 import com.trafi.core.model.Route
 import com.trafi.core.model.RoutesResult
 import com.trafi.core.model.mockResult
