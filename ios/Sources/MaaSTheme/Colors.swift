@@ -2,6 +2,12 @@ import SwiftUI
 import UIKit
 import MaasCore
 
+public extension Int64 {
+    var color: Color {
+        Color(UIColor(self))
+    }
+}
+
 public extension Color {
 
     // Shades
@@ -44,7 +50,7 @@ public extension Color {
     static var onErrorDark: Color { .init(.onErrorDark) }
 }
 
-extension UIColor {
+public extension UIColor {
 
     // Shades
     static var gray100: UIColor { .init(ColorPalette().Gray100) }

@@ -128,7 +128,7 @@ public extension Font {
     }
 }
 
-extension BasicTextStyle {
+public extension BasicTextStyle {
     var font: Font {
         Font.system(
             size: CGFloat(fontSize),

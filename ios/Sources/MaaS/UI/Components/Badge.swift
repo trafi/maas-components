@@ -1,6 +1,5 @@
 import SwiftUI
 import Swappable
-import Snapped
 
 public struct Badge: View, Swappable {
 

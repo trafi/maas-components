@@ -1,5 +1,4 @@
 import SwiftUI
-import Snapped
 
 struct RouteSegmentView: View {
 

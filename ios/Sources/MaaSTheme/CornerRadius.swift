@@ -1,15 +1,22 @@
-import Foundation
+import UIKit
 import MaasCore
 
 public struct CornerRadius {
 
-    public let value: Double
+    public let value: CGFloat
 
-    public static var none: CornerRadius { .init(value: Double(CornerRadiusScale().none)) }
-    public static var xxs: CornerRadius { .init(value: Double(CornerRadiusScale().xxs)) }
-    public static var xs: CornerRadius { .init(value: Double(CornerRadiusScale().xs)) }
-    public static var sm: CornerRadius { .init(value: Double(CornerRadiusScale().sm)) }
-    public static var lg: CornerRadius { .init(value: Double(CornerRadiusScale().lg)) }
-    public static var xl: CornerRadius { .init(value: Double(CornerRadiusScale().xl)) }
-    public static var round: CornerRadius { .init(value: Double(CornerRadiusScale().round)) }
+    public static var none: CornerRadius { .init(value: CGFloat(CornerRadiusScale().none)) }
+    public static var xxs: CornerRadius { .init(value: CGFloat(CornerRadiusScale().xxs)) }
+    public static var xs: CornerRadius { .init(value: CGFloat(CornerRadiusScale().xs)) }
+    public static var sm: CornerRadius { .init(value: CGFloat(CornerRadiusScale().sm)) }
+    public static var lg: CornerRadius { .init(value: CGFloat(CornerRadiusScale().lg)) }
+    public static var xl: CornerRadius { .init(value: CGFloat(CornerRadiusScale().xl)) }
+    public static var round: CornerRadius { .init(value: CGFloat(CornerRadiusScale().round)) }
+}
+
+public extension Float {
+
+    public var cgFloat: CGFloat {
+        self == Float.infinity ? .greatestFiniteMagnitude : CGFloat(self)
+    }
 }

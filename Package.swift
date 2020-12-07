@@ -22,11 +22,14 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            name: "Snapped",
-            url: "git@github.com:trafi/snapped.git", .upToNextMinor(from: "0.0.1")),
-        .package(
             name: "Swappable",
             url: "git@github.com:trafi/swappable.git", .upToNextMinor(from: "0.0.1")),
+        .package(
+            name: "SnapshotTesting",
+            url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.8.2"),
+        .package(
+            name: "Quick",
+            url: "https://github.com/Quick/Quick.git", from: "3.0.0"),
     ],
     targets: [
         // Used for production
@@ -38,15 +41,18 @@ let package = Package(
 //        .binaryTarget(
 //            name: "MaasCore",
 //            path: "common/core/build/bin/xcframework/MaasCore.xcframework"),
+
         .target(
             name: "MaaS",
-            dependencies: ["MaasCore", "Snapped", "Swappable", "MaasTheme"],
+            dependencies: ["MaasCore", "Swappable", "MaasTheme"],
             path: "ios/Sources/MaaS"),
+
         .testTarget(
             name: "MaasTests",
-            dependencies: ["MaaS", .product(name: "SnapSpec", package: "Snapped")],
+            dependencies: ["MaaS", "SnapshotTesting", "Quick"],
             path: "ios/Tests/MaasTests",
             exclude: ["__Snapshots__"]),
+
         .target(
             name: "MaasTheme",
             dependencies: ["MaasCore"],
