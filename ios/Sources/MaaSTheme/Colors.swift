@@ -2,7 +2,7 @@ import SwiftUI
 import UIKit
 import MaasCore
 
-extension Color {
+public extension Color {
 
     // Shades
     static var gray100: Color { .init(.gray100) }
