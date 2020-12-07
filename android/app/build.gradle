@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-android-extensions'
 }
 apply from: "${rootProject.projectDir}/scripts/resolve-property.gradle"
+apply plugin: 'shot'
 
 android {
     compileSdkVersion 30
@@ -15,6 +16,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
 
         buildConfigField("String", "API_BASE_URL",
                 "\"${resolveProperty("trafi.apiBaseUrl", "TRAFI_API_BASE_URL") ?: ""}\"")
@@ -66,4 +68,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'androidx.activity:activity-ktx:1.1.0'
+    implementation 'junit:junit:4.12'
+    implementation "androidx.ui:ui-test:$compose_version"
 }
