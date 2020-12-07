@@ -2,7 +2,7 @@ import SwiftUI
 import UIKit
 import MaasCore
 
-extension Color {
+public extension Color {
 
     // Shades
     static var gray100: Color { .init(.gray100) }
@@ -15,36 +15,104 @@ extension Color {
     static var gray800: Color { .init(.gray800) }
     static var gray900: Color { .init(.gray900) }
 
-    // Light
-    static var primaryLight: Color { .init(.primaryLight) }
-    static var primaryVariantLight: Color { .init(.primaryVariantLight) }
-    static var secondaryLight: Color { .init(.secondaryLight) }
-    static var secondaryVariantLight: Color { .init(.secondaryVariantLight) }
-    static var backgroundLight: Color { .init(.backgroundLight) }
-    static var surfaceLight: Color { .init(.surfaceLight) }
-    static var errorLight: Color { .init(.errorLight) }
-    static var onPrimaryLight: Color { .init(.onPrimaryLight) }
-    static var onSecondaryLight: Color { .init(.onSecondaryLight) }
-    static var onBackgroundLight: Color { .init(.onBackgroundLight) }
-    static var onSurfaceLight: Color { .init(.onSurfaceLight) }
-    static var onErrorLight: Color { .init(.onErrorLight) }
+    static var primary: Color {
+        .init(.primary())
+    }
 
-    // Dark
-    static var primaryDark: Color { .init(.primaryDark) }
-    static var primaryVariantDark: Color { .init(.primaryVariantDark) }
-    static var secondaryDark: Color { .init(.secondaryDark) }
-    static var secondaryVariantDark: Color { .init(.secondaryVariantDark) }
-    static var backgroundDark: Color { .init(.backgroundDark) }
-    static var surfaceDark: Color { .init(.surfaceDark) }
-    static var errorDark: Color { .init(.errorDark) }
-    static var onPrimaryDark: Color { .init(.onPrimaryDark) }
-    static var onSecondaryDark: Color { .init(.onSecondaryDark) }
-    static var onBackgroundDark: Color { .init(.onBackgroundDark) }
-    static var onSurfaceDark: Color { .init(.onSurfaceDark) }
-    static var onErrorDark: Color { .init(.onErrorDark) }
+    static func primary(_ appearance: UIUserInterfaceStyle) -> Color {
+        .init(.primary(appearance))
+    }
+
+    static var primaryVariant: Color {
+        .init(.primaryVariant())
+    }
+
+    static func primaryVariant(_ appearance: UIUserInterfaceStyle) -> Color {
+        .init(.primaryVariant(appearance))
+    }
+
+    static var secondary: Color {
+        .init(.secondary())
+    }
+
+    static func secondary(_ appearance: UIUserInterfaceStyle) -> Color {
+        .init(.secondary(appearance))
+    }
+
+    static var secondaryVariant: Color {
+        .init(.secondaryVariant())
+    }
+
+    static func secondaryVariant(_ appearance: UIUserInterfaceStyle) -> Color {
+        .init(.secondaryVariant(appearance))
+    }
+
+    static var background: Color {
+        .init(.background())
+    }
+
+    static func background(_ appearance: UIUserInterfaceStyle) -> Color {
+        .init(.background(appearance))
+    }
+
+    static var surface: Color {
+        .init(.surface())
+    }
+
+    static func surface(_ appearance: UIUserInterfaceStyle) -> Color {
+        .init(.surface(appearance))
+    }
+
+    static var error: Color {
+        .init(.error())
+    }
+
+    static func error(_ appearance: UIUserInterfaceStyle) -> Color {
+        .init(.error(appearance))
+    }
+
+    static var onPrimary: Color {
+        .init(.onPrimary())
+    }
+
+    static func onPrimary(_ appearance: UIUserInterfaceStyle) -> Color {
+        .init(.onPrimary(appearance))
+    }
+
+    static var onSecondary: Color {
+        .init(.onSecondary())
+    }
+
+    static func onSecondary(_ appearance: UIUserInterfaceStyle) -> Color {
+        .init(.onSecondary(appearance))
+    }
+
+    static var onBackground: Color {
+        .init(.onBackground())
+    }
+
+    static func onBackground(_ appearance: UIUserInterfaceStyle) -> Color {
+        .init(.onBackground(appearance))
+    }
+
+    static var onSurface: Color {
+        .init(.onSurface())
+    }
+
+    static func onSurface(_ appearance: UIUserInterfaceStyle) -> Color {
+        .init(.onSurface(appearance))
+    }
+
+    static var onError: Color {
+        .init(.onError())
+    }
+
+    static func onError(_ appearance: UIUserInterfaceStyle) -> Color {
+        .init(.onError(appearance))
+    }
 }
 
-extension UIColor {
+public extension UIColor {
 
     // Shades
     static var gray100: UIColor { .init(ColorPalette().Gray100) }
@@ -57,33 +125,82 @@ extension UIColor {
     static var gray800: UIColor { .init(ColorPalette().Gray800) }
     static var gray900: UIColor { .init(ColorPalette().Gray900) }
 
+    static func primary(_ appearance: UIUserInterfaceStyle = UITraitCollection.current.userInterfaceStyle) -> UIColor {
+        appearance.rawValue == 1 ? primaryLight : primaryDark
+    }
+
+    static func primaryVariant(_ appearance: UIUserInterfaceStyle = UITraitCollection.current.userInterfaceStyle) -> UIColor {
+        appearance.rawValue == 1 ? primaryVariantLight : primaryVariantDark
+    }
+
+    static func secondary(_ appearance: UIUserInterfaceStyle = UITraitCollection.current.userInterfaceStyle) -> UIColor {
+        appearance.rawValue == 1 ? secondaryLight : secondaryDark
+    }
+
+    static func secondaryVariant(_ appearance: UIUserInterfaceStyle = UITraitCollection.current.userInterfaceStyle) -> UIColor {
+        appearance.rawValue == 1 ? secondaryVariantLight : secondaryVariantDark
+    }
+
+    static func background(_ appearance: UIUserInterfaceStyle = UITraitCollection.current.userInterfaceStyle) -> UIColor {
+        appearance.rawValue == 1 ? backgroundLight : backgroundDark
+    }
+
+    static func surface(_ appearance: UIUserInterfaceStyle = UITraitCollection.current.userInterfaceStyle) -> UIColor {
+        appearance.rawValue == 1 ? surfaceLight : surfaceDark
+    }
+
+    static func error(_ appearance: UIUserInterfaceStyle = UITraitCollection.current.userInterfaceStyle) -> UIColor {
+        appearance.rawValue == 1 ? errorLight : errorDark
+    }
+
+    static func onPrimary(_ appearance: UIUserInterfaceStyle = UITraitCollection.current.userInterfaceStyle) -> UIColor {
+        appearance.rawValue == 1 ? onPrimaryLight : onPrimaryDark
+    }
+
+    static func onSecondary(_ appearance: UIUserInterfaceStyle = UITraitCollection.current.userInterfaceStyle) -> UIColor {
+        appearance.rawValue == 1 ? onSecondaryLight : onSecondaryDark
+    }
+
+    static func onBackground(_ appearance: UIUserInterfaceStyle = UITraitCollection.current.userInterfaceStyle) -> UIColor {
+        appearance.rawValue == 1 ? onBackgroundLight : onBackgroundDark
+    }
+
+    static func onSurface(_ appearance: UIUserInterfaceStyle = UITraitCollection.current.userInterfaceStyle) -> UIColor {
+        appearance.rawValue == 1 ? onSurfaceLight : onSurfaceDark
+    }
+
+    static func onError(_ appearance: UIUserInterfaceStyle = UITraitCollection.current.userInterfaceStyle) -> UIColor {
+        appearance.rawValue == 1 ? onErrorLight : onErrorDark
+    }
+
+
     // Light
-    static var primaryLight: UIColor { .init(ColorPalette.DefaultLight().Primary) }
-    static var primaryVariantLight: UIColor { .init(ColorPalette.DefaultLight().PrimaryVariant) }
-    static var secondaryLight: UIColor { .init(ColorPalette.DefaultLight().Secondary) }
-    static var secondaryVariantLight: UIColor { .init(ColorPalette.DefaultLight().SecondaryVariant) }
-    static var backgroundLight: UIColor { .white }
-    static var surfaceLight: UIColor { .white }
-    static var errorLight: UIColor { .init(ColorPalette.DefaultLight().Error) }
-    static var onPrimaryLight: UIColor { .white }
-    static var onSecondaryLight: UIColor { .black }
-    static var onBackgroundLight: UIColor { .gray900 }
-    static var onSurfaceLight: UIColor { .gray900 }
-    static var onErrorLight: UIColor { .white }
+    private static var primaryLight: UIColor { .init(ColorPalette.DefaultLight().Primary) }
+    private static var primaryVariantLight: UIColor { .init(ColorPalette.DefaultLight().PrimaryVariant) }
+    private static var secondaryLight: UIColor { .init(ColorPalette.DefaultLight().Secondary) }
+    private static var secondaryVariantLight: UIColor { .init(ColorPalette.DefaultLight().SecondaryVariant) }
+    private static var backgroundLight: UIColor { .white }
+    private static var surfaceLight: UIColor { .white }
+    private static var errorLight: UIColor { .init(ColorPalette.DefaultLight().Error) }
+    private static var onPrimaryLight: UIColor { .white }
+    private static var onSecondaryLight: UIColor { .black }
+    private static var onBackgroundLight: UIColor { .gray900 }
+    private static var onSurfaceLight: UIColor { .gray900 }
+    private static var onErrorLight: UIColor { .white }
 
     // Dark
-    static var primaryDark: UIColor { .init(ColorPalette.DefaultDark().Primary) }
-    static var primaryVariantDark: UIColor { .init(ColorPalette.DefaultDark().PrimaryVariant) }
-    static var secondaryDark: UIColor { .init(ColorPalette.DefaultDark().Secondary) }
-    static var secondaryVariantDark: UIColor { .init(ColorPalette.DefaultDark().SecondaryVariant) }
-    static var backgroundDark: UIColor { .black }
-    static var surfaceDark: UIColor { .black }
-    static var errorDark: UIColor { .init(ColorPalette.DefaultDark().Error) }
-    static var onPrimaryDark: UIColor { .white }
-    static var onSecondaryDark: UIColor { .black }
-    static var onBackgroundDark: UIColor { .white }
-    static var onSurfaceDark: UIColor { .white }
-    static var onErrorDark: UIColor { .white }
+    private static var primaryDark: UIColor { .init(ColorPalette.DefaultDark().Primary) }
+    private static var primaryVariantDark: UIColor { .init(ColorPalette.DefaultDark().PrimaryVariant) }
+    private static var secondaryDark: UIColor { .init(ColorPalette.DefaultDark().Secondary) }
+    private static var secondaryVariantDark: UIColor { .init(ColorPalette.DefaultDark().SecondaryVariant) }
+    private static var backgroundDark: UIColor { .black }
+    private static var surfaceDark: UIColor { .black }
+    private static var errorDark: UIColor { .init(ColorPalette.DefaultDark().Error) }
+    private static var onPrimaryDark: UIColor { .white }
+    private static var onSecondaryDark: UIColor { .black }
+    private static var onBackgroundDark: UIColor { .white }
+    private static var onSurfaceDark: UIColor { .white }
+    private static var onErrorDark: UIColor { .white }
 
     convenience init(_ int64: Int64) {
         let a = CGFloat((int64 & 0xff000000) >> 24) / 255.0
