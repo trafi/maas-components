@@ -1,42 +1,53 @@
 import SwiftUI
+import Swappable
 import Snapped
 
-struct Badge: View {
+public struct Badge: View, Swappable {
 
-    let color: Color?
-    let icon: UIImage?
-    let text: String?
+    public struct InputType {
+        let color: Color?
+        let icon: UIImage?
+        let text: String?
+    }
 
-    var body: some View {
+    public let input: InputType
+    public init(input: InputType) {
+        self.input = input
+    }
+    public init(color: Color?, icon: UIImage?, text: String?) {
+        self.init(input: InputType(color: color, icon: icon, text: text))
+    }
+
+    public var defaultBody: some View {
 
         HStack(spacing: 4) {
-            if icon != nil {
-                Image(uiImage: icon!)
+            if input.icon != nil {
+                Image(uiImage: input.icon!)
                     .renderingMode(.template)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 16, height: 16)
             }
-            if color != nil && icon != nil && showText {
+            if input.color != nil && input.icon != nil && showText {
                 Rectangle()
                     .frame(width: 2, height: 16)
             }
             if showText {
-                Text(text!)
-                    .font(color == nil ? .caption : .body)
+                Text(input.text!)
+                    .font(input.color == nil ? .caption : .body)
                     .bold()
-                    .offset(y: color == nil ? 4 : 0)
+                    .offset(y: input.color == nil ? 4 : 0)
             }
         }
-        .foregroundColor(color == nil ? .black : .white)
+        .foregroundColor(input.color == nil ? .black : .white)
         .padding(4)
         .background(
             RoundedRectangle(cornerRadius: 4)
-                .fill(color ?? .clear)
+                .fill(input.color ?? .clear)
         )
     }
 
-    private var showText: Bool { 1...6 ~= (text?.count ?? 0) }
+    private var showText: Bool { 1...6 ~= (input.text?.count ?? 0) }
 }
 
 #if DEBUG

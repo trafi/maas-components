@@ -20,10 +20,10 @@ let package = Package(
     dependencies: [
         .package(
             name: "Snapped",
-            url: "git@github.com:trafi/snapped.git", .exact("0.0.1")),
+            url: "git@github.com:trafi/snapped.git", .upToNextMinor(from: "0.0.1")),
         .package(
             name: "Swappable",
-            url: "git@github.com:trafi/swappable.git", .exact("0.0.1")),
+            url: "git@github.com:trafi/swappable.git", .upToNextMinor(from: "0.0.1")),
     ],
     targets: [
         // Used for production
