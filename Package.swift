@@ -20,6 +20,14 @@ let package = Package(
             name: "MaasTheme",
             targets: ["MaasTheme"]),
     ],
+    dependencies: [
+        .package(
+            name: "Snapped",
+            url: "git@github.com:trafi/snapped.git", .upToNextMinor(from: "0.0.1")),
+        .package(
+            name: "Swappable",
+            url: "git@github.com:trafi/swappable.git", .upToNextMinor(from: "0.0.1")),
+    ],
     targets: [
         // Used for production
         .binaryTarget(
@@ -32,8 +40,13 @@ let package = Package(
 //            path: "common/core/build/bin/xcframework/MaasCore.xcframework"),
         .target(
             name: "MaaS",
-            dependencies: ["MaasCore", "MaasTheme"],
+            dependencies: ["MaasCore", "Snapped", "Swappable", "MaasTheme"],
             path: "ios/Sources/MaaS"),
+        .testTarget(
+            name: "MaasTests",
+            dependencies: ["MaaS", .product(name: "SnapSpec", package: "Snapped")],
+            path: "ios/Tests/MaasTests",
+            exclude: ["__Snapshots__"]),
         .target(
             name: "MaasTheme",
             dependencies: ["MaasCore"],

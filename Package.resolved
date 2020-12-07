@@ -1,0 +1,43 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Quick",
+        "repositoryURL": "https://github.com/Quick/Quick.git",
+        "state": {
+          "branch": null,
+          "revision": "0038bcbab4292f3b028632556507c124e5ba69f3",
+          "version": "3.0.0"
+        }
+      },
+      {
+        "package": "Snapped",
+        "repositoryURL": "git@github.com:trafi/snapped.git",
+        "state": {
+          "branch": null,
+          "revision": "cf575ef92718bdc926a3bcb9f4f994dbd776e27d",
+          "version": "0.0.1"
+        }
+      },
+      {
+        "package": "Swappable",
+        "repositoryURL": "git@github.com:trafi/swappable.git",
+        "state": {
+          "branch": null,
+          "revision": "45deb5066790451f406cb77cb4ecbca12d503b9f",
+          "version": "0.0.1"
+        }
+      },
+      {
+        "package": "SnapshotTesting",
+        "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
+        "state": {
+          "branch": null,
+          "revision": "c466812aa2e22898f27557e2e780d3aad7a27203",
+          "version": "1.8.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
