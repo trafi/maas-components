@@ -9,6 +9,10 @@ import androidx.compose.ui.text.font.font
 import androidx.compose.ui.text.font.fontFamily
 import androidx.compose.ui.unit.sp
 import com.trafi.ui.R
+import com.trafi.ui.theme.internal.BasicFontStyle
+import com.trafi.ui.theme.internal.BasicFontWeight
+import com.trafi.ui.theme.internal.BasicTextStyle
+import com.trafi.ui.theme.internal.TypographyScale
 
 internal val Inter = fontFamily(
     font(R.font.inter_regular, FontWeight.Normal),
@@ -29,54 +33,14 @@ data class MaasTypography internal constructor(
 ) {
     constructor(
         defaultFontFamily: FontFamily = Inter,
-        headingXXL: TextStyle = TextStyle(
-            fontStyle = FontStyle.Normal,
-            fontWeight = FontWeight.Bold,
-            fontSize = 40.sp,
-            lineHeight = 50.sp
-        ),
-        headingXL: TextStyle = TextStyle(
-            fontStyle = FontStyle.Normal,
-            fontWeight = FontWeight.Bold,
-            fontSize = 32.sp,
-            lineHeight = 40.sp
-        ),
-        headingL: TextStyle = TextStyle(
-            fontStyle = FontStyle.Normal,
-            fontWeight = FontWeight.Bold,
-            fontSize = 28.sp,
-            lineHeight = 36.sp
-        ),
-        headingM: TextStyle = TextStyle(
-            fontStyle = FontStyle.Normal,
-            fontWeight = FontWeight.Bold,
-            fontSize = 18.sp,
-            lineHeight = 22.sp
-        ),
-        textL: TextStyle = TextStyle(
-            fontStyle = FontStyle.Normal,
-            fontWeight = FontWeight.Normal,
-            fontSize = 16.sp,
-            lineHeight = 24.sp
-        ),
-        textM: TextStyle = TextStyle(
-            fontStyle = FontStyle.Normal,
-            fontWeight = FontWeight.Normal,
-            fontSize = 14.sp,
-            lineHeight = 20.sp
-        ),
-        textS: TextStyle = TextStyle(
-            fontStyle = FontStyle.Normal,
-            fontWeight = FontWeight.Normal,
-            fontSize = 12.sp,
-            lineHeight = 16.sp
-        ),
-        label: TextStyle = TextStyle(
-            fontStyle = FontStyle.Normal,
-            fontWeight = FontWeight.Bold,
-            fontSize = 14.sp,
-            lineHeight = 18.sp
-        ),
+        headingXXL: TextStyle = TypographyScale.headingXXL.toTextStyle(),
+        headingXL: TextStyle = TypographyScale.headingXL.toTextStyle(),
+        headingL: TextStyle = TypographyScale.headingL.toTextStyle(),
+        headingM: TextStyle = TypographyScale.headingM.toTextStyle(),
+        textL: TextStyle = TypographyScale.textL.toTextStyle(),
+        textM: TextStyle = TypographyScale.textM.toTextStyle(),
+        textS: TextStyle = TypographyScale.textS.toTextStyle(),
+        label: TextStyle = TypographyScale.label.toTextStyle(),
     ) : this(
         headingXXL = headingXXL.withDefaultFontFamily(defaultFontFamily),
         headingXL = headingXL.withDefaultFontFamily(defaultFontFamily),
@@ -92,3 +56,17 @@ data class MaasTypography internal constructor(
 private fun TextStyle.withDefaultFontFamily(default: FontFamily): TextStyle {
     return if (fontFamily != null) this else copy(fontFamily = default)
 }
+
+private fun BasicTextStyle.toTextStyle(): TextStyle = TextStyle(
+    fontStyle = when (fontStyle) {
+        BasicFontStyle.Normal -> FontStyle.Normal
+        BasicFontStyle.Italic -> FontStyle.Italic
+    },
+    fontWeight = when (fontWeight) {
+        BasicFontWeight.Normal -> FontWeight.Normal
+        BasicFontWeight.SemiBold -> FontWeight.SemiBold
+        BasicFontWeight.Bold -> FontWeight.Bold
+    },
+    fontSize = fontSize.sp,
+    lineHeight = lineHeight.sp
+)
