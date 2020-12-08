@@ -19,13 +19,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.vector.VectorAsset
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.ui.tooling.preview.Preview
-import androidx.ui.tooling.preview.PreviewParameter
 import com.trafi.core.model.RouteSegment
 import com.trafi.core.model.RouteSegmentPersonalVehicle
 import com.trafi.core.model.SharedVehicle
@@ -156,7 +156,7 @@ private fun String.parseColor(): Color =
 @Composable
 private fun Badge(
     color: Color,
-    vector: VectorAsset?,
+    vector: ImageVector?,
     text: String?,
     modifier: Modifier = Modifier
 ) {

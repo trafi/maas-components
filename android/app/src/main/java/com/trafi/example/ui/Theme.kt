@@ -2,7 +2,7 @@ package com.trafi.example.ui
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.ConfigurationAmbient
+import androidx.compose.ui.platform.AmbientConfiguration
 import com.trafi.ui.theme.MaasSpacing
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.Spacing
@@ -24,6 +24,6 @@ fun DemoMaasTheme(
 
 @Composable
 fun isScreenWidthNarrow(): Boolean {
-    val configuration = ConfigurationAmbient.current
+    val configuration = AmbientConfiguration.current
     return configuration.screenWidthDp <= 280
 }
