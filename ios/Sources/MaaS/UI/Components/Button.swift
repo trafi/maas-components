@@ -46,7 +46,8 @@ struct Button_Previews: PreviewProvider, Snapped {
             ),
 
             "Disabled": AnyView(
-                Button("Some title", action: {}).disabled(true)
+                Button("Some title", action: {})
+                    .disabled(true)
             ),
 
 
@@ -58,16 +59,13 @@ struct Button_Previews: PreviewProvider, Snapped {
                 Button("Some very very very very very very long title", action: {})
             ),
 
-//            "Themed": AnyView(
-//                Button("Some title", action: {})
-//                    .environment(\.buttonTheme, Button.Theme(
-//                                    color: .blue,
-//                                    contentColor: .yellow,
-//                                    textStyle: .largeTitle,
-//                                    minHeight: 70,
-//                                    cornerRadius: 15)
-//                    )
-//            ),
+            "Themed": AnyView(
+                Button("Some title", action: {})
+                    .environment(\.colorPrimary, .blue)
+                    .environment(\.colorOnPrimary, .yellow)
+                    .environment(\.cornerRadiusButton, 20)
+                    .environment(\.fontTextL, UIFont(name: "Papyrus", size: 25)!)
+            ),
         ]
     }
 
