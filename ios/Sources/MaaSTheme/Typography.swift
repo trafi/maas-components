@@ -83,8 +83,8 @@ public extension Font {
 
 public extension UIFont {
 
-    var os: OsTextStyle {
-        OsTextStyle(font: self, lineSpacing: 0)
+    func os(_ sizeCategory: ContentSizeCategory) -> OsTextStyle {
+        OsTextStyle(font: self.scaled(sizeCategory), lineSpacing: 0)
     }
 }
 
@@ -107,6 +107,64 @@ extension BasicFontWeight {
         case .semibold: return .semibold
         case .bold: return .bold
         default: return .regular
+        }
+    }
+}
+private extension UIFont {
+
+    func scaled(_ sizeCategory: ContentSizeCategory) -> UIFont {
+
+        let textStyle: UIFont.TextStyle
+
+        switch pointSize {
+        case 28...: textStyle = .title1
+        case 22...: textStyle = .title2
+        case 20...: textStyle = .title3
+        case 17...: textStyle = .body
+        case 16...: textStyle = .callout
+        case 15...: textStyle = .subheadline
+        case 13...: textStyle = .footnote
+        case 12...: textStyle = .caption1
+        default:    textStyle = .caption2
+        }
+
+        return self.withSize(pointSize * textStyle.scaleFactor(for: sizeCategory))
+    }
+}
+
+private extension UIFont.TextStyle {
+
+    func scaleFactor(for sizeCategory: ContentSizeCategory) -> CGFloat {
+
+        let medium = UIFont.preferredFont(
+            forTextStyle: self,
+            compatibleWith: UITraitCollection(preferredContentSizeCategory: .medium)
+        )
+
+        let scaled = UIFont.preferredFont(
+            forTextStyle: self,
+            compatibleWith: UITraitCollection(preferredContentSizeCategory: sizeCategory.ui)
+        )
+
+        return scaled.pointSize / medium.pointSize
+    }
+}
+
+private extension ContentSizeCategory {
+    var ui: UIContentSizeCategory {
+        switch self {
+        case .extraSmall: return .extraSmall
+        case .small: return .small
+        case .medium: return .medium
+        case .large: return .large
+        case .extraLarge: return .extraLarge
+        case .extraExtraLarge: return .extraExtraLarge
+        case .extraExtraExtraLarge: return .extraExtraExtraLarge
+        case .accessibilityMedium: return .accessibilityMedium
+        case .accessibilityLarge: return .accessibilityLarge
+        case .accessibilityExtraLarge: return .accessibilityExtraLarge
+        case .accessibilityExtraExtraLarge: return .accessibilityExtraExtraLarge
+        case .accessibilityExtraExtraExtraLarge: return .accessibilityExtraExtraExtraLarge
         }
     }
 }

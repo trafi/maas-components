@@ -21,14 +21,14 @@ public extension EnvironmentValues {
                     onSurface: uiColorOnSurface.i64(colorScheme),
                     onError: uiColorOnError.i64(colorScheme)),
                 typographyScale: TypographyScale_(
-                    headingXXL: fontHeadingXXL.os,
-                    headingXL: fontHeadingXL.os,
-                    headingL: fontHeadingL.os,
-                    headingM: fontHeadingM.os,
-                    textL: fontTextL.os,
-                    textM: fontTextM.os,
-                    textS: fontTextS.os,
-                    label: fontLabel.os
+                    headingXXL: fontHeadingXXL.os(sizeCategory),
+                    headingXL: fontHeadingXL.os(sizeCategory),
+                    headingL: fontHeadingL.os(sizeCategory),
+                    headingM: fontHeadingM.os(sizeCategory),
+                    textL: fontTextL.os(sizeCategory),
+                    textM: fontTextM.os(sizeCategory),
+                    textS: fontTextS.os(sizeCategory),
+                    label: fontLabel.os(sizeCategory)
                 ),
                 cornerRadiusScale: CornerRadiusScale_(
                     buttonRadius: cornerRadiusButton.float)
