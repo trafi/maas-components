@@ -6,12 +6,24 @@ public struct Button: View, Swappable {
 
     public struct InputType {
         public let text: String
+        public let foreground: Color?
+        public let background: Color?
         public let action: () -> Void
     }
 
     public let input: InputType
-    public init(_ text: String, action: @escaping () -> Void) {
-        input = InputType(text: text, action: action)
+    public init(
+        _ text: String,
+        foreground: Color? = nil,
+        background: Color? = nil,
+        action: @escaping () -> Void) {
+
+        input = InputType(
+            text: text,
+            foreground: foreground,
+            background: background,
+            action: action
+        )
     }
 
 
@@ -28,9 +40,9 @@ public struct Button: View, Swappable {
                     .lineLimit(0)
                     .minimumScaleFactor(0.75)
                     .font(Font(constants.textStyle.font))
-                    .foregroundColor(constants.defaultContentColor.color)
+                    .foregroundColor(input.foreground ?? constants.defaultContentColor.color)
                     .frame(maxWidth: .infinity, minHeight: CGFloat(constants.minHeight))
-                    .background(isEnabled ? constants.defaultColor.color : constants.disabledColor.color)
+                    .background(input.background ?? (isEnabled ? constants.defaultColor : constants.disabledColor).color)
                     .cornerRadius(constants.cornerRadius.cgFloat)
             }
         )
@@ -43,6 +55,11 @@ struct Button_Previews: PreviewProvider, Snapped {
         [
             "Plain": AnyView(
                 Button("Some title", action: {})
+            ),
+
+            "Plain Dark": AnyView(
+                Button("Some title", foreground: .yellow, background: Color(.systemBackground), action: {})
+                    .environment(\.colorScheme, .dark)
             ),
 
             "Disabled": AnyView(
