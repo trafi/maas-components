@@ -1,6 +1,6 @@
 package com.trafi.example.androidTest
 
-import androidx.ui.test.createComposeRule
+import androidx.compose.ui.test.junit4.createComposeRule
 import com.karumi.shot.ScreenshotTest
 import com.trafi.ui.Button
 import org.junit.Rule
