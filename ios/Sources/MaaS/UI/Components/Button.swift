@@ -1,9 +1,13 @@
 import SwiftUI
 import Swappable
 import MaasTheme
-import MaasCore
 
 public struct Button: View, Swappable {
+
+    public struct InputType {
+        public let text: String
+        public let action: () -> Void
+    }
 
     public let input: InputType
     public init(_ text: String, action: @escaping () -> Void) {
@@ -12,25 +16,24 @@ public struct Button: View, Swappable {
 
 
     @Environment(\.isEnabled) var isEnabled
+    @Environment(\.maasTheme) var theme
+    var constants: ButtonConstants { ButtonConstants(theme: theme) }
 
     public var defaultBody: some View {
-        Themed {
-            let theme = ButtonConstants(theme: $0)
-            SwiftUI.Button(
-                action: input.action,
-                label: {
-                    Text(input.text)
-                        .padding(.horizontal)
-                        .lineLimit(0)
-                        .minimumScaleFactor(0.75)
-                        .font(Font(theme.textStyle.font))
-                        .foregroundColor(theme.defaultContentColor.color)
-                        .frame(maxWidth: .infinity, minHeight: CGFloat(theme.minHeight))
-                        .background(isEnabled ? theme.defaultColor.color : theme.disabledColor.color)
-                        .cornerRadius(CGFloat(theme.cornerRadius))
-                }
-            )
-        }
+        SwiftUI.Button(
+            action: input.action,
+            label: {
+                Text(input.text)
+                    .padding(.horizontal)
+                    .lineLimit(0)
+                    .minimumScaleFactor(0.75)
+                    .font(Font(constants.textStyle.font))
+                    .foregroundColor(constants.defaultContentColor.color)
+                    .frame(maxWidth: .infinity, minHeight: CGFloat(constants.minHeight))
+                    .background(isEnabled ? constants.defaultColor.color : constants.disabledColor.color)
+                    .cornerRadius(CGFloat(constants.cornerRadius))
+            }
+        )
     }
 }
 
@@ -53,11 +56,6 @@ struct Button_Previews: PreviewProvider, Snapped {
 
             "Long long title": AnyView(
                 Button("Some very very very very very very long title", action: {})
-            ),
-
-            "Swapped": AnyView(
-                Button("Some title", action: {})
-                    .swapView({ Text("Wow - " + $0.text) }, insteadOf: Button.self)
             ),
 
 //            "Themed": AnyView(
