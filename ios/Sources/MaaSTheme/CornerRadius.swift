@@ -27,8 +27,13 @@ public struct CornerRadius {
 }
 
 public extension Float {
-
     public var cgFloat: CGFloat {
         self == Float.infinity ? .greatestFiniteMagnitude : CGFloat(self)
+    }
+}
+
+public extension CGFloat {
+    public var float: Float {
+        self == CGFloat.greatestFiniteMagnitude ? Float.infinity : Float(self)
     }
 }

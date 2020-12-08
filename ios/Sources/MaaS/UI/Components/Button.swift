@@ -31,7 +31,7 @@ public struct Button: View, Swappable {
                     .foregroundColor(constants.defaultContentColor.color)
                     .frame(maxWidth: .infinity, minHeight: CGFloat(constants.minHeight))
                     .background(isEnabled ? constants.defaultColor.color : constants.disabledColor.color)
-                    .cornerRadius(CGFloat(constants.cornerRadius))
+                    .cornerRadius(constants.cornerRadius.cgFloat)
             }
         )
     }

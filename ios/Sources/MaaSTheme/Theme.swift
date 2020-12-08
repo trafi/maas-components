@@ -31,7 +31,7 @@ public extension EnvironmentValues {
                     label: fontLabel.os
                 ),
                 cornerRadiusScale: CornerRadiusScale_(
-                    buttonRadius: Float(cornerRadiusButton))
+                    buttonRadius: cornerRadiusButton.float)
             )
         }
     }
