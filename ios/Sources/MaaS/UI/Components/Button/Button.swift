@@ -1,36 +1,36 @@
 import SwiftUI
 import Swappable
-
+import MaasTheme
+import MaasCore
 
 public struct Button: View, Swappable {
-
-    // Input
 
     public let input: InputType
     public init(_ text: String, action: @escaping () -> Void) {
         input = InputType(text: text, action: action)
     }
 
-    // View
 
-    @Environment(\.buttonTheme) var theme
     @Environment(\.isEnabled) var isEnabled
 
     public var defaultBody: some View {
-        SwiftUI.Button(
-            action: input.action,
-            label: {
-                Text(input.text)
-                    .padding(.horizontal)
-                    .lineLimit(0)
-                    .minimumScaleFactor(0.75)
-                    .font(theme.textStyle)
-                    .foregroundColor(theme.contentColor)
-                    .frame(maxWidth: .infinity, minHeight: theme.minHeight)
-                    .background(isEnabled ? theme.color : theme.disabledColor)
-                    .cornerRadius(theme.cornerRadius)
-            }
-        )
+        Themed {
+            let theme = ButtonConstants(theme: $0)
+            SwiftUI.Button(
+                action: input.action,
+                label: {
+                    Text(input.text)
+                        .padding(.horizontal)
+                        .lineLimit(0)
+                        .minimumScaleFactor(0.75)
+                        .font(Font(theme.textStyle.font))
+                        .foregroundColor(theme.defaultContentColor.color)
+                        .frame(maxWidth: .infinity, minHeight: CGFloat(theme.minHeight))
+                        .background(isEnabled ? theme.defaultColor.color : theme.disabledColor.color)
+                        .cornerRadius(CGFloat(theme.cornerRadius))
+                }
+            )
+        }
     }
 }
 
@@ -60,16 +60,16 @@ struct Button_Previews: PreviewProvider, Snapped {
                     .swapView({ Text("Wow - " + $0.text) }, insteadOf: Button.self)
             ),
 
-            "Themed": AnyView(
-                Button("Some title", action: {})
-                    .environment(\.buttonTheme, Button.Theme(
-                                    color: .blue,
-                                    contentColor: .yellow,
-                                    textStyle: .largeTitle,
-                                    minHeight: 70,
-                                    cornerRadius: 15)
-                    )
-            ),
+//            "Themed": AnyView(
+//                Button("Some title", action: {})
+//                    .environment(\.buttonTheme, Button.Theme(
+//                                    color: .blue,
+//                                    contentColor: .yellow,
+//                                    textStyle: .largeTitle,
+//                                    minHeight: 70,
+//                                    cornerRadius: 15)
+//                    )
+//            ),
         ]
     }
 

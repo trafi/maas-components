@@ -1,52 +1,29 @@
 import MaasCore
 import SwiftUI
 
-public struct HeadingXXL: EnvironmentKey {
-    public static var defaultValue: Font {
-        TypographyScale().headingXXL.font
-    }
+struct HeadingXXL: EnvironmentKey {
+    static var defaultValue: Font { TypographyScale().headingXXL.font }
 }
-
-public struct HeadingXL: EnvironmentKey {
-    public static var defaultValue: Font {
-        TypographyScale().headingXL.font
-    }
+struct HeadingXL: EnvironmentKey {
+    static var defaultValue: Font { TypographyScale().headingXL.font }
 }
-
-public struct HeadingL: EnvironmentKey {
-    public static var defaultValue: Font {
-        TypographyScale().headingL.font
-    }
+struct HeadingL: EnvironmentKey {
+    static var defaultValue: Font { TypographyScale().headingL.font }
 }
-
-public struct HeadingM: EnvironmentKey {
-    public static var defaultValue: Font {
-        TypographyScale().headingM.font
-    }
+struct HeadingM: EnvironmentKey {
+    static var defaultValue: Font { TypographyScale().headingM.font }
 }
-
-public struct TextL: EnvironmentKey {
-    public static var defaultValue: Font {
-        TypographyScale().textL.font
-    }
+struct TextL: EnvironmentKey {
+    static var defaultValue: Font { TypographyScale().textL.font }
 }
-
-public struct TextM: EnvironmentKey {
-    public static var defaultValue: Font {
-        TypographyScale().textM.font
-    }
+struct TextM: EnvironmentKey {
+    static var defaultValue: Font { TypographyScale().textM.font }
 }
-
-public struct TextS: EnvironmentKey {
-    public static var defaultValue: Font {
-        TypographyScale().textS.font
-    }
+struct TextS: EnvironmentKey {
+    static var defaultValue: Font { TypographyScale().textS.font }
 }
-
-public struct Label: EnvironmentKey {
-    public static var defaultValue: Font {
-        TypographyScale().label.font
-    }
+struct Label: EnvironmentKey {
+    static var defaultValue: Font { TypographyScale().label.font }
 }
 
 public extension EnvironmentValues {
@@ -95,36 +72,18 @@ public extension EnvironmentValues {
 
 public extension Font {
 
-    static var headingXXL: Font {
-        TypographyScale().headingXXL.font
-    }
+    static var headingXXL: Font { TypographyScale().headingXXL.font }
+    static var headingXL: Font { TypographyScale().headingXL.font }
+    static var headingL: Font { TypographyScale().headingL.font }
+    static var headingM: Font { TypographyScale().headingM.font }
+    static var textL: Font { TypographyScale().textL.font }
+    static var textM: Font { TypographyScale().textM.font }
+    static var textS: Font { TypographyScale().textS.font }
+    static var label: Font { TypographyScale().label.font }
 
-    static var headingXL: Font {
-        TypographyScale().headingXL.font
-    }
-
-    static var headingL: Font {
-        TypographyScale().headingL.font
-    }
-
-    static var headingM: Font {
-        TypographyScale().headingM.font
-    }
-
-    static var textL: Font {
-        TypographyScale().textL.font
-    }
-
-    static var textM: Font {
-        TypographyScale().textM.font
-    }
-
-    static var textS: Font {
-        TypographyScale().textS.font
-    }
-
-    static var label: Font {
-        TypographyScale().label.font
+    var os: OsTextStyle {
+        // TODO: Implement
+        OsTextStyle(font: .systemFont(ofSize: 16), lineSpacing: 0)
     }
 }
 

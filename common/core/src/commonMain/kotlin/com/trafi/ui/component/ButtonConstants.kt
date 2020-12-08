@@ -26,7 +26,7 @@ class ButtonConstants(
     )
 }
 
-expect class OsTextStyle() {
+expect class OsTextStyle {
     var basic: BasicTextStyle
 }
 
@@ -37,7 +37,14 @@ class Theme(
 )
 
 class TypographyScale(
-    val textL: OsTextStyle
+    val headingXXL: OsTextStyle,
+    val headingXL: OsTextStyle,
+    val headingL: OsTextStyle,
+    val headingM: OsTextStyle,
+    val textL: OsTextStyle,
+    val textM: OsTextStyle,
+    val textS: OsTextStyle,
+    val label: OsTextStyle
 )
 
 class CornerRadiusScale(

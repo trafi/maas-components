@@ -1,5 +1,17 @@
+import SwiftUI
 import UIKit
 import MaasCore
+
+struct CornerRadiusButton: EnvironmentKey {
+    static var defaultValue: CGFloat { CornerRadiusScale.Default().ButtonRadius.cgFloat }
+}
+public extension EnvironmentValues {
+    var cornerRadiusButton: CGFloat {
+        get { self[CornerRadiusButton.self] }
+        set { self[CornerRadiusButton.self] = newValue }
+    }
+}
+
 
 public struct CornerRadius {
 
