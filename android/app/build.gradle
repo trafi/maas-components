@@ -46,6 +46,14 @@ android {
         kotlinCompilerVersion kotlin_version
         kotlinCompilerExtensionVersion compose_version
     }
+    packagingOptions {
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+    }
+}
+
+shot {
+    runInstrumentation = false
 }
 
 androidExtensions {
@@ -68,7 +76,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'androidx.activity:activity-ktx:1.1.0'
-    implementation 'junit:junit:4.12'
+    implementation 'junit:junit:4.13.1'
     implementation "com.karumi:shot-android:5.4.0@aar"
     implementation "androidx.compose.ui:ui-test-junit4:1.0.0-alpha08@aar"
     implementation "androidx.compose.ui:ui-test:$compose_version"
