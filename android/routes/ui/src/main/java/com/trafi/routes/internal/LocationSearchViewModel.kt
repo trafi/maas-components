@@ -1,4 +1,4 @@
-package com.trafi.routes.ui.internal
+package com.trafi.routes.internal
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

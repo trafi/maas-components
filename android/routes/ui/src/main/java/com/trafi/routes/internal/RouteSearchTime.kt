@@ -1,4 +1,4 @@
-package com.trafi.routes.ui.internal
+package com.trafi.routes.internal
 
 import com.trafi.core.model.Route
 import com.trafi.core.model.RouteSegment

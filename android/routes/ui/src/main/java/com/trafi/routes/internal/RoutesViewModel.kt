@@ -1,4 +1,4 @@
-package com.trafi.routes.ui.internal
+package com.trafi.routes.internal
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -9,12 +9,15 @@ import com.trafi.core.ApiResult
 import com.trafi.core.model.Location
 import com.trafi.core.model.RoutesResult
 import com.trafi.routes.RoutesApi
+import com.trafi.routes.data.TabItem
 import kotlinx.coroutines.launch
 
-internal class RoutesViewModel(private val routesApi: RoutesApi) : ViewModel() {
+class RoutesViewModel(private val routesApi: RoutesApi) : ViewModel() {
 
     var state: RoutesResultState by mutableStateOf(RoutesResultState.NoResults)
         private set
+
+    var vehicleTypes: List<TabItem>? by mutableStateOf(null)
 
     fun search(start: Location, end: Location) {
         state = RoutesResultState.Loading
@@ -28,7 +31,7 @@ internal class RoutesViewModel(private val routesApi: RoutesApi) : ViewModel() {
     }
 }
 
-internal sealed class RoutesResultState {
+sealed class RoutesResultState {
     object NoResults : RoutesResultState()
     object Loading : RoutesResultState()
     data class Loaded(val result: RoutesResult) : RoutesResultState()

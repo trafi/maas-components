@@ -1,13 +1,10 @@
 package com.trafi.routes.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.AmbientContentColor
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Providers
@@ -26,13 +23,14 @@ import com.trafi.core.model.Location
 import com.trafi.core.model.Route
 import com.trafi.locations.LocationsApi
 import com.trafi.routes.RoutesApi
-import com.trafi.routes.ui.internal.LocationSearchResultState
-import com.trafi.routes.ui.internal.LocationSearchViewModel
-import com.trafi.routes.ui.internal.LocationsResult
-import com.trafi.routes.ui.internal.RouteSearchHeader
-import com.trafi.routes.ui.internal.RoutesResultState
-import com.trafi.routes.ui.internal.RoutesViewModel
-import com.trafi.routes.ui.internal.displayText
+import com.trafi.routes.internal.LocationSearchResultState
+import com.trafi.routes.internal.LocationSearchViewModel
+import com.trafi.routes.internal.LocationsResult
+import com.trafi.routes.internal.RouteSearchHeader
+import com.trafi.routes.internal.RoutesResultState
+import com.trafi.routes.internal.RoutesViewModel
+import com.trafi.routes.internal.displayText
+import com.trafi.routes.mock.mockVehicleTypes
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.Spacing
 
@@ -143,7 +141,8 @@ fun RoutesScreen(
                 RouteSearchBody(
                     state = routesViewModel.state,
                     onRouteClick = onRouteClick,
-                    modifier = Modifier.padding(top = Spacing.md)
+                    modifier = Modifier.padding(top = Spacing.md),
+                    routesViewModel
                 )
             }
         }
@@ -151,26 +150,40 @@ fun RoutesScreen(
 }
 
 @Composable
-private fun ColumnScope.RouteSearchBody(
+private fun RouteSearchBody(
     state: RoutesResultState,
     onRouteClick: (Route) -> Unit,
     modifier: Modifier = Modifier,
+    routesViewModel: RoutesViewModel
 ) {
-    when (state) {
-        RoutesResultState.NoResults -> {
-            Text(
-                "No results",
-                modifier = modifier.align(Alignment.CenterHorizontally),
-                style = MaasTheme.typography.textL
-            )
+    Column {
+        Divider(
+            modifier = Modifier
+                .padding(horizontal = MaasTheme.spacing.globalMargin)
+        )
+        routesViewModel.vehicleTypes = mockVehicleTypes
+        VehiclesList(routesViewModel) { id ->
+            routesViewModel.vehicleTypes?.map {
+                it.copy(active = it.id == id)
+            }
         }
-        RoutesResultState.Loading -> {
-            CircularProgressIndicator(
-                modifier = modifier.align(Alignment.CenterHorizontally)
-            )
+        when (state) {
+            RoutesResultState.NoResults -> {
+                Text(
+                    "No results",
+                    modifier = modifier.align(Alignment.CenterHorizontally),
+                    style = MaasTheme.typography.textL
+                )
+            }
+            RoutesResultState.Loading -> {
+                CircularProgressIndicator(
+                    modifier = modifier.align(Alignment.CenterHorizontally)
+                )
+            }
+            is RoutesResultState.Loaded -> RoutesResult(state.result, onRouteClick, modifier)
         }
-        is RoutesResultState.Loaded -> RoutesResult(state.result, onRouteClick, modifier)
     }
+
 }
 
 @Composable

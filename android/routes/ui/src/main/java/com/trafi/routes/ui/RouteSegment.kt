@@ -15,11 +15,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.trafi.core.model.*
-import com.trafi.routes.ui.internal.endTimeMillis
-import com.trafi.routes.ui.internal.startTimeMillis
-import com.trafi.routes.ui.mock.RouteSegmentPreviewParameterProvider
-import com.trafi.ui.*
+import com.trafi.core.model.RouteSegment
+import com.trafi.core.model.RouteSegmentPersonalVehicle
+import com.trafi.core.model.SharedVehicle
+import com.trafi.routes.internal.endTimeMillis
+import com.trafi.routes.internal.startTimeMillis
+import com.trafi.routes.mock.RouteSegmentPreviewParameterProvider
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.internal.toColor
 

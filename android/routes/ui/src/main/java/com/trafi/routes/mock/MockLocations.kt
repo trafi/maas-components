@@ -1,4 +1,4 @@
-package com.trafi.routes.ui.mock
+package com.trafi.routes.mock
 
 import androidx.compose.runtime.Stable
 import com.trafi.core.model.LatLng
