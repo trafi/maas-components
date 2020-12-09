@@ -18,7 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.drawBehind
 import androidx.compose.ui.focus.ExperimentalFocus
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.isFocused
@@ -29,14 +29,17 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.useOrElse
 import androidx.compose.ui.node.Ref
+import androidx.compose.ui.text.InternalTextApi
 import androidx.compose.ui.text.SoftwareKeyboardController
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.constrain
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.ui.tooling.preview.Preview
 import com.trafi.ui.theme.Grey300
 import com.trafi.ui.theme.MaasTheme
 
@@ -55,9 +58,15 @@ fun OutlinedTextField(
     inactiveColor: Color = Grey300,
 ) {
     val keyboardController: Ref<SoftwareKeyboardController> = remember { Ref() }
+    var selection by remember { mutableStateOf(TextRange.Zero) }
+    var composition by remember { mutableStateOf<TextRange?>(null) }
 
-    var textFieldValueState by remember { mutableStateOf(TextFieldValue(text = value)) }
-    val textFieldValue = textFieldValueState.copy(text = value)
+    @OptIn(InternalTextApi::class)
+    val textFieldValue = TextFieldValue(
+        text = value,
+        selection = selection.constrain(0, value.length),
+        composition = composition?.constrain(0, value.length)
+    )
 
     var isFocused by remember { mutableStateOf(false) }
     val focusRequester = FocusRequester()
@@ -110,7 +119,8 @@ fun OutlinedTextField(
         BasicTextField(
             value = textFieldValue,
             onValueChange = {
-                textFieldValueState = it
+                selection = it.selection
+                composition = it.composition
                 if (value != it.text) {
                     onValueChange(it.text)
                 }

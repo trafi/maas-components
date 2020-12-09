@@ -16,10 +16,10 @@ fun MaasTheme(
 ) {
     val colorPalette = remember { colors }.apply { updateColorsFrom(colors) }
     Providers(
-        AmbientColor provides colorPalette,
-        AmbientTypography provides typography,
-        AmbientSpacing provides spacing,
-        AmbientCornerRadius provides cornerRadius
+        ColorAmbient provides colorPalette,
+        TypographyAmbient provides typography,
+        SpacingAmbient provides spacing,
+        CornerRadiusAmbient provides cornerRadius
     ) {
         MaterialTheme(
             colors = colors.materialColors,
@@ -33,25 +33,25 @@ fun MaasTheme(
 object MaasTheme {
     @Composable
     val colors: MaasColorPalette
-        get() = AmbientColor.current
+        get() = ColorAmbient.current
 
     @Composable
     val typography: MaasTypography
-        get() = AmbientTypography.current
+        get() = TypographyAmbient.current
 
     @Composable
     val spacing: MaasSpacing
-        get() = AmbientSpacing.current
+        get() = SpacingAmbient.current
 
     @Composable
     val cornerRadius: MaasCornerRadius
-        get() = AmbientCornerRadius.current
+        get() = CornerRadiusAmbient.current
 }
 
-private val AmbientColor = staticAmbientOf { MaasTheme.lightColors() }
+private val ColorAmbient = staticAmbientOf { MaasTheme.lightColors() }
 
-private val AmbientTypography = staticAmbientOf { MaasTypography() }
+private val TypographyAmbient = staticAmbientOf { MaasTypography() }
 
-private val AmbientSpacing = staticAmbientOf { MaasSpacing() }
+private val SpacingAmbient = staticAmbientOf { MaasSpacing() }
 
-private val AmbientCornerRadius = staticAmbientOf { MaasCornerRadius() }
+private val CornerRadiusAmbient = staticAmbientOf { MaasCornerRadius() }

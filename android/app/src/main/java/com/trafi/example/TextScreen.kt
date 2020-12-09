@@ -6,10 +6,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.ui.tooling.preview.Preview
 import com.trafi.ui.theme.Grey300
 import com.trafi.ui.theme.MaasTheme
-import java.util.Locale
 
 @Composable
 fun TextScreen() {
@@ -27,7 +26,7 @@ fun TextScreen() {
     ScrollableColumn(modifier = Modifier.background(MaasTheme.colors.background)) {
         styles.forEach { (name, style) ->
             Text(
-                name.toUpperCase(Locale.US),
+                name.toUpperCase(),
                 style = MaasTheme.typography.label,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -38,7 +37,7 @@ fun TextScreen() {
                 style = style
             )
             Text(
-                "$name multiline".toUpperCase(Locale.US),
+                "$name multiline".toUpperCase(),
                 style = MaasTheme.typography.label,
                 modifier = Modifier
                     .fillMaxWidth()

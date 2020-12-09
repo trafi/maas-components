@@ -17,8 +17,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.ui.tooling.preview.Preview
 import com.trafi.core.model.AutoCompleteLocation
 import com.trafi.core.model.Location
 import com.trafi.routes.ui.mock.vilniusCathedral

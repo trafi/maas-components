@@ -12,8 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.ui.tooling.preview.Preview
 import com.trafi.example.ui.DemoMaasTheme
 import com.trafi.ui.Button
 import com.trafi.ui.theme.MaasTheme
