@@ -84,6 +84,6 @@ struct Cell_Previews: PreviewProvider, Snapped {
     }
 
     static var paddingEdges: Edge.Set { [] }
-    static var layout: PreviewLayout { .fixed(width: 320, height: 60) }
+    static var elementWidth: CGFloat? { 320 }
 }
 #endif

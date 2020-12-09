@@ -84,8 +84,6 @@ struct Button_Previews: PreviewProvider, Snapped {
         ]
     }
 
-    static var layout: PreviewLayout {
-        .fixed(width: 320, height: 100)
-    }
+    static var elementWidth: CGFloat? { 320 }
 }
 #endif
