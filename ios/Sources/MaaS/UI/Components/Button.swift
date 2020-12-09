@@ -57,21 +57,14 @@ struct Button_Previews: PreviewProvider, Snapped {
                 Button("Some title", action: {})
             ),
 
-            "Plain Scaled": AnyView(
-                Button("Some title", action: {})
-                    .environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)
-            ),
-
-            "Plain Dark": AnyView(
-                Button("Some title", foreground: .yellow, background: Color(.systemBackground), action: {})
-                    .environment(\.colorScheme, .dark)
+            "Colors": AnyView(
+                Button("Some title", foreground: Color(.label), background: Color(.systemFill), action: {})
             ),
 
             "Disabled": AnyView(
                 Button("Some title", action: {})
                     .disabled(true)
             ),
-
 
             "Long title": AnyView(
                 Button("Some very very very very very long title", action: {})

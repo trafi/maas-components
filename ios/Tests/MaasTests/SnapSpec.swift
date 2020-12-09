@@ -7,15 +7,16 @@ import SnapshotTesting
 class SnapSpec<S>: QuickSpec where S: PreviewProvider, S: Snapped {
 
     override func spec() {
+//        isRecording = true
         describe(S.name) {
-            S.snapped.keys.sorted().forEach { name in
-                it(name.lowercased()) {
-                    let view = S.view(name)
+            S.snapKeys().forEach { key in
+                it(key.lowercased()) {
                     XCTAssertNil(
                         verifySnapshot(
-                            matching: view, as: .image(layout: S.snapshotLayout),
-                            named: name.lowercased(), // TODO: Dark mode, accessibility etc.
-                            testName: "\(type(of: self))"
+                            matching: S.view(key), as: .image(layout: S.snapshotLayout),
+                            named: "\(Int(UIScreen.main.scale))x",
+                            snapshotDirectory: S.directory(),
+                            testName: key.lowercased()
                         )
                     )
                 }
@@ -32,11 +33,14 @@ private extension Snapped where Self: PreviewProvider {
             .replacingOccurrences(of: "Previews", with: "")
     }
 
-    static func view(_ name: String) -> some View {
-        snapped[name]
-            .padding(paddingEdges)
-            .frame(width: size?.width, height: size?.height)
+    static func snapKeys() -> [String] {
+        snappedViews(detailed: true).keys.sorted()
+    }
+
+    static func view(_ key: String) -> some View {
+        snappedViews(detailed: true)[key]
             .fixedSize(horizontal: fit, vertical: fit)
+
     }
 
     static var size: CGSize? {
@@ -56,5 +60,16 @@ private extension Snapped where Self: PreviewProvider {
         case .sizeThatFits: return .sizeThatFits
         @unknown default: return .sizeThatFits
         }
+    }
+
+    static func directory(file: StaticString = #file) -> String {
+        let fileUrl = URL(fileURLWithPath: "\(file)", isDirectory: false)
+
+        let snapshotDirectoryUrl = fileUrl
+            .deletingLastPathComponent()
+            .appendingPathComponent("__Snapshots__")
+            .appendingPathComponent(name)
+
+        return snapshotDirectoryUrl.path
     }
 }
