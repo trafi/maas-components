@@ -6,6 +6,10 @@ plugins {
 apply from: "${rootProject.projectDir}/scripts/resolve-property.gradle"
 apply plugin: 'shot'
 
+shot {
+    runInstrumentation = false
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -17,7 +21,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
-
         buildConfigField("String", "API_BASE_URL",
                 "\"${resolveProperty("trafi.apiBaseUrl", "TRAFI_API_BASE_URL") ?: ""}\"")
         buildConfigField("String", "API_KEY",
@@ -46,14 +49,12 @@ android {
         kotlinCompilerVersion kotlin_version
         kotlinCompilerExtensionVersion compose_version
     }
+    //This is needed because of this: https://github.com/Kotlin/kotlinx.coroutines/issues/2023
+    //Also possible solution: https://github.com/Kotlin/kotlinx.coroutines/issues/2023#issuecomment-665150312
     packagingOptions {
         exclude 'META-INF/AL2.0'
         exclude 'META-INF/LGPL2.1'
     }
-}
-
-shot {
-    runInstrumentation = false
 }
 
 androidExtensions {
