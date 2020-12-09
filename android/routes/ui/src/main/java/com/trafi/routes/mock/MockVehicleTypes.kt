@@ -54,7 +54,7 @@ internal val group5 = TabItem(
 )
 @Stable
 internal val group6 = TabItem(
-    id = "1",
+    id = "6",
     icon = "",
     name = "Foot",
     duration = "3h",

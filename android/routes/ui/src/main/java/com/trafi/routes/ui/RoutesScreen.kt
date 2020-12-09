@@ -162,11 +162,9 @@ private fun RouteSearchBody(
                 .padding(horizontal = MaasTheme.spacing.globalMargin)
         )
         routesViewModel.vehicleTypes = mockVehicleTypes
-        VehiclesList(routesViewModel) { id ->
-            routesViewModel.vehicleTypes?.map {
-                it.copy(active = it.id == id)
-            }
-        }
+        val (selectedItemId, selectItem) = remember { mutableStateOf("1")}
+        VehiclesList(mockVehicleTypes, selectedItemId, selectItem)
+
         when (state) {
             RoutesResultState.NoResults -> {
                 Text(

@@ -28,15 +28,18 @@ import com.trafi.ui.theme.internal.CornerRadiusScale
 import com.trafi.ui.theme.internal.SpacingScale
 
 @Composable
-fun VehiclesList(routesViewModel: RoutesViewModel, onVehicleClick: (String) -> Unit) {
+fun VehiclesList(
+    vehicleTypes: List<TabItem>?,
+    selectedItemId: String,
+    onVehicleClick: (String) -> Unit
+) {
     ScrollableRow(
         modifier = Modifier.padding(horizontal = MaasTheme.spacing.globalMargin)
     ) {
-        routesViewModel.vehicleTypes?.forEach {
-            VehicleTypeSegment(
-                it,
-                onVehicleClick
-            )
+        vehicleTypes?.forEach { tabItem ->
+            VehicleTypeSegment(tabItem, selectedItemId == tabItem.id) {
+                onVehicleClick(tabItem.id)
+            }
         }
     }
 }
@@ -44,19 +47,18 @@ fun VehiclesList(routesViewModel: RoutesViewModel, onVehicleClick: (String) -> U
 @Composable
 fun VehicleTypeSegment(
     tabItem: TabItem,
-    onVehicleClick: (String) -> Unit
+    isTabSelected: Boolean,
+    onVehicleClick: () -> Unit
 ) {
     Card(
         shape = RoundedCornerShape(CornerRadiusScale.xxs.dp),
         modifier = Modifier
             .widthIn(min = 70.dp)
             .padding(SpacingScale.xxs.dp)
-            .clickable(onClick = {
-                onVehicleClick(tabItem.id)
-            })
+            .clickable(onClick = onVehicleClick)
     ) {
         Column(
-            modifier = Modifier.background(if (tabItem.active) Color.Green else Grey200 )
+            modifier = Modifier.background(if (isTabSelected) Color.Green else Grey200)
         ) {
             Image(
                 vectorResource(id = R.drawable.ic_route_search_bike_s),
@@ -80,7 +82,7 @@ fun VehicleTypeSegment(
 @Preview(showBackground = true)
 @Composable
 fun PreviewTransportTypeSegment() {
-    VehicleTypeSegment(group1) {}
+    VehicleTypeSegment(group1, true) {}
 }
 
 @Preview(showBackground = true)
