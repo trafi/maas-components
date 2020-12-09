@@ -2,6 +2,8 @@
 
 [![Build Android](https://github.com/trafi/maas-components/workflows/Build%20Android/badge.svg?event=push)](https://github.com/trafi/maas-components/actions?query=workflow%3A%22Build+Android%22)
 
+[![iOS tests](https://github.com/trafi/maas-components/workflows/iOS%20tests/badge.svg)](https://github.com/trafi/maas-components/actions?query=workflow%3A%22iOS+tests%22)
+
 *Work in progress, not ready for use in production.*
 
 Frictionless access to mobility-as-a-service (MaaS) data and services.
