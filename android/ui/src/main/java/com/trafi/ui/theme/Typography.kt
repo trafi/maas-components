@@ -3,15 +3,10 @@ package com.trafi.ui.theme
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.font
 import androidx.compose.ui.text.font.fontFamily
-import androidx.compose.ui.unit.sp
 import com.trafi.ui.R
-import com.trafi.ui.theme.internal.BasicFontStyle
-import com.trafi.ui.theme.internal.BasicFontWeight
-import com.trafi.ui.theme.internal.BasicTextStyle
 import com.trafi.ui.theme.internal.TypographyScale
 
 internal val Inter = fontFamily(
@@ -33,14 +28,14 @@ data class MaasTypography internal constructor(
 ) {
     constructor(
         defaultFontFamily: FontFamily = Inter,
-        headingXXL: TextStyle = TypographyScale.headingXXL.toTextStyle(),
-        headingXL: TextStyle = TypographyScale.headingXL.toTextStyle(),
-        headingL: TextStyle = TypographyScale.headingL.toTextStyle(),
-        headingM: TextStyle = TypographyScale.headingM.toTextStyle(),
-        textL: TextStyle = TypographyScale.textL.toTextStyle(),
-        textM: TextStyle = TypographyScale.textM.toTextStyle(),
-        textS: TextStyle = TypographyScale.textS.toTextStyle(),
-        label: TextStyle = TypographyScale.label.toTextStyle(),
+        headingXXL: TextStyle = TypographyScale.headingXXL,
+        headingXL: TextStyle = TypographyScale.headingXL,
+        headingL: TextStyle = TypographyScale.headingL,
+        headingM: TextStyle = TypographyScale.headingM,
+        textL: TextStyle = TypographyScale.textL,
+        textM: TextStyle = TypographyScale.textM,
+        textS: TextStyle = TypographyScale.textS,
+        label: TextStyle = TypographyScale.label,
     ) : this(
         headingXXL = headingXXL.withDefaultFontFamily(defaultFontFamily),
         headingXL = headingXL.withDefaultFontFamily(defaultFontFamily),
@@ -56,17 +51,3 @@ data class MaasTypography internal constructor(
 private fun TextStyle.withDefaultFontFamily(default: FontFamily): TextStyle {
     return if (fontFamily != null) this else copy(fontFamily = default)
 }
-
-private fun BasicTextStyle.toTextStyle(): TextStyle = TextStyle(
-    fontStyle = when (fontStyle) {
-        BasicFontStyle.Normal -> FontStyle.Normal
-        BasicFontStyle.Italic -> FontStyle.Italic
-    },
-    fontWeight = when (fontWeight) {
-        BasicFontWeight.Normal -> FontWeight.Normal
-        BasicFontWeight.SemiBold -> FontWeight.SemiBold
-        BasicFontWeight.Bold -> FontWeight.Bold
-    },
-    fontSize = fontSize.sp,
-    lineHeight = lineHeight.sp
-)
