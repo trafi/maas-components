@@ -1,6 +1,6 @@
 package com.trafi.ui.theme.internal
 
-internal const val infinity = Float.POSITIVE_INFINITY
+internal const val maxValue = Float.MAX_VALUE
 
 internal fun textStyle(builder: TextStyleBuilder.() -> Unit): OsTextStyle =
     TextStyleBuilder().apply(builder).build()

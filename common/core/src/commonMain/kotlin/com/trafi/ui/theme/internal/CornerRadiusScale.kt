@@ -7,7 +7,7 @@ object CornerRadiusScale {
     const val sm = 8
     const val lg = 12
     const val xl = 20
-    const val round = infinity
+    const val round = maxValue
 
     object Default {
         const val ButtonRadius = round
