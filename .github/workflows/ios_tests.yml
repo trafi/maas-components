@@ -1,0 +1,17 @@
+name: iOS tests
+
+on:
+  workflow_dispatch:
+  #push:
+  #  branches: [ main ]
+  #pull_request:
+  #  branches: [ main ]
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: devbotsxyz/xcode-select@v1
+      - uses: actions/checkout@v2
+      - name: Test
+        run: swift test
