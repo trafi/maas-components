@@ -9,6 +9,7 @@ plugins {
 group = "com.trafi.maas"
 version = rootProject.version
 
+val composeVersion = "1.0.0-alpha08"
 val ktorVersion = "1.4.1"
 val serializationVersion = "1.0.1"
 val coroutinesVersion = "1.4.1-native-mt"
@@ -22,6 +23,12 @@ repositories {
 kotlin {
     android {
         publishAllLibraryVariants()
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "1.8"
+                useIR = true
+            }
+        }
     }
     ios {
         binaries {
@@ -48,6 +55,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-android:$ktorVersion")
+                implementation("androidx.compose.ui:ui:$composeVersion")
             }
         }
         val androidTest by getting {
