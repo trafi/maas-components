@@ -7,48 +7,37 @@ import androidx.compose.ui.unit.sp
 
 actual typealias OsTextStyle = TextStyle
 
-actual fun OsTextStyle.copy(
+internal actual fun OsTextStyle.copy(
     fontStyle: BasicFontStyle?,
     fontWeight: BasicFontWeight?,
     fontSize: Int?,
     lineHeight: Int?,
-): OsTextStyle {
-    val basic = toBasicTextStyle()
-    return merge(
-        BasicTextStyle(
-            fontStyle = fontStyle ?: basic.fontStyle,
-            fontWeight = fontWeight ?: basic.fontWeight,
-            fontSize = fontSize ?: basic.fontSize,
-            lineHeight = lineHeight ?: basic.lineHeight,
-        ).toTextStyle()
-    )
-}
-
-private fun OsTextStyle.toBasicTextStyle(): BasicTextStyle = BasicTextStyle(
-    fontStyle = when (fontStyle) {
-        FontStyle.Normal, null -> BasicFontStyle.Normal
-        FontStyle.Italic -> BasicFontStyle.Italic
-    },
-    fontWeight = when (fontWeight?.weight) {
-        FontWeight.Normal.weight, null -> BasicFontWeight.Normal
-        FontWeight.SemiBold.weight -> BasicFontWeight.SemiBold
-        FontWeight.Bold.weight -> BasicFontWeight.Bold
-        else -> BasicFontWeight.Normal
-    },
-    fontSize = fontSize.value.toInt(),
-    lineHeight = lineHeight.value.toInt(),
+): OsTextStyle = copy(
+    fontStyle = fontStyle?.os ?: this.fontStyle,
+    fontWeight = fontWeight?.os ?: this.fontWeight,
+    fontSize = fontSize?.sp ?: this.fontSize,
+    lineHeight = lineHeight?.sp ?: this.lineHeight
 )
 
-private fun BasicTextStyle.toTextStyle(): TextStyle = TextStyle(
-    fontStyle = when (fontStyle) {
-        BasicFontStyle.Normal -> FontStyle.Normal
-        BasicFontStyle.Italic -> FontStyle.Italic
-    },
-    fontWeight = when (fontWeight) {
-        BasicFontWeight.Normal -> FontWeight.Normal
-        BasicFontWeight.SemiBold -> FontWeight.SemiBold
-        BasicFontWeight.Bold -> FontWeight.Bold
-    },
+internal actual fun OsTextStyle(
+    fontStyle: BasicFontStyle,
+    fontWeight: BasicFontWeight,
+    fontSize: Int,
+    lineHeight: Int,
+): OsTextStyle = TextStyle(
+    fontStyle = fontStyle.os,
+    fontWeight = fontWeight.os,
     fontSize = fontSize.sp,
     lineHeight = lineHeight.sp
 )
+
+private val BasicFontStyle.os get() = when (this) {
+    BasicFontStyle.Normal -> FontStyle.Normal
+    BasicFontStyle.Italic -> FontStyle.Italic
+}
+
+private val BasicFontWeight.os get() = when (this) {
+    BasicFontWeight.Normal -> FontWeight.Normal
+    BasicFontWeight.SemiBold -> FontWeight.SemiBold
+    BasicFontWeight.Bold -> FontWeight.Bold
+}
