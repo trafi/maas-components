@@ -3,3 +3,5 @@
 package com.trafi.ui.theme.internal
 
 expect inline class Color(val value: ULong)
+
+internal fun Color(value: Long) = Color(value.toULong())
