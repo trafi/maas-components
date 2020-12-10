@@ -30,7 +30,7 @@ fun Button(
 ) {
     androidx.compose.material.Button(
         onClick = onClick,
-        modifier = modifier.heightIn(min = constants.minHeight.dp).fillMaxWidth(),
+        modifier = modifier.heightIn(min = constants.minHeight).fillMaxWidth(),
         enabled = enabled,
         shape = if (constants.cornerRadius.isRound) {
             RoundedCornerShape(percent = 50)
