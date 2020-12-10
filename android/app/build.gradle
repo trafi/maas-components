@@ -6,10 +6,6 @@ plugins {
 apply from: "${rootProject.projectDir}/scripts/resolve-property.gradle"
 apply plugin: 'shot'
 
-shot {
-    runInstrumentation = false
-}
-
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
