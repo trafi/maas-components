@@ -1,17 +1,17 @@
 package com.trafi.ui.theme.internal
 
-expect class OsTextStyle
+expect class TextStyle
 
-internal expect fun OsTextStyle.copy(
+internal expect fun TextStyle.copy(
     fontStyle: BasicFontStyle? = null,
     fontWeight: BasicFontWeight? = null,
     fontSize: Int? = null,
     lineHeight: Int? = null,
-): OsTextStyle
+): TextStyle
 
-internal expect fun OsTextStyle(
+internal expect fun TextStyle(
     fontStyle: BasicFontStyle,
     fontWeight: BasicFontWeight,
     fontSize: Int,
     lineHeight: Int,
-): OsTextStyle
+): TextStyle
