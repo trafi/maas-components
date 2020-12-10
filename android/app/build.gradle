@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
 }
 apply from: "${rootProject.projectDir}/scripts/resolve-property.gradle"
 
@@ -44,10 +43,6 @@ android {
         kotlinCompilerVersion kotlin_version
         kotlinCompilerExtensionVersion compose_version
     }
-}
-
-androidExtensions {
-    features = ["parcelize"]
 }
 
 dependencies {
