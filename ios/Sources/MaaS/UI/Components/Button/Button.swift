@@ -29,7 +29,7 @@ public struct Button: View, Swappable {
 
     @Environment(\.isEnabled) var isEnabled
     @Environment(\.currentTheme) var theme
-    var constants: ButtonConstants { ButtonConstants(theme: theme) }
+    var constants: Kotlin<ButtonConstants> { Kotlin(ButtonConstants(theme: theme)) }
 
     public var defaultBody: some View {
         SwiftUI.Button(
@@ -39,11 +39,11 @@ public struct Button: View, Swappable {
                     .padding(.horizontal)
                     .lineLimit(0)
                     .minimumScaleFactor(0.75)
-                    .font(Font(constants.textStyle))
-                    .foregroundColor(input.foreground ?? constants.defaultContentColor.color)
-                    .frame(maxWidth: .infinity, minHeight: CGFloat(constants.minHeight))
-                    .background(input.background ?? (isEnabled ? constants.defaultColor : constants.disabledColor).color)
-                    .cornerRadius(constants.cornerRadius.cgFloat)
+                    .font(constants.textStyle)
+                    .foregroundColor(input.foreground ?? constants.defaultContentColor)
+                    .frame(maxWidth: .infinity, minHeight: constants.minHeight)
+                    .background(input.background ?? (isEnabled ? constants.defaultColor : constants.disabledColor))
+                    .cornerRadius(constants.cornerRadius)
             }
         )
     }
