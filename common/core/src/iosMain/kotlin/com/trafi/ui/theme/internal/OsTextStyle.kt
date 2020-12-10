@@ -1,37 +1,46 @@
 package com.trafi.ui.theme.internal
 
-actual class OsTextStyle constructor(var font: UIFont, var lineSpacing: CGFloat) {
-    actual var basic: BasicTextStyle
-        get() = textStyle {
-            fontWeight = basicFontWeight()
-            fontSize = font.pointSize.toInt()
-            lineHeight = (font.lineHeight + lineSpacing).toInt()
-        }
-        set(value) {
-            lineSpacing = value.lineHeight.toDouble() - font.lineHeight
-            font = UIFont.fontWithDescriptor(
-                font.fontDescriptor.fontDescriptorByAddingAttributes(mapOf(UIFontDescriptorTraitsAttribute to mapOf(UIFontWeightTrait to fontWeight(value.fontWeight)))),
-                value.fontSize.toDouble()
-            )
-        }
+import platform.UIKit.*
 
-    private fun basicFontWeight(): BasicFontWeight {
+actual typealias OsTextStyle = UIFont
 
-        val traits = font.fontDescriptor.objectForKey(UIFontDescriptorTraitsAttribute) as Map<Any?, *>
-        val weight = traits[UIFontWeightTrait] as NSNumber
-
-        return when(weight.doubleValue) {
-            UIFontWeightSemibold -> BasicFontWeight.SemiBold
-            UIFontWeightBold -> BasicFontWeight.Bold
-            else -> BasicFontWeight.Normal
-        }
+internal actual fun OsTextStyle.copy(
+    fontStyle: BasicFontStyle?,
+    fontWeight: BasicFontWeight?,
+    fontSize: Int?,
+    lineHeight: Int?,
+): OsTextStyle {
+    var descriptor = this.fontDescriptor
+    if (fontStyle?.os != null) {
+        descriptor = descriptor.fontDescriptorWithSymbolicTraits(fontStyle.os!!) ?: descriptor
     }
-
-    private fun fontWeight(basicFontWeight: BasicFontWeight): UIFontWeight {
-        return when(basicFontWeight) {
-            BasicFontWeight.Normal -> UIFontWeightRegular
-            BasicFontWeight.SemiBold -> UIFontWeightSemibold
-            BasicFontWeight.Bold ->  UIFontWeightBold
-        }
+    if (fontWeight != null) {
+        descriptor = descriptor.fontDescriptorByAddingAttributes(
+            mapOf(UIFontDescriptorTraitsAttribute to mapOf(UIFontWeightTrait to fontWeight.os))
+        )
     }
+    if (lineHeight != null) {
+        // TODO: No way to add line height to UIFont :(
+    }
+    return UIFont.fontWithDescriptor(descriptor,fontSize?.os ?: this.pointSize)
 }
+
+internal actual fun OsTextStyle(
+    fontStyle: BasicFontStyle,
+    fontWeight: BasicFontWeight,
+    fontSize: Int,
+    lineHeight: Int,
+): OsTextStyle = UIFont.systemFontOfSize(fontSize.os).copy(fontStyle, fontWeight, lineHeight)
+
+private val BasicFontStyle.os get() = when (this) {
+    BasicFontStyle.Normal -> null
+    BasicFontStyle.Italic -> UIFontDescriptorTraitItalic
+}
+
+private val BasicFontWeight.os get() = when (this) {
+    BasicFontWeight.Normal -> UIFontWeightRegular
+    BasicFontWeight.SemiBold -> UIFontWeightSemibold
+    BasicFontWeight.Bold -> UIFontWeightBold
+}
+
+private val Int.os get() = this.toDouble()
