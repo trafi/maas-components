@@ -1,186 +1,138 @@
 import MaasCore
 import SwiftUI
 
-public struct HeadingXXL: EnvironmentKey {
-    public static var defaultValue: Font {
-        TypographyScale().headingXXL.font
-    }
+struct HeadingXXL: EnvironmentKey {
+    static var defaultValue: UIFont { TypographyScale().headingXXL }
 }
-
-public struct HeadingXL: EnvironmentKey {
-    public static var defaultValue: Font {
-        TypographyScale().headingXL.font
-    }
+struct HeadingXL: EnvironmentKey {
+    static var defaultValue: UIFont { TypographyScale().headingXL }
 }
-
-public struct HeadingL: EnvironmentKey {
-    public static var defaultValue: Font {
-        TypographyScale().headingL.font
-    }
+struct HeadingL: EnvironmentKey {
+    static var defaultValue: UIFont { TypographyScale().headingL }
 }
-
-public struct HeadingM: EnvironmentKey {
-    public static var defaultValue: Font {
-        TypographyScale().headingM.font
-    }
+struct HeadingM: EnvironmentKey {
+    static var defaultValue: UIFont { TypographyScale().headingM }
 }
-
-public struct TextL: EnvironmentKey {
-    public static var defaultValue: Font {
-        TypographyScale().textL.font
-    }
+struct TextL: EnvironmentKey {
+    static var defaultValue: UIFont { TypographyScale().textL }
 }
-
-public struct TextM: EnvironmentKey {
-    public static var defaultValue: Font {
-        TypographyScale().textM.font
-    }
+struct TextM: EnvironmentKey {
+    static var defaultValue: UIFont { TypographyScale().textM }
 }
-
-public struct TextS: EnvironmentKey {
-    public static var defaultValue: Font {
-        TypographyScale().textS.font
-    }
+struct TextS: EnvironmentKey {
+    static var defaultValue: UIFont { TypographyScale().textS }
 }
-
-public struct Label: EnvironmentKey {
-    public static var defaultValue: Font {
-        TypographyScale().label.font
-    }
+struct Label: EnvironmentKey {
+    static var defaultValue: UIFont { TypographyScale().label }
 }
 
 public extension EnvironmentValues {
 
-    var fontHeadingXXL: Font {
-        get { self[HeadingXXL.self] }
+    var fontHeadingXXL: Font { Font(uiFontHeadingXXL) }
+    var uiFontHeadingXXL: UIFont {
+        get { self[HeadingXXL.self].scaled(sizeCategory) }
         set { self[HeadingXXL.self] = newValue }
     }
 
-    var fontHeadingXL: Font {
-        get { self[HeadingXL.self] }
+    var fontHeadingXL: Font { Font(uiFontHeadingXL) }
+    var uiFontHeadingXL: UIFont {
+        get { self[HeadingXL.self].scaled(sizeCategory) }
         set { self[HeadingXL.self] = newValue }
     }
 
-    var fontHeadingL: Font {
-        get { self[HeadingL.self] }
+    var fontHeadingL: Font { Font(uiFontHeadingL) }
+    var uiFontHeadingL: UIFont {
+        get { self[HeadingL.self].scaled(sizeCategory) }
         set { self[HeadingL.self] = newValue }
     }
 
-    var fontHeadingM: Font {
-        get { self[HeadingM.self] }
+    var fontHeadingM: Font { Font(uiFontHeadingM) }
+    var uiFontHeadingM: UIFont {
+        get { self[HeadingM.self].scaled(sizeCategory) }
         set { self[HeadingM.self] = newValue }
     }
 
-    var fontTextL: Font {
-        get { self[TextL.self] }
+    var fontTextL: Font { Font(uiFontTextL) }
+    var uiFontTextL: UIFont {
+        get { self[TextL.self].scaled(sizeCategory) }
         set { self[TextL.self] = newValue }
     }
 
-    var fontTextM: Font {
-        get { self[TextM.self] }
+    var fontTextM: Font { Font(uiFontTextM) }
+    var uiFontTextM: UIFont {
+        get { self[TextM.self].scaled(sizeCategory) }
         set { self[TextM.self] = newValue }
     }
 
-    var fontTextS: Font {
-        get { self[TextS.self] }
+    var fontTextS: Font { Font(uiFontTextS) }
+    var uiFontTextS: UIFont {
+        get { self[TextS.self].scaled(sizeCategory) }
         set { self[TextS.self] = newValue }
     }
 
-    var fontLabel: Font {
-        get { self[Label.self] }
+    var fontLabel: Font { Font(uiFontLabel) }
+    var uiFontLabel: UIFont {
+        get { self[Label.self].scaled(sizeCategory) }
         set { self[Label.self] = newValue }
     }
 }
 
+extension UIFont {
 
-public extension Font {
+    func scaled(_ sizeCategory: ContentSizeCategory) -> UIFont {
 
-    static var headingXXL: Font {
-        TypographyScale().headingXXL.font
-    }
+        let textStyle: UIFont.TextStyle
 
-    static var headingXL: Font {
-        TypographyScale().headingXL.font
-    }
+        switch pointSize {
+        case 28...: textStyle = .title1
+        case 22...: textStyle = .title2
+        case 20...: textStyle = .title3
+        case 17...: textStyle = .body
+        case 16...: textStyle = .callout
+        case 15...: textStyle = .subheadline
+        case 13...: textStyle = .footnote
+        case 12...: textStyle = .caption1
+        default:    textStyle = .caption2
+        }
 
-    static var headingL: Font {
-        TypographyScale().headingL.font
-    }
-
-    static var headingM: Font {
-        TypographyScale().headingM.font
-    }
-
-    static var textL: Font {
-        TypographyScale().textL.font
-    }
-
-    static var textM: Font {
-        TypographyScale().textM.font
-    }
-
-    static var textS: Font {
-        TypographyScale().textS.font
-    }
-
-    static var label: Font {
-        TypographyScale().label.font
+        return self.withSize(pointSize * textStyle.scaleFactor(for: sizeCategory))
     }
 }
 
-extension BasicTextStyle {
-    var font: Font {
-        Font.system(
-            size: CGFloat(fontSize),
-            weight: fontWeight.weight,
-            design: .default)
+private extension UIFont.TextStyle {
+
+    func scaleFactor(for sizeCategory: ContentSizeCategory) -> CGFloat {
+
+        let medium = UIFont.preferredFont(
+            forTextStyle: self,
+            compatibleWith: UITraitCollection(preferredContentSizeCategory: .medium)
+        )
+
+        let scaled = UIFont.preferredFont(
+            forTextStyle: self,
+            compatibleWith: UITraitCollection(preferredContentSizeCategory: sizeCategory.ui)
+        )
+
+        return scaled.pointSize / medium.pointSize
     }
 }
 
-extension BasicFontWeight {
-    var weight: Font.Weight {
+private extension ContentSizeCategory {
+    var ui: UIContentSizeCategory {
         switch self {
-        case .normal: return .regular
-        case .semibold: return .semibold
-        case .bold: return .bold
-        default: return .regular
+        case .extraSmall: return .extraSmall
+        case .small: return .small
+        case .medium: return .medium
+        case .large: return .large
+        case .extraLarge: return .extraLarge
+        case .extraExtraLarge: return .extraExtraLarge
+        case .extraExtraExtraLarge: return .extraExtraExtraLarge
+        case .accessibilityMedium: return .accessibilityMedium
+        case .accessibilityLarge: return .accessibilityLarge
+        case .accessibilityExtraLarge: return .accessibilityExtraLarge
+        case .accessibilityExtraExtraLarge: return .accessibilityExtraExtraLarge
+        case .accessibilityExtraExtraExtraLarge: return .accessibilityExtraExtraExtraLarge
         }
     }
 }
 
-struct TypographyTextView: View {
-
-    var body: some View {
-        List {
-            Text(text)
-                .font(.headingXXL)
-            Text(text)
-                .font(.headingXL)
-            Text(text)
-                .font(.headingL)
-            Text(text)
-                .font(.headingM)
-            Text(text)
-                .font(.textL)
-            Text(text)
-                .font(.textM)
-            Text(text)
-                .font(.textS)
-            Text(text)
-                .font(.label)
-        }
-    }
-
-    let text = "Cultivate visionary integrated ecologies. Harness matrix and revolutionize world-class seamless target brand sexy infrastructures."
-}
-
-#if DEBUG
-struct TypographyTextView_Previews: PreviewProvider {
-    static var previews: some View {
-        TypographyTextView()
-            .environment(\.fontHeadingL, .headingL)
-            // .environment(\.theme, .myTheme)
-            .previewLayout(.sizeThatFits)
-    }
-}
-#endif
