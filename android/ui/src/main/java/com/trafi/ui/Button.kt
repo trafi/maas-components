@@ -25,21 +25,21 @@ fun Button(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    color: Color = Color(constants.defaultColor),
-    contentColor: Color = Color(constants.defaultContentColor),
+    color: Color = constants.defaultColor,
+    contentColor: Color = constants.defaultContentColor,
 ) {
     androidx.compose.material.Button(
         onClick = onClick,
         modifier = modifier.heightIn(min = constants.minHeight.dp).fillMaxWidth(),
         enabled = enabled,
-        shape = if (constants.cornerRadius.dp.isRound) {
+        shape = if (constants.cornerRadius.isRound) {
             RoundedCornerShape(percent = 50)
         } else {
             RoundedCornerShape(constants.cornerRadius)
         },
         colors = androidx.compose.material.ButtonConstants.defaultButtonColors(
             backgroundColor = color,
-            disabledBackgroundColor = Color(constants.disabledColor),
+            disabledBackgroundColor = constants.disabledColor,
             contentColor = contentColor
         )
     ) {
