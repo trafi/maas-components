@@ -1,6 +1,5 @@
 import SwiftUI
 import Swappable
-import Snapped
 
 public struct Badge: View, Swappable {
 
@@ -59,6 +58,8 @@ struct Badge_Previews: PreviewProvider, Snapped {
             "Long text": Badge(color: .blue, icon: UIImage(systemName: "bus"), text: "3G long"),
         ]
     }
+
+    static var elementWidth: CGFloat? { 120 }
 }
 #endif
 
