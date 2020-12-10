@@ -32,7 +32,11 @@ import com.trafi.core.model.SharedVehicle
 import com.trafi.routes.ui.internal.endTimeMillis
 import com.trafi.routes.ui.internal.startTimeMillis
 import com.trafi.routes.ui.mock.RouteSegmentPreviewParameterProvider
+import com.trafi.routes.ui.themes.LocalSpacing
+import com.trafi.routes.ui.themes.LocalSpacing.badgeHorizontalPadding
+import com.trafi.routes.ui.themes.LocalSpacing.badgeSpacer
 import com.trafi.ui.theme.MaasTheme
+import com.trafi.ui.theme.internal.ColorPalette
 
 typealias PersonalVehicleType = RouteSegmentPersonalVehicle.Vehicle
 
@@ -168,7 +172,7 @@ private fun Badge(
     ) {
         Row(
             modifier = Modifier
-                .padding(4.dp)
+                .padding(horizontal = badgeHorizontalPadding.dp)
                 .preferredHeight(IntrinsicSize.Min)
         ) {
             vector?.let {
@@ -176,13 +180,7 @@ private fun Badge(
                     vector,
                     colorFilter = ColorFilter.tint(AmbientContentColor.current),
                     modifier = Modifier.align(Alignment.CenterVertically)
-                )
-                Divider(
-                    color = AmbientContentColor.current,
-                    modifier = Modifier
-                        .padding(horizontal = 4.dp)
-                        .fillMaxHeight()
-                        .preferredWidth(1.dp)
+                        .padding(end = badgeSpacer.dp)
                 )
             }
             text?.let {
@@ -193,6 +191,16 @@ private fun Badge(
             }
         }
     }
+}
+
+@Preview
+@Composable
+private fun BadgePreview() {
+    Badge(
+        color = Color.Magenta,
+        vector = vectorResource(R.drawable.providers_ubahn_xs),
+        text = "5G"
+    )
 }
 
 @Preview(showBackground = false)
