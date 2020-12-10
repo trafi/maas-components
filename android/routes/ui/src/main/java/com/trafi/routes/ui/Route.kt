@@ -18,8 +18,8 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.semantics.accessibilityLabel
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
 import com.trafi.core.model.Route
 import com.trafi.core.model.RouteDisruption
 import com.trafi.core.model.RouteSegment
@@ -36,7 +36,7 @@ import java.util.TimeZone
 fun Route(route: Route, onClick: () -> Unit, modifier: Modifier = Modifier) {
     Surface(
         modifier = modifier
-            .semantics(mergeAllDescendants = true) {
+            .semantics(mergeDescendants = true) {
                 accessibilityLabel = route.accessibilityLabel
             }
             .clickable(onClick = onClick)
@@ -45,7 +45,7 @@ fun Route(route: Route, onClick: () -> Unit, modifier: Modifier = Modifier) {
             modifier = Modifier
                 .defaultMinSizeConstraints(minHeight = 64.dp)
                 .padding(horizontal = MaasTheme.spacing.globalMargin, vertical = 12.dp),
-            body = {
+            content = {
                 Row {
                     route.segments.forEachIndexed { index, segment ->
                         RouteSegment(
@@ -109,11 +109,11 @@ private fun Cell(
     modifier: Modifier = Modifier,
     prefix: (@Composable ColumnScope.() -> Unit)? = null,
     suffix: (@Composable ColumnScope.() -> Unit)? = null,
-    body: @Composable ColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit
 ) {
     Row(modifier) {
         prefix?.let { Column { it() } }
-        Column(modifier = Modifier.weight(1f)) { body() }
+        Column(modifier = Modifier.weight(1f)) { content() }
         suffix?.let { Column { it() } }
     }
 }

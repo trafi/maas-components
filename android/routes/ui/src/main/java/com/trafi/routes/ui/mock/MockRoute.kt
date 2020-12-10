@@ -1,6 +1,6 @@
 package com.trafi.routes.ui.mock
 
-import androidx.ui.tooling.preview.PreviewParameterProvider
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.trafi.core.model.RouteSegment
 import com.trafi.core.model.mockSegment1
 import com.trafi.core.model.mockSegment2
