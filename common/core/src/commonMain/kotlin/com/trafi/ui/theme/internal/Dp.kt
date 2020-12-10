@@ -1,6 +1,9 @@
 @file:Suppress("EXPERIMENTAL_FEATURE_WARNING")
+@file:JvmName("Dp")
 
 package com.trafi.ui.theme.internal
+
+import kotlin.jvm.JvmName
 
 expect inline class Dp(val value: Float)
 
