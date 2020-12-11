@@ -3,53 +3,41 @@ import UIKit
 import MaasCore
 
 private enum ColorKeys {
-
-    static let L = ColorPalette.DefaultLight()
-    static let D = ColorPalette.DefaultDark()
-
-    static func dynamic(light: Int64, dark: Int64) -> UIColor {
-        UIColor { traits in
-            traits.userInterfaceStyle == .dark ?
-                dark.uiColor :
-                light.uiColor
-        }
-    }
-
     struct Primary: EnvironmentKey {
-        static var defaultValue: UIColor { dynamic(light: L.Primary, dark: D.Primary) }
+        static var defaultValue: UIColor { .adaptive(light: \.Primary, dark: \.Primary) }
     }
     struct OnPrimary: EnvironmentKey {
-        static var defaultValue: UIColor { dynamic(light: L.OnPrimary, dark: D.OnPrimary) }
+        static var defaultValue: UIColor { .adaptive(light: \.OnPrimary, dark: \.OnPrimary) }
     }
     struct PrimaryVariant: EnvironmentKey {
-        static var defaultValue: UIColor { dynamic(light: L.PrimaryVariant, dark: D.PrimaryVariant) }
+        static var defaultValue: UIColor { .adaptive(light: \.PrimaryVariant, dark: \.PrimaryVariant) }
     }
     struct Secondary: EnvironmentKey {
-        static var defaultValue: UIColor { dynamic(light: L.Secondary, dark: D.Secondary) }
+        static var defaultValue: UIColor { .adaptive(light: \.Secondary, dark: \.Secondary) }
     }
     struct OnSecondary: EnvironmentKey {
-        static var defaultValue: UIColor { dynamic(light: L.OnSecondary, dark: D.OnSecondary) }
+        static var defaultValue: UIColor { .adaptive(light: \.OnSecondary, dark: \.OnSecondary) }
     }
     struct SecondaryVariant: EnvironmentKey {
-        static var defaultValue: UIColor { dynamic(light: L.SecondaryVariant, dark: D.SecondaryVariant) }
+        static var defaultValue: UIColor { .adaptive(light: \.SecondaryVariant, dark: \.SecondaryVariant) }
     }
     struct Background: EnvironmentKey {
-        static var defaultValue: UIColor { dynamic(light: L.Background, dark: D.Background) }
+        static var defaultValue: UIColor { .adaptive(light: \.Background, dark: \.Background) }
     }
     struct OnBackground: EnvironmentKey {
-        static var defaultValue: UIColor { dynamic(light: L.OnBackground, dark: D.OnBackground) }
+        static var defaultValue: UIColor { .adaptive(light: \.OnBackground, dark: \.OnBackground) }
     }
     struct Surface: EnvironmentKey {
-        static var defaultValue: UIColor { dynamic(light: L.Surface, dark: D.Surface) }
+        static var defaultValue: UIColor { .adaptive(light: \.Surface, dark: \.Surface) }
     }
     struct OnSurface: EnvironmentKey {
-        static var defaultValue: UIColor { dynamic(light: L.OnSurface, dark: D.OnSurface) }
+        static var defaultValue: UIColor { .adaptive(light: \.OnSurface, dark: \.OnSurface) }
     }
     struct Error: EnvironmentKey {
-        static var defaultValue: UIColor { dynamic(light: L.Error, dark: D.Error) }
+        static var defaultValue: UIColor { .adaptive(light: \.Error, dark: \.Error) }
     }
     struct OnError: EnvironmentKey {
-        static var defaultValue: UIColor { dynamic(light: L.OnError, dark: D.OnError) }
+        static var defaultValue: UIColor { .adaptive(light: \.OnError, dark: \.OnError) }
     }
 }
 
@@ -117,12 +105,21 @@ public extension EnvironmentValues {
     }
 }
 
-public extension Int64 {
-    var color: Color {
-        return Color(uiColor)
-    }
+// MARK: - From Kotlin
 
-    var uiColor: UIColor {
+private extension UIColor {
+    static func adaptive(light: KeyPath<ColorPalette.DefaultLight, UInt64>,
+                         dark: KeyPath<ColorPalette.DefaultDark, UInt64>) -> UIColor {
+        UIColor { traits in
+            traits.userInterfaceStyle == .dark ?
+                ColorPalette.DefaultDark()[keyPath: dark].color :
+                ColorPalette.DefaultLight()[keyPath: light].color
+        }
+    }
+}
+
+extension UInt64 {
+    var color: UIColor {
         let a = CGFloat((self & 0xff000000) >> 24) / 255
         let r = CGFloat((self & 0x00ff0000) >> 16) / 255
         let g = CGFloat((self & 0x0000ff00) >> 8) / 255
@@ -132,8 +129,10 @@ public extension Int64 {
     }
 }
 
+// MARK: - To Kotlin
+
 extension UIColor {
-    func i64(_ colorScheme: ColorScheme) -> Int64 {
+    func ui64(_ colorScheme: ColorScheme) -> UInt64 {
 
         var r: CGFloat = 0
         var g: CGFloat = 0
@@ -143,7 +142,7 @@ extension UIColor {
         let color = resolvedColor(with: UITraitCollection(userInterfaceStyle: colorScheme.interfaceStyle))
         color.getRed(&r, green: &g, blue: &b, alpha: &a)
 
-        return (Int64)(a*255)<<24 | (Int64)(r*255)<<16 | (Int64)(g*255)<<8 | (Int64)(b*255)<<0
+        return (UInt64)(a*255)<<24 | (UInt64)(r*255)<<16 | (UInt64)(g*255)<<8 | (UInt64)(b*255)<<0
     }
 }
 

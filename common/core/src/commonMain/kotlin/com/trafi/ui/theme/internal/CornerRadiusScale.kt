@@ -1,15 +1,15 @@
 package com.trafi.ui.theme.internal
 
 object CornerRadiusScale {
-    const val none = 0
-    const val xxs = 4
-    const val xs = 6
-    const val sm = 8
-    const val lg = 12
-    const val xl = 20
-    const val round = infinity
+    val none = 0.dp
+    val xxs = 4.dp
+    val xs = 6.dp
+    val sm = 8.dp
+    val lg = 12.dp
+    val xl = 20.dp
+    val round = maxValue.dp
 
     object Default {
-        const val ButtonRadius = round
+        val ButtonRadius = round
     }
 }

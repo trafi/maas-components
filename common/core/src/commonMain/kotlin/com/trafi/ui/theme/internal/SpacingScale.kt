@@ -1,17 +1,17 @@
 package com.trafi.ui.theme.internal
 
 object SpacingScale {
-    const val xxxs = 2
-    const val xxs = 4
-    const val xs = 8
-    const val sm = 12
-    const val md = 16
-    const val lg = 20
-    const val xl = 24
-    const val xxl = 32
-    const val xxxl = 48
+    val xxxs = 2.dp
+    val xxs = 4.dp
+    val xs = 8.dp
+    val sm = 12.dp
+    val md = 16.dp
+    val lg = 20.dp
+    val xl = 24.dp
+    val xxl = 32.dp
+    val xxxl = 48.dp
 
     object Default {
-        const val GlobalMargin = xl
+        val GlobalMargin = xl
     }
 }

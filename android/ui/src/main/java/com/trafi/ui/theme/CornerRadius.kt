@@ -5,17 +5,16 @@ package com.trafi.ui.theme
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.trafi.ui.theme.internal.CornerRadiusScale
 
 object CornerRadius {
-    @Stable val none: Dp = CornerRadiusScale.none.dp
-    @Stable val xxs: Dp = CornerRadiusScale.xxs.dp
-    @Stable val xs: Dp = CornerRadiusScale.xs.dp
-    @Stable val sm: Dp = CornerRadiusScale.sm.dp
-    @Stable val lg: Dp = CornerRadiusScale.lg.dp
-    @Stable val xl: Dp = CornerRadiusScale.xl.dp
-    @Stable val round: Dp = CornerRadiusScale.round.dp
+    @Stable val none: Dp = CornerRadiusScale.none
+    @Stable val xxs: Dp = CornerRadiusScale.xxs
+    @Stable val xs: Dp = CornerRadiusScale.xs
+    @Stable val sm: Dp = CornerRadiusScale.sm
+    @Stable val lg: Dp = CornerRadiusScale.lg
+    @Stable val xl: Dp = CornerRadiusScale.xl
+    @Stable val round: Dp = CornerRadiusScale.round
 }
 
 @Stable
@@ -24,5 +23,5 @@ internal val Dp.isRound: Boolean
 
 @Immutable
 data class MaasCornerRadius(
-    val buttonRadius: Dp = CornerRadiusScale.Default.ButtonRadius.dp
+    val buttonRadius: Dp = CornerRadiusScale.Default.ButtonRadius
 )

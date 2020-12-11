@@ -1,5 +1,5 @@
 package com.trafi.ui.theme.internal
 
 class CurrentSpacingScale(
-    val globalMargin: OsDimension,
+    val globalMargin: Dp,
 )

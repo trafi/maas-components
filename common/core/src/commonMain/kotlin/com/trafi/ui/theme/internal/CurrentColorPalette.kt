@@ -1,16 +1,16 @@
 package com.trafi.ui.theme.internal
 
 class CurrentColorPalette(
-    val primary: OsColor,
-    val primaryVariant: OsColor,
-    val secondary: OsColor,
-    val secondaryVariant: OsColor,
-    val background: OsColor,
-    val surface: OsColor,
-    val error: OsColor,
-    val onPrimary: OsColor,
-    val onSecondary: OsColor,
-    val onBackground: OsColor,
-    val onSurface: OsColor,
-    val onError: OsColor,
+    val primary: Color,
+    val primaryVariant: Color,
+    val secondary: Color,
+    val secondaryVariant: Color,
+    val background: Color,
+    val surface: Color,
+    val error: Color,
+    val onPrimary: Color,
+    val onSecondary: Color,
+    val onBackground: Color,
+    val onSurface: Color,
+    val onError: Color,
 )
