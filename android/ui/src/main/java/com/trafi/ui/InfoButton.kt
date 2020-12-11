@@ -1,5 +1,6 @@
 package com.trafi.ui
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -37,6 +38,7 @@ object InfoButtonConstants {
 @Composable
 fun InfoButton(
     text: String,
+    @DrawableRes iconRes: Int,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true
@@ -62,7 +64,7 @@ fun InfoButton(
             if (!enabled) it.copy(alpha = ContentAlpha.disabled) else it
         }
         Icon(
-            imageVector = vectorResource(id = R.drawable.ic_help_info_s),
+            imageVector = vectorResource(id = iconRes),
             modifier = modifier.padding(end = Spacing.xs),
             tint = iconTint
         )
@@ -77,7 +79,11 @@ fun InfoButton(
 @Composable
 fun InfoButtonPreview() {
     MaasTheme {
-        InfoButton("Info", onClick = {})
+        InfoButton(
+            text = "Info",
+            iconRes = R.drawable.ic_help_info_s,
+            onClick = {}
+        )
     }
 }
 
@@ -85,7 +91,11 @@ fun InfoButtonPreview() {
 @Composable
 fun InfoButtonStyledCornerRadiusPreview() {
     MaasTheme(cornerRadius = MaasCornerRadius(buttonRadius = 0.dp)) {
-        InfoButton("Info", onClick = {})
+        InfoButton(
+            text = "Info",
+            iconRes = R.drawable.ic_help_info_s,
+            onClick = {}
+        )
     }
 }
 
@@ -93,7 +103,12 @@ fun InfoButtonStyledCornerRadiusPreview() {
 @Composable
 fun InfoButtonDisabledPreview() {
     MaasTheme {
-        InfoButton("Info", enabled = false, onClick = {})
+        InfoButton(
+            text = "Info",
+            iconRes = R.drawable.ic_help_info_s,
+            enabled = false,
+            onClick = {}
+        )
     }
 }
 
@@ -101,7 +116,11 @@ fun InfoButtonDisabledPreview() {
 @Composable
 fun InfoButtonStyledDarkPreview() {
     MaasTheme(colors = MaasTheme.darkColors()) {
-        InfoButton("Info", onClick = {})
+        InfoButton(
+            text = "How it works",
+            iconRes = R.drawable.ic_help_info_s,
+            onClick = {}
+        )
     }
 }
 
@@ -109,6 +128,11 @@ fun InfoButtonStyledDarkPreview() {
 @Composable
 fun InfoButtonStyledDarkDisabledPreview() {
     MaasTheme(colors = MaasTheme.darkColors()) {
-        InfoButton("Info", enabled = false, onClick = {})
+        InfoButton(
+            text = "How it works",
+            iconRes = R.drawable.ic_help_info_s,
+            enabled = false,
+            onClick = {}
+        )
     }
 }
