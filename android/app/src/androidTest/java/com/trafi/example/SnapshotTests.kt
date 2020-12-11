@@ -11,25 +11,20 @@ import com.trafi.ui.theme.MaasTheme
 import org.junit.Rule
 import org.junit.Test
 
-class SnapshotTests: ScreenshotTest {
-
+class SnapshotTests : ScreenshotTest {
     @get: Rule
     val composeTestRule = createComposeRule()
 
     @Test
-    fun renderButton(){
-        composeTestRule.setContent {
-            MaasTheme(cornerRadius = MaasCornerRadius(buttonRadius = 0.dp)) {
-                Button("Unlock now", onClick = {})
-            }
-        }
+    fun buttonTest(){
+        renderButton("Update now")
         compareScreenshot(composeTestRule, "test")
     }
 
     private fun renderButton(text: String){
         composeTestRule.setContent {
             MaasTheme(cornerRadius = MaasCornerRadius(buttonRadius = 0.dp)) {
-                Button("Unlock now", onClick = {})
+                Button(text, onClick = {})
             }
         }
         composeTestRule.onNodeWithText(text).assertIsDisplayed()
