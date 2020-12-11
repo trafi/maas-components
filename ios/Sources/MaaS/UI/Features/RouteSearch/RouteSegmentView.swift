@@ -1,5 +1,4 @@
 import SwiftUI
-import Snapped
 
 struct RouteSegmentView: View {
 
@@ -70,5 +69,7 @@ struct RouteSegmentView_Previews: PreviewProvider, Snapped {
             "Mock3": RouteSegmentView(segment: MockRouteKt.mockSegment3),
         ]
     }
+
+    static var elementWidth: CGFloat? { 160 }
 }
 #endif

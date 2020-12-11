@@ -117,6 +117,8 @@ struct Badge_Previews: PreviewProvider, Snapped {
             "Amazing": Badge(input: .init(style: .medium, color: .black, icon: UIImage(systemName: "tram"), text: "40", subBadge: UIImage(systemName: "tram"))),
         ]
     }
+
+    static var elementWidth: CGFloat? { 120 }
 }
 #endif
 

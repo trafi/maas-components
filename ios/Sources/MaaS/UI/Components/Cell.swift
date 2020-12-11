@@ -56,35 +56,41 @@ struct Cell<P: View, S: View, C: View>: View {
 }
 
 #if DEBUG
-// TODO: Snapped doesn't work well with generics :(
-struct Cell_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            Cell {
-                Text("Hello")
-            }
+struct Cell_Previews: PreviewProvider, Snapped {
 
-            Cell {
-                Text("Hello")
-            } prefix: {
-                Text("Pre")
-            }
+    static var snapped: [String: AnyView] {
+        [
+            "Simple": AnyView(
+                Cell {
+                    Text("Hello")
+                }),
 
-            Cell {
-                Text("Hello")
-            } suffix: {
-                Text("Suff")
-            }
+            "Prefix": AnyView(
+                Cell {
+                    Text("Hello")
+                } prefix: {
+                    Text("Pre")
+                }),
 
-            Cell {
-                Text("Hello")
-            } prefix: {
-                Text("Pre")
-            } suffix: {
-                Text("Suff")
-            }
-        }
-        .previewLayout(.fixed(width: 320, height: 60))
+            "Suffix": AnyView(
+                Cell {
+                    Text("Hello")
+                } suffix: {
+                    Text("Suff")
+                }),
+
+            "Complex": AnyView(
+                Cell {
+                    Text("Hello")
+                } prefix: {
+                    Text("Pre")
+                } suffix: {
+                    Text("Suff")
+                }),
+        ]
     }
+
+    static var paddingEdges: Edge.Set { [] }
+    static var elementWidth: CGFloat? { 320 }
 }
 #endif
