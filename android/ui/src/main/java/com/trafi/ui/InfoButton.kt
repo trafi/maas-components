@@ -38,9 +38,9 @@ object InfoButtonConstants {
 @Composable
 fun InfoButton(
     text: String,
-    @DrawableRes iconRes: Int,
-    onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    @DrawableRes iconRes: Int = R.drawable.ic_help_info_s,
+    onClick: () -> Unit,
     enabled: Boolean = true
 ) {
     androidx.compose.material.Button(
@@ -81,7 +81,6 @@ fun InfoButtonPreview() {
     MaasTheme {
         InfoButton(
             text = "Info",
-            iconRes = R.drawable.ic_help_info_s,
             onClick = {}
         )
     }
@@ -93,7 +92,6 @@ fun InfoButtonStyledCornerRadiusPreview() {
     MaasTheme(cornerRadius = MaasCornerRadius(buttonRadius = 0.dp)) {
         InfoButton(
             text = "Info",
-            iconRes = R.drawable.ic_help_info_s,
             onClick = {}
         )
     }
@@ -105,7 +103,6 @@ fun InfoButtonDisabledPreview() {
     MaasTheme {
         InfoButton(
             text = "Info",
-            iconRes = R.drawable.ic_help_info_s,
             enabled = false,
             onClick = {}
         )
@@ -118,7 +115,6 @@ fun InfoButtonStyledDarkPreview() {
     MaasTheme(colors = MaasTheme.darkColors()) {
         InfoButton(
             text = "How it works",
-            iconRes = R.drawable.ic_help_info_s,
             onClick = {}
         )
     }
@@ -130,7 +126,6 @@ fun InfoButtonStyledDarkDisabledPreview() {
     MaasTheme(colors = MaasTheme.darkColors()) {
         InfoButton(
             text = "How it works",
-            iconRes = R.drawable.ic_help_info_s,
             enabled = false,
             onClick = {}
         )
