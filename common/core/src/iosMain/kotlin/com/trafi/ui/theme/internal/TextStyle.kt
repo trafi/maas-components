@@ -2,14 +2,14 @@ package com.trafi.ui.theme.internal
 
 import platform.UIKit.*
 
-actual typealias OsTextStyle = UIFont
+actual typealias TextStyle = UIFont
 
-internal actual fun OsTextStyle.copy(
+internal actual fun TextStyle.copy(
     fontStyle: BasicFontStyle?,
     fontWeight: BasicFontWeight?,
     fontSize: Int?,
     lineHeight: Int?,
-): OsTextStyle {
+): TextStyle {
     var descriptor = this.fontDescriptor
     if (fontStyle?.os != null) {
         descriptor = descriptor.fontDescriptorWithSymbolicTraits(fontStyle.os!!) ?: descriptor
@@ -25,12 +25,12 @@ internal actual fun OsTextStyle.copy(
     return UIFont.fontWithDescriptor(descriptor,fontSize?.os ?: this.pointSize)
 }
 
-internal actual fun OsTextStyle(
+internal actual fun TextStyle(
     fontStyle: BasicFontStyle,
     fontWeight: BasicFontWeight,
     fontSize: Int,
     lineHeight: Int,
-): OsTextStyle = UIFont.systemFontOfSize(fontSize.os).copy(fontStyle, fontWeight, lineHeight)
+): TextStyle = UIFont.systemFontOfSize(fontSize.os).copy(fontStyle, fontWeight, lineHeight)
 
 private val BasicFontStyle.os get() = when (this) {
     BasicFontStyle.Normal -> null

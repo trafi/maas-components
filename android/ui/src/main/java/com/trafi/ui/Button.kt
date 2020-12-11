@@ -5,45 +5,19 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.trafi.ui.theme.Grey200
+import com.trafi.ui.component.internal.ButtonConstants
 import com.trafi.ui.theme.MaasCornerRadius
 import com.trafi.ui.theme.MaasTheme
+import com.trafi.ui.theme.currentTheme
 import com.trafi.ui.theme.isRound
 import com.trafi.ui.theme.lightColors
 
-object ButtonConstants {
-    @Composable
-    val defaultColor: Color
-        get() = MaasTheme.colors.primary
-
-    @Stable
-    val disabledColor: Color
-        get() = Grey200
-
-    @Composable
-    val defaultContentColor: Color
-        get() = MaasTheme.colors.onPrimary
-
-    @Composable
-    val textStyle: TextStyle
-        get() = MaasTheme.typography.textL.copy(fontWeight = FontWeight.Bold)
-
-    @Stable
-    val minHeight: Dp
-        get() = 48.dp
-
-    @Composable
-    val cornerRadius: Dp
-        get() = MaasTheme.cornerRadius.buttonRadius
-}
+@Composable
+private val constants get() = ButtonConstants(currentTheme)
 
 @Composable
 fun Button(
@@ -51,27 +25,27 @@ fun Button(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    color: Color = ButtonConstants.defaultColor,
-    contentColor: Color = ButtonConstants.defaultContentColor,
+    color: Color = constants.defaultColor,
+    contentColor: Color = constants.defaultContentColor,
 ) {
     androidx.compose.material.Button(
         onClick = onClick,
-        modifier = modifier.heightIn(min = ButtonConstants.minHeight).fillMaxWidth(),
+        modifier = modifier.heightIn(min = constants.minHeight).fillMaxWidth(),
         enabled = enabled,
-        shape = if (ButtonConstants.cornerRadius.isRound) {
+        shape = if (constants.cornerRadius.isRound) {
             RoundedCornerShape(percent = 50)
         } else {
-            RoundedCornerShape(ButtonConstants.cornerRadius)
+            RoundedCornerShape(constants.cornerRadius)
         },
         colors = androidx.compose.material.ButtonConstants.defaultButtonColors(
             backgroundColor = color,
-            disabledBackgroundColor = ButtonConstants.disabledColor,
+            disabledBackgroundColor = constants.disabledColor,
             contentColor = contentColor
         )
     ) {
         Text(
             text,
-            style = ButtonConstants.textStyle
+            style = constants.textStyle
         )
     }
 }
