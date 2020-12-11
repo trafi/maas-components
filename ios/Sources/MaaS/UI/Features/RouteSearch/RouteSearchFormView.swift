@@ -38,7 +38,7 @@ struct RouteSearchFormView: View {
                     }
                 }
             }.padding()
-            Button(action: {}, label: {
+            SwiftUI.Button(action: {}, label: {
                 Image(systemName: "arrow.up.arrow.down")
                     .accentColor(.black)
                     .frame(width: 60, height: 60)
