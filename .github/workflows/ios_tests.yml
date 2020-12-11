@@ -16,4 +16,4 @@ jobs:
       - name: PackagesUpdate
         run: swift package update
       - name: Test
-        run: swift test
+        run: xcodebuild -scheme MaaS-Package test -sdk iphonesimulator -destination 'platform=iOS Simulaname=iPhone 8'
