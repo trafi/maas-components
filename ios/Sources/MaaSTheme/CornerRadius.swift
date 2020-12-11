@@ -2,8 +2,8 @@ import SwiftUI
 import UIKit
 import MaasCore
 
-struct CornerRadiusButton: EnvironmentKey {
-    static var defaultValue: CGFloat { CornerRadiusScale.Default().ButtonRadius.cgFloat }
+private struct CornerRadiusButton: EnvironmentKey {
+    static var defaultValue: CGFloat { CGFloat(CornerRadiusScale.Default().ButtonRadius) }
 }
 public extension EnvironmentValues {
     var cornerRadiusButton: CGFloat {
@@ -24,16 +24,4 @@ public struct CornerRadius {
     public static var lg: CornerRadius { .init(value: CGFloat(CornerRadiusScale().lg)) }
     public static var xl: CornerRadius { .init(value: CGFloat(CornerRadiusScale().xl)) }
     public static var round: CornerRadius { .init(value: CGFloat(CornerRadiusScale().round)) }
-}
-
-public extension Float {
-    public var cgFloat: CGFloat {
-        self == Float.infinity ? .greatestFiniteMagnitude : CGFloat(self)
-    }
-}
-
-public extension CGFloat {
-    public var float: Float {
-        self == CGFloat.greatestFiniteMagnitude ? Float.infinity : Float(self)
-    }
 }

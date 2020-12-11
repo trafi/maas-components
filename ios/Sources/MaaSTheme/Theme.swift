@@ -8,18 +8,18 @@ public extension EnvironmentValues {
         get {
             CurrentTheme(
                 colorPalette: CurrentColorPalette(
-                    primary: uiColorPrimary.i64(colorScheme),
-                    primaryVariant: uiColorPrimaryVariant.i64(colorScheme),
-                    secondary: uiColorSecondary.i64(colorScheme),
-                    secondaryVariant: uiColorSecondaryVariant.i64(colorScheme),
-                    background: uiColorBackground.i64(colorScheme),
-                    surface: uiColorSurface.i64(colorScheme),
-                    error: uiColorError.i64(colorScheme),
-                    onPrimary: uiColorOnPrimary.i64(colorScheme),
-                    onSecondary: uiColorOnSecondary.i64(colorScheme),
-                    onBackground: uiColorOnBackground.i64(colorScheme),
-                    onSurface: uiColorOnSurface.i64(colorScheme),
-                    onError: uiColorOnError.i64(colorScheme)),
+                    primary: uiColorPrimary.ui64(colorScheme),
+                    primaryVariant: uiColorPrimaryVariant.ui64(colorScheme),
+                    secondary: uiColorSecondary.ui64(colorScheme),
+                    secondaryVariant: uiColorSecondaryVariant.ui64(colorScheme),
+                    background: uiColorBackground.ui64(colorScheme),
+                    surface: uiColorSurface.ui64(colorScheme),
+                    error: uiColorError.ui64(colorScheme),
+                    onPrimary: uiColorOnPrimary.ui64(colorScheme),
+                    onSecondary: uiColorOnSecondary.ui64(colorScheme),
+                    onBackground: uiColorOnBackground.ui64(colorScheme),
+                    onSurface: uiColorOnSurface.ui64(colorScheme),
+                    onError: uiColorOnError.ui64(colorScheme)),
                 typographyScale: CurrentTypographyScale(
                     headingXXL: uiFontHeadingXXL,
                     headingXL: uiFontHeadingXL,
@@ -31,10 +31,10 @@ public extension EnvironmentValues {
                     label: uiFontLabel
                 ),
                 spacingScale: CurrentSpacingScale(
-                    globalMargin: Float(SpacingScale.Default().GlobalMargin)
+                    globalMargin: Float(spacingGlobalMargin)
                 ),
                 cornerRadiusScale: CurrentCornerRadiusScale(
-                    buttonRadius: cornerRadiusButton.float)
+                    buttonRadius: Float(cornerRadiusButton))
             )
         }
     }
