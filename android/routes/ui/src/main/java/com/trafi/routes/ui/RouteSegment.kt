@@ -1,25 +1,14 @@
 package com.trafi.routes.ui
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.ExperimentalLayout
-import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.defaultMinSizeConstraints
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.preferredHeight
-import androidx.compose.foundation.layout.preferredWidth
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.AmbientContentColor
-import androidx.compose.material.Divider
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,11 +21,9 @@ import com.trafi.core.model.SharedVehicle
 import com.trafi.routes.ui.internal.endTimeMillis
 import com.trafi.routes.ui.internal.startTimeMillis
 import com.trafi.routes.ui.mock.RouteSegmentPreviewParameterProvider
-import com.trafi.routes.ui.themes.LocalSpacing
-import com.trafi.routes.ui.themes.LocalSpacing.badgeHorizontalPadding
-import com.trafi.routes.ui.themes.LocalSpacing.badgeSpacer
+import com.trafi.ui.Badge
+import com.trafi.ui.BadgeType
 import com.trafi.ui.theme.MaasTheme
-import com.trafi.ui.theme.internal.ColorPalette
 
 typealias PersonalVehicleType = RouteSegmentPersonalVehicle.Vehicle
 
@@ -61,6 +48,8 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
                 color = color,
                 vector = vector,
                 text = transit.schedule.name,
+                subbadge = vectorResource(id = R.drawable.warning_warning_s),
+                badgeType = BadgeType.MEDIUM_BADGE,
                 modifier = modifier
             )
         }
@@ -77,6 +66,8 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
                 color = color,
                 vector = vector,
                 text = hailing.provider?.name,
+                subbadge = vectorResource(id = R.drawable.warning_warning_s),
+                badgeType = BadgeType.MEDIUM_BADGE,
                 modifier = modifier
             )
         }
@@ -104,6 +95,8 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
                 color = color,
                 vector = vector,
                 text = sharing.provider?.name,
+                subbadge = vectorResource(id = R.drawable.warning_warning_s),
+                badgeType = BadgeType.MEDIUM_BADGE,
                 modifier = modifier
             )
         }
@@ -156,57 +149,23 @@ private val Long.millisToDurationText: String
 private fun String.parseColor(): Color =
     Color(android.graphics.Color.parseColor("#$this"))
 
-@OptIn(ExperimentalLayout::class)
-@Composable
-private fun Badge(
-    color: Color,
-    vector: ImageVector?,
-    text: String?,
-    modifier: Modifier = Modifier
-) {
-    Surface(
-        color = color,
-        contentColor = Color.White,
-        shape = RoundedCornerShape(4.dp),
-        modifier = modifier
-    ) {
-        Row(
-            modifier = Modifier
-                .padding(horizontal = badgeHorizontalPadding.dp)
-                .preferredHeight(IntrinsicSize.Min)
-        ) {
-            vector?.let {
-                Image(
-                    vector,
-                    colorFilter = ColorFilter.tint(AmbientContentColor.current),
-                    modifier = Modifier.align(Alignment.CenterVertically)
-                        .padding(end = badgeSpacer.dp)
-                )
-            }
-            text?.let {
-                Text(
-                    text = text,
-                    style = MaasTheme.typography.textM.copy(fontWeight = FontWeight.SemiBold)
-                )
-            }
-        }
-    }
-}
 
-@Preview
+@Preview()
 @Composable
 private fun BadgePreview() {
     Badge(
         color = Color.Magenta,
         vector = vectorResource(R.drawable.providers_ubahn_xs),
+        subbadge = vectorResource(id = R.drawable.warning_warning_s),
+        badgeType = BadgeType.MEDIUM_BADGE,
         text = "5G"
     )
 }
 
-@Preview(showBackground = false)
-@Composable
-private fun RouteSegmentPreview(
-    @PreviewParameter(RouteSegmentPreviewParameterProvider::class) segment: RouteSegment
-) {
-    RouteSegment(segment)
-}
+//@Preview(showBackground = false)
+//@Composable
+//private fun RouteSegmentPreview(
+//    @PreviewParameter(RouteSegmentPreviewParameterProvider::class) segment: RouteSegment
+//) {
+//    RouteSegment(segment)
+//}
