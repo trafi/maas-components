@@ -3,8 +3,14 @@ on:
   workflow_dispatch:
   push:
     branches: main
+    paths:
+      - android/**
+      - common/**
   pull_request:
     branches: main
+    paths:
+      - android/**
+      - common/**
 jobs:
   Build:
     runs-on: ubuntu-latest
