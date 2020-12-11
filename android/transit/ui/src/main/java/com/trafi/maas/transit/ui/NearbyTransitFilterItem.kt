@@ -24,7 +24,7 @@ import com.trafi.ui.component.MultiSelectFilter
 import com.trafi.ui.component.SingleSelectFilter
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.currentTheme
-import com.trafi.ui.theme.internal.toColor
+import com.trafi.ui.theme.internal.type.toColor
 import com.trafi.ui.theme.isRound
 
 @Composable

@@ -1,5 +1,10 @@
 package com.trafi.ui.theme.internal
 
+import com.trafi.ui.theme.internal.type.BasicFontStyle
+import com.trafi.ui.theme.internal.type.BasicFontWeight
+import com.trafi.ui.theme.internal.type.Color
+import com.trafi.ui.theme.internal.type.TextStyle
+
 internal const val maxValue = Float.MAX_VALUE
 
 internal fun textStyle(builder: TextStyleBuilder.() -> Unit): TextStyle =
@@ -19,15 +24,4 @@ internal class TextStyleBuilder(
         lineHeight = requireNotNull(lineHeight),
         color = color,
     )
-}
-
-enum class BasicFontStyle {
-    Normal,
-    Italic,
-}
-
-enum class BasicFontWeight {
-    Normal,
-    SemiBold,
-    Bold,
 }

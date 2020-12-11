@@ -1,9 +1,11 @@
 package com.trafi.ui.component.internal
 
-import com.trafi.ui.theme.internal.*
-import com.trafi.ui.theme.internal.BasicFontWeight.Bold
-import com.trafi.ui.theme.internal.copy
-import com.trafi.ui.theme.internal.dp
+import com.trafi.ui.theme.internal.CornerRadiusScale
+import com.trafi.ui.theme.internal.CurrentTheme
+import com.trafi.ui.theme.internal.SpacingScale
+import com.trafi.ui.theme.internal.type.BasicFontWeight.*
+import com.trafi.ui.theme.internal.type.copy
+import com.trafi.ui.theme.internal.type.dp
 
 class BadgeConstants(theme: CurrentTheme) {
     val defaultContentColor = theme.colorPalette.onPrimary

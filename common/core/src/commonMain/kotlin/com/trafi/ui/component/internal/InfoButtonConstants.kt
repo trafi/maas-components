@@ -1,8 +1,11 @@
 package com.trafi.ui.component.internal
 
-import com.trafi.ui.theme.internal.*
-import com.trafi.ui.theme.internal.BasicFontWeight.*
-import com.trafi.ui.theme.internal.copy
+import com.trafi.ui.theme.internal.CurrentTheme
+import com.trafi.ui.theme.internal.SpacingScale
+import com.trafi.ui.theme.internal.type.BasicFontWeight.*
+import com.trafi.ui.theme.internal.type.alpha
+import com.trafi.ui.theme.internal.type.copy
+import com.trafi.ui.theme.internal.type.dp
 
 class InfoButtonConstants(theme: CurrentTheme) {
     val iconWidth = 16.dp

@@ -1,6 +1,6 @@
 package com.trafi.ui.component.internal
 
-import com.trafi.ui.theme.internal.Color
+import com.trafi.ui.theme.internal.type.Color
 
 class Gradient(
     val direction: Direction,

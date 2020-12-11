@@ -1,6 +1,6 @@
 package com.trafi.ui.theme
 
-import com.trafi.ui.theme.internal.Color
+import com.trafi.ui.theme.internal.type.Color
 
 class GrayScale(
     val gray100 : Color,
