@@ -12,7 +12,6 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.trafi.core.model.RouteSegment
@@ -20,9 +19,7 @@ import com.trafi.core.model.RouteSegmentPersonalVehicle
 import com.trafi.core.model.SharedVehicle
 import com.trafi.routes.ui.internal.endTimeMillis
 import com.trafi.routes.ui.internal.startTimeMillis
-import com.trafi.routes.ui.mock.RouteSegmentPreviewParameterProvider
-import com.trafi.ui.Badge
-import com.trafi.ui.BadgeType
+import com.trafi.ui.*
 import com.trafi.ui.theme.MaasTheme
 
 typealias PersonalVehicleType = RouteSegmentPersonalVehicle.Vehicle
@@ -32,7 +29,8 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
     when (segment.mode) {
         RouteSegment.Mode.TRANSIT -> {
             val transit = segment.transit ?: return
-            val color = transit.schedule.color.parseColor()
+            val badge = transit.schedule.toBadgeInfo()
+            val alternativeBadges = transit.alternatives.map { it.schedule.toBadgeInfo() }
             val vector = vectorResource(
                 when (transit.schedule.transportType) {
                     "ubahn" -> R.drawable.providers_ubahn_xs
@@ -45,9 +43,9 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
                 }
             )
             Badge(
-                color = color,
+                badge = badge,
+                alternativeBadges = alternativeBadges,
                 vector = vector,
-                text = transit.schedule.name,
                 subbadge = vectorResource(id = R.drawable.warning_warning_s),
                 badgeType = BadgeType.MEDIUM_BADGE,
                 modifier = modifier
@@ -55,7 +53,7 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
         }
         RouteSegment.Mode.RIDE_HAILING -> {
             val hailing = segment.rideHailing ?: return
-            val color = hailing.provider?.color?.parseColor() ?: Color.Black
+            val badge = hailing.provider?.toBadgeInfo()
             val vector = vectorResource(
                 when (hailing.provider?.icon) {
                     "berlkonig" -> R.drawable.providers_berlkonig_xs
@@ -63,9 +61,8 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
                 }
             )
             Badge(
-                color = color,
+                badge = badge,
                 vector = vector,
-                text = hailing.provider?.name,
                 subbadge = vectorResource(id = R.drawable.warning_warning_s),
                 badgeType = BadgeType.MEDIUM_BADGE,
                 modifier = modifier
@@ -73,7 +70,7 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
         }
         RouteSegment.Mode.SHARING -> {
             val sharing = segment.sharing ?: return
-            val color = sharing.provider?.color?.parseColor() ?: Color.Black
+            val badge = sharing.provider?.toBadgeInfo()
             val providerIconRes = when (sharing.provider?.icon) {
                 "tier" -> R.drawable.providers_tier_xs
                 "voi" -> R.drawable.providers_voi_xs
@@ -92,9 +89,8 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
             }
             val vector = (providerIconRes ?: transportIconRes)?.let { vectorResource(it) }
             Badge(
-                color = color,
+                badge = badge,
                 vector = vector,
-                text = sharing.provider?.name,
                 subbadge = vectorResource(id = R.drawable.warning_warning_s),
                 badgeType = BadgeType.MEDIUM_BADGE,
                 modifier = modifier
@@ -154,11 +150,76 @@ private fun String.parseColor(): Color =
 @Composable
 private fun BadgePreview() {
     Badge(
-        color = Color.Magenta,
+        badge = BadgeInfo("5G", Color.Magenta),
+        vector = vectorResource(R.drawable.providers_ubahn_xs),
+        badgeType = BadgeType.MEDIUM_BADGE
+    )
+}
+
+@Preview
+@Composable
+private fun BadgePreviewWithSubbadge() {
+    Badge(
+        badge = BadgeInfo("5G", Color.Magenta),
         vector = vectorResource(R.drawable.providers_ubahn_xs),
         subbadge = vectorResource(id = R.drawable.warning_warning_s),
-        badgeType = BadgeType.MEDIUM_BADGE,
-        text = "5G"
+        badgeType = BadgeType.MEDIUM_BADGE
+    )
+}
+
+@Preview
+@Composable
+private fun SmallBadgePreview() {
+    Badge(
+        badge = BadgeInfo("5G", Color.Magenta),
+        badgeType = BadgeType.SMALL_BADGE
+    )
+}
+
+@Preview
+@Composable
+private fun SmallBadgeWithIconPreview() {
+    Badge(
+        badge = BadgeInfo("5G", Color.Magenta),
+        vector = vectorResource(R.drawable.providers_ubahn_xs),
+        badgeType = BadgeType.SMALL_BADGE
+    )
+}
+
+@Preview
+@Composable
+private fun BadgeWithoutIconPreview() {
+    Badge(
+        badge = BadgeInfo("5G", Color.Magenta),
+        badgeType = BadgeType.MEDIUM_BADGE
+    )
+}
+
+@Preview
+@Composable
+private fun StackedBadgePreview() {
+    Badge(
+        badge = BadgeInfo("5G", Color.Magenta),
+        alternativeBadges = listOf(
+            BadgeInfo("5G", Color.Magenta),
+            BadgeInfo("5G", Color.Magenta)
+        ),
+        vector = vectorResource(R.drawable.providers_ubahn_xs),
+        badgeType = BadgeType.MEDIUM_BADGE
+    )
+}
+
+@Preview()
+@Composable
+private fun StackedBadgePreviewWithSubbadge() {
+    Badge(
+        badge = BadgeInfo("5G", Color.Magenta),
+        alternativeBadges = listOf(BadgeInfo("135", Color.Green),
+            BadgeInfo("13585", Color.Magenta),
+            BadgeInfo("1", Color.Green),
+            BadgeInfo("135", Color.Magenta)),
+        vector = vectorResource(R.drawable.providers_ubahn_xs),
+        badgeType = BadgeType.MEDIUM_BADGE
     )
 }
 

@@ -134,3 +134,6 @@ class MaasColorPalette(
         isLight = other.isLight
     }
 }
+
+fun String.parseColor(): Color =
+    Color(android.graphics.Color.parseColor("#$this"))
