@@ -11,6 +11,20 @@ import kotlin.jvm.JvmName
 
 expect inline class Color(val value: ULong)
 
-fun Color.tint(value : Float): Color = this
+internal fun Color.alpha(value : Float): Color {
+    require(
+        value in 0f..1f
+    ) {
+        "alpha = $value outside the range 0..1"
+    }
+    val reshiftedColor = this.value shr 32
+    val colorClearedAlpha = (reshiftedColor and 0x00ffffffUL) shl 32
+
+    val alpha = (value * 255.0f + 0.5f).toInt() shl 24
+    val shiftedAlpha = (alpha.toULong() and 0xffffffffUL) shl 32
+
+    val colorWithShiftedAlpha = shiftedAlpha or colorClearedAlpha
+    return Color(colorWithShiftedAlpha)
+}
 
 internal fun Color(color: Long) = Color((color.toULong() and 0xffffffffUL) shl 32)
