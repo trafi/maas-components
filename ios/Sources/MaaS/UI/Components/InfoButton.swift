@@ -105,6 +105,11 @@ struct InfoButton_Previews: PreviewProvider, Snapped {
             "Long title": AnyView(
                 InfoButton("Some very very very very very long title", action: {})
             ),
+
+            "Themed": AnyView(
+                InfoButton("Some title", action: {})
+                    .environment(\.uiFontTextL, UIFont(name: "Papyrus", size: 25)!)
+            ),
         ]
     }
     
