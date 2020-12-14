@@ -13,7 +13,6 @@ import com.trafi.ui.component.internal.ButtonConstants
 import com.trafi.ui.theme.MaasCornerRadius
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.currentTheme
-import com.trafi.ui.theme.isRound
 import com.trafi.ui.theme.lightColors
 
 @Composable
@@ -25,7 +24,7 @@ fun Button(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    color: Color = constants.defaultColor,
+    color: Color = constants.defaultBackgroundColor,
     contentColor: Color = constants.defaultContentColor,
 ) {
     androidx.compose.material.Button(
@@ -39,7 +38,7 @@ fun Button(
         },
         colors = androidx.compose.material.ButtonConstants.defaultButtonColors(
             backgroundColor = color,
-            disabledBackgroundColor = constants.disabledColor,
+            disabledBackgroundColor = constants.disabledBackgroundColor,
             contentColor = contentColor
         )
     ) {

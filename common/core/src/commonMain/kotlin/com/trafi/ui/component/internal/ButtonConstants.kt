@@ -7,9 +7,10 @@ import com.trafi.ui.theme.internal.dp
 import com.trafi.ui.theme.internal.tint
 
 class ButtonConstants(theme: CurrentTheme) {
-    val defaultColor = theme.colorPalette.primary
+    val defaultBackgroundColor = theme.colorPalette.primary
     val defaultContentColor = theme.colorPalette.onPrimary
-    val disabledColor = theme.colorPalette.primary.tint(0.38f)
+    val disabledBackgroundColor = theme.colorPalette.primary.tint(0.12f)
+    val disabledContentColor = theme.colorPalette.onPrimary.tint(0.38f)
     val textStyle = theme.typographyScale.textL.copy(fontWeight = Bold)
     val minHeight = 48.dp
     val cornerRadius = theme.cornerRadiusScale.buttonRadius
