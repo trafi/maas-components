@@ -11,21 +11,18 @@ import com.trafi.ui.theme.MaasCornerRadius
 import com.trafi.ui.theme.MaasTheme
 import org.junit.Rule
 import org.junit.Test
+import javax.inject.Inject
 
 class ButtonPreviews: ScreenshotTest {
-    @get: Rule
-    val composeTestRule = createComposeRule()
-
+    //@get:Rule
+    //val composeTestRule = createComposeRule()
     @Test
     fun buttonTest() {
-        PreviewTest(
-            {
-                MaasTheme(cornerRadius = MaasCornerRadius(buttonRadius = 0.dp)) {
-                    Button("Unlock now", onClick = {})
-                }
-            },
-            composeTestRule
-        ).renderAndTestView()
+        PreviewTest {
+            MaasTheme(cornerRadius = MaasCornerRadius(buttonRadius = 0.dp)) {
+                Button("Unlock now", onClick = {})
+            }
+        }.renderAndTestView()
 
     }
 }
