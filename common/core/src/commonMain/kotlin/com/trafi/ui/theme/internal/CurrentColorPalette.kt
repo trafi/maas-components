@@ -13,4 +13,17 @@ class CurrentColorPalette(
     val onBackground: Color,
     val onSurface: Color,
     val onError: Color,
+    val grayScale: GrayScale,
+)
+
+class GrayScale(
+    val gray100 : Color,
+    val gray200 : Color,
+    val gray300 : Color,
+    val gray400 : Color,
+    val gray500 : Color,
+    val gray600 : Color,
+    val gray700 : Color,
+    val gray800 : Color,
+    val gray900 : Color,
 )

@@ -24,6 +24,7 @@ internal val currentTheme: CurrentTheme
                 onBackground = onBackground,
                 onSurface = onSurface,
                 onError = onError,
+                grayScale = grayScale,
             )
         },
         typographyScale = with(MaasTheme.typography) {
