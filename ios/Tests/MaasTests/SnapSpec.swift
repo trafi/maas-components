@@ -12,7 +12,7 @@ class SnapSpec<S>: QuickSpec where S: PreviewProvider, S: Snapped {
             it("Preview") {
                 XCTAssertNil(
                     verifySnapshot(
-                        matching: S.posterPreview(detailed: true), as: .image(),
+                        matching: S.posterPreview(detailed: true), as: .image(precision: 0.99),
                         named: "\(Int(UIScreen.main.scale))x",
                         testName: S.name
                     )
