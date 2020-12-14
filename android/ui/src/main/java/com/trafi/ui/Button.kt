@@ -17,7 +17,8 @@ import com.trafi.ui.theme.currentTheme
 import com.trafi.ui.theme.lightColors
 
 @Composable
-private val constants get() = ButtonConstants(currentTheme)
+private val constants
+    get() = ButtonConstants(currentTheme)
 
 @Composable
 fun Button(
@@ -26,7 +27,9 @@ fun Button(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     color: Color = constants.defaultBackgroundColor,
+    disabledColor: Color = constants.disabledBackgroundColor,
     contentColor: Color = constants.defaultContentColor,
+    disabledContentColor: Color = constants.disabledContentColor,
 ) {
     androidx.compose.material.Button(
         onClick = onClick,
@@ -39,8 +42,9 @@ fun Button(
         },
         colors = androidx.compose.material.ButtonConstants.defaultButtonColors(
             backgroundColor = color,
-            disabledBackgroundColor = constants.disabledBackgroundColor,
-            contentColor = contentColor
+            disabledBackgroundColor = disabledColor,
+            contentColor = contentColor,
+            disabledContentColor = disabledContentColor
         )
     ) {
         Text(
