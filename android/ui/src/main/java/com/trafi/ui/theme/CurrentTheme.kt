@@ -8,7 +8,7 @@ import com.trafi.ui.theme.internal.CurrentTheme
 import com.trafi.ui.theme.internal.CurrentTypographyScale
 
 @Composable
-internal val currentTheme: CurrentTheme
+val currentTheme: CurrentTheme
     get() = CurrentTheme(
         colorPalette = with(MaasTheme.colors) {
             CurrentColorPalette(
@@ -46,7 +46,8 @@ internal val currentTheme: CurrentTheme
         },
         cornerRadiusScale = with(MaasTheme.cornerRadius) {
             CurrentCornerRadiusScale(
-                buttonRadius = buttonRadius
+                buttonRadius = buttonRadius,
+                nearbyTransitFilterItemRadius = nearbyTransitFilterItemRadius,
             )
         },
     )
