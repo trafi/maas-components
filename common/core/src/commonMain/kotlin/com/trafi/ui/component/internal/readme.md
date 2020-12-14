@@ -1,3 +1,6 @@
+## Preview
+[See in Figma](https://www.figma.com/file/1P6PQxKaqIaLjxxfy1cFtH/MaaS-Design-System?node-id=410%3A0)
+
 ## Specifications
 **Types:** Primary, Secondary.  
 **Sizes:** Small, Normal, Large.  
