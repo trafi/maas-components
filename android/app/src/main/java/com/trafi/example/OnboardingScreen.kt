@@ -15,11 +15,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.trafi.example.ui.DemoMaasTheme
-import com.trafi.ui.Button
+import com.trafi.ui.components.Button
 import com.trafi.ui.theme.MaasTheme
 
 @Composable
-fun OnboardingScreen(onComplete: () -> Unit = {}) {
+fun OnboardingScreen(onComplete: () -> Unit = {}, onTransitClick: () -> Unit = {}) {
     val asset = vectorResource(id = R.drawable.onboarding_visual)
     Column(
         modifier = Modifier
@@ -40,6 +40,10 @@ fun OnboardingScreen(onComplete: () -> Unit = {}) {
         Button(
             text = "Let's go!",
             onClick = onComplete,
+        )
+        Button(
+            text = "Transit",
+            onClick = onTransitClick,
         )
     }
 }
