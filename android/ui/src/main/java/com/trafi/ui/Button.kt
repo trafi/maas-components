@@ -64,6 +64,14 @@ fun ButtonPreview() {
 
 @Preview
 @Composable
+fun DisabledButtonPreview() {
+    MaasTheme {
+        Button("Unlock now", onClick = {}, enabled = false)
+    }
+}
+
+@Preview
+@Composable
 fun ButtonStyledCornerRadiusPreview() {
     MaasTheme(cornerRadius = MaasCornerRadius(buttonRadius = 0.dp)) {
         Button("Unlock now", onClick = {})
