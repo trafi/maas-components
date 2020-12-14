@@ -120,13 +120,19 @@ private extension UIColor {
 
 extension UInt64 {
     var color: UIColor {
-        let a = CGFloat((self & 0xff000000) >> 24) / 255
-        let r = CGFloat((self & 0x00ff0000) >> 16) / 255
-        let g = CGFloat((self & 0x0000ff00) >> 8) / 255
-        let b = CGFloat((self & 0x000000ff)) / 255
 
+        let value = self.fromKotlin
+    
+        let a = CGFloat((value & 0xff000000) >> 24) / 255
+        let r = CGFloat((value & 0x00ff0000) >> 16) / 255
+        let g = CGFloat((value & 0x0000ff00) >> 8) / 255
+        let b = CGFloat((value & 0x000000ff)) / 255
+        
         return UIColor(red: r, green: g, blue: b, alpha: a)
     }
+
+    var fromKotlin: UInt64 { self >> 32 }
+    var toKotlin: UInt64 { self << 32 }
 }
 
 // MARK: - To Kotlin
@@ -142,7 +148,9 @@ extension UIColor {
         let color = resolvedColor(with: UITraitCollection(userInterfaceStyle: colorScheme.interfaceStyle))
         color.getRed(&r, green: &g, blue: &b, alpha: &a)
 
-        return (UInt64)(a*255)<<24 | (UInt64)(r*255)<<16 | (UInt64)(g*255)<<8 | (UInt64)(b*255)<<0
+        let colorValue = (UInt64)(a*255)<<24 | (UInt64)(r*255)<<16 | (UInt64)(g*255)<<8 | (UInt64)(b*255)<<0
+
+        return colorValue.toKotlin
     }
 }
 
