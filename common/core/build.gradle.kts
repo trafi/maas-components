@@ -13,6 +13,7 @@ val composeVersion = "1.0.0-alpha08"
 val ktorVersion = "1.4.1"
 val serializationVersion = "1.0.1"
 val coroutinesVersion = "1.4.1-native-mt"
+val logbackVersion = "1.2.3"
 
 repositories {
     gradlePluginPortal()
