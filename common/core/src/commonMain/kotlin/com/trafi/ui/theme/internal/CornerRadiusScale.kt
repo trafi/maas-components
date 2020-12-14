@@ -11,5 +11,6 @@ object CornerRadiusScale {
 
     object Default {
         val ButtonRadius = round
+        val NearbyTransitFilterItemRadius = round
     }
 }
