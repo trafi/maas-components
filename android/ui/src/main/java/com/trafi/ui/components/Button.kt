@@ -1,4 +1,4 @@
-package com.trafi.ui
+package com.trafi.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
