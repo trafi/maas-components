@@ -50,7 +50,7 @@ public struct Button: View, Swappable {
 }
 
 #if DEBUG
-struct Button_Previews: PreviewProvider, Snapped {  
+struct Button_Previews: PreviewProvider, Snapped {
     static var snapped: [String: AnyView] {
         [
             "Plain": AnyView(
