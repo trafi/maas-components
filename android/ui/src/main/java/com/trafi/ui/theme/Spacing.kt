@@ -21,5 +21,10 @@ object Spacing {
 
 @Immutable
 data class MaasSpacing(
-    val globalMargin: Dp = SpacingScale.Default.GlobalMargin
+    val globalMargin: Dp = SpacingScale.Default.GlobalMargin,
+    val badgeSpacer: Dp = SpacingScale.xxs,
+    val horizontalPaddingMedium: Dp = SpacingScale.xs,
+    val horizontalPaddingSmall: Dp = SpacingScale.xxs,
+    val verticalPaddingMedium: Dp = SpacingScale.xxxs,
+    val verticalPaddingSmall: Dp = SpacingScale.xxxs
 )

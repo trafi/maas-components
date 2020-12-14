@@ -23,5 +23,7 @@ internal val Dp.isRound: Boolean
 
 @Immutable
 data class MaasCornerRadius(
-    val buttonRadius: Dp = CornerRadiusScale.Default.ButtonRadius
+    val buttonRadius: Dp = CornerRadiusScale.Default.ButtonRadius,
+    val smallBadgeRadius: Dp = CornerRadiusScale.xxs,
+    val mediumBadgeRadius: Dp = CornerRadiusScale.xs
 )
