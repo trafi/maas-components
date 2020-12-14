@@ -27,6 +27,6 @@ class SnapshotTests : ScreenshotTest {
                 Button(text, onClick = {})
             }
         }
-        composeTestRule.onNodeWithText(text).assertIsDisplayed()
+        //composeTestRule.onNodeWithText(text).assertIsDisplayed()
     }
 }
