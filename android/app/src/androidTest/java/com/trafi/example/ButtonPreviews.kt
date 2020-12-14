@@ -11,7 +11,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-class ButtonPreviews(private val preview: @Composable () -> Unit): ScreenshotTest {
+class ComposablePreviewsTests(private val preview: @Composable () -> Unit): ScreenshotTest {
     companion object {
         @JvmStatic
         @Parameterized.Parameters
@@ -29,7 +29,7 @@ class ButtonPreviews(private val preview: @Composable () -> Unit): ScreenshotTes
     }
 
     @Test
-    fun buttonTest() {
+    fun previewTest() {
         previewTest
             .renderAndTestView {
                 preview()
