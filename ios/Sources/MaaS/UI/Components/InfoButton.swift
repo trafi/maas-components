@@ -57,9 +57,8 @@ struct InfoButton: View {
                 .padding(.horizontal, constants.horMinPadding)
             }
         )
-        .foregroundColor(constants.color)
+        .foregroundColor(foregroundColor)
         .buttonStyle(GradienHighlightButtonStyle(color: highlightedColor))
-        .background(Color.gray)
     }
 }
 
