@@ -27,4 +27,4 @@ val cornerRadius = theme.cornerRadiusScale.buttonRadius
 val defaultTruncate = true
 ```
 ## Preview from automated tests
-<img src="https://github.com/trafi/maas-components/blob/main/ios/Tests/MaasTests/__Snapshots__/SnapSpec/Button.2x.png" width="100%">
+<img src="../../../../../../../../../../ios/Tests/MaasTests/__Snapshots__/SnapSpec/Button.2x.png" width="100%">
