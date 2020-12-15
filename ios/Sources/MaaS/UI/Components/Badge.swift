@@ -1,6 +1,5 @@
 import SwiftUI
 import Swappable
-import Snapped
 import MaasTheme
 
 public struct Badge: View, Swappable {
@@ -13,6 +12,7 @@ public struct Badge: View, Swappable {
     public struct InputType {
         let style: Size
         let color: Color?
+        let textColor: Color?
         let icon: UIImage?
         let text: String?
         let subBadge: UIImage?
@@ -22,53 +22,59 @@ public struct Badge: View, Swappable {
     public init(input: InputType) {
         self.input = input
     }
+
+    @Environment(\.currentTheme) var theme
+
     public init(size: Size = .medium,
+
                 color: Color?,
                 icon: UIImage?,
                 text: String?,
+                textColor: Color? = nil,
                 subBadge: UIImage? = nil) {
         self.init(input: InputType(style: size,
                                    color: color,
+                                   textColor: nil,
                                    icon: icon,
                                    text: text,
                                    subBadge: subBadge))
     }
 
     public var defaultBody: some View {
-        ZStack (alignment: .bottomTrailing) {
+
+        HStack (alignment: .bottom, spacing: .zero) {
             HStack(spacing: CGFloat(Spacing.xs.value)) {
                 if let icon = input.icon  {
                     Image(uiImage: icon)
                         .renderingMode(.template)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(height: 16)
+                        .frame(width: iconHeight, height: iconHeight)
                 }
 
                 if showText {
                     Text(input.text!)
-                        .font(font)
+                         .font(font)
                         .bold()
-                        .offset(y: input.color == nil ? 4 : 0)
                 }
             }
             .foregroundColor(input.color == nil ? .black : .white)
             .padding(padding)
-            .frame(height: height)
+            .frame(minHeight: height)
             .background(
-                RoundedRectangle(cornerRadius: CGFloat(CornerRadius.xs.value))
+                RoundedRectangle(cornerRadius: CGFloat(CornerRadius.xs.value), style: .continuous)
                     .fill(input.color ?? .clear)
             )
+
             if let subBadge = input.subBadge {
-                //HStack {
-                    //Spacer()
-                    Image(uiImage: subBadge)
-                        .renderingMode(.template)
-                        .resizable()
-                        .frame(width: 6,  height: 6, alignment: .bottomTrailing)
-                        .foregroundColor(.white)
-                        //.offset(x:-5, y: -5)
-               // }.frame(height: height)
+                Image(uiImage: subBadge)
+                    .renderingMode(.template)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: subBadgeHeight, height: subBadgeHeight)
+                    .foregroundColor(.red)
+                    .offset(x: -subBadgeOffset, y: subBadgeOffset)
+
             }
         }
     }
@@ -84,12 +90,19 @@ public struct Badge: View, Swappable {
         }
     }
 
+    private var iconHeight: CGFloat { 20 }
+    private var subBadgeHeight: CGFloat { 16 }
+
+    private var subBadgeOffset: CGFloat { subBadgeHeight / 2 }
+
     private var font: Font {
+        var constants: Kotlin<TypographyScale> { Kotlin(TypographyScale()) }
+
         switch input.style {
         case .small:
-            return Font.textS
+            return .init(theme.typographyScale.textS)
         case .medium:
-            return Font.textM
+            return .init(theme.typographyScale.textM)
         }
     }
 
@@ -103,22 +116,25 @@ public struct Badge: View, Swappable {
             return .init(top: .zero, leading: spacing, bottom: .zero, trailing: spacing)
         }
     }
+
+    private var hasSubBadge: Bool { input.subBadge != nil }
 }
 
 #if DEBUG
 struct Badge_Previews: PreviewProvider, Snapped {
     static var snapped: [String: Badge] {
         [
-//            "Tram": Badge(color: .red, icon: UIImage(systemName: "tram"), text: "12"),
-//            "Bus": Badge(color: .green, icon: UIImage(systemName: "bus"), text: "3G"),
-//            "Long text": Badge(color: .blue, icon: UIImage(systemName: "bus"), text: "3G long"),
-//            "Swapped": Badge(color: .purple, icon: nil, text: "DEFAULT"),
-//            "Small": Badge(size: .small, color: .purple, icon: nil, text: "54"),
-            "Amazing": Badge(input: .init(style: .medium, color: .black, icon: UIImage(systemName: "tram"), text: "40", subBadge: UIImage(systemName: "tram"))),
+            "Tram": Badge(color: .red, icon: UIImage(systemName: "tram"), text: "12"),
+            "Bus": Badge(color: .green, icon: nil, text: "3G"),
+            "Long text": Badge(color: .blue, icon: UIImage(systemName: "bus"), text: "3G long"),
+            "Swapped": Badge(color: .purple, icon: nil, text: "DEFAULT"),
+            "Small": Badge(size: .small, color: .purple, icon: nil, text: "54"),
+            "Amazing": Badge(input: .init(style: .medium, color: .yellow, textColor: nil, icon: UIImage(systemName: "tram"), text: "40", subBadge: UIImage(systemName: "heart.fill"))),
         ]
     }
 
-    static var elementWidth: CGFloat? { 120 }
+    static var elementWidth: CGFloat? { 330 }
+
+    static var detailed: Bool { false }
 }
 #endif
-
