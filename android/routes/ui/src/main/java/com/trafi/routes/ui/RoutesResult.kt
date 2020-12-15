@@ -12,7 +12,7 @@ import com.trafi.core.model.mockResult
 import com.trafi.ui.theme.MaasTheme
 
 @Composable
-fun RoutesResult(
+public fun RoutesResult(
     result: RoutesResult,
     onRouteClick: (Route) -> Unit,
     modifier: Modifier = Modifier
