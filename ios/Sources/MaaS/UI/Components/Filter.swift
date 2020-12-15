@@ -69,7 +69,7 @@ public struct SingleSelectFilter<T, Content>: View where Content : View, T: Iden
 // MARK: - Preview
 
 // MARK: Single Select
-
+#if DEBUG
 private struct SingleSelectFilterPreview: View {
 
     @State private var selectedItem: String = "1"
@@ -160,3 +160,4 @@ private let filterItems = [
     MockItemData(background: .orange, id: "3"),
     MockItemData(background: .purple, id: "4"),
 ]
+#endif
