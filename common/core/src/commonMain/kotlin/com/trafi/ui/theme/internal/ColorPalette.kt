@@ -1,5 +1,7 @@
 package com.trafi.ui.theme.internal
 
+import com.trafi.ui.theme.GrayScale
+
 object ColorPalette {
     val White = Color(0xffffffff)
     val Black = Color(0xff000000)

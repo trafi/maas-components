@@ -8,7 +8,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import com.trafi.ui.theme.internal.ColorPalette
-import com.trafi.ui.theme.internal.GrayScale
 
 fun MaasTheme.lightColors(
     primary: Color = ColorPalette.DefaultLight.Primary,
