@@ -1,6 +1,7 @@
 ## Preview
 [See in Figma](https://www.figma.com/file/1P6PQxKaqIaLjxxfy1cFtH/MaaS-Design-System?node-id=410%3A0)
 
+
 ## Specifications
 **Types:** Primary, Secondary.  
 **Sizes:** Small, Normal, Large.  
@@ -13,3 +14,6 @@
 
 ## API
 See [ButtonConstants.kt](https://github.com/trafi/maas-components/blob/main/common/core/src/commonMain/kotlin/com/trafi/ui/component/internal/ButtonConstants.kt)
+
+## Preview from automated tests
+<img src="https://github.com/trafi/maas-components/blob/main/ios/Tests/MaasTests/__Snapshots__/SnapSpec/Button.2x.png" width="100%">
