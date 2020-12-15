@@ -17,13 +17,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.trafi.core.model.Provider
-import com.trafi.core.model.Schedule
 import com.trafi.ui.BadgeType.MEDIUM_BADGE
 import com.trafi.ui.BadgeType.SMALL_BADGE
 import com.trafi.ui.component.internal.BadgeConstants
 import com.trafi.ui.theme.currentTheme
-import com.trafi.ui.theme.parseColor
 
 @Composable
 private val constants
@@ -33,17 +30,6 @@ data class BadgeInfo(
     val text: String?,
     val color: Color,
     val textColor: Color? = null
-)
-
-fun Schedule.toBadgeInfo(): BadgeInfo = BadgeInfo(
-    text = name,
-    color = color.parseColor(),
-    textColor = textColor?.parseColor()
-)
-
-fun Provider.toBadgeInfo(): BadgeInfo = BadgeInfo(
-    text = name,
-    color = color?.parseColor() ?: Color.Black
 )
 
 @OptIn(ExperimentalLayout::class)

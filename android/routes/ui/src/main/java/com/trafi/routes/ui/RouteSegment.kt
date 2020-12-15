@@ -14,13 +14,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.trafi.core.model.RouteSegment
-import com.trafi.core.model.RouteSegmentPersonalVehicle
-import com.trafi.core.model.SharedVehicle
+import com.trafi.core.model.*
 import com.trafi.routes.ui.internal.endTimeMillis
 import com.trafi.routes.ui.internal.startTimeMillis
 import com.trafi.ui.*
 import com.trafi.ui.theme.MaasTheme
+import com.trafi.ui.theme.parseColor
 
 typealias PersonalVehicleType = RouteSegmentPersonalVehicle.Vehicle
 
@@ -139,12 +138,19 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
     }
 }
 
+private fun Schedule.toBadgeInfo(): BadgeInfo = BadgeInfo(
+    text = name,
+    color = color.parseColor(),
+    textColor = textColor?.parseColor()
+)
+
+private fun Provider.toBadgeInfo(): BadgeInfo = BadgeInfo(
+    text = name,
+    color = color?.parseColor() ?: Color.Black
+)
+
 private val Long.millisToDurationText: String
     get() = maxOf(1, ((this / 1000 + 30) / 60)).toString()
-
-private fun String.parseColor(): Color =
-    Color(android.graphics.Color.parseColor("#$this"))
-
 
 @Preview()
 @Composable
