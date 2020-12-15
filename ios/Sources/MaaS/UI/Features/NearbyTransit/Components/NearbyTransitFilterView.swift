@@ -25,7 +25,7 @@ struct NearbyTransitFilterView_Previews: PreviewProvider, Snapped {
         [
             "Filter": AnyView(
                 MultiSelectFilter(
-                    items: items,
+                    items: NearbyMockData.mockFilterDataItems,
                     itemView: NearbyTransitFilterItemView.init,
                     didTapItem: { _ in },
                     disabledItems: [
@@ -38,7 +38,7 @@ struct NearbyTransitFilterView_Previews: PreviewProvider, Snapped {
 
             "Swapped": AnyView(
                 MultiSelectFilter(
-                    items: items,
+                    items: NearbyMockData.mockFilterDataItems,
                     itemView: NearbyTransitFilterItemView.init,
                     didTapItem: { _ in },
                     disabledItems: [
