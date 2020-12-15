@@ -11,11 +11,13 @@ internal actual fun TextStyle.copy(
     fontWeight: BasicFontWeight?,
     fontSize: Int?,
     lineHeight: Int?,
+    color: Color?,
 ): TextStyle = copy(
     fontStyle = fontStyle?.os ?: this.fontStyle,
     fontWeight = fontWeight?.os ?: this.fontWeight,
     fontSize = fontSize?.sp ?: this.fontSize,
-    lineHeight = lineHeight?.sp ?: this.lineHeight
+    lineHeight = lineHeight?.sp ?: this.lineHeight,
+    color = color ?: this.color,
 )
 
 internal actual fun TextStyle(
@@ -23,11 +25,13 @@ internal actual fun TextStyle(
     fontWeight: BasicFontWeight,
     fontSize: Int,
     lineHeight: Int,
+    color: Color?,
 ): TextStyle = TextStyle(
     fontStyle = fontStyle.os,
     fontWeight = fontWeight.os,
     fontSize = fontSize.sp,
-    lineHeight = lineHeight.sp
+    lineHeight = lineHeight.sp,
+    color = color ?: Color.Unspecified,
 )
 
 private val BasicFontStyle.os get() = when (this) {
