@@ -7,5 +7,7 @@ final class Components: QuickSpec {
         snapshot(Button_Previews.self)
         snapshot(InfoButton_Previews.self)
         snapshot(Cell_Previews.self)
+        snapshot(SingleSelectFilterPreview_Previews.self)
+        snapshot(MultiSelectFilterPreview_Previews.self)
     }
 }
