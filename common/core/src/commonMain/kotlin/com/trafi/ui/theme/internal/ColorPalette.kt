@@ -32,15 +32,15 @@ object ColorPalette {
 
     object DefaultDark {
         val GrayScale = GrayScale(
-            gray100 = Color(0xfff5f5f5),
-            gray200 = Color(0xffeeeeee),
-            gray300 = Color(0xffe0e0e0),
-            gray400 = Color(0xffbdbdbd),
+            gray100 = Color(0xff212121),
+            gray200 = Color(0xff424242),
+            gray300 = Color(0xff616161),
+            gray400 = Color(0xff757575),
             gray500 = Color(0xff9e9e9e),
-            gray600 = Color(0xff757575),
-            gray700 = Color(0xff616161),
-            gray800 = Color(0xff424242),
-            gray900 = Color(0xff212121),
+            gray600 = Color(0xffbdbdbd),
+            gray700 = Color(0xffe0e0e0),
+            gray800 = Color(0xffeeeeee),
+            gray900 = Color(0xfff5f5f5),
         )
         val Primary = Color(0xffff1499)
         val PrimaryVariant = Color(0xffd20077)
