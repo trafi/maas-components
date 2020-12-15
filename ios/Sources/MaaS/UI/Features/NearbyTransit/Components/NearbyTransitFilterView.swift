@@ -25,26 +25,26 @@ struct NearbyTransitFilterView_Previews: PreviewProvider, Snapped {
         [
             "Filter": AnyView(
                 MultiSelectFilter(
-                    items: NearbyMockData.mockFilterDataItems,
+                    items: NearbyTransitComponentsPreviewData.mockFilterDataItems,
                     itemView: NearbyTransitFilterItemView.init,
                     didTapItem: { _ in },
                     disabledItems: [
-                        NearbyMockData.mockFilterDataItems[0].id,
-                        NearbyMockData.mockFilterDataItems[2].id,
-                        NearbyMockData.mockFilterDataItems[4].id
+                        NearbyTransitComponentsPreviewData.mockFilterDataItems[0].id,
+                        NearbyTransitComponentsPreviewData.mockFilterDataItems[2].id,
+                        NearbyTransitComponentsPreviewData.mockFilterDataItems[4].id
                     ]
                 )
             ),
 
             "Swapped": AnyView(
                 MultiSelectFilter(
-                    items: NearbyMockData.mockFilterDataItems,
+                    items: NearbyTransitComponentsPreviewData.mockFilterDataItems,
                     itemView: NearbyTransitFilterItemView.init,
                     didTapItem: { _ in },
                     disabledItems: [
-                        NearbyMockData.mockFilterDataItems[0].id,
-                        NearbyMockData.mockFilterDataItems[2].id,
-                        NearbyMockData.mockFilterDataItems[4].id]
+                        NearbyTransitComponentsPreviewData.mockFilterDataItems[0].id,
+                        NearbyTransitComponentsPreviewData.mockFilterDataItems[2].id,
+                        NearbyTransitComponentsPreviewData.mockFilterDataItems[4].id]
                 )
                 .swapView(MockItem.init, insteadOf: NearbyTransitFilterItemView.self)
             )
