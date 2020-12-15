@@ -23,7 +23,7 @@ let package = Package(
     dependencies: [
         .package(
             name: "Swappable",
-            url: "git@github.com:trafi/swappable.git", .upToNextMinor(from: "0.0.1")),
+            url: "https://github.com/trafi/swappable.git", .upToNextMinor(from: "0.0.1")),
         .package(
             name: "SnapshotTesting",
             url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.8.2"),
