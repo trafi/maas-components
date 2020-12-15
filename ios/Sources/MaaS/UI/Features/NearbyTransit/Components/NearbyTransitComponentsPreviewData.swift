@@ -1,4 +1,4 @@
-enum NearbyMockData {
+enum NearbyTransitComponentsPreviewData {
 
     static let stop = Stop(
         id: "debe_070101005179",
