@@ -9,12 +9,11 @@ class InfoButtonConstants(theme: CurrentTheme) {
     val textStyle = theme.typographyScale.textL.copy(fontWeight = Bold)
     val defaultTruncate = true
 
-    val color = ColorPalette.Gray900
-    val disabledColor = ColorPalette.Gray400
-    val highlightedColor = ColorPalette. Gray300
+    val color = theme.colorPalette.grayScale.gray900
+    val disabledColor = theme.colorPalette.grayScale.gray400
+    val highlightedColor = theme.colorPalette.grayScale.gray300
 
     val horMinPadding = SpacingScale.sm
     val verPadding = SpacingScale.sm
     val spaceBetween = SpacingScale.xs
-
 }
