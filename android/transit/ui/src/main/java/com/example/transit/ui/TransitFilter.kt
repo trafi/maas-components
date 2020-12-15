@@ -96,18 +96,19 @@ fun String?.toColorInt(@ColorInt fallback: Int = 0xFF_000000.toInt()): Color {
 
 @Preview
 @Composable
-fun MultiFilterPreview() {
+private fun MultiFilterPreview() {
     val filters = listOfFilters()
+    val startPadding = Modifier.padding(8.dp)
     Column {
         Text(
             text = "Multi select",
             style = MaasTheme.typography.headingM,
-            modifier = Modifier.padding(8.dp)
+            modifier = startPadding
         )
         Text(
             text = "Deselected",
             style = MaasTheme.typography.textS,
-            modifier = Modifier.padding(8.dp)
+            modifier = startPadding
         )
         MultiSelectFilter(
             viewsItems = filters,
@@ -123,7 +124,7 @@ fun MultiFilterPreview() {
         Text(
             text = "Half selected",
             style = MaasTheme.typography.textS,
-            modifier = Modifier.padding(8.dp)
+            modifier = startPadding
         )
         MultiSelectFilter(
             viewsItems = filters,
@@ -139,7 +140,7 @@ fun MultiFilterPreview() {
         Text(
             text = "All selected",
             style = MaasTheme.typography.textS,
-            modifier = Modifier.padding(8.dp)
+            modifier = startPadding
         )
         MultiSelectFilter(
             viewsItems = filters,
@@ -157,18 +158,18 @@ fun MultiFilterPreview() {
 
 @Preview
 @Composable
-fun SingleFilterPreview() {
-    val enabledFilter = listOfFilters()
+private fun SingleFilterPreview() {
     val filters = listOfFilters()
+    val startPadding = Modifier.padding(8.dp)
     Column {
         Text(
             text = "Single select",
             style = MaasTheme.typography.headingM,
-            modifier = Modifier.padding(8.dp)
+            modifier = startPadding
         )
         SingleSelectFilter(
             viewsItems = filters,
-            enabledItem = enabledFilter.first(),
+            enabledItem = filters.first(),
             itemView = { item, isEnabled ->
                 NearbyTransitFilterItem(isEnabled = isEnabled, filterItem = item)
             },
