@@ -1,8 +1,7 @@
 package com.trafi.ui.component.internal
 
-import com.trafi.ui.theme.internal.BasicFontWeight
+import com.trafi.ui.theme.internal.*
 import com.trafi.ui.theme.internal.ColorPalette.Gray300
-import com.trafi.ui.theme.internal.CurrentTheme
 import com.trafi.ui.theme.internal.copy
 import com.trafi.ui.theme.internal.dp
 
@@ -16,8 +15,8 @@ class BadgeConstants(theme: CurrentTheme) {
     val minHeightMedium = 24.dp
     val minHeightSmall = 16.dp
 
-    val cornerRadiusMedium = theme.cornerRadiusScale.mediumBadgeRadius
-    val cornerRadiusSmall = theme.cornerRadiusScale.smallBadgeRadius
+    val cornerRadiusMedium = CornerRadiusScale.xs
+    val cornerRadiusSmall = CornerRadiusScale.xxs
 
     val iconHeight = 20.dp
     val iconWidth = 20.dp
@@ -25,13 +24,13 @@ class BadgeConstants(theme: CurrentTheme) {
     val subBadgeIconHeight = 16.dp
     val subBadgeIconWidth = 16.dp
 
-    val spacer = theme.spacingScale.badgeSpacer
+    val spacer = SpacingScale.xxs
 
-    val horizontalPaddingMedium = theme.spacingScale.horizontalPaddingMedium
-    val horizontalPaddingSmall = theme.spacingScale.horizontalPaddingSmall
+    val horizontalPaddingMedium = SpacingScale.xs
+    val horizontalPaddingSmall = SpacingScale.xxs
 
-    val verticalPaddingMedium = theme.spacingScale.verticalPaddingMedium
-    val verticalPaddingSmall = theme.spacingScale.verticalPaddingSmall
+    val verticalPaddingMedium = SpacingScale.xxxs
+    val verticalPaddingSmall = SpacingScale.xxxs
 
-    val border = (1.5f).dp
+    val borderWidth = 1.5.dp
 }
