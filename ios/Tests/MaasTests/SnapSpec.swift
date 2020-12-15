@@ -6,7 +6,7 @@ import SnapshotTesting
 
 extension QuickSpec {
 
-    func shot<S>(
+    func snapshot<S>(
         _: S.Type,
         file: StaticString = #file,
         line: UInt = #line

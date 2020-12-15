@@ -3,8 +3,8 @@ import Quick
 
 final class Components: QuickSpec {
     override func spec() {
-        shot(Badge_Previews.self)
-        shot(Button_Previews.self)
-        shot(Cell_Previews.self)
+        snapshot(Badge_Previews.self)
+        snapshot(Button_Previews.self)
+        snapshot(Cell_Previews.self)
     }
 }
