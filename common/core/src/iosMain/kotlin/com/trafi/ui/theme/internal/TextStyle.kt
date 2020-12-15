@@ -30,7 +30,7 @@ internal actual fun TextStyle(
     fontWeight: BasicFontWeight,
     fontSize: Int,
     lineHeight: Int,
-): TextStyle = UIFont.systemFontOfSize(fontSize.os).copy(fontStyle, fontWeight, lineHeight)
+): TextStyle = UIFont.systemFontOfSize(fontSize.os).copy(fontStyle, fontWeight, fontSize, lineHeight)
 
 private val BasicFontStyle.os get() = when (this) {
     BasicFontStyle.Normal -> null
