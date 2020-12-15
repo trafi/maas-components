@@ -39,6 +39,14 @@ private enum ColorKeys {
     struct OnError: EnvironmentKey {
         static var defaultValue: UIColor { .adaptive(light: \.OnError, dark: \.OnError) }
     }
+    
+    struct GrayScale: EnvironmentKey {
+        static var defaultValue: MaasCore.GrayScale {
+            UIScreen.main.traitCollection.userInterfaceStyle == .dark ?
+                ColorPalette.DefaultDark().GrayScale :
+                ColorPalette.DefaultLight().GrayScale
+        }
+    }
 }
 
 public extension EnvironmentValues {
@@ -102,6 +110,11 @@ public extension EnvironmentValues {
     var uiColorOnError: UIColor {
         get { self[ColorKeys.OnError.self] }
         set { self[ColorKeys.OnError.self] = newValue }
+    }
+    
+    var grayScale: MaasCore.GrayScale {
+        get { self[ColorKeys.GrayScale.self] }
+        set { self[ColorKeys.GrayScale.self] = newValue }
     }
 }
 

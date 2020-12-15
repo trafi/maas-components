@@ -2,13 +2,12 @@ package com.trafi.ui.component.internal
 
 import com.trafi.ui.theme.internal.*
 import com.trafi.ui.theme.internal.BasicFontWeight.Bold
-import com.trafi.ui.theme.internal.ColorPalette.Gray300
 import com.trafi.ui.theme.internal.copy
 import com.trafi.ui.theme.internal.dp
 
 class BadgeConstants(theme: CurrentTheme) {
     val defaultContentColor = theme.colorPalette.onPrimary
-    val disabledColor = Gray300
+    val disabledColor = theme.colorPalette.grayScale.gray300
 
     val textStyleMedium = theme.typographyScale.textM.copy(fontWeight = Bold)
     val textStyleSmall = theme.typographyScale.textS.copy(fontWeight = Bold)
