@@ -1,5 +1,6 @@
 package com.trafi.ui.component
 
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,7 +22,7 @@ private val constants
     get() = ButtonConstants(currentTheme)
 
 @Composable
-fun Button(
+public fun Button(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -56,7 +57,8 @@ fun Button(
 
 @Preview
 @Composable
-fun ButtonPreview() {
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+public fun ButtonPreview() {
     MaasTheme {
         Button("Unlock now", onClick = {})
     }
@@ -64,7 +66,7 @@ fun ButtonPreview() {
 
 @Preview
 @Composable
-fun DisabledButtonPreview() {
+private fun DisabledButtonPreview() {
     MaasTheme {
         Button("Unlock now", onClick = {}, enabled = false)
     }
@@ -72,7 +74,8 @@ fun DisabledButtonPreview() {
 
 @Preview
 @Composable
-fun ButtonStyledCornerRadiusPreview() {
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+public fun ButtonStyledCornerRadiusPreview() {
     MaasTheme(cornerRadius = MaasCornerRadius(buttonRadius = 0.dp)) {
         Button("Unlock now", onClick = {})
     }
@@ -80,7 +83,7 @@ fun ButtonStyledCornerRadiusPreview() {
 
 @Preview
 @Composable
-fun ButtonStyledColorPreview() {
+private fun ButtonStyledColorPreview() {
     val jelbiColors = MaasTheme.lightColors(
         primary = Color(0xff6ca130),
         primaryVariant = Color(0xfff0d722)
