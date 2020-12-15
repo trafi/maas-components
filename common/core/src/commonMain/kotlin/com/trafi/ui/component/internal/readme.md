@@ -12,4 +12,4 @@
 - Keep text concise. Text longer than 22 symbols, might be truncated on smaller screens.
 
 ## API
-See [ButtonConstants.kt](https://github.com/trafi/maas-components/blob/main/common/core/src/commonMain/kotlin/com/trafi/ui/component/internal/ButtonConstants.kt)
+See [ButtonConstants.kt](ButtonConstants.kt)
