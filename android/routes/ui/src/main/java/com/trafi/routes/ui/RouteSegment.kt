@@ -178,6 +178,16 @@ private fun SmallBadgePreview() {
 
 @Preview
 @Composable
+private fun SmallDisabledBadgePreview() {
+    Badge(
+        badge = BadgeInfo("5G", Color.Magenta),
+        badgeType = BadgeType.SMALL_BADGE,
+        isDisabled = true
+    )
+}
+
+@Preview
+@Composable
 private fun SmallBadgeWithIconPreview() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),

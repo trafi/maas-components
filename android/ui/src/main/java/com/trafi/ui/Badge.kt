@@ -20,6 +20,7 @@ import com.trafi.core.model.Provider
 import com.trafi.core.model.Schedule
 import com.trafi.ui.BadgeType.MEDIUM_BADGE
 import com.trafi.ui.BadgeType.SMALL_BADGE
+import com.trafi.ui.theme.Grey300
 import com.trafi.ui.theme.LocalSpacing.badgeMediumCornerRadius
 import com.trafi.ui.theme.LocalSpacing.badgeMediumHeight
 import com.trafi.ui.theme.LocalSpacing.badgeMediumHorizontalPadding
@@ -60,7 +61,8 @@ fun Badge(
     alternativeBadges: List<BadgeInfo> = listOf(),
     vector: ImageVector? = null,
     subbadge: ImageVector? = null,
-    badgeType: BadgeType
+    badgeType: BadgeType,
+    isDisabled: Boolean = false
 ) {
     if (alternativeBadges.isEmpty()) {
         SingleBadge(
@@ -68,7 +70,8 @@ fun Badge(
             badgeType = badgeType,
             modifier = modifier,
             vector = vector,
-            subbadge = subbadge
+            subbadge = subbadge,
+            isDisabled = isDisabled
         )
     } else {
         StackedBadge(
@@ -89,11 +92,12 @@ fun SingleBadge(
     badge: BadgeInfo?,
     vector: ImageVector? = null,
     subbadge: ImageVector? = null,
-    badgeType: BadgeType
+    badgeType: BadgeType,
+    isDisabled: Boolean = false
 ) {
     ConstraintLayout {
         Surface(
-            color = badge?.color ?: Color.Black,
+            color = if (isDisabled) Grey300 else badge?.color ?: Color.Black,
             contentColor = badge?.textColor ?: Color.White,
             shape = RoundedCornerShape(getBadgeRounding(badgeType).dp),
             modifier = modifier.height(getBadgeHeight(badgeType).dp)
@@ -202,6 +206,7 @@ private fun BadgeFiller(
                 text = text,
                 style = getBadgeTextStyle(badgeType).copy(fontWeight = FontWeight.Bold),
                 modifier = Modifier.align(Alignment.CenterVertically)
+                    .padding(bottom = 1.dp)
                     .wrapContentHeight(unbounded = true)
             )
         }
