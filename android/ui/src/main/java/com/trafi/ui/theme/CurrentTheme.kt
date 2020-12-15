@@ -40,19 +40,12 @@ internal val currentTheme: CurrentTheme
         },
         spacingScale = with(MaasTheme.spacing) {
             CurrentSpacingScale(
-                globalMargin = globalMargin,
-                badgeSpacer = badgeSpacer,
-                horizontalPaddingMedium = horizontalPaddingMedium,
-                horizontalPaddingSmall = horizontalPaddingSmall,
-                verticalPaddingMedium = verticalPaddingMedium,
-                verticalPaddingSmall = verticalPaddingSmall
+                globalMargin = globalMargin
             )
         },
         cornerRadiusScale = with(MaasTheme.cornerRadius) {
             CurrentCornerRadiusScale(
-                buttonRadius = buttonRadius,
-                smallBadgeRadius = smallBadgeRadius,
-                mediumBadgeRadius = mediumBadgeRadius
+                buttonRadius = buttonRadius
             )
         },
     )
