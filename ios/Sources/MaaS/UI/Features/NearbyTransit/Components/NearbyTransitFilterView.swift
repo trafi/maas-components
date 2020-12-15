@@ -1,4 +1,5 @@
 import SwiftUI
+import Swappable
 
 struct NearbyTransitFilterView: View {
 
@@ -38,15 +39,30 @@ struct NearbyTransitFilterView_Previews: PreviewProvider, Snapped {
                     didTapItem: { _ in },
                     disabledItems: [items[0].id, items[2].id, items[4].id]
                 )
-                .swapView(
-                    { input in
-                        Image.from(image: UIImage(named: input.data.icon))
-                            .frame(width: 20, height: 20, alignment: .center)
-                            .foregroundColor(input.isDisabled ? .init(.systemGray2) : input.data.color.parseColor())
-                    },
-                    insteadOf: NearbyTransitFilterItemView.self
-                )
+                .swapView(MockItem.init, insteadOf: NearbyTransitFilterItemView.self)
             )
         ]
+    }
+}
+
+// MARK: - Mock Data
+
+private struct MockItem: View {
+
+    let input: NearbyTransitFilterItemView.InputType
+
+    init(input: NearbyTransitFilterItemView.InputType) {
+        self.input = input
+    }
+
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 4)
+                .frame(width: 28, height: 28, alignment: .center)
+                .foregroundColor(input.isDisabled ? .init(.systemGray2) : input.data.color.parseColor())
+            Image.from(image: UIImage(named: input.data.icon))
+                .frame(width: 20, height: 20, alignment: .center)
+        }
+        .padding(4)
     }
 }
