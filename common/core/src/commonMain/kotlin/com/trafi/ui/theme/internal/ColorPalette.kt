@@ -4,6 +4,7 @@ object ColorPalette {
     val White = Color(0xffffffff)
     val Black = Color(0xff000000)
     val Warning = Color(0xffffbe15)
+    val Danger = Color(0xfff22e46)
     val Success = Color(0xff00afaf)
 
     object DefaultLight {
@@ -24,7 +25,7 @@ object ColorPalette {
         val SecondaryVariant = Color(0xff59006c)
         val Background = White
         val Surface = White
-        val Error = Color(0xfff22e46)
+        val Error = Danger
         val OnPrimary = White
         val OnSecondary = Black
         val OnBackground = GrayScale.gray900
@@ -50,7 +51,7 @@ object ColorPalette {
         val SecondaryVariant = Color(0xff59006c)
         val Background = Black
         val Surface = Black
-        val Error = Color(0xfff22e46)
+        val Error = Danger
         val OnPrimary = White
         val OnSecondary = Black
         val OnBackground = White
