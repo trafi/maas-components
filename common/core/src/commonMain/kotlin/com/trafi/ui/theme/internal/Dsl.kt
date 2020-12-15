@@ -10,12 +10,14 @@ internal class TextStyleBuilder(
     var fontWeight: BasicFontWeight = BasicFontWeight.Normal,
     var fontSize: Int? = null,
     var lineHeight: Int? = null,
+    var color: Color? = null,
 ) {
     fun build(): TextStyle = TextStyle(
         fontStyle = fontStyle,
         fontWeight = fontWeight,
         fontSize = requireNotNull(fontSize),
         lineHeight = requireNotNull(lineHeight),
+        color = color,
     )
 }
 

@@ -1,5 +1,7 @@
 package com.trafi.ui.theme.internal
 
+import com.trafi.ui.theme.GrayScale
+
 class CurrentColorPalette(
     val primary: Color,
     val primaryVariant: Color,
@@ -13,4 +15,5 @@ class CurrentColorPalette(
     val onBackground: Color,
     val onSurface: Color,
     val onError: Color,
+    val grayScale: GrayScale,
 )

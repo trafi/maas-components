@@ -7,7 +7,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.trafi.ui.theme.Grey300
 import com.trafi.ui.theme.MaasTheme
 import java.util.Locale
 
@@ -31,7 +30,7 @@ fun TextScreen() {
                 style = MaasTheme.typography.label,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Grey300)
+                    .background(MaasTheme.colors.grayScale.gray300)
             )
             Text(
                 text = "Lorum ipsum",
@@ -42,7 +41,7 @@ fun TextScreen() {
                 style = MaasTheme.typography.label,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Grey300)
+                    .background(MaasTheme.colors.grayScale.gray300)
             )
             Text(
                 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
