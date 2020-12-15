@@ -5,7 +5,7 @@ import com.trafi.ui.theme.internal.CurrentTheme
 import com.trafi.ui.theme.internal.dp
 
 class NearbyTransitFilterItemConstants(theme: CurrentTheme) {
-    val disabledColor = ColorPalette.Gray200
+    val disabledColor = theme.colorPalette.grayScale.gray200
     val itemMinHeight = 48.dp
     val itemMinWidth = 48.dp
     val minHeight = 32.dp
