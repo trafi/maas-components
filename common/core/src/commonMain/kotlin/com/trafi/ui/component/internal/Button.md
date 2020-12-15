@@ -1,3 +1,5 @@
+# Button component
+
 ## Preview
 [See in Figma](https://www.figma.com/file/1P6PQxKaqIaLjxxfy1cFtH/MaaS-Design-System?node-id=410%3A0)
 
@@ -13,7 +15,16 @@
 - Keep text concise. Text longer than 22 symbols, might be truncated on smaller screens.
 
 ## API
-See [ButtonConstants.kt](https://github.com/trafi/maas-components/blob/main/common/core/src/commonMain/kotlin/com/trafi/ui/component/internal/ButtonConstants.kt)
-
+[ButtonConstants.kt](https://github.com/trafi/maas-components/blob/main/common/core/src/commonMain/kotlin/com/trafi/ui/component/internal/ButtonConstants.kt)
+```kotlin
+val defaultBackgroundColor = theme.colorPalette.primary
+val defaultContentColor = theme.colorPalette.onPrimary
+val disabledBackgroundColor = theme.colorPalette.primary.alpha(0.12f)
+val disabledContentColor = theme.colorPalette.onPrimary
+val textStyle = theme.typographyScale.textL.copy(fontWeight = Bold)
+val minHeight = 48.dp
+val cornerRadius = theme.cornerRadiusScale.buttonRadius
+val defaultTruncate = true
+```
 ## Preview from automated tests
 <img src="https://github.com/trafi/maas-components/blob/main/ios/Tests/MaasTests/__Snapshots__/SnapSpec/Button.2x.png" width="100%">
