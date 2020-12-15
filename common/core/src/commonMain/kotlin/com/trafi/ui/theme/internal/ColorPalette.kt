@@ -3,6 +3,8 @@ package com.trafi.ui.theme.internal
 object ColorPalette {
     val White = Color(0xffffffff)
     val Black = Color(0xff000000)
+    val Warning = Color(0xffffbe15)
+    val Success = Color(0xff00afaf)
 
     object DefaultLight {
         val GrayScale = GrayScale(
