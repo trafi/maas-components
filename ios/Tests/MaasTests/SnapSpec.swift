@@ -4,20 +4,26 @@ import Quick
 import SnapshotTesting
 @testable import MaaS
 
-class SnapSpec<S>: QuickSpec where S: PreviewProvider, S: Snapped {
+extension QuickSpec {
 
-    override func spec() {
+    func shot<S>(
+        _: S.Type,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) where S: PreviewProvider, S: Snapped {
 //        isRecording = true
-        describe(S.name) {
-            it("Preview") {
-                XCTAssertNil(
-                    verifySnapshot(
-                        matching: S.posterPreview(detailed: true), as: .image(precision: 0.99),
-                        named: "\(Int(UIScreen.main.scale))x",
-                        testName: S.name
-                    )
-                )
-            }
+        it(S.name) {
+            XCTAssertNil(
+                verifySnapshot(
+                    matching: S.posterPreview(detailed: true), as: .image(precision: 0.99),
+                    named: "\(Int(UIScreen.main.scale))x",
+                    file: file,
+                    testName: S.name,
+                    line: line
+                ),
+                file: file,
+                line: line
+            )
         }
     }
 }
