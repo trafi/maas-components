@@ -19,8 +19,7 @@ public extension EnvironmentValues {
                     onSecondary: uiColorOnSecondary.ui64(colorScheme),
                     onBackground: uiColorOnBackground.ui64(colorScheme),
                     onSurface: uiColorOnSurface.ui64(colorScheme),
-                    onError: uiColorOnError.ui64(colorScheme),
-                    grayScale: grayScale
+                    onError: uiColorOnError.ui64(colorScheme)
                ),
                 typographyScale: CurrentTypographyScale(
                     headingXXL: uiFontHeadingXXL,

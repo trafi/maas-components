@@ -40,9 +40,9 @@ public struct Button: View, Swappable {
                     .lineLimit(0)
                     .minimumScaleFactor(0.75)
                     .font(constants.textStyle)
-                    .foregroundColor(input.foreground ?? (isEnabled ? constants.defaultContentColor : constants.disabledContentColor))
+                    .foregroundColor(input.foreground ?? constants.defaultContentColor)
                     .frame(maxWidth: .infinity, minHeight: constants.minHeight)
-                    .background(input.background ?? (isEnabled ? constants.defaultBackgroundColor : constants.disabledBackgroundColor))
+                    .background(input.background ?? (isEnabled ? constants.defaultColor : constants.disabledColor))
                     .cornerRadius(constants.cornerRadius)
             }
         )
