@@ -9,16 +9,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import com.trafi.ui.theme.internal.ColorPalette
 
-@Stable val Grey100 = ColorPalette.Gray100
-@Stable val Grey200 = ColorPalette.Gray200
-@Stable val Grey300 = ColorPalette.Gray300
-@Stable val Grey400 = ColorPalette.Gray400
-@Stable val Grey500 = ColorPalette.Gray500
-@Stable val Grey600 = ColorPalette.Gray600
-@Stable val Grey700 = ColorPalette.Gray700
-@Stable val Grey800 = ColorPalette.Gray800
-@Stable val Grey900 = ColorPalette.Gray900
-
 fun MaasTheme.lightColors(
     primary: Color = ColorPalette.DefaultLight.Primary,
     primaryVariant: Color = ColorPalette.DefaultLight.PrimaryVariant,
@@ -32,6 +22,7 @@ fun MaasTheme.lightColors(
     onBackground: Color = ColorPalette.DefaultLight.OnBackground,
     onSurface: Color = ColorPalette.DefaultLight.OnSurface,
     onError: Color = ColorPalette.DefaultLight.OnError,
+    grayScale: GrayScale = ColorPalette.DefaultLight.GrayScale,
 ): MaasColorPalette = MaasColorPalette(
     primary = primary,
     primaryVariant = primaryVariant,
@@ -45,6 +36,7 @@ fun MaasTheme.lightColors(
     onBackground = onBackground,
     onSurface = onSurface,
     onError = onError,
+    grayScale = grayScale,
     isLight = true,
 )
 
@@ -61,6 +53,7 @@ fun MaasTheme.darkColors(
     onBackground: Color = ColorPalette.DefaultDark.OnBackground,
     onSurface: Color = ColorPalette.DefaultDark.OnSurface,
     onError: Color = ColorPalette.DefaultDark.OnError,
+    grayScale: GrayScale = ColorPalette.DefaultDark.GrayScale,
 ): MaasColorPalette = MaasColorPalette(
     primary = primary,
     primaryVariant = primaryVariant,
@@ -74,6 +67,7 @@ fun MaasTheme.darkColors(
     onBackground = onBackground,
     onSurface = onSurface,
     onError = onError,
+    grayScale = grayScale,
     isLight = false,
 )
 
@@ -91,6 +85,7 @@ class MaasColorPalette(
     onBackground: Color,
     onSurface: Color,
     onError: Color,
+    grayScale: GrayScale,
     isLight: Boolean,
 ) {
     var primary by mutableStateOf(primary)
@@ -117,6 +112,8 @@ class MaasColorPalette(
         private set
     var onError by mutableStateOf(onError)
         private set
+    var grayScale by mutableStateOf(grayScale)
+        private set
     var isLight by mutableStateOf(isLight)
         private set
 
@@ -133,6 +130,7 @@ class MaasColorPalette(
         onBackground = other.onBackground
         onSurface = other.onSurface
         onError = other.onError
+        grayScale = other.grayScale
         isLight = other.isLight
     }
 }

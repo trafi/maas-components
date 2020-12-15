@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import com.trafi.core.model.AutoCompleteLocation
 import com.trafi.core.model.Location
 import com.trafi.routes.ui.mock.vilniusCathedral
-import com.trafi.ui.theme.Grey500
 import com.trafi.ui.theme.MaasTheme
 
 @Composable
@@ -86,7 +85,7 @@ private fun LocationResult(
                 address?.let {
                     Text(
                         it,
-                        style = MaasTheme.typography.textM.copy(color = Grey500),
+                        style = MaasTheme.typography.textM.copy(color = MaasTheme.colors.grayScale.gray500),
                     )
                 }
             }

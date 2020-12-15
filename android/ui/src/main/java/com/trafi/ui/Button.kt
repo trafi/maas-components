@@ -9,15 +9,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.trafi.ui.theme.isRound
 import com.trafi.ui.component.internal.ButtonConstants
 import com.trafi.ui.theme.MaasCornerRadius
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.currentTheme
-import com.trafi.ui.theme.isRound
 import com.trafi.ui.theme.lightColors
 
 @Composable
-private val constants get() = ButtonConstants(currentTheme)
+private val constants
+    get() = ButtonConstants(currentTheme)
 
 @Composable
 fun Button(
@@ -25,8 +26,10 @@ fun Button(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    color: Color = constants.defaultColor,
+    color: Color = constants.defaultBackgroundColor,
+    disabledColor: Color = constants.disabledBackgroundColor,
     contentColor: Color = constants.defaultContentColor,
+    disabledContentColor: Color = constants.disabledContentColor,
 ) {
     androidx.compose.material.Button(
         onClick = onClick,
@@ -39,8 +42,9 @@ fun Button(
         },
         colors = androidx.compose.material.ButtonConstants.defaultButtonColors(
             backgroundColor = color,
-            disabledBackgroundColor = constants.disabledColor,
-            contentColor = contentColor
+            disabledBackgroundColor = disabledColor,
+            contentColor = contentColor,
+            disabledContentColor = disabledContentColor
         )
     ) {
         Text(
@@ -55,6 +59,14 @@ fun Button(
 fun ButtonPreview() {
     MaasTheme {
         Button("Unlock now", onClick = {})
+    }
+}
+
+@Preview
+@Composable
+fun DisabledButtonPreview() {
+    MaasTheme {
+        Button("Unlock now", onClick = {}, enabled = false)
     }
 }
 
