@@ -18,7 +18,7 @@ struct NearbyTransitFilterView: View {
 }
 
 // MARK: - Preview
-
+#if DEBUG
 struct NearbyTransitFilterView_Previews: PreviewProvider, Snapped {
 
     static var snapped: [String: AnyView] {
@@ -66,3 +66,4 @@ private struct MockItem: View {
         .padding(4)
     }
 }
+#endif
