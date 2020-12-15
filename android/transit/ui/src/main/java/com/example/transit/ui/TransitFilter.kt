@@ -6,6 +6,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,11 +19,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.trafi.core.model.FilterItem
 import com.trafi.transit.ui.R
 import com.trafi.ui.component.internal.nearby.transit.NearbyTransitFilterItemConstants
 import com.trafi.ui.components.MultiSelectFilter
 import com.trafi.ui.components.SingleSelectFilter
+import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.currentTheme
 import com.trafi.ui.theme.isRound
 
@@ -79,6 +82,7 @@ private fun String.iconRes(): Int {
         else -> R.drawable.providers_bus_xs
     }
 }
+
 // Todo to ui?
 @ColorInt
 fun String?.toColorInt(@ColorInt fallback: Int = 0xFF_000000.toInt()): Color {
@@ -92,15 +96,22 @@ fun String?.toColorInt(@ColorInt fallback: Int = 0xFF_000000.toInt()): Color {
 
 @Preview
 @Composable
-fun FilterPreview() {
-    val enabledFilters = mutableListOf<FilterItem>()
-    val enabledFilter = listOfFilters()
+fun MultiFilterPreview() {
     val filters = listOfFilters()
     Column {
-        Text(text = "Somethinghinghinghinghinghinghing")
+        Text(
+            text = "Multi select",
+            style = MaasTheme.typography.headingM,
+            modifier = Modifier.padding(8.dp)
+        )
+        Text(
+            text = "Deselected",
+            style = MaasTheme.typography.textS,
+            modifier = Modifier.padding(8.dp)
+        )
         MultiSelectFilter(
             viewsItems = filters,
-            enabledItems = enabledFilters,
+            enabledItems = emptyList(),
             itemView = { item, isEnabled ->
                 NearbyTransitFilterItem(
                     isEnabled = isEnabled,
@@ -108,6 +119,52 @@ fun FilterPreview() {
                 )
             },
             onItemClick = { }
+        )
+        Text(
+            text = "Half selected",
+            style = MaasTheme.typography.textS,
+            modifier = Modifier.padding(8.dp)
+        )
+        MultiSelectFilter(
+            viewsItems = filters,
+            enabledItems = filters.take(3),
+            itemView = { item, isEnabled ->
+                NearbyTransitFilterItem(
+                    isEnabled = isEnabled,
+                    filterItem = item
+                )
+            },
+            onItemClick = { }
+        )
+        Text(
+            text = "All selected",
+            style = MaasTheme.typography.textS,
+            modifier = Modifier.padding(8.dp)
+        )
+        MultiSelectFilter(
+            viewsItems = filters,
+            enabledItems = filters,
+            itemView = { item, isEnabled ->
+                NearbyTransitFilterItem(
+                    isEnabled = isEnabled,
+                    filterItem = item
+                )
+            },
+            onItemClick = { }
+        )
+    }
+}
+
+@Preview
+@Composable
+fun SingleFilterPreview() {
+    val enabledFilter = listOfFilters()
+    val filters = listOfFilters()
+    Column {
+        Text(
+            text = "Single select",
+            style = MaasTheme.typography.headingM,
+            modifier = Modifier.padding(8.dp)
         )
         SingleSelectFilter(
             viewsItems = filters,
