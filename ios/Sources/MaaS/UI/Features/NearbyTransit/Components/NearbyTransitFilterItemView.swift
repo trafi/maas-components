@@ -88,6 +88,8 @@ struct NearbyTransitFilterItemView_Previews: PreviewProvider, Snapped {
             )
         ]
     }
+    
+    static var elementWidth: CGFloat? { 90 }
 }
 
 extension FilterItem: Identifiable {}
@@ -109,6 +111,7 @@ private struct MockItem: View {
                 .foregroundColor(input.isDisabled ? .init(.systemGray2) : input.data.color.parseColor())
             Image.from(image: UIImage(named: input.data.icon))
                 .frame(width: 20, height: 20, alignment: .center)
+                .foregroundColor(input.data.accentColor.parseColor())
         }
         .padding(4)
     }

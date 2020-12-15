@@ -43,6 +43,8 @@ struct NearbyTransitFilterView_Previews: PreviewProvider, Snapped {
             )
         ]
     }
+
+    static var elementWidth: CGFloat? { 290 }
 }
 
 // MARK: - Mock Data

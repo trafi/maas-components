@@ -87,7 +87,7 @@ private struct SingleSelectFilterPreview: View {
 struct SingleSelectFilterPreview_Previews: PreviewProvider, Snapped {
     static var snapped: [String : AnyView] {
         [
-            "Single Select Filter": AnyView(
+            "Filter": AnyView(
                 SingleSelectFilterPreview()
                     .padding()
                     .fixedSize()
@@ -95,13 +95,15 @@ struct SingleSelectFilterPreview_Previews: PreviewProvider, Snapped {
             )
         ]
     }
+
+    static var elementWidth: CGFloat? { 200 }
 }
 
 // MARK: Multi Select
 
 private struct MultiSelectFilterPreview: View {
 
-    @State private var disabledItems: Set<String> = ["1", "2"]
+    @State var disabledItems: Set<String>
 
     var body: some View {
         MultiSelectFilter(
@@ -119,14 +121,30 @@ private struct MultiSelectFilterPreview: View {
 struct MultiSelectFilterPreview_Previews: PreviewProvider, Snapped {
     static var snapped: [String : AnyView] {
         [
-            "Multi Select Filter": AnyView(
-                MultiSelectFilterPreview()
+            "Full selection": AnyView(
+                MultiSelectFilterPreview(disabledItems: [])
+                    .padding()
+                    .fixedSize()
+                    .previewLayout(.sizeThatFits)
+            ),
+
+            "Half selections": AnyView(
+                MultiSelectFilterPreview(disabledItems: ["3", "4"])
+                    .padding()
+                    .fixedSize()
+                    .previewLayout(.sizeThatFits)
+            ),
+
+            "None selection": AnyView(
+                MultiSelectFilterPreview(disabledItems: ["1", "2", "3", "4"])
                     .padding()
                     .fixedSize()
                     .previewLayout(.sizeThatFits)
             )
         ]
     }
+
+    static var elementWidth: CGFloat? { 200 }
 }
 
 // MARK: - Mock Data
@@ -144,8 +162,11 @@ private struct MockItem: View {
     var body: some View {
         Circle()
             .foregroundColor(foregroundColor)
-            .frame(width: 34, height: 34)
-            .overlay(Text(data.id).bold().foregroundColor(.white))
+            .frame(minWidth: 34, minHeight: 34)
+            .overlay(
+                Circle()
+                    .frame(width: 10, height: 10, alignment: .center)
+            )
             .padding(4)
     }
 
