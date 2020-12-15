@@ -28,7 +28,11 @@ struct NearbyTransitFilterView_Previews: PreviewProvider, Snapped {
                     items: items,
                     itemView: NearbyTransitFilterItemView.init,
                     didTapItem: { _ in },
-                    disabledItems: [items[0].id, items[2].id, items[4].id]
+                    disabledItems: [
+                        NearbyMockData.mockFilterDataItems[0].id,
+                        NearbyMockData.mockFilterDataItems[2].id,
+                        NearbyMockData.mockFilterDataItems[4].id
+                    ]
                 )
             ),
 
@@ -37,7 +41,10 @@ struct NearbyTransitFilterView_Previews: PreviewProvider, Snapped {
                     items: items,
                     itemView: NearbyTransitFilterItemView.init,
                     didTapItem: { _ in },
-                    disabledItems: [items[0].id, items[2].id, items[4].id]
+                    disabledItems: [
+                        NearbyMockData.mockFilterDataItems[0].id,
+                        NearbyMockData.mockFilterDataItems[2].id,
+                        NearbyMockData.mockFilterDataItems[4].id]
                 )
                 .swapView(MockItem.init, insteadOf: NearbyTransitFilterItemView.self)
             )

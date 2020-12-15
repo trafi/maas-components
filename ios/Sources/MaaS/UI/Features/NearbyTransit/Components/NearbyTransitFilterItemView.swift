@@ -67,21 +67,21 @@ struct NearbyTransitFilterItemView_Previews: PreviewProvider, Snapped {
         [
             "Enabled": AnyView(
                 NearbyTransitFilterItemView(
-                    data: items[0],
+                    data: NearbyMockData.mockFilterDataItems[0],
                     isDisabled: false
                 )
             ),
 
             "Disabled": AnyView(
                 NearbyTransitFilterItemView(
-                    data: items[0],
+                    data: NearbyMockData.mockFilterDataItems[0],
                     isDisabled: true
                 )
             ),
 
             "Swapped": AnyView(
                 NearbyTransitFilterItemView(
-                    data: items[0],
+                    data: NearbyMockData.mockFilterDataItems[0],
                     isDisabled: false
                 )
                 .swapView(MockItem.init, insteadOf: NearbyTransitFilterItemView.self)
