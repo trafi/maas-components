@@ -9,6 +9,7 @@ internal actual fun TextStyle.copy(
     fontWeight: BasicFontWeight?,
     fontSize: Int?,
     lineHeight: Int?,
+    color: Color?,
 ): TextStyle {
     var descriptor = this.fontDescriptor
     if (fontStyle?.os != null) {
@@ -30,6 +31,7 @@ internal actual fun TextStyle(
     fontWeight: BasicFontWeight,
     fontSize: Int,
     lineHeight: Int,
+    color: Color?,
 ): TextStyle = UIFont.systemFontOfSize(fontSize.os).copy(fontStyle, fontWeight, lineHeight)
 
 private val BasicFontStyle.os get() = when (this) {
