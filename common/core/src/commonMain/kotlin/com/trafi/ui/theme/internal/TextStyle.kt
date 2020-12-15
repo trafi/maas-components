@@ -7,7 +7,7 @@ internal expect fun TextStyle.copy(
     fontWeight: BasicFontWeight? = null,
     fontSize: Int? = null,
     lineHeight: Int? = null,
-    color: Color? = null
+    color: Color? = null,
 ): TextStyle
 
 internal expect fun TextStyle(
@@ -15,5 +15,5 @@ internal expect fun TextStyle(
     fontWeight: BasicFontWeight,
     fontSize: Int,
     lineHeight: Int,
-    color: Color?
+    color: Color?,
 ): TextStyle
