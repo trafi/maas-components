@@ -41,7 +41,7 @@ import com.trafi.ui.theme.MaasTheme
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalFocus::class)
 @Composable
-fun OutlinedTextField(
+public fun OutlinedTextField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
