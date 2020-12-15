@@ -82,21 +82,36 @@ struct NearbyTransitFilterItemView_Previews: PreviewProvider, Snapped {
             "Swapped": AnyView(
                 NearbyTransitFilterItemView(
                     data: items[0],
-                    isDisabled: true
+                    isDisabled: false
                 )
-                .swapView(
-                    { input in
-                        Image.from(image: UIImage(named: input.data.icon))
-                            .frame(width: 20, height: 20, alignment: .center)
-                            .foregroundColor(input.data.color.parseColor())
-                    },
-                    insteadOf: NearbyTransitFilterItemView.self
-                )
+                .swapView(MockItem.init, insteadOf: NearbyTransitFilterItemView.self)
             )
         ]
     }
 }
 
 extension FilterItem: Identifiable {}
+
+// MARK: - Mock Data
+
+private struct MockItem: View {
+
+    let input: NearbyTransitFilterItemView.InputType
+
+    init(input: NearbyTransitFilterItemView.InputType) {
+        self.input = input
+    }
+
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 4)
+                .frame(width: 28, height: 28, alignment: .center)
+                .foregroundColor(input.isDisabled ? .init(.systemGray2) : input.data.color.parseColor())
+            Image.from(image: UIImage(named: input.data.icon))
+                .frame(width: 20, height: 20, alignment: .center)
+        }
+        .padding(4)
+    }
+}
 
 #endif
