@@ -19,7 +19,7 @@ import com.trafi.ui.components.Button
 import com.trafi.ui.theme.MaasTheme
 
 @Composable
-fun OnboardingScreen(onComplete: () -> Unit = {}, onTransitClick: () -> Unit = {}) {
+fun OnboardingScreen(onComplete: () -> Unit = {}) {
     val asset = vectorResource(id = R.drawable.onboarding_visual)
     Column(
         modifier = Modifier
@@ -40,10 +40,6 @@ fun OnboardingScreen(onComplete: () -> Unit = {}, onTransitClick: () -> Unit = {
         Button(
             text = "Let's go!",
             onClick = onComplete,
-        )
-        Button(
-            text = "Transit",
-            onClick = onTransitClick,
         )
     }
 }
