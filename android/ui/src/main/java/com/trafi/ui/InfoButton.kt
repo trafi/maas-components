@@ -8,6 +8,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
@@ -17,23 +18,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.trafi.ui.component.internal.ButtonConstants
+import com.trafi.ui.component.internal.InfoButtonConstants
 import com.trafi.ui.theme.*
+import com.trafi.ui.theme.MaasTheme.cornerRadius
 import com.trafi.ui.theme.isRound
 
-object InfoButtonConstants {
-
-    @Composable
-    val textStyle: TextStyle
-        get() = MaasTheme.typography.textM.copy(fontWeight = FontWeight.SemiBold)
-
-    @Stable
-    val minHeight: Dp
-        get() = 48.dp
-
-    @Composable
-    val cornerRadius: Dp
-        get() = MaasTheme.cornerRadius.buttonRadius
-}
+@Composable
+private val constants
+    get() = InfoButtonConstants(currentTheme)
 
 @Composable
 fun InfoButton(
@@ -43,44 +36,46 @@ fun InfoButton(
     onClick: () -> Unit,
     enabled: Boolean = true
 ) {
-    androidx.compose.material.Button(
+    TextButton(
         onClick = onClick,
-        modifier = modifier.heightIn(min = InfoButtonConstants.minHeight),
         enabled = enabled,
-        shape = if (InfoButtonConstants.cornerRadius.isRound) {
+        shape = if (constants.cornerRadius.isRound) {
             RoundedCornerShape(percent = 50)
         } else {
-            RoundedCornerShape(ButtonConstants.cornerRadius).copy()
+            RoundedCornerShape(constants.cornerRadius).copy()
         },
         colors = androidx.compose.material.ButtonConstants.defaultButtonColors(
-            backgroundColor = MaasTheme.colors.background,
-            disabledBackgroundColor = MaasTheme.colors.background,
-            contentColor = MaasTheme.colors.onBackground,
-            disabledContentColor = MaasTheme.colors.onBackground.copy(alpha = ContentAlpha.disabled)
+            backgroundColor = constants.defaultBackgroundColor,
+            disabledBackgroundColor = constants.disabledBackgroundColor,
+            contentColor = constants.defaultContentColor,
+            disabledContentColor = constants.disabledContentColor,
         ),
-        contentPadding = PaddingValues(Spacing.sm)
-    ) {
-        val iconTint = MaasTheme.colors.onBackground.let {
-            if (!enabled) it.copy(alpha = ContentAlpha.disabled) else it
+        contentPadding = with(constants) {
+            PaddingValues(
+                start = horMinPadding,
+                top = verPadding,
+                end = horMinPadding,
+                bottom = verPadding,
+            )
         }
+    ) {
         Icon(
             imageVector = vectorResource(id = iconRes),
-            modifier = modifier.padding(end = Spacing.xs),
-            tint = iconTint
+            modifier = modifier.padding(end = constants.spaceBetween),
         )
         Text(
             text,
-            style = InfoButtonConstants.textStyle
+            style = constants.textStyle,
         )
     }
 }
 
-@Preview
+@Preview(showBackground = true, backgroundColor = 0xffffffff)
 @Composable
 fun InfoButtonPreview() {
     MaasTheme {
         InfoButton(
-            text = "Info",
+            text = "Info view",
             onClick = {}
         )
     }
