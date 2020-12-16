@@ -1,4 +1,4 @@
-@file:Suppress("unused")
+ @file:Suppress("unused")
 
 package com.trafi.ui.theme
 
@@ -24,5 +24,4 @@ val Dp.isRound: Boolean
 @Immutable
 data class MaasCornerRadius(
     val buttonRadius: Dp = CornerRadiusScale.Default.ButtonRadius,
-    val nearbyTransitFilterItemRadius: Dp = CornerRadiusScale.Default.NearbyTransitFilterItemRadius
 )

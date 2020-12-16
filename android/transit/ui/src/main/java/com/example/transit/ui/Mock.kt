@@ -1,8 +1,8 @@
-package com.example.transit.ui
+package com.trafi.transit.ui
 
 import com.trafi.core.model.FilterItem
 
-fun listOfFilters(): List<FilterItem> {
+internal fun listOfFilters(): List<FilterItem> {
     return listOf(
         FilterItem(
             accentColor = "FFFFFF",
