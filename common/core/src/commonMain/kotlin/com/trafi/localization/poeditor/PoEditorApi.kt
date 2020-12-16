@@ -78,7 +78,8 @@ class PoEditorApi(
     internal suspend fun parseExportedJson(url: String) = try {
         val result = httpClient.get<HttpResponse>(url)
         if (result.status.isSuccess()) {
-            ApiResult.Success(json.decodeFromString<List<PoEditorTranslation>>(result.readText()))
+            val jsonString = result.readText().ifBlank { "[]" }
+            ApiResult.Success(json.decodeFromString<List<PoEditorTranslation>>(jsonString))
         } else {
             ApiResult.Failure(Throwable(result.readText()))
         }
