@@ -15,7 +15,7 @@ extension QuickSpec {
         it(S.name) {
             XCTAssertNil(
                 verifySnapshot(
-                    matching: S.posterPreview(detailed: true), as: .image(precision: 0.99),
+                    matching: S.posterPreview(detailed: true), as: .image(precision: 0.995),
                     named: "\(Int(UIScreen.main.scale))x",
                     file: file,
                     testName: S.name,
