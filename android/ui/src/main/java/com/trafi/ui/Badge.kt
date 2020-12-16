@@ -4,7 +4,6 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.AmbientContentColor
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -13,12 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.trafi.ui.BadgeType.MEDIUM_BADGE
-import com.trafi.ui.BadgeType.SMALL_BADGE
+import com.trafi.ui.BadgeType.Medium
+import com.trafi.ui.BadgeType.Small
 import com.trafi.ui.component.internal.BadgeConstants
 import com.trafi.ui.theme.currentTheme
 
@@ -28,72 +28,71 @@ private val constants
 
 data class BadgeInfo(
     val text: String?,
-    val color: Color,
-    val textColor: Color? = null
+    val backgroundColor: Color,
+    val contentColor: Color? = null,
 )
 
 @OptIn(ExperimentalLayout::class)
 @Composable
 fun Badge(
+    badge: BadgeInfo,
     modifier: Modifier = Modifier,
-    badge: BadgeInfo?,
+    badgeType: BadgeType = Medium,
+    icon: ImageVector? = null,
+    isEnabled: Boolean = true,
+    subbadgeIcon: ImageVector? = null,
     alternativeBadges: List<BadgeInfo> = listOf(),
-    vector: ImageVector? = null,
-    subbadge: ImageVector? = null,
-    badgeType: BadgeType,
-    isDisabled: Boolean = false
 ) {
     if (alternativeBadges.isEmpty()) {
         SingleBadge(
             badge = badge,
             badgeType = badgeType,
             modifier = modifier,
-            vector = vector,
-            subbadge = subbadge,
-            isDisabled = isDisabled
+            icon = icon,
+            subbadgeIcon = subbadgeIcon,
+            isEnabled = isEnabled
         )
     } else {
         StackedBadge(
             modifier = modifier,
             badge = badge,
             alternativeBadges = alternativeBadges,
-            vector = vector,
+            icon = icon,
             badgeType = badgeType
         )
     }
-
 }
 
 @OptIn(ExperimentalLayout::class)
 @Composable
 private fun SingleBadge(
-    modifier: Modifier = Modifier,
-    badge: BadgeInfo?,
-    vector: ImageVector? = null,
-    subbadge: ImageVector? = null,
+    badge: BadgeInfo,
     badgeType: BadgeType,
-    isDisabled: Boolean = false
+    modifier: Modifier = Modifier,
+    icon: ImageVector? = null,
+    subbadgeIcon: ImageVector? = null,
+    isEnabled: Boolean = true,
 ) {
     ConstraintLayout {
         Surface(
-            color = if (isDisabled) constants.disabledColor else badge?.color ?: Color.Black,
-            contentColor = badge?.textColor ?: constants.defaultContentColor,
-            shape = RoundedCornerShape(getBadgeRounding(badgeType)),
-            modifier = modifier.sizeIn(minHeight = getBadgeHeight(badgeType))
+            color = if (isEnabled) badge.backgroundColor else constants.disabledColor,
+            contentColor = badge.contentColor ?: constants.defaultContentColor,
+            shape = RoundedCornerShape(badgeType.badgeRounding),
+            modifier = modifier.sizeIn(minHeight = badgeType.badgeHeight)
                 .constrainAs(createRef()) {
                     bottom.linkTo(parent.bottom)
                 }
         ) {
             BadgeFiller(
                 badgeType = badgeType,
-                vector = vector,
-                text = badge?.text,
+                vector = icon,
+                badge = badge,
                 isStackedBadge = false
             )
         }
-        subbadge?.let {
+        subbadgeIcon?.let {
             Image(
-                subbadge,
+                subbadgeIcon,
                 modifier = Modifier
                     .width(constants.subBadgeIconWidth)
                     .height(constants.subBadgeIconHeight)
@@ -112,55 +111,54 @@ private fun SingleBadge(
 @OptIn(ExperimentalLayout::class)
 @Composable
 private fun StackedBadge(
+    badge: BadgeInfo,
+    badgeType: BadgeType,
     modifier: Modifier = Modifier,
-    badge: BadgeInfo?,
-    alternativeBadges: List<BadgeInfo>,
-    vector: ImageVector?,
-    subbadge: ImageVector? = null,
-    badgeType: BadgeType
+    icon: ImageVector? = null,
+    subbadgeIcon: ImageVector? = null,
+    alternativeBadges: List<BadgeInfo> = listOf(),
 ) {
     ConstraintLayout {
-        val altBadgesSublist =
-            if (alternativeBadges.size > 2) alternativeBadges.subList(0, 2) else alternativeBadges
+        val altBadgesSublist = alternativeBadges.take(2)
         altBadgesSublist.forEachIndexed { index, smallScheduleBadge ->
             Surface(
-                color = smallScheduleBadge.color,
-                contentColor = smallScheduleBadge.textColor ?: constants.defaultContentColor,
+                color = smallScheduleBadge.backgroundColor,
+                contentColor = smallScheduleBadge.contentColor ?: constants.defaultContentColor,
                 border = BorderStroke(constants.borderWidth, color = constants.defaultContentColor),
-                shape = RoundedCornerShape(getBadgeRounding(badgeType)),
-                modifier = modifier.height(getBadgeHeight(badgeType) + (index * 4).dp)
+                shape = RoundedCornerShape(badgeType.badgeRounding),
+                modifier = modifier.height(badgeType.badgeHeight + (index * 4).dp)
                     .padding(top = (index * 4).dp)
             ) {
                 BadgeFiller(
                     badgeType = badgeType,
-                    vector = vector,
+                    vector = icon,
                     // This is not a mistype, it is a lifehack to make badges same size
-                    text = badge?.text,
+                    badge = badge,
                     isHiddenLayoutFiller = true,
                     isStackedBadge = true
                 )
             }
         }
         Surface(
-            color = badge?.color ?: Color.Black,
-            contentColor = badge?.textColor ?: constants.defaultContentColor,
+            color = badge.backgroundColor,
+            contentColor = badge.contentColor ?: constants.defaultContentColor,
             border = BorderStroke(constants.borderWidth, color = constants.defaultContentColor),
-            shape = RoundedCornerShape(getBadgeRounding(badgeType)),
+            shape = RoundedCornerShape(badgeType.badgeRounding),
             modifier = modifier
-                .height(getBadgeHeight(badgeType) + (altBadgesSublist.size * 4).dp + (constants.borderWidth * 2))
+                .sizeIn(minHeight = badgeType.badgeHeight + (altBadgesSublist.size * 4).dp + (constants.borderWidth * 2))
                 .padding(top = (altBadgesSublist.size * 4).dp)
         ) {
             BadgeFiller(
                 badgeType = badgeType,
-                vector = vector,
-                text = badge?.text,
+                vector = icon,
+                badge = badge,
                 isHiddenLayoutFiller = false,
                 isStackedBadge = true
             )
         }
-        subbadge?.let {
+        subbadgeIcon?.let {
             Image(
-                subbadge,
+                subbadgeIcon,
                 modifier = Modifier
                     .width(constants.subBadgeIconWidth)
                     .height(constants.subBadgeIconHeight)
@@ -179,31 +177,37 @@ private fun StackedBadge(
 @Composable
 private fun BadgeFiller(
     badgeType: BadgeType,
+    isStackedBadge: Boolean,
+    badge: BadgeInfo,
     vector: ImageVector?,
-    text: String?,
     isHiddenLayoutFiller: Boolean = false,
-    isStackedBadge: Boolean
 ) {
     Row(
         modifier = Modifier.padding(
-            horizontal = getBadgeHorizontalPadding(badgeType, isStackedBadge),
-            vertical = getBadgeVerticalPadding(badgeType)
+            horizontal = badgeType.getHorizontalPadding(isStackedBadge),
+            vertical = badgeType.verticalPadding
         ),
         horizontalArrangement = Arrangement.spacedBy(constants.spacer)
     ) {
-        vector?.let {
-            Image(
-                vector,
-                colorFilter = ColorFilter.tint(AmbientContentColor.current),
-                modifier = Modifier.align(Alignment.CenterVertically)
-                    .width(constants.iconWidth)
-                    .height(if (isHiddenLayoutFiller) 0.dp else constants.iconHeight)
-            )
+        if (isHiddenLayoutFiller) {
+            Box(modifier = Modifier.align(Alignment.CenterVertically).width(constants.iconWidth)) {}
+        } else {
+            vector?.let {
+                Image(
+                    vector,
+                    colorFilter = ColorFilter.tint(badge.contentColor
+                        ?: constants.defaultContentColor),
+                    modifier = Modifier.align(Alignment.CenterVertically)
+                        .width(constants.iconWidth)
+                        .height(constants.iconHeight)
+                )
+            }
         }
-        text?.let {
+        badge.text?.let {
             Text(
-                text = text,
-                style = getBadgeTextStyle(badgeType).copy(fontWeight = FontWeight.Bold),
+                text = badge.text,
+                color = badge.contentColor ?: constants.defaultContentColor,
+                style = badgeType.textStyle,
                 modifier = Modifier.align(Alignment.CenterVertically)
                     .padding(bottom = 1.dp)
                     .wrapContentHeight(unbounded = true)
@@ -213,46 +217,138 @@ private fun BadgeFiller(
 }
 
 @Composable
-private fun getBadgeHeight(type: BadgeType): Dp {
-    return when (type) {
-        SMALL_BADGE -> constants.minHeightSmall
-        MEDIUM_BADGE -> constants.minHeightMedium
+private val BadgeType.badgeHeight: Dp
+    get() = when (this) {
+        Small -> constants.minHeightSmall
+        Medium -> constants.minHeightMedium
+    }
+
+
+@Composable
+private val BadgeType.badgeRounding: Dp
+    get() = when (this) {
+        Small -> constants.cornerRadiusSmall
+        Medium -> constants.cornerRadiusMedium
+    }
+
+
+@Composable
+private fun BadgeType.getHorizontalPadding(isStackedBadge: Boolean): Dp {
+    return when (this) {
+        Small -> constants.horizontalPaddingSmall.plusIf(isStackedBadge,
+            constants.borderWidth)
+        Medium -> constants.horizontalPaddingMedium.plusIf(isStackedBadge,
+            constants.borderWidth)
     }
 }
 
 @Composable
-private fun getBadgeRounding(type: BadgeType): Dp {
-    return when (type) {
-        SMALL_BADGE -> constants.cornerRadiusSmall
-        MEDIUM_BADGE -> constants.cornerRadiusMedium
+private val BadgeType.verticalPadding: Dp
+    get() = when (this) {
+        Small -> 0.dp
+        Medium -> constants.verticalPaddingMedium
     }
-}
+
 
 @Composable
-private fun getBadgeHorizontalPadding(type: BadgeType, isStackedBadge: Boolean): Dp {
-    return when (type) {
-        SMALL_BADGE -> constants.horizontalPaddingSmall + (constants.borderWidth * 2)
-        MEDIUM_BADGE -> constants.horizontalPaddingMedium + (constants.borderWidth * 2)
+private val BadgeType.textStyle: TextStyle
+    get() = when (this) {
+        Small -> constants.textStyleSmall
+        Medium -> constants.textStyleMedium
     }
-}
-
-@Composable
-private fun getBadgeVerticalPadding(type: BadgeType): Dp {
-    return when (type) {
-        SMALL_BADGE -> 0.dp
-        MEDIUM_BADGE -> constants.verticalPaddingMedium
-    }
-}
-
-@Composable
-private fun getBadgeTextStyle(type: BadgeType): TextStyle {
-    return when (type) {
-        SMALL_BADGE -> constants.textStyleSmall
-        MEDIUM_BADGE -> constants.textStyleMedium
-    }
-}
 
 enum class BadgeType {
-    SMALL_BADGE,
-    MEDIUM_BADGE
+    Small,
+    Medium,
+}
+
+private fun Dp.plusIf(shouldInclude: Boolean, other: Dp): Dp {
+    return if (shouldInclude) Dp(value = this.value + other.value) else Dp(value = this.value)
+}
+
+
+@Preview
+@Composable
+private fun BadgePreview() {
+    Badge(
+        badge = BadgeInfo("5G", Color.Magenta),
+        icon = vectorResource(R.drawable.providers_ubahn_xs),
+        badgeType = Medium
+    )
+}
+
+@Preview
+@Composable
+private fun BadgePreviewWithSubbadge() {
+    Badge(
+        badge = BadgeInfo("5G", Color.Magenta),
+        icon = vectorResource(R.drawable.providers_ubahn_xs),
+        subbadgeIcon = vectorResource(id = R.drawable.warning_warning_s),
+        badgeType = Medium
+    )
+}
+
+@Preview
+@Composable
+private fun SmallBadgePreview() {
+    Badge(
+        badge = BadgeInfo("5G", Color.Magenta),
+        badgeType = Small
+    )
+}
+
+@Preview
+@Composable
+private fun SmallDisabledBadgePreview() {
+    Badge(
+        badge = BadgeInfo("5G", Color.Magenta),
+        badgeType = Small,
+        isEnabled = false
+    )
+}
+
+@Preview
+@Composable
+private fun SmallBadgeWithIconPreview() {
+    Badge(
+        badge = BadgeInfo("5G", Color.Magenta),
+        icon = vectorResource(R.drawable.providers_ubahn_xs),
+        badgeType = Small
+    )
+}
+
+@Preview
+@Composable
+private fun BadgeWithoutIconPreview() {
+    Badge(
+        badge = BadgeInfo("5G", Color.Magenta),
+        badgeType = Medium
+    )
+}
+
+@Preview
+@Composable
+private fun StackedBadgePreview() {
+    Badge(
+        badge = BadgeInfo("5G", Color.Magenta),
+        alternativeBadges = listOf(
+            BadgeInfo("5G", Color.Magenta),
+        ),
+        icon = vectorResource(R.drawable.providers_ubahn_xs),
+        badgeType = Medium
+    )
+}
+
+@Preview
+@Composable
+private fun StackedBadgePreviewWithSubbadge() {
+    Badge(
+        badge = BadgeInfo("5G", Color.Magenta),
+        alternativeBadges = listOf(BadgeInfo("135", Color.Green),
+            BadgeInfo("13585", Color.Magenta),
+            BadgeInfo("1", Color.Green),
+            BadgeInfo("135", Color.Magenta)),
+        icon = vectorResource(R.drawable.providers_ubahn_xs),
+        badgeType = Medium
+    )
 }
