@@ -14,7 +14,7 @@ struct InfoButton: View {
     public let input: InputType
     public init(
         _ text: String,
-        icon: Image =  Image(systemName: "info.circle"),
+        icon: Image = Image(systemName: "info.circle"),
         foreground: Color? = nil,
         highlightedColor: Color? = nil,
         action: @escaping () -> Void) {
@@ -30,11 +30,12 @@ struct InfoButton: View {
     
     @Environment(\.isEnabled) var isEnabled
     @Environment(\.currentTheme) var theme
-    
+    @Environment(\.currentGrayScalePalette) var grayScale
+
     var constants: Kotlin<InfoButtonConstants> { Kotlin(InfoButtonConstants(theme: theme)) }
     
     private var foregroundColor: Color {
-        input.foreground ?? (isEnabled ? constants.color : constants.disabledColor)
+        input.foreground ?? (isEnabled ? constants.defaultContentColor : constants.disabledContentColor)
     }
     
     private var highlightedColor: Color {
@@ -62,30 +63,49 @@ struct InfoButton: View {
     }
 }
 
-
 struct GradienHighlightButtonStyle: ButtonStyle {
     
     var color: Color
     
-    private var gradient: LinearGradient {
-        LinearGradient(
-            gradient: Gradient(
-                colors: [
-                    color.opacity(0),
-                    color,
-                    color.opacity(0),
-                ]),
-            startPoint: .leading,
-            endPoint: .trailing
-        )
+    func makeBody(configuration: Self.Configuration) -> some View {
+        Content(configuration: configuration, color: color)
     }
     
-    func makeBody(configuration: Self.Configuration) -> some View {
-        configuration.label
-            .background(
-                gradient.opacity(configuration.isPressed ? 1 : 0)
+    struct Content: View {
+        
+        let configuration: Configuration
+        var color: Color
+        @Environment(\.isEnabled) var isEnabled
+        @Environment(\.mockSelected) var isMockSelected
+
+
+        var isSelected: Bool {
+            #if DEBUG
+            if isMockSelected { return !configuration.isPressed }
+            #endif
+            return configuration.isPressed
+        }
+        
+        private var gradient: LinearGradient {
+            LinearGradient(
+                gradient: Gradient(
+                    colors: [
+                        color.opacity(0),
+                        color,
+                        color.opacity(0),
+                    ]),
+                startPoint: .leading,
+                endPoint: .trailing
             )
-            .animation(.spring())
+        }
+        
+        var body: some View {
+            configuration.label
+                .background(
+                    gradient.opacity(isSelected ? 1 : 0)
+                )
+                .animation(.easeInOut(duration: 0.2))
+        }
     }
 }
 
@@ -96,6 +116,11 @@ struct InfoButton_Previews: PreviewProvider, Snapped {
         [
             "Plain": AnyView(
                 InfoButton("Info", action: {})
+            ),
+            
+            "Highlighted": AnyView(
+                InfoButton("Info",action: {})
+                    .environment(\.mockSelected, true)
             ),
             
             "Disabled": AnyView(
@@ -120,5 +145,20 @@ struct InfoButton_Previews: PreviewProvider, Snapped {
     }
     
     static var elementWidth: CGFloat? { 200 }
+    static var detailed: Bool { true }
+}
+#endif
+
+#if DEBUG
+struct MockSelected: EnvironmentKey {
+    static var defaultValue: Bool { false }
+}
+
+public extension EnvironmentValues {
+    
+    var mockSelected: Bool {
+        get { self[MockSelected.self] }
+        set { self[MockSelected.self] = newValue }
+    }
 }
 #endif
