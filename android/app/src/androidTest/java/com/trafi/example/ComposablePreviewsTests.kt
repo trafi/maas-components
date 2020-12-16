@@ -1,17 +1,23 @@
 package com.trafi.example
 
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.unit.dp
 import com.karumi.shot.ScreenshotTest
-import com.trafi.ui.Button
-import com.trafi.ui.theme.MaasCornerRadius
-import com.trafi.ui.theme.MaasTheme
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.Parameterized
 
-class ButtonPreviews: ScreenshotTest {
+@RunWith(Parameterized::class)
+class ComposablePreviewsTests(private val previewWithName: Pair<@Composable () -> Unit, String>): ScreenshotTest {
+    companion object {
+        @JvmStatic
+        @Parameterized.Parameters
+        fun previews() = testPreviews
+    }
+
     lateinit var previewTest: PreviewTest
 
     @get:Rule
@@ -23,12 +29,11 @@ class ButtonPreviews: ScreenshotTest {
     }
 
     @Test
-    fun buttonTest() {
+    fun previewTest() {
+        val (preview, name) = previewWithName
         previewTest
-            .renderAndTestView {
-                MaasTheme(cornerRadius = MaasCornerRadius(buttonRadius = 0.dp)) {
-                    Button("Unlock now", onClick = {})
-                }
+            .renderAndTestView(name) {
+                preview()
             }
     }
 }
