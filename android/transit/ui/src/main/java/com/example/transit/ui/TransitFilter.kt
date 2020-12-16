@@ -26,6 +26,7 @@ import com.trafi.ui.components.MultiSelectFilter
 import com.trafi.ui.components.SingleSelectFilter
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.currentTheme
+import com.trafi.ui.theme.internal.toColor
 import com.trafi.ui.theme.isRound
 
 @Composable
@@ -51,11 +52,11 @@ fun NearbyTransitFilterItem(
             } else {
                 RoundedCornerShape(constants.cornerRadius)
             },
-            color = if (isEnabled) filterItem.color.toColorInt() else constants.disabledColor,
+            color = if (isEnabled) filterItem.color.toColor() else constants.disabledColor,
             modifier = Modifier
                 .sizeIn(
-                    minWidth = constants.minHeight,
-                    minHeight = constants.minWidth
+                    minWidth = constants.contentMinWidth,
+                    minHeight = constants.contentMinHeight
                 )
         ) {
             val image = vectorResource(id = filterItem.icon.iconRes())
@@ -64,7 +65,7 @@ fun NearbyTransitFilterItem(
                 modifier = Modifier
                     .width(constants.imageWidth)
                     .height(constants.imageHeight),
-                colorFilter = ColorFilter.tint(color = filterItem.accentColor.toColorInt())
+                colorFilter = ColorFilter.tint(color = filterItem.accentColor.toColor())
             )
         }
     }
@@ -81,17 +82,6 @@ private fun String.iconRes(): Int {
         "ferry" -> R.drawable.providers_ferry_xs
         else -> R.drawable.providers_bus_xs
     }
-}
-
-// Todo to ui?
-@ColorInt
-fun String?.toColorInt(@ColorInt fallback: Int = 0xFF_000000.toInt()): Color {
-    var color = this?.toLongOrNull(radix = 16) ?: return Color(fallback)
-    if (length == 6) {
-        // if transparency is not specified, default to opaque
-        color = color or 0x00000000_FF000000
-    }
-    return Color(color.toInt())
 }
 
 @Preview
