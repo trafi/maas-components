@@ -41,10 +41,11 @@ private enum ColorKeys {
     }
     
     struct GrayScale: EnvironmentKey {
-        static var defaultValue: MaasCore.GrayScale {
-            UIScreen.main.traitCollection.userInterfaceStyle == .dark ?
+        static var defaultValue: GrayScalePalette {
+            let grayScale = UIScreen.main.traitCollection.userInterfaceStyle == .dark ?
                 ColorPalette.DefaultDark().GrayScale :
                 ColorPalette.DefaultLight().GrayScale
+            return GrayScalePalette(grayScale)
         }
     }
 }
@@ -112,10 +113,43 @@ public extension EnvironmentValues {
         set { self[ColorKeys.OnError.self] = newValue }
     }
     
-    var grayScale: MaasCore.GrayScale {
+    var grayScale: GrayScalePalette {
         get { self[ColorKeys.GrayScale.self] }
         set { self[ColorKeys.GrayScale.self] = newValue }
     }
+}
+
+public struct GrayScalePalette {
+    public init(gray100: UIColor,
+         gray200: UIColor,
+         gray300: UIColor,
+         gray400: UIColor,
+         gray500: UIColor,
+         gray600: UIColor,
+         gray700: UIColor,
+         gray800: UIColor,
+         gray900: UIColor
+    ) {
+        self.gray100 = gray100
+        self.gray200 = gray200
+        self.gray300 = gray300
+        self.gray400 = gray400
+        self.gray500 = gray500
+        self.gray600 = gray600
+        self.gray700 = gray700
+        self.gray800 = gray800
+        self.gray900 = gray900
+    }
+    
+    let gray100: UIColor
+    let gray200: UIColor
+    let gray300: UIColor
+    let gray400: UIColor
+    let gray500: UIColor
+    let gray600: UIColor
+    let gray700: UIColor
+    let gray800: UIColor
+    let gray900: UIColor
 }
 
 // MARK: - From Kotlin
@@ -148,6 +182,20 @@ extension UInt64 {
     var toKotlin: UInt64 { self << 32 }
 }
 
+extension GrayScalePalette {
+    init(_ grayScale: MaasCore.GrayScale) {
+        self.gray100 = grayScale.gray100.color
+        self.gray200 = grayScale.gray200.color
+        self.gray300 = grayScale.gray300.color
+        self.gray400 = grayScale.gray400.color
+        self.gray500 = grayScale.gray500.color
+        self.gray600 = grayScale.gray600.color
+        self.gray700 = grayScale.gray700.color
+        self.gray800 = grayScale.gray800.color
+        self.gray900 = grayScale.gray900.color
+    }
+}
+
 // MARK: - To Kotlin
 
 extension UIColor {
@@ -178,5 +226,21 @@ private extension ColorScheme {
         @unknown default:
             return .unspecified
         }
+    }
+}
+
+extension GrayScalePalette {
+    func ui64(_ colorScheme: ColorScheme) -> MaasCore.GrayScale {
+        MaasCore.GrayScale(
+            gray100: gray100.ui64(colorScheme),
+            gray200: gray200.ui64(colorScheme),
+            gray300: gray300.ui64(colorScheme),
+            gray400: gray400.ui64(colorScheme),
+            gray500: gray500.ui64(colorScheme),
+            gray600: gray600.ui64(colorScheme),
+            gray700: gray700.ui64(colorScheme),
+            gray800: gray800.ui64(colorScheme),
+            gray900: gray900.ui64(colorScheme)
+        )
     }
 }
