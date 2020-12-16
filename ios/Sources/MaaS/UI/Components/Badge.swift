@@ -74,20 +74,17 @@ public struct Badge: View, Swappable {
     }
 }
 
-struct BaseBadge: View, Swappable {
-    public enum Size {
-        case small
-        case medium
-    }
+private struct BaseBadge: View, Swappable {
 
-    public typealias InputType = Badge.InputType
+    typealias InputType = Badge.InputType
 
-    public let input: InputType
-    public init(input: InputType) {
+    let input: InputType
+    init(input: InputType) {
         self.input = input
     }
 
     @Environment(\.currentTheme) var theme
+    
     var constants: Kotlin<BadgeConstants> { Kotlin(BadgeConstants(theme: theme)) }
 
     var defaultBody: some View {
@@ -162,7 +159,7 @@ struct BaseBadge: View, Swappable {
 
 }
 
-struct StackedBadge: View, Swappable {
+private struct StackedBadge: View, Swappable {
 
     struct InputType {
         let base: BaseBadge.InputType
@@ -171,12 +168,12 @@ struct StackedBadge: View, Swappable {
 
     let input: InputType
     init(backgroundColor: Color?,
-         icon: UIImage?,
-         text: String?,
-         foregroundColor: Color? = nil,
-         subBadge: UIImage? = nil,
-         isEnabled: Bool = true,
-         stackColors: [Color]) {
+                icon: UIImage?,
+                text: String?,
+                foregroundColor: Color? = nil,
+                subBadge: UIImage? = nil,
+                isEnabled: Bool = true,
+                stackColors: [Color]) {
         input = InputType(base: .init(type: .medium,
                                       backgroundColor: backgroundColor,
                                       foregroundColor: foregroundColor,
@@ -210,7 +207,7 @@ struct StackedBadge: View, Swappable {
                                            isEnabled: input.base.isEnabled))
                         .overlay(RoundedRectangle(cornerRadius: constants.cornerRadiusMedium)
                                     .stroke(constants.defaultContentColor, lineWidth: constants.borderWidth))
-                        .offset(y: -spacing(index: index))
+                     .offset(y: -spacing(index: index))
                 }
 
                 if let subBadge = input.base.subBadge {
@@ -242,7 +239,7 @@ struct StackedBadge: View, Swappable {
 
 }
 
-extension View {
+private extension View {
     func subBadge(image: UIImage, width: CGFloat, height: CGFloat) -> some View {
         self.overlay(
             Image(uiImage: image)
