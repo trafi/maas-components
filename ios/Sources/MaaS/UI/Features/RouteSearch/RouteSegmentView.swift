@@ -6,19 +6,19 @@ struct RouteSegmentView: View {
 
     var body: some View {
         if let transit = segment.transit {
-            Badge(color: transit.schedule.color.parseColor(),
+            Badge(backgroundColor: transit.schedule.color.parseColor(),
                   icon: UIImage(systemName: "bus"),
                   text: transit.schedule.name)
         } else if let rideHailing = segment.rideHailing {
-            Badge(color: rideHailing.provider?.color?.parseColor() ?? .black,
+            Badge(backgroundColor: rideHailing.provider?.color?.parseColor() ?? .black,
                   icon: UIImage(systemName: "car"),
                   text: nil)
         } else if let sharing = segment.sharing {
-            Badge(color: sharing.provider?.color?.parseColor() ?? .black,
+            Badge(backgroundColor: sharing.provider?.color?.parseColor() ?? .black,
                   icon: UIImage(systemName: "car"),
                   text: nil)
         } else if let walking = segment.walking {
-            Badge(color: nil,
+            Badge(backgroundColor: nil,
                   icon: UIImage(systemName: "figure.walk"),
                   text: walking.distance.text)
         } else {

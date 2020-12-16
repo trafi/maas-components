@@ -2,19 +2,23 @@ import SwiftUI
 import Swappable
 import MaasTheme
 
+///  A swappable Badge component
+/// - Parameters:
+/// <-->
 public struct Badge: View, Swappable {
 
-    public enum Size {
+    public enum BadgeType {
         case small
         case medium
     }
 
-    public struct InputType: Equatable {
-        let style: Size
-        let color: Color?
-        let textColor: Color?
+    public struct InputType {
+        let type: BadgeType
+        let backgroundColor: Color?
+        let foregroundColor: Color?
         let icon: UIImage?
         let text: String?
+        let alternativeBadgesColors: [Color]
         let subBadge: UIImage?
         let isEnabled: Bool
     }
@@ -28,31 +32,44 @@ public struct Badge: View, Swappable {
 
     var constants: Kotlin<BadgeConstants> { Kotlin(BadgeConstants(theme: theme)) }
 
-    public init(size: Size = .medium,
-                color: Color?,
+    public init(type: BadgeType = .medium,
+                backgroundColor: Color?,
+                foregroundColor: Color? = nil,
                 icon: UIImage?,
                 text: String?,
-                textColor: Color? = nil,
+                alternativeBadges: [Color] = [],
                 subBadge: UIImage? = nil,
                 isEnabled: Bool = true) {
-        self.init(input: InputType(style: size,
-                                   color: color,
-                                   textColor: nil,
+
+        self.init(input: InputType(type: type,
+                                   backgroundColor: backgroundColor,
+                                   foregroundColor: foregroundColor,
                                    icon: icon,
                                    text: text,
+                                   alternativeBadgesColors: alternativeBadges,
                                    subBadge: subBadge,
                                    isEnabled: isEnabled))
     }
 
     public var defaultBody: some View {
 
-        if let subBadge = input.subBadge {
-            BaseBadge(input: input)
-                .subBadge(image: subBadge,
-                          width: constants.subBadgeIconWidth,
-                          height: constants.subBadgeIconHeight)
+        if input.alternativeBadgesColors.isEmpty {
+            if let subBadge = input.subBadge {
+                BaseBadge(input: input)
+                    .subBadge(image: subBadge,
+                              width: constants.subBadgeIconWidth,
+                              height: constants.subBadgeIconHeight)
+            } else {
+                BaseBadge(input: input)
+            }
         } else {
-            BaseBadge(input: input)
+            StackedBadge(backgroundColor: input.backgroundColor,
+                         icon: input.icon,
+                         text: input.text,
+                         foregroundColor: input.foregroundColor,
+                         subBadge: input.subBadge,
+                         isEnabled: input.isEnabled,
+                         stackColors: input.alternativeBadgesColors)
         }
     }
 }
@@ -90,17 +107,17 @@ struct BaseBadge: View, Swappable {
             }
         }
         .padding(padding)
-        .foregroundColor(input.textColor ?? constants.defaultContentColor)
+        .foregroundColor(input.foregroundColor ?? constants.defaultContentColor)
         .frame(minHeight: minHeight)
         .background(
             RoundedRectangle(cornerRadius: cornerRadius)
-                .fill(input.isEnabled ? input.color ?? .clear : constants.disabledColor)
+                .fill(input.isEnabled ? input.backgroundColor ?? .clear : constants.disabledColor)
 
         )
     }
 
     private var minHeight: CGFloat {
-        switch input.style {
+        switch input.type {
         case .small:
             return constants.minHeightSmall
         case .medium:
@@ -109,7 +126,7 @@ struct BaseBadge: View, Swappable {
     }
 
     private var cornerRadius: CGFloat {
-        switch input.style {
+        switch input.type {
         case .small:
             return constants.cornerRadiusSmall
         case .medium:
@@ -118,7 +135,7 @@ struct BaseBadge: View, Swappable {
     }
 
     private var font: Font {
-        switch input.style {
+        switch input.type {
         case .small:
             return constants.textStyleSmall
         case .medium:
@@ -127,7 +144,7 @@ struct BaseBadge: View, Swappable {
     }
 
     private var padding: EdgeInsets {
-        switch input.style {
+        switch input.type {
         case .small:
             return .init(top:  constants.verticalPaddingSmall,
                          leading: constants.horizontalPaddingSmall,
@@ -145,55 +162,55 @@ struct BaseBadge: View, Swappable {
 
 }
 
+struct StackedBadge: View, Swappable {
 
-public struct StackedBadge: View, Swappable {
-
-    public struct InputType: Equatable {
+    struct InputType {
         let base: BaseBadge.InputType
         let colors: [Color]
     }
 
-    public let input: InputType
-    public init(
-                color: Color?,
-                icon: UIImage?,
-                text: String?,
-                textColor: Color? = nil,
-                subBadge: UIImage? = nil,
-        isEnabled: Bool = true,
-                colors: [Color]) {
-        input = InputType(base: .init(style: .medium,
-                                      color: color,
-                                      textColor: textColor,
+    let input: InputType
+    init(backgroundColor: Color?,
+         icon: UIImage?,
+         text: String?,
+         foregroundColor: Color? = nil,
+         subBadge: UIImage? = nil,
+         isEnabled: Bool = true,
+         stackColors: [Color]) {
+        input = InputType(base: .init(type: .medium,
+                                      backgroundColor: backgroundColor,
+                                      foregroundColor: foregroundColor,
                                       icon: icon,
                                       text: text,
+                                      alternativeBadgesColors: [],
                                       subBadge: subBadge,
                                       isEnabled: isEnabled),
-                          colors: colors)
+                          colors: stackColors)
     }
 
     @Environment(\.currentTheme) var theme
 
     var constants: Kotlin<BadgeConstants> { Kotlin(BadgeConstants(theme: theme)) }
 
-    public var defaultBody: some View {
+    var defaultBody: some View {
 
         ZStack {
             if input.colors.isEmpty {
                 Badge(input: input.base)
             } else  {
-                let colors = input.colors[0..<min(StackedBadge.maxMultiIconOtherColors, input.colors.count)]
-                ForEach(0 ..< colors.count) { index in
-                    BaseBadge(input: .init(style: .medium,
-                                           color: colors[index],
-                                           textColor: input.base.textColor,
+                let colors = Array(input.colors[0..<min(StackedBadge.maxMultiIconOtherColors, input.colors.count)].reversed())
+                ForEach(colors.indices) { index in
+                    BaseBadge(input: .init(type: .medium,
+                                           backgroundColor: colors[index],
+                                           foregroundColor: input.base.foregroundColor,
                                            icon: input.base.icon,
                                            text: input.base.text,
+                                           alternativeBadgesColors: [],
                                            subBadge: nil,
                                            isEnabled: input.base.isEnabled))
                         .overlay(RoundedRectangle(cornerRadius: constants.cornerRadiusMedium)
                                     .stroke(constants.defaultContentColor, lineWidth: constants.borderWidth))
-                     .offset(y: -spacing(index: index))
+                        .offset(y: -spacing(index: index))
                 }
 
                 if let subBadge = input.base.subBadge {
@@ -243,20 +260,17 @@ extension View {
 struct Badge_Previews: PreviewProvider, Snapped {
     static var snapped: [String: AnyView] {
         [
-            "Tram": AnyView( Badge(color: .red, icon: UIImage(systemName: "tram"), text: "12")),
+            "Tram": AnyView( Badge(backgroundColor: .red, icon: UIImage(systemName: "tram"), text: "12")),
             "Stracked": AnyView(
-                HStack {
-                StackedBadge(color: .orange, icon: UIImage(systemName: "bus"), text: "55", textColor: .white, subBadge: UIImage(systemName: "heart.fill"), colors: [.blue, .green])
-                    Badge(size: .medium, color: .pink, icon: UIImage(systemName: "bus"), text: "60", textColor: .blue, subBadge: UIImage(systemName: "heart.fill"), isEnabled: true)
-                }
+                Badge(backgroundColor: .orange, foregroundColor: .white, icon: UIImage(systemName: "bus"), text: "55", alternativeBadges: [.blue, .green], subBadge: UIImage(systemName: "heart.fill"))
             ),
             "Full": AnyView (
-                Badge(size: .medium, color: .pink, icon: UIImage(systemName: "bus"), text: "60", textColor: .blue, subBadge: UIImage(systemName: "heart.fill"), isEnabled: true)
+                Badge(type: .medium, backgroundColor: .pink, foregroundColor: .blue, icon: UIImage(systemName: "bus"), text: "60", subBadge: UIImage(systemName: "heart.fill"), isEnabled: true)
             ),
-            "strazing": AnyView(Badge(input: .init(style: .medium, color: .yellow, textColor: nil, icon: UIImage(systemName: "tram"), text: "40", subBadge: UIImage(systemName: "heart.fill"), isEnabled: true))),
-            "Long text": AnyView(Badge(color: .blue, icon: UIImage(systemName: "bus"), text: "3G long")),
-            "Disabled": AnyView(Badge(color: .purple, icon: nil, text: "3G", isEnabled: false)),
-            "Small": AnyView(Badge(size: .small, color: .purple, icon: nil, text: "54")),
+            "strazing": AnyView(Badge(input: .init(type: .medium, backgroundColor: .yellow, foregroundColor: nil, icon: UIImage(systemName: "tram"), text: "40", alternativeBadgesColors: [], subBadge: UIImage(systemName: "heart.fill"), isEnabled: true))),
+            "Long text": AnyView(Badge(backgroundColor: .blue, icon: UIImage(systemName: "bus"), text: "3G long")),
+            "Disabled": AnyView(Badge(backgroundColor: .purple, icon: nil, text: "3G", isEnabled: false)),
+            "Small": AnyView(Badge(type: .small, backgroundColor: .purple, icon: nil, text: "54")),
         ]
     }
 
