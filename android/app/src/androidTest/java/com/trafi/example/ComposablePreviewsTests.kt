@@ -30,9 +30,10 @@ class ComposablePreviewsTests(private val previewWithName: Pair<@Composable () -
 
     @Test
     fun previewTest() {
+        val (preview, name) = previewWithName
         previewTest
-            .renderAndTestView(screenshotName = previewWithName.second) {
-                previewWithName.first()
+            .renderAndTestView(name) {
+                preview()
             }
     }
 }
