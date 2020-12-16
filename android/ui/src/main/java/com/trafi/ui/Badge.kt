@@ -262,10 +262,7 @@ enum class BadgeType {
     Medium,
 }
 
-private fun Dp.plusIf(shouldInclude: Boolean, other: Dp): Dp {
-    return if (shouldInclude) Dp(value = this.value + other.value) else Dp(value = this.value)
-}
-
+private fun Dp.plusIf(shouldInclude: Boolean, other: Dp) = if (shouldInclude) this + other else this
 
 @Preview
 @Composable
