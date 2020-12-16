@@ -30,7 +30,7 @@ struct InfoButton: View {
     
     @Environment(\.isEnabled) var isEnabled
     @Environment(\.currentTheme) var theme
-
+    
     var constants: Kotlin<InfoButtonConstants> { Kotlin(InfoButtonConstants(theme: theme)) }
 
     private var foregroundColor: Color {
@@ -45,12 +45,17 @@ struct InfoButton: View {
         SwiftUI.Button(
             action: input.action,
             label: {
-                HStack(spacing: 8) {
+                HStack(spacing: 8) { // use from constants
                     
                     input.icon
+                        .resizable()
+                        .frame(
+                            width: 16, // use from constants
+                            height: 16 // use from constants
+                        )
                     
                     Text(input.text)
-                        .lineLimit(1)
+                        .lineLimit(1) // use from constants
                         .font(constants.textStyle)
                 }
                 .padding(.vertical, constants.verPadding)
@@ -64,47 +69,42 @@ struct InfoButton: View {
 
 struct GradienHighlightButtonStyle: ButtonStyle {
     
-    var color: Color
+    let color: Color
     
     func makeBody(configuration: Self.Configuration) -> some View {
-        Content(configuration: configuration, color: color)
+        configuration.label
+            .modifier(SelectionModifier(
+                isSelected: configuration.isPressed,
+                selection: { GradientModifier(isSelected: $0, color: color) }
+            )
+            )
+        
+    }
+}
+
+struct GradientModifier: ViewModifier {
+    
+    let isSelected: Bool
+    let color: Color
+    
+    private var gradient: LinearGradient {
+        LinearGradient(
+            gradient: Gradient(
+                colors: [
+                    color.opacity(0), // use from constants
+                    color, // use from constants
+                    color.opacity(0), // use from constants
+                ]),
+            startPoint: .leading,
+            endPoint: .trailing
+        )
     }
     
-    struct Content: View {
-        
-        let configuration: Configuration
-        var color: Color
-        @Environment(\.isEnabled) var isEnabled
-        @Environment(\.mockSelected) var isMockSelected
-
-
-        var isSelected: Bool {
-            #if DEBUG
-            if isMockSelected { return !configuration.isPressed }
-            #endif
-            return configuration.isPressed
-        }
-        
-        private var gradient: LinearGradient {
-            LinearGradient(
-                gradient: Gradient(
-                    colors: [
-                        color.opacity(0),
-                        color,
-                        color.opacity(0),
-                    ]),
-                startPoint: .leading,
-                endPoint: .trailing
-            )
-        }
-        
-        var body: some View {
-            configuration.label
-                .background(
-                    gradient.opacity(isSelected ? 1 : 0)
-                )
-                .animation(.easeInOut(duration: 0.2))
-        }
+    func body(content: Self.Content) -> some View {
+        content.background(
+            gradient.opacity(isSelected ? 1 : 0)
+        )
+        .animation(.easeInOut(duration: 0.2))
     }
 }
 
@@ -140,19 +140,5 @@ struct InfoButton_Previews: PreviewProvider, Snapped {
     
     static var elementWidth: CGFloat? { 200 }
     static var detailed: Bool { true }
-}
-#endif
-
-#if DEBUG
-struct MockSelected: EnvironmentKey {
-    static var defaultValue: Bool { false }
-}
-
-public extension EnvironmentValues {
-    
-    var mockSelected: Bool {
-        get { self[MockSelected.self] }
-        set { self[MockSelected.self] = newValue }
-    }
 }
 #endif
