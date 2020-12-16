@@ -21,7 +21,7 @@ import com.trafi.routes.ui.internal.startTimeMillis
 import com.trafi.routes.ui.mock.RouteSegmentPreviewParameterProvider
 import com.trafi.ui.*
 import com.trafi.ui.theme.MaasTheme
-import com.trafi.ui.theme.parseColor
+import com.trafi.ui.theme.internal.toColor
 
 typealias PersonalVehicleType = RouteSegmentPersonalVehicle.Vehicle
 
@@ -143,13 +143,13 @@ fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
 
 private fun Schedule.toBadgeInfo(): BadgeInfo = BadgeInfo(
     text = name,
-    backgroundColor = color.parseColor(),
-    contentColor = textColor?.parseColor()
+    backgroundColor = color.toColor(),
+    contentColor = textColor?.toColor()
 )
 
 private fun Provider.toBadgeInfo(): BadgeInfo = BadgeInfo(
     text = name,
-    backgroundColor = color?.parseColor() ?: Color.Black
+    backgroundColor = color?.toColor() ?: Color.Black
 )
 
 private val Long.millisToDurationText: String
