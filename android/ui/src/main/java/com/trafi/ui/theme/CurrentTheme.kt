@@ -47,7 +47,6 @@ val currentTheme: CurrentTheme
         cornerRadiusScale = with(MaasTheme.cornerRadius) {
             CurrentCornerRadiusScale(
                 buttonRadius = buttonRadius,
-                nearbyTransitFilterItemRadius = nearbyTransitFilterItemRadius,
             )
         },
     )
