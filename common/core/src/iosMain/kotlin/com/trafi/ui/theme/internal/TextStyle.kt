@@ -4,10 +4,11 @@ actual data class TextStyle(
         val fontWeight: BasicFontWeight,
         val fontStyle: BasicFontStyle,
         val fontSize: Int,
-        val lineHeight: Int,
-        val color: Color?,
-        val dummy: Unit?,
+        val lineSpacing: Int,
+        val color: ULong?,
 )
+
+//actual typealias Color = UIColor
 
 internal actual fun TextStyle.copy(
         fontStyle: BasicFontStyle?,
@@ -19,8 +20,8 @@ internal actual fun TextStyle.copy(
         fontStyle = fontStyle ?: this.fontStyle,
         fontWeight = fontWeight ?: this.fontWeight,
         fontSize = fontSize ?: this.fontSize,
-        lineHeight = lineHeight ?: this.lineHeight,
-        color = color ?: this.color,
+        lineSpacing = lineHeight?.let { it - (fontSize ?: this.fontSize) } ?: this.lineSpacing,
+        color = color?.value ?: this.color,
 )
 
 internal actual fun TextStyle(
@@ -33,7 +34,6 @@ internal actual fun TextStyle(
         fontWeight = fontWeight,
         fontStyle = fontStyle,
         fontSize = fontSize,
-        lineHeight = lineHeight,
-        color = color,
-        dummy = null,
+        lineSpacing = lineHeight - fontSize,
+        color = color?.value,
 )

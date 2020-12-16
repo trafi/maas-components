@@ -2,80 +2,121 @@ import MaasCore
 import SwiftUI
 
 struct HeadingXXL: EnvironmentKey {
-    static var defaultValue: UIFont { TypographyScale().headingXXL }
+    static var defaultValue: TextStyle { TypographyScale().headingXXL }
 }
 struct HeadingXL: EnvironmentKey {
-    static var defaultValue: UIFont { TypographyScale().headingXL }
+    static var defaultValue: TextStyle { TypographyScale().headingXL }
 }
 struct HeadingL: EnvironmentKey {
-    static var defaultValue: UIFont { TypographyScale().headingL }
+    static var defaultValue: TextStyle { TypographyScale().headingL }
 }
 struct HeadingM: EnvironmentKey {
-    static var defaultValue: UIFont { TypographyScale().headingM }
+    static var defaultValue: TextStyle { TypographyScale().headingM }
 }
 struct TextL: EnvironmentKey {
-    static var defaultValue: UIFont { TypographyScale().textL }
+    static var defaultValue: TextStyle { TypographyScale().textL }
 }
 struct TextM: EnvironmentKey {
-    static var defaultValue: UIFont { TypographyScale().textM }
+    static var defaultValue: TextStyle { TypographyScale().textM }
 }
 struct TextS: EnvironmentKey {
-    static var defaultValue: UIFont { TypographyScale().textS }
+    static var defaultValue: TextStyle { TypographyScale().textS }
 }
 struct Label: EnvironmentKey {
-    static var defaultValue: UIFont { TypographyScale().label }
+    static var defaultValue: TextStyle { TypographyScale().label }
 }
 
 public extension EnvironmentValues {
 
-    var fontHeadingXXL: Font { Font(uiFontHeadingXXL) }
-    var uiFontHeadingXXL: UIFont {
+    var textStyleHeadingXXL: TextStyle {
         get { self[HeadingXXL.self].scaled(sizeCategory) }
         set { self[HeadingXXL.self] = newValue }
     }
 
-    var fontHeadingXL: Font { Font(uiFontHeadingXL) }
-    var uiFontHeadingXL: UIFont {
+    var textStyleHeadingXL: TextStyle {
         get { self[HeadingXL.self].scaled(sizeCategory) }
         set { self[HeadingXL.self] = newValue }
     }
 
-    var fontHeadingL: Font { Font(uiFontHeadingL) }
-    var uiFontHeadingL: UIFont {
+    var textStyleHeadingL: TextStyle {
         get { self[HeadingL.self].scaled(sizeCategory) }
         set { self[HeadingL.self] = newValue }
     }
 
-    var fontHeadingM: Font { Font(uiFontHeadingM) }
-    var uiFontHeadingM: UIFont {
+    var textStyleHeadingM: TextStyle {
         get { self[HeadingM.self].scaled(sizeCategory) }
         set { self[HeadingM.self] = newValue }
     }
 
-    var fontTextL: Font { Font(uiFontTextL) }
-    var uiFontTextL: UIFont {
+    var textStyleTextL: TextStyle {
         get { self[TextL.self].scaled(sizeCategory) }
         set { self[TextL.self] = newValue }
     }
 
-    var fontTextM: Font { Font(uiFontTextM) }
-    var uiFontTextM: UIFont {
+    var textStyleTextM: TextStyle {
         get { self[TextM.self].scaled(sizeCategory) }
         set { self[TextM.self] = newValue }
     }
 
-    var fontTextS: Font { Font(uiFontTextS) }
-    var uiFontTextS: UIFont {
+    var textStyleTextS: TextStyle {
         get { self[TextS.self].scaled(sizeCategory) }
         set { self[TextS.self] = newValue }
     }
 
-    var fontLabel: Font { Font(uiFontLabel) }
-    var uiFontLabel: UIFont {
+    var textStyleLabel: TextStyle {
         get { self[Label.self].scaled(sizeCategory) }
         set { self[Label.self] = newValue }
     }
 }
+
+public extension TextStyle {
+
+    var font: Font {
+        Font.system(size: CGFloat(fontSize), weight: fontWeight.fontWeight)
+    }
+}
+
+extension TextStyle {
+
+    func scaled(_ sizeCategory: ContentSizeCategory) -> TextStyle {
+
+        let textStyle: UIFont.TextStyle
+
+        switch fontSize {
+        case 28...: textStyle = .title1
+        case 22...: textStyle = .title2
+        case 20...: textStyle = .title3
+        case 17...: textStyle = .body
+        case 16...: textStyle = .callout
+        case 15...: textStyle = .subheadline
+        case 13...: textStyle = .footnote
+        case 12...: textStyle = .caption1
+        default:    textStyle = .caption2
+        }
+
+        return self.withSize(CGFloat(fontSize) * textStyle.scaleFactor(for: sizeCategory))
+    }
+
+    func withSize(_ newFontSize: CGFloat) -> TextStyle {
+        TextStyle(
+            fontWeight: fontWeight,
+            fontStyle: fontStyle,
+            fontSize: Int32(newFontSize),
+            lineSpacing: lineSpacing,
+            color: color
+        )
+    }
+}
+
+extension BasicFontWeight {
+
+    var fontWeight: Font.Weight {
+        #warning("Implement all weights")
+        return .regular
+    }
+
+}
+
 
 extension UIFont {
 

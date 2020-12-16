@@ -1,14 +1,19 @@
 import UIKit
 import SwiftUI
+import MaasCore
 
 @dynamicMemberLookup
 public struct Kotlin<T> {
 
-    let value: T
+    public let value: T
     public init(_ value: T) { self.value = value }
 
-    public subscript(dynamicMember keyPath: KeyPath<T, UIFont>) -> Font {
-        Font(value[keyPath: keyPath])
+    public subscript(dynamicMember keyPath: KeyPath<T, TextStyle>) -> TextStyle {
+        value[keyPath: keyPath]
+    }
+
+    public subscript(dynamicMember keyPath: KeyPath<T, KotlinULong>) -> Color {
+        Color(value[keyPath: keyPath].uint64Value.color)
     }
 
     public subscript(dynamicMember keyPath: KeyPath<T, UInt64>) -> Color {
