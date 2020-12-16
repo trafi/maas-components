@@ -9,13 +9,14 @@ extension QuickSpec {
     func snapshot<S>(
         _: S.Type,
         file: StaticString = #file,
-        line: UInt = #line
+        line: UInt = #line,
+        precision: Float = 1
     ) where S: PreviewProvider, S: Snapped {
 //        isRecording = true
         it(S.name) {
             XCTAssertNil(
                 verifySnapshot(
-                    matching: S.posterPreview(detailed: true), as: .image(precision: 0.995),
+                    matching: S.posterPreview(detailed: true), as: .image(precision: precision),
                     named: "\(Int(UIScreen.main.scale))x",
                     file: file,
                     testName: S.name,
