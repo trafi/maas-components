@@ -37,7 +37,6 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.trafi.ui.theme.Grey300
 import com.trafi.ui.theme.MaasTheme
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalFocus::class)
@@ -52,7 +51,7 @@ fun OutlinedTextField(
     onImeActionPerformed: (ImeAction, SoftwareKeyboardController?) -> Unit = { _, _ -> },
     onTextInputStarted: (SoftwareKeyboardController) -> Unit = {},
     activeColor: Color = MaasTheme.colors.primary,
-    inactiveColor: Color = Grey300,
+    inactiveColor: Color = MaasTheme.colors.grayScale.gray300,
 ) {
     val keyboardController: Ref<SoftwareKeyboardController> = remember { Ref() }
 
