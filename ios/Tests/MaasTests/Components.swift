@@ -1,12 +1,19 @@
 @testable import MaaS
+import Quick
 
-final class BadgeShots: SnapSpec<Badge_Previews> {}
-final class ButtonShots: SnapSpec<Button_Previews> {}
-final class CellShots: SnapSpec<Cell_Previews> {}
-final class SingleSelectFilterShots: SnapSpec<SingleSelectFilterPreview_Previews> {}
-final class MultiSelectFilterShots: SnapSpec<MultiSelectFilterPreview_Previews> {}
+final class Components: QuickSpec {
 
-// MARK: - Nearby Transit
-final class NearbyTransitFilterItemViewShots: SnapSpec<NearbyTransitFilterItemView_Previews> {}
-final class NearbyTransitFilterViewShots: SnapSpec<NearbyTransitFilterView_Previews> {}
+    override func spec() {
+        snapshot(Badge_Previews.self)
+        snapshot(Button_Previews.self)
+        snapshot(Cell_Previews.self)
+        snapshot(SingleSelectFilterPreview_Previews.self)
+        snapshot(MultiSelectFilterPreview_Previews.self)
+    }
+
+    func nearbyTransitComponenets() {
+        snapshot(NearbyTransitFilterItemView_Previews.self)
+        snapshot(NearbyTransitFilterView_Previews.self)
+    }
+}
 

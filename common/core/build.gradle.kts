@@ -124,3 +124,21 @@ val xcframework by tasks.creating(Exec::class) {
         "-output", xcframeworkPath
     )
 }
+
+val xcframeworkSimulator by tasks.creating(Exec::class) {
+
+    group = "build"
+
+    val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
+    val x64 = kotlin.targets.getByName<KotlinNativeTarget>("iosX64").binaries.getFramework(mode)
+
+    dependsOn(cleanXcframework)
+    dependsOn(x64.linkTask)
+
+    commandLine(
+        "xcodebuild", "-create-xcframework",
+        "-framework", x64.outputFile,
+        "-debug-symbols", x64.outputFile.path + ".dSYM",
+        "-output", xcframeworkPath
+    )
+}

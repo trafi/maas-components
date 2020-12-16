@@ -1,3 +1,8 @@
 @testable import MaaS
+import Quick
 
-final class RouteSegmentViewShots: SnapSpec<RouteSegmentView_Previews> {}
+final class Features: QuickSpec {
+    override func spec() {
+        snapshot(RouteSegmentView_Previews.self)
+    }
+}
