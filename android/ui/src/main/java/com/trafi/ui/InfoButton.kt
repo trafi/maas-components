@@ -3,13 +3,16 @@ package com.trafi.ui
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.maxLinesHeight
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.trafi.ui.component.internal.InfoButtonConstants
@@ -26,7 +29,7 @@ fun InfoButton(
     modifier: Modifier = Modifier,
     @DrawableRes iconRes: Int = R.drawable.ic_help_info_s,
     onClick: () -> Unit,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
     TextButton(
         onClick = onClick,
@@ -34,7 +37,7 @@ fun InfoButton(
         shape = if (constants.cornerRadius.isRound) {
             RoundedCornerShape(percent = 50)
         } else {
-            RoundedCornerShape(constants.cornerRadius).copy()
+            RoundedCornerShape(constants.cornerRadius)
         },
         colors = androidx.compose.material.ButtonConstants.defaultTextButtonColors(
             contentColor = constants.defaultContentColor,
@@ -42,30 +45,34 @@ fun InfoButton(
         ),
         contentPadding = with(constants) {
             PaddingValues(
-                start = horMinPadding,
-                top = verPadding,
-                end = horMinPadding,
-                bottom = verPadding,
+                start = paddingHorizontal,
+                top = paddingVertical,
+                end = paddingHorizontal,
+                bottom = paddingVertical,
             )
         }
     ) {
         Icon(
             imageVector = vectorResource(id = iconRes),
-            modifier = modifier.padding(end = constants.spaceBetween),
+            modifier = modifier
+                .padding(end = constants.spaceBetween)
+                .size(width = constants.iconWidth, height = constants.iconHeight),
         )
         Text(
-            text,
+            text = text,
+            overflow = TextOverflow.Ellipsis,
+            maxLines = constants.maxLinesCount,
             style = constants.textStyle,
         )
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xffffffff)
+@Preview(showBackground = true, backgroundColor = 0xffffffff, widthDp = 150)
 @Composable
 fun InfoButtonPreview() {
     MaasTheme {
         InfoButton(
-            text = "Info view",
+            text = "Info view view view",
             onClick = {}
         )
     }

@@ -32,7 +32,7 @@ struct InfoButton: View {
     @Environment(\.currentTheme) var theme
     
     var constants: Kotlin<InfoButtonConstants> { Kotlin(InfoButtonConstants(theme: theme)) }
-
+    
     private var foregroundColor: Color {
         input.foreground ?? (isEnabled ? constants.defaultContentColor : constants.disabledContentColor)
     }
@@ -130,10 +130,15 @@ struct InfoButton_Previews: PreviewProvider, Snapped {
             "Long title": AnyView(
                 InfoButton("Some very very very very very long title", action: {})
             ),
-
+            
             "Themed": AnyView(
-                InfoButton("Some title", action: {})
-                    .environment(\.uiFontTextL, UIFont(name: "Papyrus", size: 25)!)
+                InfoButton("Info",  icon: Image(systemName: "tram"), foreground: Color.pink, action: {})
+                    .environment(\.uiFontTextL, UIFont(name: "Menlo-Bold", size: 25)!)
+                
+            ),
+            
+            "Backgound": AnyView(
+                InfoButton("Info", action: {}).background(Color.green)
             ),
         ]
     }
