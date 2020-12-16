@@ -10,13 +10,14 @@ import androidx.compose.ui.graphics.Color
 
 @Composable
 private fun <T> ScrollableTappableView(
-    viewsItems: List<T>,
+    modifier: Modifier = Modifier,
+    items: List<T>,
     onItemClick: (T) -> Unit,
     itemView: @Composable (T) -> Unit
 ) {
     LazyRowFor(
-        items = viewsItems,
-        modifier = Modifier
+        items = items,
+        modifier = modifier
             .fillMaxWidth()
     ) { item ->
         Surface(
@@ -30,13 +31,15 @@ private fun <T> ScrollableTappableView(
 
 @Composable
 fun <T> MultiSelectFilter(
-    viewsItems: List<T>,
+    modifier: Modifier = Modifier,
+    items: List<T>,
     enabledItems: List<T>,
     onItemClick: (T) -> Unit,
     itemView: @Composable (T, Boolean) -> Unit
 ) {
     ScrollableTappableView(
-        viewsItems = viewsItems,
+        modifier = modifier,
+        items = items,
         itemView = { item ->
             itemView(item, enabledItems.find { it == item } != null)
         },
@@ -46,13 +49,15 @@ fun <T> MultiSelectFilter(
 
 @Composable
 fun <T> SingleSelectFilter(
-    viewsItems: List<T>,
+    modifier: Modifier = Modifier,
+    items: List<T>,
     enabledItem: T,
     onItemClick: (T) -> Unit,
     itemView: @Composable (item: T, isEnabled: Boolean) -> Unit
 ) {
     ScrollableTappableView(
-        viewsItems = viewsItems,
+        modifier = modifier,
+        items = items,
         itemView = { item ->
             itemView(item, enabledItem == item)
         },

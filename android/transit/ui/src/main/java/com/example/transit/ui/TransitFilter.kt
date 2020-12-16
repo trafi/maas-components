@@ -1,4 +1,4 @@
-package com.example.transit.ui
+package com.trafi.transit.ui
 
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
@@ -21,7 +21,6 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.trafi.core.model.FilterItem
-import com.trafi.transit.ui.R
 import com.trafi.ui.component.internal.nearby.transit.NearbyTransitFilterItemConstants
 import com.trafi.ui.components.MultiSelectFilter
 import com.trafi.ui.components.SingleSelectFilter
@@ -35,12 +34,13 @@ private val constants
 
 @Composable
 fun NearbyTransitFilterItem(
+    modifier: Modifier = Modifier,
     isEnabled: Boolean,
     filterItem: FilterItem
 ) {
     Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier.sizeIn(
+        modifier = modifier.sizeIn(
             minWidth = constants.itemMinWidth,
             minHeight = constants.itemMinHeight
         )
@@ -111,7 +111,7 @@ private fun MultiFilterPreview() {
             modifier = startPadding
         )
         MultiSelectFilter(
-            viewsItems = filters,
+            items = filters,
             enabledItems = emptyList(),
             itemView = { item, isEnabled ->
                 NearbyTransitFilterItem(
@@ -127,7 +127,7 @@ private fun MultiFilterPreview() {
             modifier = startPadding
         )
         MultiSelectFilter(
-            viewsItems = filters,
+            items = filters,
             enabledItems = filters.take(3),
             itemView = { item, isEnabled ->
                 NearbyTransitFilterItem(
@@ -143,7 +143,7 @@ private fun MultiFilterPreview() {
             modifier = startPadding
         )
         MultiSelectFilter(
-            viewsItems = filters,
+            items = filters,
             enabledItems = filters,
             itemView = { item, isEnabled ->
                 NearbyTransitFilterItem(
@@ -168,7 +168,7 @@ private fun SingleFilterPreview() {
             modifier = startPadding
         )
         SingleSelectFilter(
-            viewsItems = filters,
+            items = filters,
             enabledItem = filters.first(),
             itemView = { item, isEnabled ->
                 NearbyTransitFilterItem(isEnabled = isEnabled, filterItem = item)
