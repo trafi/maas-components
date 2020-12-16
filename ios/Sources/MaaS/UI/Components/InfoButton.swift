@@ -30,7 +30,6 @@ struct InfoButton: View {
     
     @Environment(\.isEnabled) var isEnabled
     @Environment(\.currentTheme) var theme
-    @Environment(\.currentGrayScalePalette) var grayScale
 
     var constants: Kotlin<InfoButtonConstants> { Kotlin(InfoButtonConstants(theme: theme)) }
     
