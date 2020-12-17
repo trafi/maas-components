@@ -39,7 +39,7 @@ extension: in PT flow content inside fits a maximum of 4 string characters and t
 
 
 
-## Constants for styling
+## API
 
 [embedmd]:# (BadgeConstants.kt kotlin /class / $)
 ```kotlin
@@ -73,3 +73,5 @@ class BadgeConstants(theme: CurrentTheme) {
     val borderWidth = 1.5.dp
 }
 ```
+## Preview from automated tests
+<img src="../../../../../../../../../../ios/Tests/MaasTests/__Snapshots__/Components/Badge.2x.png" width="100%">
