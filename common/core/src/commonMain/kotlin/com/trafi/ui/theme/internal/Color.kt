@@ -28,3 +28,12 @@ internal fun Color.alpha(value : Float): Color {
 }
 
 internal fun Color(color: Long) = Color((color.toULong() and 0xffffffffUL) shl 32)
+
+fun String?.toColor(fallback: Long = 0xFF_000000): Color {
+    var color = this?.toLongOrNull(radix = 16) ?: return Color(fallback)
+    if (length == 6) {
+        // if transparency is not specified, default to opaque
+        color = color or 0x00000000_FF000000
+    }
+    return Color(color)
+}
