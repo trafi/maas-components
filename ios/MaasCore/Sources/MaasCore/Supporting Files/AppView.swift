@@ -46,20 +46,7 @@ struct FactAlert: Identifiable {
 struct AppView_Previews: PreviewProvider {
 
     static var previews: some View {
-
-        let environment = AppEnvironment()
-        environment.fetchNumberFact = { count in
-            Just(
-                AppAction.NumberFactResponse(
-                    result: ApiResultSuccess(value: "Cats! \(count)" as NSString)
-                )
-            )
-            .delay(for: 2, scheduler: RunLoop.main)
-            .eraseToEffect(cancellationId: "fetch-number-fact", cancelInFlight: true)
-        }
-
-        return AppView(state: AppState(count: 0, numberFactAlert: nil),
-                       environment: environment)
+        AppView(state: AppState(count: 0, numberFactAlert: nil))
     }
 }
 #endif

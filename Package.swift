@@ -56,7 +56,8 @@ let package = Package(
                 "MaasRouteSearch",
                 "MaasNearbyTransit",
                 "SnapshotTesting",
-                "Quick"
+                "Quick",
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ],
             path: "ios/Tests/MaasTests",
             exclude: ["__Snapshots__"]), 
