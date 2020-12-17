@@ -1,4 +1,4 @@
-package com.trafi.ui.components
+package com.trafi.ui.component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,10 +10,10 @@ import androidx.compose.ui.graphics.Color
 
 @Composable
 private fun <T> ScrollableTappableView(
-    modifier: Modifier = Modifier,
     items: List<T>,
     onItemClick: (T) -> Unit,
-    itemView: @Composable (T) -> Unit
+    itemView: @Composable (T) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     LazyRowFor(
         items = items,
@@ -31,11 +31,11 @@ private fun <T> ScrollableTappableView(
 
 @Composable
 fun <T> MultiSelectFilter(
-    modifier: Modifier = Modifier,
     items: List<T>,
     enabledItems: List<T>,
     onItemClick: (T) -> Unit,
-    itemView: @Composable (T, Boolean) -> Unit
+    itemView: @Composable (T, Boolean) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     ScrollableTappableView(
         modifier = modifier,
@@ -49,11 +49,11 @@ fun <T> MultiSelectFilter(
 
 @Composable
 fun <T> SingleSelectFilter(
-    modifier: Modifier = Modifier,
     items: List<T>,
     enabledItem: T,
     onItemClick: (T) -> Unit,
-    itemView: @Composable (item: T, isEnabled: Boolean) -> Unit
+    itemView: @Composable (item: T, isEnabled: Boolean) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     ScrollableTappableView(
         modifier = modifier,

@@ -20,8 +20,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.trafi.core.model.FilterItem
 import com.trafi.ui.component.internal.nearby.transit.NearbyTransitFilterItemConstants
-import com.trafi.ui.components.MultiSelectFilter
-import com.trafi.ui.components.SingleSelectFilter
+import com.trafi.ui.component.MultiSelectFilter
+import com.trafi.ui.component.SingleSelectFilter
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.currentTheme
 import com.trafi.ui.theme.internal.toColor
@@ -33,9 +33,9 @@ private val constants
 
 @Composable
 fun NearbyTransitFilterItem(
-    modifier: Modifier = Modifier,
     isEnabled: Boolean,
-    filterItem: FilterItem
+    filterItem: FilterItem,
+    modifier: Modifier = Modifier,
 ) {
     Box(
         contentAlignment = Alignment.Center,
