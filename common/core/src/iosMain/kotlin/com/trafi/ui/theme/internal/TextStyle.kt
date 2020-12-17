@@ -8,7 +8,6 @@ actual data class TextStyle(
         val color: ULong?,
 )
 
-//actual typealias Color = UIColor
 
 internal actual fun TextStyle.copy(
         fontStyle: BasicFontStyle?,
