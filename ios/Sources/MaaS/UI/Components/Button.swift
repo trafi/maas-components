@@ -32,7 +32,7 @@ public struct Button: View, Swappable {
     var constants: Kotlin<ButtonConstants> { Kotlin(ButtonConstants(theme: theme)) }
 
     public var defaultBody: some View {
-        return SwiftUI.Button(
+        SwiftUI.Button(
             action: input.action,
             label: {
                 Text(input.text)
