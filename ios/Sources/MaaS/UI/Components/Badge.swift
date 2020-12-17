@@ -19,7 +19,7 @@ public struct Badge: View, Swappable {
         let icon: UIImage?
         let text: String?
         let alternativeBadgesColors: [Color]
-        let subBadge: UIImage?
+        let subBadgeIcon: UIImage?
         let isEnabled: Bool
     }
 
@@ -38,7 +38,7 @@ public struct Badge: View, Swappable {
                 icon: UIImage?,
                 text: String?,
                 alternativeBadges: [Color] = [],
-                subBadge: UIImage? = nil,
+                subBadgeIcon: UIImage? = nil,
                 isEnabled: Bool = true) {
 
         self.init(
@@ -49,7 +49,7 @@ public struct Badge: View, Swappable {
                 icon: icon,
                 text: text,
                 alternativeBadgesColors: alternativeBadges,
-                subBadge: subBadge,
+                subBadgeIcon: subBadgeIcon,
                 isEnabled: isEnabled
             )
         )
@@ -64,7 +64,7 @@ public struct Badge: View, Swappable {
                     fillColor: input.isEnabled ? input.backgroundColor ?? .clear : constants.disabledColor
                 )
                 .subBadge(
-                    image: input.subBadge,
+                    image: input.subBadgeIcon,
                     width: constants.subBadgeIconWidth,
                     height: constants.subBadgeIconHeight
                 )
@@ -74,7 +74,7 @@ public struct Badge: View, Swappable {
                 icon: input.icon,
                 text: input.text,
                 foregroundColor: input.foregroundColor,
-                subBadge: input.subBadge,
+                subBadge: input.subBadgeIcon,
                 isEnabled: input.isEnabled,
                 stackColors: input.alternativeBadgesColors
             )
@@ -189,7 +189,7 @@ private struct StackedBadge: View, Swappable {
                 icon: icon,
                 text: text,
                 alternativeBadgesColors: [],
-                subBadge: subBadge,
+                subBadgeIcon: subBadge,
                 isEnabled: isEnabled
             ),
             colors: stackColors
@@ -214,7 +214,7 @@ private struct StackedBadge: View, Swappable {
             }
         }
         .fixedSize()
-        .subBadge(image: input.base.subBadge,
+        .subBadge(image: input.base.subBadgeIcon,
                   width: constants.subBadgeIconWidth,
                   height: constants.subBadgeIconHeight)
     }
@@ -277,7 +277,7 @@ private extension Array where Element == Color {
                 icon: nil,
                 text: nil,
                 alternativeBadgesColors: [],
-                subBadge: nil,
+                subBadgeIcon: nil,
                 isEnabled: true
             )
         }
@@ -290,12 +290,12 @@ struct Badge_Previews: PreviewProvider, Snapped {
         [
             "Tram": AnyView( Badge(backgroundColor: .red, icon: UIImage(systemName: "tram"), text: "12")),
             "Stracked": AnyView(
-                Badge(backgroundColor: .orange, foregroundColor: .white, icon: UIImage(systemName: "bus"), text: "55", alternativeBadges: [.blue, .green], subBadge: UIImage(systemName: "heart.fill"))
+                Badge(backgroundColor: .orange, foregroundColor: .white, icon: UIImage(systemName: "bus"), text: "55", alternativeBadges: [.blue, .green], subBadgeIcon: UIImage(systemName: "heart.fill"))
             ),
             "Full": AnyView (
-                Badge(type: .medium, backgroundColor: .pink, foregroundColor: .blue, icon: UIImage(systemName: "bus"), text: "60", subBadge: UIImage(systemName: "heart.fill"), isEnabled: true)
+                Badge(type: .medium, backgroundColor: .pink, foregroundColor: .blue, icon: UIImage(systemName: "bus"), text: "60", subBadgeIcon: UIImage(systemName: "heart.fill"), isEnabled: true)
             ),
-            "strazing": AnyView(Badge(input: .init(type: .medium, backgroundColor: .yellow, foregroundColor: nil, icon: UIImage(systemName: "tram"), text: "40", alternativeBadgesColors: [], subBadge: UIImage(systemName: "heart.fill"), isEnabled: true))),
+            "strazing": AnyView(Badge(input: .init(type: .medium, backgroundColor: .yellow, foregroundColor: nil, icon: UIImage(systemName: "tram"), text: "40", alternativeBadgesColors: [], subBadgeIcon: UIImage(systemName: "heart.fill"), isEnabled: true))),
             "Long text": AnyView(Badge(backgroundColor: .blue, icon: UIImage(systemName: "bus"), text: "3G long")),
             "Disabled": AnyView(Badge(backgroundColor: .purple, icon: nil, text: "3G", isEnabled: false)),
             "Small": AnyView(Badge(type: .small, backgroundColor: .purple, icon: nil, text: "54")),
