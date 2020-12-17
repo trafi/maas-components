@@ -8,12 +8,12 @@ public struct Kotlin<T> {
     public let value: T
     public init(_ value: T) { self.value = value }
 
-    public subscript(dynamicMember keyPath: KeyPath<T, TextStyle>) -> TextStyle {
+    public subscript<V>(dynamicMember keyPath: KeyPath<T, V>) -> V {
         value[keyPath: keyPath]
     }
 
-    public subscript(dynamicMember keyPath: KeyPath<T, KotlinULong>) -> Color {
-        Color(value[keyPath: keyPath].uint64Value.color)
+    public subscript(dynamicMember keyPath: KeyPath<T, KotlinULong?>) -> Color? {
+        value[keyPath: keyPath].flatMap { Color($0.uint64Value.color) }
     }
 
     public subscript(dynamicMember keyPath: KeyPath<T, UInt64>) -> Color {

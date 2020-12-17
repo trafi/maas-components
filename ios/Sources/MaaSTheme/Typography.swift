@@ -69,6 +69,23 @@ public extension EnvironmentValues {
     }
 }
 
+public extension View {
+
+    func textStyle(_ textStyle: TextStyle) -> some View {
+        let wrapped = Kotlin(textStyle)
+        let styled = self
+            .font(wrapped.font)
+            .lineSpacing(wrapped.lineSpacing)
+
+
+        if let color = wrapped.color {
+            return AnyView(styled.foregroundColor(color))
+        } else {
+            return AnyView(styled)
+        }
+    }
+}
+
 public extension TextStyle {
 
     var font: Font {

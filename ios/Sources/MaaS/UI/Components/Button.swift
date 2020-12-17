@@ -1,25 +1,6 @@
 import SwiftUI
 import Swappable
 import MaasTheme
-import MaasCore
-
-extension View {
-
-    func textStyle(_ textStyle: TextStyle) -> some View {
-        let wrapped = Kotlin(textStyle)
-        let styled = self
-//            .font(wrapped.font)
-//            .lineSpacing(CGFloat(wrapped.lineSpacing))
-
-        let maybeColor: Color? = wrapped.color
-
-        if let color = wrapped.color {
-            return AnyView(styled.foregroundColor(.red))
-        } else {
-            return AnyView(styled)
-        }
-    }
-}
 
 public struct Button: View, Swappable {
 
@@ -58,8 +39,8 @@ public struct Button: View, Swappable {
                     .padding(.horizontal)
                     .lineLimit(0)
                     .minimumScaleFactor(0.75)
-                    .font(constants.textStyle.font)
                     .foregroundColor(input.foreground ?? (isEnabled ? constants.defaultContentColor : constants.disabledContentColor))
+                    .textStyle(constants.textStyle)
                     .frame(maxWidth: .infinity, minHeight: constants.minHeight)
                     .background(input.background ?? (isEnabled ? constants.defaultBackgroundColor : constants.disabledBackgroundColor))
                     .cornerRadius(constants.cornerRadius)
@@ -98,7 +79,7 @@ struct Button_Previews: PreviewProvider, Snapped {
                     .environment(\.uiColorPrimary, .systemBlue)
                     .environment(\.uiColorOnPrimary, .systemYellow)
                     .environment(\.cornerRadiusButton, 20)
-                    .environment(\.uiFontTextL, TextStyle(fontWeight: .normal, fontStyle: .normal, fontSize: 25, lineHeight: 25, color: nil, dummy: nil))
+                    .environment(\.textStyleTextL, TextStyle(fontWeight: .normal, fontStyle: .normal, fontSize: 25, lineSpacing: 0, color: nil))
             ),
         ]
     }
