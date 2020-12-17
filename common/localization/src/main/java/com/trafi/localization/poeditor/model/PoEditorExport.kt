@@ -5,7 +5,7 @@ import kotlinx.serialization.*
 @Serializable
 internal data class PoEditorExportResponse(
     @SerialName(value = "response") @Required val response: PoEditorResponse,
-    @SerialName(value = "result") val result: PoEditorExportResult? = null
+    @SerialName(value = "result") val result: PoEditorExportResult? = null,
 )
 
 @Serializable

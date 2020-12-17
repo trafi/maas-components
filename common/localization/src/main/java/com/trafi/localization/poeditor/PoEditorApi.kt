@@ -1,10 +1,12 @@
 package com.trafi.localization.poeditor
 
-import com.trafi.core.ApiResult
+import com.trafi.localization.model.ApiResult
 import com.trafi.localization.poeditor.model.PoEditorExportResponse
 import com.trafi.localization.poeditor.model.PoEditorLanguagesResponse
 import com.trafi.localization.poeditor.model.PoEditorTranslation
 import io.ktor.client.HttpClient
+import io.ktor.client.engine.cio.CIO
+import io.ktor.client.engine.cio.endpoint
 import io.ktor.client.features.defaultRequest
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
@@ -25,15 +27,27 @@ import io.ktor.http.isSuccess
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
-class PoEditorApi(
+internal class PoEditorApi(
     private val baseApiUrl: String = "https://api.poeditor.com/",
-    private val apiKey: String,
+    private val apiKey: String
 ) {
     private val json = Json {
         isLenient = true
         ignoreUnknownKeys = true
     }
-    private val httpClient = HttpClient {
+    @Suppress("EXPERIMENTAL_API_USAGE")
+    private val httpClient = HttpClient(CIO) {
+        engine {
+            endpoint {
+                requestTimeout
+                connectRetryAttempts = 5
+            }
+        }
+        install(Logging) {
+            logger = Logger.DEFAULT
+            level = LogLevel.ALL
+        }
+
         install(JsonFeature) {
             serializer = KotlinxSerializer(json)
         }
@@ -65,7 +79,7 @@ class PoEditorApi(
                 "id" to projectId,
                 "language" to languageCode,
                 "filters" to "translated",
-                "type" to "json",
+                "type" to "json"
             )
         }
         result.result?.url?.let {
