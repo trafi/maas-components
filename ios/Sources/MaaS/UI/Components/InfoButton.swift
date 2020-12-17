@@ -7,7 +7,6 @@ struct InfoButton: View {
         public let text: String
         public let icon: Image
         public let foreground: Color?
-        public let highlightedColor: Color?
         public let action: () -> Void
     }
     
@@ -16,14 +15,12 @@ struct InfoButton: View {
         _ text: String,
         icon: Image = Image(systemName: "info.circle"),
         foreground: Color? = nil,
-        highlightedColor: Color? = nil,
         action: @escaping () -> Void) {
         
         input = InputType(
             text: text,
             icon: icon,
             foreground: foreground,
-            highlightedColor: highlightedColor,
             action: action
         )
     }
@@ -37,68 +34,50 @@ struct InfoButton: View {
         input.foreground ?? (isEnabled ? constants.defaultContentColor : constants.disabledContentColor)
     }
     
-    private var highlightedColor: Color {
-        input.highlightedColor ?? constants.highlightedColor
-    }
-    
     var body: some View {
         SwiftUI.Button(
             action: input.action,
             label: {
-                HStack(spacing: 8) { // use from constants
+                HStack(spacing: constants.spaceBetween) {
                     
                     input.icon
                         .resizable()
                         .frame(
-                            width: 16, // use from constants
-                            height: 16 // use from constants
+                            width: constants.iconWidth,
+                            height: constants.iconHeight
                         )
                     
                     Text(input.text)
-                        .lineLimit(1) // use from constants
+                        .lineLimit(constants.maxLinesCount)
                         .font(constants.textStyle)
                 }
-                .padding(.vertical, constants.verPadding)
-                .padding(.horizontal, constants.horMinPadding)
+                .padding(.vertical, constants.paddingVertical)
+                .padding(.horizontal, constants.paddingHorizontal)
             }
         )
         .foregroundColor(foregroundColor)
-        .buttonStyle(GradienHighlightButtonStyle(color: highlightedColor))
+        .buttonStyle(GradienHighlightButtonStyle(gradient: constants.highlightedGradient))
     }
 }
 
 struct GradienHighlightButtonStyle: ButtonStyle {
     
-    let color: Color
+    let gradient: LinearGradient
     
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .modifier(SelectionModifier(
-                isSelected: configuration.isPressed,
-                selection: { GradientModifier(isSelected: $0, color: color) }
+            .modifier(
+                SelectionModifier(
+                    isSelected: configuration.isPressed,
+                    selection: { GradientModifier(isSelected: $0, gradient: gradient) })
             )
-            )
-        
     }
 }
 
 struct GradientModifier: ViewModifier {
     
     let isSelected: Bool
-    let color: Color
-    
-    private var gradient: LinearGradient {
-        LinearGradient(
-            gradient: Gradient(
-                colors: [
-                    color.opacity(0), // use from constants
-                    color, // use from constants
-                    color.opacity(0), // use from constants
-                ]),
-            startPoint: .leading,
-            endPoint: .trailing
-        )
-    }
+    let gradient: LinearGradient
     
     func body(content: Self.Content) -> some View {
         content.background(
