@@ -13,6 +13,5 @@ object SpacingScale {
 
     object Default {
         val GlobalMargin = xl
-        val NearbyTransitFilterSpacing = xs
     }
 }

@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import com.trafi.routes.ui.R
 import com.trafi.routes.ui.mock.vilniusAirport
 import com.trafi.routes.ui.mock.vilniusCathedral
-import com.trafi.ui.OutlinedTextField
+import com.trafi.ui.component.OutlinedTextField
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.Spacing
 
