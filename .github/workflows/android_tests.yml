@@ -29,7 +29,7 @@ jobs:
            arch: x86
            profile: Nexus 6
            disable-animations: true
-           script: ./gradlew executeScreenshotTests -Precord
+           script: ./gradlew executeScreenshotTests
            working-directory: ./android
       
       -  name: Publish artefacts
