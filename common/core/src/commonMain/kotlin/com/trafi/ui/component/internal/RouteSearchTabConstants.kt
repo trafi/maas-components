@@ -7,14 +7,9 @@ import com.trafi.ui.theme.internal.dp
 
 class RouteSearchTabConstants (theme: CurrentTheme) {
     val contentColorPrimary = theme.colorPalette.onSurface
-    val contentColorSecondaryOnLight = theme.colorPalette.grayScale.gray600
-    val contentColorSecondaryOnDark = theme.colorPalette.grayScale.gray400
-
-    val backgroundColorDefaultOnLight = theme.colorPalette.grayScale.gray100
-    val backgroundColorDefaultOnDark = theme.colorPalette.grayScale.gray800
-
-    val backgroundColorActiveOnLight = theme.colorPalette.primary.alpha(0.1f)
-    val backgroundColorActiveOnDark = theme.colorPalette.primary.alpha(0.3f)
+    val contentColorSecondary = theme.colorPalette.grayScale.gray600
+    val defaultBackgroundColor = theme.colorPalette.grayScale.gray100
+    val activeBackgroundColor = theme.colorPalette.primary.alpha(0.1f)
 
     val titleStyle = theme.typographyScale.textM.copy(fontWeight = Bold)
     val subtitleStyle = theme.typographyScale.textS.copy(fontWeight = Normal)
