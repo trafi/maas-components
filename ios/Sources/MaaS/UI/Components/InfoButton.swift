@@ -137,8 +137,8 @@ struct InfoButton_Previews: PreviewProvider, Snapped {
                 
             ),
             
-            "Backgound": AnyView(
-                InfoButton("Info", action: {}).background(Color.green)
+            "Highlighted on Backgound": AnyView(
+                InfoButton("Info", action: {}).background(Color.green).environment(\.mockSelected, true)
             ),
         ]
     }
