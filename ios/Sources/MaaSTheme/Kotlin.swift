@@ -31,4 +31,8 @@ public struct Kotlin<T> {
     public subscript(dynamicMember keyPath: KeyPath<T, Int32>) -> CGFloat {
         CGFloat(value[keyPath: keyPath])
     }
+    
+    public subscript(dynamicMember keyPath: KeyPath<T, Int32>) -> Int {
+        Int(value[keyPath: keyPath])
+    }
 }
