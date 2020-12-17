@@ -24,7 +24,7 @@ jobs:
         run: xcodebuild -scheme MaaS-Package test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8'
         
       - name: Publish artifacts
-        if: ${{ always() }}
+        if: always()
         uses: actions/upload-artifact@v2
         with:
           name: tests.xcresult
