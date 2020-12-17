@@ -1,7 +1,7 @@
 package com.trafi.routes.mock
 
 import androidx.compose.runtime.Stable
-import com.trafi.routes.data.TabItem
+import com.trafi.ui.TabItem
 
 @Stable
 internal val group1 = TabItem(

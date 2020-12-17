@@ -9,15 +9,12 @@ import com.trafi.core.ApiResult
 import com.trafi.core.model.Location
 import com.trafi.core.model.RoutesResult
 import com.trafi.routes.RoutesApi
-import com.trafi.routes.data.TabItem
 import kotlinx.coroutines.launch
 
 class RoutesViewModel(private val routesApi: RoutesApi) : ViewModel() {
 
     var state: RoutesResultState by mutableStateOf(RoutesResultState.NoResults)
         private set
-
-    var vehicleTypes: List<TabItem>? by mutableStateOf(null)
 
     fun search(start: Location, end: Location) {
         state = RoutesResultState.Loading

@@ -142,7 +142,6 @@ fun RoutesScreen(
                     state = routesViewModel.state,
                     onRouteClick = onRouteClick,
                     modifier = Modifier.padding(top = Spacing.md),
-                    routesViewModel
                 )
             }
         }
@@ -154,14 +153,12 @@ private fun RouteSearchBody(
     state: RoutesResultState,
     onRouteClick: (Route) -> Unit,
     modifier: Modifier = Modifier,
-    routesViewModel: RoutesViewModel
 ) {
     Column {
         Divider(
             modifier = Modifier
                 .padding(horizontal = MaasTheme.spacing.globalMargin)
         )
-        routesViewModel.vehicleTypes = mockVehicleTypes
         val (selectedItemId, selectItem) = remember { mutableStateOf("1")}
         VehiclesList(mockVehicleTypes, selectedItemId, selectItem)
 

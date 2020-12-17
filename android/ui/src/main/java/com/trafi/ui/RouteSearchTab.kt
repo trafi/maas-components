@@ -1,4 +1,4 @@
-package com.trafi.routes.ui
+package com.trafi.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollableRow
@@ -18,47 +18,35 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.trafi.routes.data.TabItem
-import com.trafi.routes.internal.RoutesViewModel
-import com.trafi.routes.mock.group1
-import com.trafi.routes.mock.mockVehicleTypes
-import com.trafi.ui.theme.Grey200
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.internal.CornerRadiusScale
 import com.trafi.ui.theme.internal.SpacingScale
 
-@Composable
-fun VehiclesList(
-    vehicleTypes: List<TabItem>?,
-    selectedItemId: String,
-    onVehicleClick: (String) -> Unit
-) {
-    ScrollableRow(
-        modifier = Modifier.padding(horizontal = MaasTheme.spacing.globalMargin)
-    ) {
-        vehicleTypes?.forEach { tabItem ->
-            VehicleTypeSegment(tabItem, selectedItemId == tabItem.id) {
-                onVehicleClick(tabItem.id)
-            }
-        }
-    }
-}
+
+data class TabItem(
+    val id: String,
+    val icon: String,
+    val name: String,
+    val duration: String?,
+    val price: String?,
+    val active: Boolean
+)
 
 @Composable
-fun VehicleTypeSegment(
+fun RouteSearchTab(
     tabItem: TabItem,
     isTabSelected: Boolean,
     onVehicleClick: () -> Unit
 ) {
     Card(
-        shape = RoundedCornerShape(CornerRadiusScale.xxs.dp),
+        shape = RoundedCornerShape(CornerRadiusScale.xxs),
         modifier = Modifier
             .widthIn(min = 70.dp)
-            .padding(SpacingScale.xxs.dp)
+            .padding(SpacingScale.xxs)
             .clickable(onClick = onVehicleClick)
     ) {
         Column(
-            modifier = Modifier.background(if (isTabSelected) Color.Green else Grey200)
+            modifier = Modifier.background(if (isTabSelected) Color.Green else Color.Blue)
         ) {
             Image(
                 vectorResource(id = R.drawable.ic_route_search_bike_s),
@@ -82,7 +70,14 @@ fun VehicleTypeSegment(
 @Preview(showBackground = true)
 @Composable
 fun PreviewTransportTypeSegment() {
-    VehicleTypeSegment(group1, true) {}
+    RouteSearchTab(TabItem(
+        id = "1",
+        icon = "",
+        name = "Bus",
+        duration = "13min",
+        price = "$15",
+        active = true
+    ), true) {}
 }
 
 @Preview(showBackground = true)
