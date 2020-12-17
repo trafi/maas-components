@@ -80,6 +80,7 @@ struct Button_Previews: PreviewProvider, Snapped {
                     .environment(\.uiColorOnPrimary, .systemYellow)
                     .environment(\.cornerRadiusButton, 20)
                     .environment(\.textStyleTextL, TextStyle(fontWeight: .normal, fontStyle: .normal, fontSize: 25, lineSpacing: 0, color: nil))
+                    .environment(\.textFont, { Font(UIFont(name: "Papyrus", size: $0)!) })
             ),
         ]
     }

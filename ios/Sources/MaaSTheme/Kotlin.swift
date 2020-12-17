@@ -5,7 +5,7 @@ import MaasCore
 @dynamicMemberLookup
 public struct Kotlin<T> {
 
-    public let value: T
+    let value: T
     public init(_ value: T) { self.value = value }
 
     public subscript<V>(dynamicMember keyPath: KeyPath<T, V>) -> V {
@@ -18,6 +18,10 @@ public struct Kotlin<T> {
 
     public subscript(dynamicMember keyPath: KeyPath<T, UInt64>) -> Color {
         Color(value[keyPath: keyPath].color)
+    }
+
+    public subscript(dynamicMember keyPath: KeyPath<T, BasicFontWeight>) -> Font.Weight {
+        value[keyPath: keyPath].fontWeight
     }
 
     public subscript(dynamicMember keyPath: KeyPath<T, Float>) -> CGFloat {

@@ -25,6 +25,11 @@ struct TextS: EnvironmentKey {
 struct Label: EnvironmentKey {
     static var defaultValue: TextStyle { TypographyScale().label }
 }
+struct TextFont: EnvironmentKey {
+    let get: (CGFloat) -> Font
+    static var defaultValue: TextFont { TextFont { Font.system(size: $0) } }
+}
+
 
 public extension EnvironmentValues {
 
@@ -67,18 +72,41 @@ public extension EnvironmentValues {
         get { self[Label.self].scaled(sizeCategory) }
         set { self[Label.self] = newValue }
     }
+
+    var textFont: (CGFloat) -> Font {
+        get { self[TextFont.self].get }
+        set { self[TextFont.self] = TextFont(get: newValue) }
+    }
 }
+
+// MARK: - TextStyle
 
 public extension View {
 
     func textStyle(_ textStyle: TextStyle) -> some View {
-        let wrapped = Kotlin(textStyle)
-        let styled = self
-            .font(wrapped.font)
-            .lineSpacing(wrapped.lineSpacing)
+        ModifiedContent(content: self, modifier: TextStyleModifier(textStyle: textStyle))
+    }
+}
+
+private struct TextStyleModifier: ViewModifier {
+
+    let textStyle: TextStyle
+    @Environment(\.textFont) var textFont
+
+    func body(content: Content) -> some View {
+
+        let textStyle = Kotlin(self.textStyle)
+
+        let styled = content
+            .lineSpacing(textStyle.lineSpacing)
+            .font(
+                textFont(textStyle.fontSize)
+                    .weight(textStyle.fontWeight)
+                    .style(textStyle.fontStyle)
+            )
 
 
-        if let color = wrapped.color {
+        if let color = textStyle.color {
             return AnyView(styled.foregroundColor(color))
         } else {
             return AnyView(styled)
@@ -86,12 +114,30 @@ public extension View {
     }
 }
 
-public extension TextStyle {
+private extension Font {
 
-    var font: Font {
-        Font.system(size: CGFloat(fontSize), weight: fontWeight.fontWeight)
+    func style(_ style: BasicFontStyle) -> Font {
+        switch style {
+        case .italic: return italic()
+        case .normal: return self
+        default: fatalError("Invalid 'BasicFontStyle' - \(self)")
+        }
     }
 }
+
+extension BasicFontWeight {
+
+    var fontWeight: Font.Weight {
+        switch self {
+        case .normal: return .regular
+        case .semibold: return .semibold
+        case .bold: return .bold
+        default: fatalError("Invalid 'BasicFontWeight' - \(self)")
+        }
+    }
+}
+
+// MARK: - Scaling
 
 extension TextStyle {
 
@@ -122,42 +168,6 @@ extension TextStyle {
             lineSpacing: lineSpacing,
             color: color
         )
-    }
-}
-
-extension BasicFontWeight {
-
-    var fontWeight: Font.Weight {
-        switch self {
-        case .normal: return .regular
-        case .semibold: return .semibold
-        case .bold: return .bold
-        default: return .regular
-        }
-    }
-
-}
-
-
-extension UIFont {
-
-    func scaled(_ sizeCategory: ContentSizeCategory) -> UIFont {
-
-        let textStyle: UIFont.TextStyle
-
-        switch pointSize {
-        case 28...: textStyle = .title1
-        case 22...: textStyle = .title2
-        case 20...: textStyle = .title3
-        case 17...: textStyle = .body
-        case 16...: textStyle = .callout
-        case 15...: textStyle = .subheadline
-        case 13...: textStyle = .footnote
-        case 12...: textStyle = .caption1
-        default:    textStyle = .caption2
-        }
-
-        return self.withSize(pointSize * textStyle.scaleFactor(for: sizeCategory))
     }
 }
 
