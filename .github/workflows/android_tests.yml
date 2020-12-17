@@ -49,7 +49,7 @@ jobs:
          if: always()
          uses: actions/upload-artifact@v2
          with:
-          name: generatedScreenshot.png
+          name: originalScreenshot.png
           path: /Users/runner/work/maas-components/maas-components/android/app/screenshots/debug/com.trafi.example.ComposablePreviewsTests_ButtonPreview.png
       
         
