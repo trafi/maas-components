@@ -32,15 +32,13 @@ let package = Package(
             url: "https://github.com/Quick/Quick.git", from: "3.0.0"),
     ],
     targets: [
-        // Used for production
         .binaryTarget(
             name: "MaasCore",
-            url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev05/MaasCore.xcframework.zip",
-            checksum: "d0e9dfa86527369490cb3293e6370e3d8844d14cd35a19bde44433fc337921ed"),
-        // Used for development
-//        .binaryTarget(
-//            name: "MaasCore",
-//            path: "common/core/build/bin/xcframework/MaasCore.xcframework"),
+            // Used for production
+//            url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev05/MaasCore.xcframework.zip",
+//            checksum: "d0e9dfa86527369490cb3293e6370e3d8844d14cd35a19bde44433fc337921ed"),
+            // Used for development
+            path: "common/core/build/bin/xcframework/MaasCore.xcframework"),
 
         .target(
             name: "MaaS",
