@@ -128,8 +128,12 @@ extension TextStyle {
 extension BasicFontWeight {
 
     var fontWeight: Font.Weight {
-        #warning("Implement all weights")
-        return .regular
+        switch self {
+        case .normal: return .regular
+        case .semibold: return .semibold
+        case .bold: return .bold
+        default: return .regular
+        }
     }
 
 }
