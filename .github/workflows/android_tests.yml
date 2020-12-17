@@ -13,7 +13,7 @@ on:
 jobs:
   test:
     runs-on: macos-latest
-    timeout-minutes: 30
+    timeout-minutes: 10
 
     steps:
       - uses: actions/checkout@v2
@@ -24,11 +24,10 @@ jobs:
       -  name: Android Emulator Runner
          uses: ReactiveCircus/android-emulator-runner@v2.13.0
          with:
-           api-level: 28
+           api-level: 26
            target: default
-           arch: x86
+           arch: x86_64
            profile: Nexus 6
-           emulator-options: -noaudio -no-boot-anim
            disable-animations: true
            script: ./gradlew executeScreenshotTests
            working-directory: ./android
