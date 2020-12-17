@@ -35,4 +35,27 @@ public struct Kotlin<T> {
     public subscript(dynamicMember keyPath: KeyPath<T, Int32>) -> Int {
         Int(value[keyPath: keyPath])
     }
+    
+    public subscript(dynamicMember keyPath: KeyPath<T, MaasCore.Gradient>) -> LinearGradient {
+        let gradient = value[keyPath: keyPath]
+        let startPoint: UnitPoint
+        let endPoint: UnitPoint
+        switch gradient.direction {
+        case .horizontal:
+            startPoint = .leading
+            endPoint = .trailing
+        case .vertical:
+            startPoint = .top
+            endPoint = .bottom
+        default:
+            startPoint = .leading
+            endPoint = .trailing
+        }
+        let colors = gradient.colorValues
+            .map { Color($0.uint64Value.color) }
+        
+        return LinearGradient(gradient: Gradient(colors: colors),
+                              startPoint: startPoint,
+                              endPoint: endPoint)
+    }
 }
