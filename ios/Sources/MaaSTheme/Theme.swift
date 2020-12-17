@@ -20,8 +20,8 @@ public extension EnvironmentValues {
                     onBackground: uiColorOnBackground.ui64(colorScheme),
                     onSurface: uiColorOnSurface.ui64(colorScheme),
                     onError: uiColorOnError.ui64(colorScheme),
-                    grayScale: grayScale
-                ),
+                    grayScale: grayScale.ui64(colorScheme)
+               ),
                 typographyScale: CurrentTypographyScale(
                     headingXXL: textStyleHeadingXXL,
                     headingXL: textStyleHeadingXL,
