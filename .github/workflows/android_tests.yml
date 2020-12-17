@@ -24,9 +24,9 @@ jobs:
       -  name: Android Emulator Runner
          uses: ReactiveCircus/android-emulator-runner@v2.13.0
          with:
-           api-level: 26
+           api-level: 28
            target: default
-           arch: x86_64
+           arch: x86
            profile: Nexus 6
            emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
            disable-animations: true
@@ -39,6 +39,20 @@ jobs:
          with:
           name: tests_results.html
           path: /Users/runner/work/maas-components/maas-components/android/app/build/reports/shot/verification/index.html
+      -  name: Publish generated screenshot
+         if: always()
+         uses: actions/upload-artifact@v2
+         with:
+          name: generatedScreenshot.png
+          path: /tmp/shot/screenshot/app/com.trafi.example.ComposablePreviewsTests_ButtonPreview.png
+      -  name: Publish original screenshot
+         if: always()
+         uses: actions/upload-artifact@v2
+         with:
+          name: originalScreenshot.png
+          path: /Users/runner/work/maas-components/maas-components/android/app/screenshots/debug/com.trafi.example.ComposablePreviewsTests_ButtonPreview.png
+      
+        
 
            
          
