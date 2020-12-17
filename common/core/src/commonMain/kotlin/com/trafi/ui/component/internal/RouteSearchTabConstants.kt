@@ -1,6 +1,8 @@
 package com.trafi.ui.component.internal
 
 import com.trafi.ui.theme.internal.*
+import com.trafi.ui.theme.internal.BasicFontWeight.Bold
+import com.trafi.ui.theme.internal.BasicFontWeight.Normal
 import com.trafi.ui.theme.internal.dp
 
 class RouteSearchTabConstants (theme: CurrentTheme) {
@@ -14,8 +16,8 @@ class RouteSearchTabConstants (theme: CurrentTheme) {
     val backgroundColorActiveOnLight = theme.colorPalette.primary.alpha(0.1f)
     val backgroundColorActiveOnDark = theme.colorPalette.primary.alpha(0.3f)
 
-    val titleStyle = theme.typographyScale.textM.copy(fontWeight = BasicFontWeight.Bold)
-    val subtitleStyle = theme.typographyScale.textS.copy(fontWeight = BasicFontWeight.Normal)
+    val titleStyle = theme.typographyScale.textM.copy(fontWeight = Bold)
+    val subtitleStyle = theme.typographyScale.textS.copy(fontWeight = Normal)
 
     val padding = SpacingScale.xxs
 
