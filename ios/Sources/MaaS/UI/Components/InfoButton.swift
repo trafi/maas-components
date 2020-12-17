@@ -66,10 +66,9 @@ struct GradienHighlightButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .modifier(
-                SelectionModifier(
-                    isSelected: configuration.isPressed,
-                    selection: { GradientModifier(isSelected: $0, gradient: gradient) })
+            .selectionModifier(
+                isSelected: configuration.isPressed,
+                selection: { GradientModifier(isSelected: $0, gradient: gradient) }
             )
     }
 }
