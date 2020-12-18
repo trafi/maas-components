@@ -66,21 +66,20 @@ struct GradienHighlightButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .selectionModifier(
-                isSelected: configuration.isPressed,
-                selection: { GradientModifier(isSelected: $0, gradient: gradient) }
-            )
+            .selectionModifier(configuration.isPressed) { isSelected in
+                AnimatableGradientModifier(show: isSelected, gradient: gradient)
+            }
     }
 }
 
-struct GradientModifier: ViewModifier {
+struct AnimatableGradientModifier: ViewModifier {
     
-    let isSelected: Bool
+    let show: Bool
     let gradient: LinearGradient
     
     func body(content: Self.Content) -> some View {
         content.background(
-            gradient.opacity(isSelected ? 1 : 0)
+            gradient.opacity(show ? 1 : 0)
         )
         .animation(.easeInOut(duration: 0.2))
     }
