@@ -268,7 +268,7 @@ private fun Dp.plusIf(shouldInclude: Boolean, other: Dp) = if (shouldInclude) th
 
 @Preview
 @Composable
-private fun BadgePreview() {
+fun BadgePreview() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),
         icon = vectorResource(R.drawable.providers_ubahn_xs),
@@ -278,7 +278,7 @@ private fun BadgePreview() {
 
 @Preview
 @Composable
-private fun BadgePreviewWithSubbadge() {
+fun BadgePreviewWithSubbadge() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),
         icon = vectorResource(R.drawable.providers_ubahn_xs),
@@ -289,7 +289,7 @@ private fun BadgePreviewWithSubbadge() {
 
 @Preview
 @Composable
-private fun SmallBadgePreview() {
+fun SmallBadgePreview() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),
         badgeType = Small
@@ -298,7 +298,7 @@ private fun SmallBadgePreview() {
 
 @Preview
 @Composable
-private fun SmallDisabledBadgePreview() {
+fun SmallDisabledBadgePreview() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),
         badgeType = Small,
@@ -308,7 +308,7 @@ private fun SmallDisabledBadgePreview() {
 
 @Preview
 @Composable
-private fun SmallBadgeWithIconPreview() {
+fun SmallBadgeWithIconPreview() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),
         icon = vectorResource(R.drawable.providers_ubahn_xs),
@@ -318,7 +318,7 @@ private fun SmallBadgeWithIconPreview() {
 
 @Preview
 @Composable
-private fun BadgeWithoutIconPreview() {
+fun BadgeWithoutIconPreview() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),
         badgeType = Medium
@@ -327,7 +327,7 @@ private fun BadgeWithoutIconPreview() {
 
 @Preview
 @Composable
-private fun StackedBadgePreview() {
+fun StackedBadgePreview() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),
         alternativeBadges = listOf(
@@ -340,7 +340,7 @@ private fun StackedBadgePreview() {
 
 @Preview
 @Composable
-private fun StackedBadgeDarkPreview() {
+fun StackedBadgeDarkPreview() {
     val darkColors = MaasTheme.darkColors()
     MaasTheme(colors = darkColors) {
         Badge(
@@ -356,7 +356,7 @@ private fun StackedBadgeDarkPreview() {
 
 @Preview
 @Composable
-private fun StackedBadgePreviewWithSubbadge() {
+fun StackedBadgePreviewWithSubbadge() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),
         alternativeBadges = listOf(BadgeInfo("135", Color.Green),
