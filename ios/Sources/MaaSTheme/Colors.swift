@@ -42,10 +42,17 @@ private enum ColorKeys {
     
     struct GrayScale: EnvironmentKey {
         static var defaultValue: GrayScalePalette {
-            let grayScale = UIScreen.main.traitCollection.userInterfaceStyle == .dark ?
-                ColorPalette.DefaultDark().GrayScale :
-                ColorPalette.DefaultLight().GrayScale
-            return GrayScalePalette(grayScale)
+            GrayScalePalette(
+                gray100: .adaptive(light: \.GrayScale.gray100, dark: \.GrayScale.gray100),
+                gray200: .adaptive(light: \.GrayScale.gray200, dark: \.GrayScale.gray200),
+                gray300: .adaptive(light: \.GrayScale.gray300, dark: \.GrayScale.gray300),
+                gray400: .adaptive(light: \.GrayScale.gray400, dark: \.GrayScale.gray400),
+                gray500: .adaptive(light: \.GrayScale.gray500, dark: \.GrayScale.gray500),
+                gray600: .adaptive(light: \.GrayScale.gray600, dark: \.GrayScale.gray600),
+                gray700: .adaptive(light: \.GrayScale.gray700, dark: \.GrayScale.gray700),
+                gray800: .adaptive(light: \.GrayScale.gray800, dark: \.GrayScale.gray800),
+                gray900: .adaptive(light: \.GrayScale.gray900, dark: \.GrayScale.gray900)
+            )
         }
     }
 }
@@ -120,15 +127,16 @@ public extension EnvironmentValues {
 }
 
 public struct GrayScalePalette {
-    public init(gray100: UIColor,
-         gray200: UIColor,
-         gray300: UIColor,
-         gray400: UIColor,
-         gray500: UIColor,
-         gray600: UIColor,
-         gray700: UIColor,
-         gray800: UIColor,
-         gray900: UIColor
+    public init(
+        gray100: UIColor,
+        gray200: UIColor,
+        gray300: UIColor,
+        gray400: UIColor,
+        gray500: UIColor,
+        gray600: UIColor,
+        gray700: UIColor,
+        gray800: UIColor,
+        gray900: UIColor
     ) {
         self.gray100 = gray100
         self.gray200 = gray200
@@ -180,20 +188,6 @@ extension UInt64 {
 
     var fromKotlin: UInt64 { self >> 32 }
     var toKotlin: UInt64 { self << 32 }
-}
-
-extension GrayScalePalette {
-    init(_ grayScale: MaasCore.GrayScale) {
-        self.gray100 = grayScale.gray100.color
-        self.gray200 = grayScale.gray200.color
-        self.gray300 = grayScale.gray300.color
-        self.gray400 = grayScale.gray400.color
-        self.gray500 = grayScale.gray500.color
-        self.gray600 = grayScale.gray600.color
-        self.gray700 = grayScale.gray700.color
-        self.gray800 = grayScale.gray800.color
-        self.gray900 = grayScale.gray900.color
-    }
 }
 
 // MARK: - To Kotlin
