@@ -2,3 +2,4 @@
 // Do not edit manually.
 package com.trafi.localization
 
+internal object FR
