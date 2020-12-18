@@ -20,7 +20,9 @@ import androidx.compose.ui.unit.dp
 import com.trafi.ui.BadgeType.Medium
 import com.trafi.ui.BadgeType.Small
 import com.trafi.ui.component.internal.BadgeConstants
+import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.currentTheme
+import com.trafi.ui.theme.darkColors
 
 @Composable
 private val constants
@@ -85,7 +87,7 @@ private fun SingleBadge(
         ) {
             BadgeFiller(
                 badgeType = badgeType,
-                vector = icon,
+                icon = icon,
                 badge = badge,
                 isStackedBadge = false
             )
@@ -119,19 +121,19 @@ private fun StackedBadge(
     alternativeBadges: List<BadgeInfo> = listOf(),
 ) {
     ConstraintLayout {
-        val altBadgesSublist = alternativeBadges.take(2)
+        val altBadgesSublist = alternativeBadges.take(constants.maxStackedBadgesNumber)
         altBadgesSublist.forEachIndexed { index, smallScheduleBadge ->
             Surface(
                 color = smallScheduleBadge.backgroundColor,
                 contentColor = smallScheduleBadge.contentColor ?: constants.defaultContentColor,
-                border = BorderStroke(constants.borderWidth, color = constants.defaultContentColor),
+                border = BorderStroke(constants.borderWidth, color = constants.borderColor),
                 shape = RoundedCornerShape(badgeType.badgeRounding),
                 modifier = modifier.height(badgeType.badgeHeight + (index * 4).dp)
                     .padding(top = (index * 4).dp)
             ) {
                 BadgeFiller(
                     badgeType = badgeType,
-                    vector = icon,
+                    icon = icon,
                     // This is not a mistype, it is a lifehack to make badges same size
                     badge = badge,
                     isHiddenLayoutFiller = true,
@@ -142,7 +144,7 @@ private fun StackedBadge(
         Surface(
             color = badge.backgroundColor,
             contentColor = badge.contentColor ?: constants.defaultContentColor,
-            border = BorderStroke(constants.borderWidth, color = constants.defaultContentColor),
+            border = BorderStroke(constants.borderWidth, color = constants.borderColor),
             shape = RoundedCornerShape(badgeType.badgeRounding),
             modifier = modifier
                 .sizeIn(minHeight = badgeType.badgeHeight + (altBadgesSublist.size * 4).dp + (constants.borderWidth * 2))
@@ -150,7 +152,7 @@ private fun StackedBadge(
         ) {
             BadgeFiller(
                 badgeType = badgeType,
-                vector = icon,
+                icon = icon,
                 badge = badge,
                 isHiddenLayoutFiller = false,
                 isStackedBadge = true
@@ -179,7 +181,7 @@ private fun BadgeFiller(
     badgeType: BadgeType,
     isStackedBadge: Boolean,
     badge: BadgeInfo,
-    vector: ImageVector?,
+    icon: ImageVector?,
     isHiddenLayoutFiller: Boolean = false,
 ) {
     Row(
@@ -192,9 +194,9 @@ private fun BadgeFiller(
         if (isHiddenLayoutFiller) {
             Box(modifier = Modifier.align(Alignment.CenterVertically).width(constants.iconWidth)) {}
         } else {
-            vector?.let {
+            icon?.let {
                 Image(
-                    vector,
+                    icon,
                     colorFilter = ColorFilter.tint(badge.contentColor
                         ?: constants.defaultContentColor),
                     modifier = Modifier.align(Alignment.CenterVertically)
@@ -245,7 +247,7 @@ private fun BadgeType.getHorizontalPadding(isStackedBadge: Boolean): Dp {
 @Composable
 private val BadgeType.verticalPadding: Dp
     get() = when (this) {
-        Small -> 0.dp
+        Small -> constants.verticalPaddingSmall
         Medium -> constants.verticalPaddingMedium
     }
 
@@ -338,12 +340,30 @@ fun StackedBadgePreview() {
 
 @Preview
 @Composable
-fun StackedBadgePreviewWithSubbadge() {
+private fun StackedBadgeDarkPreview() {
+    val darkColors = MaasTheme.darkColors()
+    MaasTheme(colors = darkColors) {
+        Badge(
+            badge = BadgeInfo("5G", Color.Magenta),
+            alternativeBadges = listOf(
+                BadgeInfo("5G", Color.Magenta),
+            ),
+            icon = vectorResource(R.drawable.providers_ubahn_xs),
+            badgeType = Medium
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun StackedBadgePreviewWithSubbadge() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),
         alternativeBadges = listOf(BadgeInfo("135", Color.Green),
             BadgeInfo("13585", Color.Magenta),
             BadgeInfo("1", Color.Green),
+            BadgeInfo("135", Color.Magenta),
+            BadgeInfo("135", Color.Magenta),
             BadgeInfo("135", Color.Magenta)),
         icon = vectorResource(R.drawable.providers_ubahn_xs),
         badgeType = Medium
