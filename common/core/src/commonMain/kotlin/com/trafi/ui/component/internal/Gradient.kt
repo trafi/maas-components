@@ -7,8 +7,8 @@ class Gradient (
     val colors: List<Color>,
 ) {
     constructor(
-        direction: Direction,
         colorValues: List<ULong>,
+        direction: Direction,
     ): this(direction, colorValues.map{ Color(it) })
 
     val colorValues: List<ULong>
