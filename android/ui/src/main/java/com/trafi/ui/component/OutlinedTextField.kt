@@ -1,4 +1,4 @@
-package com.trafi.ui
+package com.trafi.ui.component
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
