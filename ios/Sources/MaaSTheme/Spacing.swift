@@ -3,7 +3,8 @@ import SwiftUI
 import MaasCore
 
 private struct SpacingGlobalMargin: EnvironmentKey {
-    static var defaultValue: CGFloat { CGFloat(SpacingScale.Default().GlobalMargin) }
+    static var defaultValue: CGFloat { CGFloat(SpacingScale.Default().GlobalMargin)
+    }
 }
 public extension EnvironmentValues {
     var spacingGlobalMargin: CGFloat {
@@ -27,6 +28,18 @@ public struct Spacing {
     public static var xxxl: Spacing { .init(value: CGFloat(SpacingScale().xxxl)) }
 
     public static var `default`: Spacing {
+        .init(value: CGFloat(SpacingScale.Default().GlobalMargin))
+    }
+
+    public static var listItemHorizontal: Spacing {
+        .init(value: CGFloat(SpacingScale().sm))
+    }
+
+    public static var listItemVertical: Spacing {
+        .init(value: CGFloat(SpacingScale.Default().GlobalMargin))
+    }
+
+    public static var listItemGutter: Spacing {
         .init(value: CGFloat(SpacingScale.Default().GlobalMargin))
     }
 }
