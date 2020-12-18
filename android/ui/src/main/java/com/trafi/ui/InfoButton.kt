@@ -1,5 +1,6 @@
 package com.trafi.ui
 
+import android.graphics.Color.green
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -126,6 +127,29 @@ fun InfoButtonStyledDarkDisabledPreview() {
         InfoButton(
             text = "How it works",
             enabled = false,
+            onClick = {}
+        )
+    }
+}
+
+@Preview(widthDp = 150)
+@Composable
+fun InfoButtonLongTextPreview() {
+    MaasTheme {
+        InfoButton(
+            text = "Info view view view",
+            onClick = {}
+        )
+    }
+}
+
+@Preview
+@Composable
+fun InfoButtonThemedPreview() {
+    MaasTheme {
+        InfoButton(
+            text = "Info",
+            contentColor = Color.Magenta,
             onClick = {}
         )
     }

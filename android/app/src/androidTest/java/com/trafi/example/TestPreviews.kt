@@ -9,6 +9,10 @@ import com.trafi.ui.SmallBadgePreview
 import com.trafi.ui.SmallDisabledBadgePreview
 import com.trafi.ui.SmallBadgeWithIconPreview
 import com.trafi.ui.BadgeWithoutIconPreview
+import com.trafi.ui.InfoButtonDisabledPreview
+import com.trafi.ui.InfoButtonLongTextPreview
+import com.trafi.ui.InfoButtonStyledDarkPreview
+import com.trafi.ui.InfoButtonThemedPreview
 import com.trafi.ui.StackedBadgePreview
 import com.trafi.ui.StackedBadgePreviewWithSubbadge
 import com.trafi.ui.StackedBadgeDarkPreview
@@ -25,5 +29,9 @@ val testPreviews = listOf<Pair<@Composable () -> Unit, String>>(
         Pair({ BadgeWithoutIconPreview() }, "BadgeWithoutIconPreview"),
         Pair({ StackedBadgePreview() }, "StackedBadgePreview"),
         Pair({ StackedBadgePreviewWithSubbadge() }, "StackedBadgePreviewWithSubbadge"),
-        Pair({ StackedBadgeDarkPreview()}, "StackedBadgeDarkPreview")
+        Pair({ StackedBadgeDarkPreview()}, "StackedBadgeDarkPreview"),
+        Pair({ InfoButtonLongTextPreview() }, "InfoButtonLongTextPreview"),
+        Pair({ InfoButtonDisabledPreview() }, "InfoButtonDisabledPreview"),
+        Pair({ InfoButtonStyledDarkPreview() }, "InfoButtonStyledDarkPreview"),
+        Pair({ InfoButtonThemedPreview() }, "InfoButtonThemedPreview"),
 )
