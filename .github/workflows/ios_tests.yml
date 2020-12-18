@@ -10,10 +10,22 @@ on:
 jobs:
   test:
     runs-on: macos-latest
+    
     steps:
+      
       - uses: devbotsxyz/xcode-select@v1
+      
       - uses: actions/checkout@v2
-      #- name: PackagesUpdate
-      #  run: swift package update
+        
+      - name: Build xcframework
+        run: cd common && ./gradlew xcframeworkSimulator && cd ..
+        
       - name: Test
         run: xcodebuild -scheme MaaS-Package test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8'
+        
+      - name: Publish artifacts
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: tests.xcresult
+          path: /Users/runner/Library/Developer/Xcode/DerivedData/*/Logs/Test/*.xcresult

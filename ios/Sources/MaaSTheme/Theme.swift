@@ -23,14 +23,14 @@ public extension EnvironmentValues {
                     grayScale: grayScale.ui64(colorScheme)
                ),
                 typographyScale: CurrentTypographyScale(
-                    headingXXL: uiFontHeadingXXL,
-                    headingXL: uiFontHeadingXL,
-                    headingL: uiFontHeadingL,
-                    headingM: uiFontHeadingM,
-                    textL: uiFontTextL,
-                    textM: uiFontTextM,
-                    textS: uiFontTextS,
-                    label: uiFontLabel
+                    headingXXL: textStyleHeadingXXL,
+                    headingXL: textStyleHeadingXL,
+                    headingL: textStyleHeadingL,
+                    headingM: textStyleHeadingM,
+                    textL: textStyleTextL,
+                    textM: textStyleTextM,
+                    textS: textStyleTextS,
+                    label: textStyleLabel
                 ),
                 spacingScale: CurrentSpacingScale(
                     globalMargin: Float(spacingGlobalMargin)

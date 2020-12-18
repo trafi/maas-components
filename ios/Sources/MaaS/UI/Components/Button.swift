@@ -39,8 +39,8 @@ public struct Button: View, Swappable {
                     .padding(.horizontal)
                     .lineLimit(0)
                     .minimumScaleFactor(0.75)
-                    .font(constants.textStyle)
                     .foregroundColor(input.foreground ?? (isEnabled ? constants.defaultContentColor : constants.disabledContentColor))
+                    .textStyle(constants.textStyle)
                     .frame(maxWidth: .infinity, minHeight: constants.minHeight)
                     .background(input.background ?? (isEnabled ? constants.defaultBackgroundColor : constants.disabledBackgroundColor))
                     .cornerRadius(constants.cornerRadius)
@@ -79,7 +79,8 @@ struct Button_Previews: PreviewProvider, Snapped {
                     .environment(\.uiColorPrimary, .systemBlue)
                     .environment(\.uiColorOnPrimary, .systemYellow)
                     .environment(\.cornerRadiusButton, 20)
-                    .environment(\.uiFontTextL, UIFont(name: "Papyrus", size: 25)!)
+                    .environment(\.textStyleTextL, TextStyle(fontWeight: .normal, fontStyle: .normal, fontSize: 25, lineSpacing: 0, color: nil))
+                    .environment(\.textFont, { Font(UIFont(name: "Papyrus", size: $0)!) })
             ),
         ]
     }
