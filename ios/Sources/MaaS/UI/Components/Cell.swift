@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MaasTheme
 
 struct Cell<P: View, S: View, C: View>: View {
 
@@ -45,13 +46,19 @@ struct Cell<P: View, S: View, C: View>: View {
     }
 
     var body: some View {
-        HStack {
+        HStack(spacing: Spacing.listItemGutter.value) {
             prefix()
             content()
-            Spacer()
-            suffix()
+            Group {
+                if suffix() != nil {
+                    Spacer()
+                    suffix()
+                }
+            }
         }
-        .padding()
+        .padding([.leading, .trailing], Spacing.listItemVertical.value)
+        .padding([.top, .bottom], Spacing.listItemHorizontal.value)
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
