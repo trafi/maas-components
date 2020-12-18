@@ -32,5 +32,7 @@ class BadgeConstants(theme: CurrentTheme) {
     val verticalPaddingMedium = SpacingScale.xxxs
     val verticalPaddingSmall = SpacingScale.xxxs
 
+    val maxAlternativeBadges = 2
+
     val borderWidth = 1.5.dp
 }
