@@ -1,0 +1,24 @@
+name: docs
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Build docs using sphinx
+      uses: ammaraskar/sphinx-action@master
+      with:
+        docs-folder: "docs/"
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: DocumentationHTML
+        path: docs/_build/html/
