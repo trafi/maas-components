@@ -39,16 +39,11 @@ jobs:
          with:
           name: tests_results.html
           path: /Users/runner/work/maas-components/maas-components/android/app/build/reports/shot/verification/index.html
-      -  name: Publish generated screenshot
+      -  name: Publish screenshots
          if: always()
          uses: actions/upload-artifact@v2
          with:
           name: generated_screenshots
-          path: /Users/runner/work/maas-components/maas-components/android/app/build/reports/shot/verification/images/
-      -  name: Publish original screenshot
-         if: always()
-         uses: actions/upload-artifact@v2
-         with:
-          name: original_screenshots
-          path: /Users/runner/work/maas-components/maas-components/android/app/build/reports/shot/verification/images/recorded/
+          path: /Users/runner/work/maas-components/maas-components/android/app/build/reports/shot/verification/
+
       
