@@ -9,6 +9,7 @@ maas-components
    :maxdepth: 2
    :caption: Contents:
 
+   getting-started/readme
    design/readme
 
 
