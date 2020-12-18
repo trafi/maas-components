@@ -16,7 +16,7 @@ plugins {
 }
 
 application {
-    mainClassName = "com.trafi.localization.MainKt"
+    mainClassName = "com.trafi.localization.LocalizationKt"
 }
 
 dependencies {
