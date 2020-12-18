@@ -2,18 +2,30 @@ name: iOS tests
 
 on:
   workflow_dispatch:
-  #push:
-  #  branches: [ main ]
-  #pull_request:
-  #  branches: [ main ]
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   test:
     runs-on: macos-latest
+    
     steps:
+      
       - uses: devbotsxyz/xcode-select@v1
+      
       - uses: actions/checkout@v2
-      #- name: PackagesUpdate
-      #  run: swift package update
+        
+      - name: Build xcframework
+        run: cd common && ./gradlew xcframeworkSimulator && cd ..
+        
       - name: Test
-        run: xcodebuild -scheme MaaS-Package test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8'
+        run: xcodebuild -scheme MaaS-Package test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' | xcpretty
+        
+      - name: Publish artifacts
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: tests.xcresult
+          path: /Users/runner/Library/Developer/Xcode/DerivedData/*/Logs/Test/*.xcresult

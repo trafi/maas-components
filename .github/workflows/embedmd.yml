@@ -1,0 +1,38 @@
+name: embedmd
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  embed:
+    name: embedmd
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Set up Go 1.x
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.13
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.PAT }}
+        ref: ${{ github.head_ref }}
+
+    - name: Get embedmd executable
+      run: go get github.com/campoy/embedmd
+
+    - name: Run embedmd
+      run: |
+        shopt -s globstar
+        embedmd -w **/*.md
+
+    - name: Git Auto Commit
+      uses: stefanzweifel/git-auto-commit-action@v4.8.0
+      with:
+        commit_message: Update code embedded in .md files
