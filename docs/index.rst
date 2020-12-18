@@ -9,6 +9,8 @@ maas-components
    :maxdepth: 2
    :caption: Contents:
 
+   design/readme
+
 
 Indices and tables
 ==================
