@@ -119,6 +119,7 @@ private struct MultiSelectFilterPreview: View {
 }
 
 struct MultiSelectFilterPreview_Previews: PreviewProvider, Snapped {
+
     static var snapped: [String : AnyView] {
         [
             "Full selection": AnyView(

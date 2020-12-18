@@ -43,20 +43,19 @@ enum NearbyTransitComponentsPreviewData {
         disruption: nil
     )
 
-    static func schedule(name: String) -> Schedule {
-        Schedule(
-            id: "debe_17350_700",
-            name: name,
-            color: "95276E",
-            transportId: "transport",
-            longName: "Hertzallee - Prenzlauer Berg, Michelangelostr.",
-            textColor: nil,
-            transportType: nil
+    static func scheduleWithDepartures(name: String, color: String = "95276E") -> ScheduleWithDepartures {
+        .init(
+            schedule: Schedule(
+                id: "debe_17350_700",
+                name: name,
+                color: color,
+                transportId: "transport\(color)",
+                longName: "Hertzallee - Prenzlauer Berg, Michelangelostr.",
+                textColor: nil,
+                transportType: nil
+            ),
+            trackDepartures: [trackWithDepartures]
         )
-    }
-
-    static func scheduleWithDepartures(name: String) -> ScheduleWithDepartures {
-        .init(schedule: schedule(name: name), trackDepartures: [trackWithDepartures])
     }
 
     static let stopWithSchedulesWithDepartures = StopWithSchedulesWithDepartures(
@@ -66,7 +65,13 @@ enum NearbyTransitComponentsPreviewData {
             scheduleWithDepartures(name: "200"),
             scheduleWithDepartures(name: "248"),
             scheduleWithDepartures(name: "265"),
-            scheduleWithDepartures(name: "300"),
+            scheduleWithDepartures(name: "265"),
+            scheduleWithDepartures(name: "310", color: "45935D"),
+            scheduleWithDepartures(name: "320", color: "45935D"),
+            scheduleWithDepartures(name: "365", color: "45935D"),
+            scheduleWithDepartures(name: "310", color: "45935D"),
+            scheduleWithDepartures(name: "320", color: "45935D"),
+            scheduleWithDepartures(name: "900", color: "45935D"),
         ]
     )
 
