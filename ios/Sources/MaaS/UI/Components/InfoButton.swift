@@ -49,7 +49,7 @@ struct InfoButton: View {
                     
                     Text(input.text)
                         .lineLimit(constants.maxLinesCount)
-                        .font(constants.textStyle)
+                        .textStyle(constants.textStyle)
                 }
                 .padding(.vertical, constants.paddingVertical)
                 .padding(.horizontal, constants.paddingHorizontal)
@@ -110,7 +110,8 @@ struct InfoButton_Previews: PreviewProvider, Snapped {
             
             "Themed": AnyView(
                 InfoButton("Info",  icon: Image(systemName: "tram"), foreground: Color.pink, action: {})
-                    .environment(\.uiFontTextL, UIFont(name: "Menlo-Bold", size: 25)!)
+                    .environment(\.textStyleTextL, TextStyle(fontWeight: .normal, fontStyle: .normal, fontSize: 25, lineSpacing: 0, color: nil))
+                    .environment(\.textFont, { Font(UIFont(name: "Menlo-Bold", size: $0)!) })
                 
             ),
             
