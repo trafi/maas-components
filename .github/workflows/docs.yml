@@ -16,6 +16,7 @@ jobs:
       uses: ammaraskar/sphinx-action@master
       with:
         docs-folder: "docs/"
+        pre-build-command: "pip install myst-parser"
 
     - name: Upload artifact
       uses: actions/upload-artifact@v1
