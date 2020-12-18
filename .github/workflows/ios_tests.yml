@@ -21,7 +21,7 @@ jobs:
         run: cd common && ./gradlew xcframeworkSimulator && cd ..
         
       - name: Test
-        run: xcodebuild -scheme MaaS-Package test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8'
+        run: xcodebuild -scheme MaaS-Package test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' | xcpretty
         
       - name: Publish artifacts
         if: always()
