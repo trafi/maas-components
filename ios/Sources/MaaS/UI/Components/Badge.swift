@@ -108,8 +108,7 @@ private struct BaseBadge: View, Swappable {
 
             if showText {
                 Text(input.text!)
-                    .font(font)
-                    .bold()
+                    .textStyle(textStyle)
             }
         }
         .padding(padding)
@@ -135,7 +134,7 @@ private struct BaseBadge: View, Swappable {
         }
     }
 
-    private var font: Font {
+    private var textStyle: TextStyle {
         switch input.type {
         case .small:
             return constants.textStyleSmall

@@ -5,17 +5,10 @@ import MaasCore
 private struct CornerRadiusButton: EnvironmentKey {
     static var defaultValue: CGFloat { CGFloat(CornerRadiusScale.Default().ButtonRadius) }
 }
-private struct NearbyTransitFilterItemRadius: EnvironmentKey {
-    static var defaultValue: CGFloat { CGFloat(CornerRadiusScale.Default().NearbyTransitFilterItemRadius) }
-}
 public extension EnvironmentValues {
     var cornerRadiusButton: CGFloat {
         get { self[CornerRadiusButton.self] }
         set { self[CornerRadiusButton.self] = newValue }
-    }
-    var nearbyTransitFilterItemRadius: CGFloat {
-        get { self[NearbyTransitFilterItemRadius.self] }
-        set { self[NearbyTransitFilterItemRadius.self] = newValue }
     }
 }
 

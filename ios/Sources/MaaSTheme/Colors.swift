@@ -174,7 +174,7 @@ private extension UIColor {
 }
 
 extension UInt64 {
-    var color: UIColor {
+    public var color: UIColor {
 
         let value = self.fromKotlin
     
@@ -193,7 +193,7 @@ extension UInt64 {
 // MARK: - To Kotlin
 
 extension UIColor {
-    func ui64(_ colorScheme: ColorScheme) -> UInt64 {
+    public func ui64(_ colorScheme: ColorScheme) -> UInt64 {
 
         var r: CGFloat = 0
         var g: CGFloat = 0
@@ -224,7 +224,7 @@ private extension ColorScheme {
 }
 
 extension GrayScalePalette {
-    func ui64(_ colorScheme: ColorScheme) -> MaasCore.GrayScale {
+    public func ui64(_ colorScheme: ColorScheme) -> MaasCore.GrayScale {
         MaasCore.GrayScale(
             gray100: gray100.ui64(colorScheme),
             gray200: gray200.ui64(colorScheme),
