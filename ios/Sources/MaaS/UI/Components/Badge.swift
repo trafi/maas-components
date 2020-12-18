@@ -220,13 +220,12 @@ private struct StackedBadge: View, Swappable {
     }
 
     private var badges: [Badge.InputType] {
-        let maxAlternativeBadges = 2
-        let alternativeBadges = Array(input.colors.prefix(maxAlternativeBadges)).toAlternativeBadges()
+        let alternativeBadges = Array(input.colors.prefix(Int(constants.maxAlternativeBadges))).toAlternativeBadges()
         return alternativeBadges + [input.base]
     }
 
     private func spacing(index: Int) -> CGFloat {
-        CGFloat(2.5 * Double(index))
+        CGFloat((constants.spacer - constants.borderWidth) * CGFloat(index))
     }
 }
 
