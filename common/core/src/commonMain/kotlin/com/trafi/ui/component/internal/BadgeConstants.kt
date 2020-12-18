@@ -8,6 +8,7 @@ import com.trafi.ui.theme.internal.dp
 class BadgeConstants(theme: CurrentTheme) {
     val defaultContentColor = theme.colorPalette.onPrimary
     val disabledColor = theme.colorPalette.grayScale.gray300
+    val borderColor = theme.colorPalette.background
 
     val textStyleMedium = theme.typographyScale.textM.copy(fontWeight = Bold)
     val textStyleSmall = theme.typographyScale.textS.copy(fontWeight = Bold)
@@ -30,7 +31,9 @@ class BadgeConstants(theme: CurrentTheme) {
     val horizontalPaddingSmall = SpacingScale.xxs
 
     val verticalPaddingMedium = SpacingScale.xxxs
-    val verticalPaddingSmall = SpacingScale.xxxs
+    val verticalPaddingSmall = 0.dp
+
+    val maxStackedBadgesNumber = 2
 
     val borderWidth = 1.5.dp
 }
