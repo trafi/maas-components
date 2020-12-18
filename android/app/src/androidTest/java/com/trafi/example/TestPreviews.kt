@@ -11,6 +11,7 @@ import com.trafi.ui.SmallBadgeWithIconPreview
 import com.trafi.ui.BadgeWithoutIconPreview
 import com.trafi.ui.StackedBadgePreview
 import com.trafi.ui.StackedBadgePreviewWithSubbadge
+import com.trafi.ui.StackedBadgeDarkPreview
 
 @Suppress("RemoveExplicitTypeArguments")
 val testPreviews = listOf<Pair<@Composable () -> Unit, String>>(
@@ -23,5 +24,6 @@ val testPreviews = listOf<Pair<@Composable () -> Unit, String>>(
         Pair({ SmallBadgeWithIconPreview() }, "SmallBadgeWithIconPreview"),
         Pair({ BadgeWithoutIconPreview() }, "BadgeWithoutIconPreview"),
         Pair({ StackedBadgePreview() }, "StackedBadgePreview"),
-        Pair({ StackedBadgePreviewWithSubbadge() }, "StackedBadgePreviewWithSubbadge")
+        Pair({ StackedBadgePreviewWithSubbadge() }, "StackedBadgePreviewWithSubbadge"),
+        Pair({ StackedBadgeDarkPreview()}, "StackedBadgeDarkPreview")
 )

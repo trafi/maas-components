@@ -340,7 +340,7 @@ fun StackedBadgePreview() {
 
 @Preview
 @Composable
-private fun StackedBadgeDarkPreview() {
+fun StackedBadgeDarkPreview() {
     val darkColors = MaasTheme.darkColors()
     MaasTheme(colors = darkColors) {
         Badge(
@@ -356,7 +356,7 @@ private fun StackedBadgeDarkPreview() {
 
 @Preview
 @Composable
-private fun StackedBadgePreviewWithSubbadge() {
+fun StackedBadgePreviewWithSubbadge() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),
         alternativeBadges = listOf(BadgeInfo("135", Color.Green),
