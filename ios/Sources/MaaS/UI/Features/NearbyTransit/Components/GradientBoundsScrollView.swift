@@ -70,7 +70,7 @@ public struct GradientBoundsScrollView<Content>: View where Content: View {
         let maxDiameter: CGFloat = 20
 
         var colors: [Color] {
-            let colors = [Color.init(.init(white: 1, alpha: 0)), .white]
+            let colors = [Color(UIColor.systemBackground.withAlphaComponent(0)), Color(.systemBackground)]
             return reversed
                 ? colors.reversed()
                 : colors
