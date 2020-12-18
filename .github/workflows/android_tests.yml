@@ -32,18 +32,10 @@ jobs:
            disable-animations: true
            script: ./gradlew executeScreenshotTests
            working-directory: ./android
-      
+       
       -  name: Publish artifacts
          if: always()
          uses: actions/upload-artifact@v2
          with:
-          name: tests_results.html
-          path: /Users/runner/work/maas-components/maas-components/android/app/build/reports/shot/verification/index.html
-      -  name: Publish screenshots
-         if: always()
-         uses: actions/upload-artifact@v2
-         with:
-          name: generated_screenshots
-          path: /Users/runner/work/maas-components/maas-components/android/app/build/reports/shot/verification/
-
-      
+          name: tests_report
+          path: /Users/runner/work/maas-components/maas-components/android/app/build/reports/shot/verification/ 
