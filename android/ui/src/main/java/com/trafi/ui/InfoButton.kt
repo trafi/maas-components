@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -59,7 +60,7 @@ fun InfoButton(
         }
     ) {
         Icon(
-            bitmap = imageResource(id = iconRes),
+            imageVector = vectorResource(id = iconRes),
             modifier = modifier
                 .padding(end = constants.spaceBetween)
                 .size(width = constants.iconWidth, height = constants.iconHeight),
