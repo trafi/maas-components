@@ -5,7 +5,15 @@ Badge is a block that accomodates small pieces of information
 
 ## Preview
 
-[Figma](https://www.figma.com/file/1P6PQxKaqIaLjxxfy1cFtH/MaaS-Design-System?node-id=735%3A11698)
+```{raw} html
+<iframe
+    style="border: 1px solid rgba(0, 0, 0, 0.1);"
+    width="800"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F1P6PQxKaqIaLjxxfy1cFtH%2FMaaS-Design-System%3Fnode-id%3D735%253A11698"
+    allowfullscreen
+/></iframe>
+```
 
 
 ## Usage
@@ -76,5 +84,6 @@ class BadgeConstants(theme: CurrentTheme) {
     val borderWidth = 1.5.dp
 }
 ```
+
 ## Preview from automated tests
 ![Badge](../../ios/Tests/MaasTests/__Snapshots__/Components/Badge.2x.png)
