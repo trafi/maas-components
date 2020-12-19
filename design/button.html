@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Button &#8212; maas-components  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Route search tab" href="route-search-tab.html" />
+    <link rel="prev" title="Badge" href="badge.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="button">
+<h1>Button<a class="headerlink" href="#button" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="#api">API</a> <a class="reference external" href="https://github.com/trafi/maas-components/blob/main/ios/Sources/MaaS/UI/Components/Button.swift">SwiftUI</a> <a class="reference external" href="https://github.com/trafi/maas-components/blob/main/android/ui/src/main/java/com/trafi/ui/Button.kt">Jetpack Compose</a></p>
+<div class="section" id="preview">
+<h2>Preview<a class="headerlink" href="#preview" title="Permalink to this headline">¶</a></h2>
+<iframe
+    style="border: 1px solid rgba(0, 0, 0, 0.1);"
+    width="800"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F1P6PQxKaqIaLjxxfy1cFtH%2FMaaS-Design-System%3Fnode-id%3D410%253A0"
+    allowfullscreen
+/></iframe></div>
+<div class="section" id="specifications">
+<h2>Specifications<a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h2>
+<p><strong>Types:</strong> Primary, Secondary.<br />
+<strong>Sizes:</strong> Small, Normal, Large.<br />
+<strong>States:</strong> Normal, Active, Disabled<br />
+<strong>Behaviour:</strong> onTap changes state to “Active”. If interaction takes longer than 300ms changes state to “inProgress” [TBD].</p>
+</div>
+<div class="section" id="recommendations">
+<h2>Recommendations<a class="headerlink" href="#recommendations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>As a rule of thumb, there should be only one primary button per screen. If you need more actions, please consider secondary, and/or tertiary buttons.</p></li>
+<li><p>Keep text concise. Text longer than 22 symbols, might be truncated on smaller screens.</p></li>
+</ul>
+</div>
+<div class="section" id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ButtonConstants</span><span class="p">(</span><span class="n">theme</span><span class="p">:</span> <span class="n">CurrentTheme</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">val</span> <span class="py">defaultBackgroundColor</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">colorPalette</span><span class="p">.</span><span class="n">primary</span>
+    <span class="k">val</span> <span class="py">defaultContentColor</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">colorPalette</span><span class="p">.</span><span class="n">onPrimary</span>
+    <span class="k">val</span> <span class="py">disabledBackgroundColor</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">colorPalette</span><span class="p">.</span><span class="n">primary</span><span class="p">.</span><span class="n">alpha</span><span class="p">(</span><span class="m">0.12f</span><span class="p">)</span>
+    <span class="k">val</span> <span class="py">disabledContentColor</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">colorPalette</span><span class="p">.</span><span class="n">onPrimary</span>
+    <span class="k">val</span> <span class="py">textStyle</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">typographyScale</span><span class="p">.</span><span class="n">textL</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="n">fontWeight</span> <span class="p">=</span> <span class="n">Bold</span><span class="p">)</span>
+    <span class="k">val</span> <span class="py">minHeight</span> <span class="p">=</span> <span class="m">48.</span><span class="n">dp</span>
+    <span class="k">val</span> <span class="py">cornerRadius</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">cornerRadiusScale</span><span class="p">.</span><span class="n">buttonRadius</span>
+    <span class="k">val</span> <span class="py">defaultTruncate</span> <span class="p">=</span> <span class="k">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="preview-from-automated-tests">
+<h2>Preview from automated tests<a class="headerlink" href="#preview-from-automated-tests" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Button" src="../_images/Button.2x.png" /></p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">maas-components</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/readme.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="readme.html">MaaS Design System</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="badge.html">Badge</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Button</a></li>
+<li class="toctree-l2"><a class="reference internal" href="route-search-tab.html">Route search tab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#maas-design-system-for-jetpack-compose">MaaS Design System for Jetpack Compose</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/trafi/maas-components">GitHub repo</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="readme.html">MaaS Design System</a><ul>
+      <li>Previous: <a href="badge.html" title="previous chapter">Badge</a></li>
+      <li>Next: <a href="route-search-tab.html" title="next chapter">Route search tab</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Trafi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/design/button.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

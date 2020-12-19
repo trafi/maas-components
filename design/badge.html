@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Badge &#8212; maas-components  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Button" href="button.html" />
+    <link rel="prev" title="MaaS Design System" href="readme.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="badge">
+<h1>Badge<a class="headerlink" href="#badge" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="#api">API</a> <a class="reference external" href="https://github.com/trafi/maas-components/blob/main/ios/Sources/MaaS/UI/Components/Badge.swift">SwiftUI</a> <a class="reference external" href="https://github.com/trafi/maas-components/blob/main/android/ui/src/main/java/com/trafi/ui/Badge.kt">Jetpack Compose</a></p>
+<p>Badge is a block that accomodates small pieces of information</p>
+<div class="section" id="preview">
+<h2>Preview<a class="headerlink" href="#preview" title="Permalink to this headline">¶</a></h2>
+<iframe
+    style="border: 1px solid rgba(0, 0, 0, 0.1);"
+    width="800"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F1P6PQxKaqIaLjxxfy1cFtH%2FMaaS-Design-System%3Fnode-id%3D735%253A11698"
+    allowfullscreen
+/></iframe></div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>represent vehicle type in route search (e.g. Audi A3)</p></li>
+<li><p>represent PT vehicle route (e.g. S5)</p></li>
+<li><p>represent payment status (e.g. “DEFAULT”)</p></li>
+<li><p>represent car type in stationary car sharing (e.g. budget)</p></li>
+<li><p>represent POI in stationary bike sharing (e.g. “2 Riese &amp; Müller 60”)</p></li>
+<li><p>highlight new/upcoming provider in the app (e.g. “NEW” or “SOON”)</p></li>
+</ul>
+</div>
+<div class="section" id="variations-and-constituents">
+<h2>Variations and constituents<a class="headerlink" href="#variations-and-constituents" title="Permalink to this headline">¶</a></h2>
+<p><strong>badge types</strong>
+sizes: medium, small</p>
+<p><strong>medium badge</strong></p>
+<ul class="simple">
+<li><p>may have an icon</p></li>
+<li><p>may have a subbadge icon</p></li>
+<li><p>may be stacked (in stacks of 2 or 3 badges) vertically
+extension: in PT flow content inside fits a maximum of 4 string characters and truncates afterwards</p></li>
+</ul>
+<p><strong>small badge</strong></p>
+<ul class="simple">
+<li><p>doesn’t have an icon</p></li>
+<li><p>may have a subbadge icon</p></li>
+<li><p>cannot be stacked</p></li>
+<li><p>texts inside are always uppercase</p></li>
+<li><p>may be disabled</p></li>
+</ul>
+</div>
+<div class="section" id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BadgeConstants</span><span class="p">(</span><span class="n">theme</span><span class="p">:</span> <span class="n">CurrentTheme</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">val</span> <span class="py">defaultContentColor</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">colorPalette</span><span class="p">.</span><span class="n">onPrimary</span>
+    <span class="k">val</span> <span class="py">disabledColor</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">colorPalette</span><span class="p">.</span><span class="n">grayScale</span><span class="p">.</span><span class="n">gray300</span>
+    <span class="k">val</span> <span class="py">borderColor</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">colorPalette</span><span class="p">.</span><span class="n">background</span>
+
+    <span class="k">val</span> <span class="py">textStyleMedium</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">typographyScale</span><span class="p">.</span><span class="n">textM</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="n">fontWeight</span> <span class="p">=</span> <span class="n">Bold</span><span class="p">)</span>
+    <span class="k">val</span> <span class="py">textStyleSmall</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">typographyScale</span><span class="p">.</span><span class="n">textS</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="n">fontWeight</span> <span class="p">=</span> <span class="n">Bold</span><span class="p">)</span>
+
+    <span class="k">val</span> <span class="py">minHeightMedium</span> <span class="p">=</span> <span class="m">24.</span><span class="n">dp</span>
+    <span class="k">val</span> <span class="py">minHeightSmall</span> <span class="p">=</span> <span class="m">16.</span><span class="n">dp</span>
+
+    <span class="k">val</span> <span class="py">cornerRadiusMedium</span> <span class="p">=</span> <span class="n">CornerRadiusScale</span><span class="p">.</span><span class="n">xs</span>
+    <span class="k">val</span> <span class="py">cornerRadiusSmall</span> <span class="p">=</span> <span class="n">CornerRadiusScale</span><span class="p">.</span><span class="n">xxs</span>
+
+    <span class="k">val</span> <span class="py">iconHeight</span> <span class="p">=</span> <span class="m">20.</span><span class="n">dp</span>
+    <span class="k">val</span> <span class="py">iconWidth</span> <span class="p">=</span> <span class="m">20.</span><span class="n">dp</span>
+
+    <span class="k">val</span> <span class="py">subBadgeIconHeight</span> <span class="p">=</span> <span class="m">16.</span><span class="n">dp</span>
+    <span class="k">val</span> <span class="py">subBadgeIconWidth</span> <span class="p">=</span> <span class="m">16.</span><span class="n">dp</span>
+
+    <span class="k">val</span> <span class="py">spacer</span> <span class="p">=</span> <span class="n">SpacingScale</span><span class="p">.</span><span class="n">xxs</span>
+
+    <span class="k">val</span> <span class="py">horizontalPaddingMedium</span> <span class="p">=</span> <span class="n">SpacingScale</span><span class="p">.</span><span class="n">xs</span>
+    <span class="k">val</span> <span class="py">horizontalPaddingSmall</span> <span class="p">=</span> <span class="n">SpacingScale</span><span class="p">.</span><span class="n">xxs</span>
+
+    <span class="k">val</span> <span class="py">verticalPaddingMedium</span> <span class="p">=</span> <span class="n">SpacingScale</span><span class="p">.</span><span class="n">xxxs</span>
+    <span class="k">val</span> <span class="py">verticalPaddingSmall</span> <span class="p">=</span> <span class="m">0.</span><span class="n">dp</span>
+
+    <span class="k">val</span> <span class="py">maxStackedBadgesNumber</span> <span class="p">=</span> <span class="m">2</span>
+
+    <span class="k">val</span> <span class="py">borderWidth</span> <span class="p">=</span> <span class="m">1.5</span><span class="p">.</span><span class="n">dp</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="preview-from-automated-tests">
+<h2>Preview from automated tests<a class="headerlink" href="#preview-from-automated-tests" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Badge" src="../_images/Badge.2x.png" /></p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">maas-components</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/readme.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="readme.html">MaaS Design System</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Badge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="button.html">Button</a></li>
+<li class="toctree-l2"><a class="reference internal" href="route-search-tab.html">Route search tab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#maas-design-system-for-jetpack-compose">MaaS Design System for Jetpack Compose</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/trafi/maas-components">GitHub repo</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="readme.html">MaaS Design System</a><ul>
+      <li>Previous: <a href="readme.html" title="previous chapter">MaaS Design System</a></li>
+      <li>Next: <a href="button.html" title="next chapter">Button</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Trafi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/design/badge.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
