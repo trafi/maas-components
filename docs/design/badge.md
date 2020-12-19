@@ -1,5 +1,7 @@
 # Badge
 
+[API](#api) [SwiftUI][badge-swiftui] [Jetpack Compose][badge-compose]
+
 Badge is a block that accomodates small pieces of information
 
 
@@ -87,3 +89,6 @@ class BadgeConstants(theme: CurrentTheme) {
 
 ## Preview from automated tests
 ![Badge](../../ios/Tests/MaasTests/__Snapshots__/Components/Badge.2x.png)
+
+[badge-swiftui]: https://github.com/trafi/maas-components/blob/main/ios/Sources/MaaS/UI/Components/Badge.swift
+[badge-compose]: https://github.com/trafi/maas-components/blob/main/android/ui/src/main/java/com/trafi/ui/Badge.kt
