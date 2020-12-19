@@ -1,4 +1,4 @@
-# Button component
+# Button
 
 ## Preview
 [See in Figma](https://www.figma.com/file/1P6PQxKaqIaLjxxfy1cFtH/MaaS-Design-System?node-id=410%3A0)
@@ -15,9 +15,8 @@
 - Keep text concise. Text longer than 22 symbols, might be truncated on smaller screens.
 
 ## API
-[ButtonConstants.kt](ButtonConstants.kt)
 
-[embedmd]:# (ButtonConstants.kt kotlin /class / $)
+[embedmd]:# (../../common/core/src/commonMain/kotlin/com/trafi/ui/component/internal/ButtonConstants.kt kotlin /class / $)
 ```kotlin
 class ButtonConstants(theme: CurrentTheme) {
     val defaultBackgroundColor = theme.colorPalette.primary
@@ -32,4 +31,4 @@ class ButtonConstants(theme: CurrentTheme) {
 ```
 
 ## Preview from automated tests
-<img src="../../../../../../../../../../ios/Tests/MaasTests/__Snapshots__/Components/Button.2x.png" width="100%">
+![Button](../../ios/Tests/MaasTests/__Snapshots__/Components/Button.2x.png)
