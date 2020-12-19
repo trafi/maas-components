@@ -1,17 +1,17 @@
 MaaS Design System
 ==================
 
-```{include} ../../common/core/src/commonMain/kotlin/com/trafi/ui/component/internal/Button.md
-:relative-docs: docs/
-:relative-images:
+```{eval-rst}
+.. toctree::
+   :maxdepth: 1
+   :caption: Components:
+   :glob:
+
+   *
+
 ```
 
-```{include} ../../common/core/src/commonMain/kotlin/com/trafi/ui/component/internal/Badge.md
-:relative-docs: docs/
-:relative-images:
-```
-
-```{include} ../../common/core/src/commonMain/kotlin/com/trafi/ui/component/internal/RouteSearchTab.md
+```{include} ../../android/ui/README.md
 :relative-docs: docs/
 :relative-images:
 ```
