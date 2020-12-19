@@ -41,7 +41,7 @@ extension: in PT flow content inside fits a maximum of 4 string characters and t
 
 ## API
 
-[embedmd]:# (BadgeConstants.kt kotlin /class / $)
+[embedmd]:# (../../common/core/src/commonMain/kotlin/com/trafi/ui/component/internal/BadgeConstants.kt kotlin /class / $)
 ```kotlin
 class BadgeConstants(theme: CurrentTheme) {
     val defaultContentColor = theme.colorPalette.onPrimary
@@ -77,4 +77,4 @@ class BadgeConstants(theme: CurrentTheme) {
 }
 ```
 ## Preview from automated tests
-<img src="../../../../../../../../../../ios/Tests/MaasTests/__Snapshots__/Components/Badge.2x.png" width="100%">
+![Badge](../../ios/Tests/MaasTests/__Snapshots__/Components/Badge.2x.png)
