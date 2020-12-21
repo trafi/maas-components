@@ -6,7 +6,7 @@ struct InfoButton: View {
     public struct InputType {
         public let text: String
         public let icon: Image
-        public let foreground: Color?
+        public let contentColor: Color?
         public let action: () -> Void
     }
     
@@ -14,13 +14,13 @@ struct InfoButton: View {
     public init(
         _ text: String,
         icon: Image = Image(systemName: "info.circle"),
-        foreground: Color? = nil,
+        contentColor: Color? = nil,
         action: @escaping () -> Void) {
         
         input = InputType(
             text: text,
             icon: icon,
-            foreground: foreground,
+            contentColor: contentColor,
             action: action
         )
     }
@@ -31,7 +31,7 @@ struct InfoButton: View {
     var constants: Kotlin<InfoButtonConstants> { Kotlin(InfoButtonConstants(theme: theme)) }
     
     private var foregroundColor: Color {
-        input.foreground ?? (isEnabled ? constants.defaultContentColor : constants.disabledContentColor)
+        input.contentColor ?? (isEnabled ? constants.defaultContentColor : constants.disabledContentColor)
     }
     
     var body: some View {
@@ -109,7 +109,7 @@ struct InfoButton_Previews: PreviewProvider, Snapped {
             ),
             
             "Themed": AnyView(
-                InfoButton("Info",  icon: Image(systemName: "tram"), foreground: Color.pink, action: {})
+                InfoButton("Info",  icon: Image(systemName: "tram"), contentColor: Color.pink, action: {})
                     .environment(\.textStyleTextL, TextStyle(fontWeight: .normal, fontStyle: .normal, fontSize: 25, lineSpacing: 0, color: nil))
                     .environment(\.textFont, { Font(UIFont(name: "Menlo-Bold", size: $0)!) })
                 
@@ -122,6 +122,5 @@ struct InfoButton_Previews: PreviewProvider, Snapped {
     }
     
     static var elementWidth: CGFloat? { 200 }
-    static var detailed: Bool { true }
 }
 #endif
