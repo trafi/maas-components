@@ -1,6 +1,5 @@
 package com.trafi.ui
 
-import android.graphics.Color.green
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -12,7 +11,6 @@ import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,9 +27,9 @@ private val constants
 @Composable
 fun InfoButton(
     text: String,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
     @DrawableRes iconRes: Int = R.drawable.ic_help_info_s,
-    onClick: () -> Unit,
     enabled: Boolean = true,
     backgroundColor: Color = Color.Transparent,
     contentColor: Color = constants.defaultContentColor,
@@ -103,8 +101,8 @@ fun InfoButtonDisabledPreview() {
     MaasTheme {
         InfoButton(
             text = "Info",
-            enabled = false,
-            onClick = {}
+            onClick = {},
+            enabled = false
         )
     }
 }
@@ -149,8 +147,8 @@ fun InfoButtonThemedPreview() {
     MaasTheme {
         InfoButton(
             text = "Info",
-            contentColor = Color.Magenta,
-            onClick = {}
+            onClick = {},
+            contentColor = Color.Magenta
         )
     }
 }
