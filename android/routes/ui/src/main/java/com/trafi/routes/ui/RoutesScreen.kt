@@ -1,5 +1,6 @@
 package com.trafi.routes.ui
 
+import androidx.compose.foundation.ScrollableRow
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.AmbientContentColor
@@ -15,6 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.SoftwareKeyboardController
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -31,6 +33,8 @@ import com.trafi.routes.internal.RoutesResultState
 import com.trafi.routes.internal.RoutesViewModel
 import com.trafi.routes.internal.displayText
 import com.trafi.routes.mock.mockVehicleTypes
+import com.trafi.ui.RouteSearchTab
+import com.trafi.ui.TabItem
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.Spacing
 
@@ -159,9 +163,6 @@ private fun RouteSearchBody(
             modifier = Modifier
                 .padding(horizontal = MaasTheme.spacing.globalMargin)
         )
-        val (selectedItemId, selectItem) = remember { mutableStateOf("1")}
-        VehiclesList(mockVehicleTypes, selectedItemId, selectItem)
-
         when (state) {
             RoutesResultState.NoResults -> {
                 Text(
@@ -204,6 +205,39 @@ private fun ColumnScope.LocationSearchBody(
         }
         is LocationSearchResultState.Loaded -> LocationsResult(state.result, onClick, modifier)
     }
+}
+
+@Composable
+fun RouteSearchTabsList(
+    modifier: Modifier,
+    vehicleTypes: List<TabItem>,
+    selectedItemId: String,
+    onVehicleClick: (String) -> Unit,
+    itemModifier: Modifier = Modifier,
+) {
+    ScrollableRow(
+        modifier = modifier.padding(horizontal = MaasTheme.spacing.globalMargin)
+    ) {
+        vehicleTypes.forEach { tabItem ->
+            RouteSearchTab(tabItem = tabItem,
+                modifier = itemModifier,
+                isTabSelected = selectedItemId == tabItem.id) {
+                onVehicleClick(tabItem.id)
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+fun RouteSearchTabsListPreview(){
+    val (selectedItemId, selectItem) = remember { mutableStateOf("1")}
+    RouteSearchTabsList(
+        modifier = Modifier,
+        vehicleTypes = mockVehicleTypes,
+        selectedItemId = selectedItemId,
+        onVehicleClick = selectItem
+    )
 }
 
 private class ViewModelFactory(baseUrl: String, apiKey: String, regionId: String) :

@@ -11,8 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.trafi.ui.component.internal.RouteSearchTabConstants
+import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.currentTheme
+import com.trafi.ui.theme.darkColors
 
 @Composable
 private val constants
@@ -21,7 +24,6 @@ private val constants
 data class TabItem(
     val id: String,
     val icon: String,
-    val name: String,
     val active: Boolean,
     val duration: String?,
     val price: String?,
@@ -30,6 +32,7 @@ data class TabItem(
 @Composable
 fun RouteSearchTab(
     tabItem: TabItem,
+    modifier: Modifier,
     isTabSelected: Boolean,
     onVehicleClick: () -> Unit,
 ) {
@@ -37,13 +40,13 @@ fun RouteSearchTab(
         shape = RoundedCornerShape(constants.borderRadius),
         border = BorderStroke(constants.borderWidth,
             color = if (isTabSelected) constants.borderColorActive else constants.defaultBackgroundColor),
-        modifier = Modifier
+        modifier = modifier
             .padding(constants.padding)
             .widthIn(min = constants.minTabWidth)
             .heightIn(min = constants.minTabHeight)
     ) {
         Box(
-            modifier = Modifier
+            modifier = modifier
                 .clickable(onClick = onVehicleClick)
                 .background(if (isTabSelected) constants.activeBackgroundColor else constants.defaultBackgroundColor)
         ) {
@@ -83,57 +86,67 @@ fun RouteSearchTab(
 @Preview(showBackground = true)
 @Composable
 fun ActiveRouteSearchTabPreview() {
-    RouteSearchTab(TabItem(
-        id = "1",
-        icon = "",
-        name = "Bus",
-        duration = "13min",
-        price = "$15",
-        active = true
-    ), true) {}
+    RouteSearchTab(
+        tabItem = TabItem(
+            id = "1",
+            icon = "",
+            duration = "13min",
+            price = "$15",
+            active = true
+        ),
+        modifier = Modifier,
+        isTabSelected = true
+    ) {}
 }
 
 @Preview(showBackground = true)
 @Composable
 fun RouteSearchTabPreview() {
-    RouteSearchTab(TabItem(
-        id = "1",
-        icon = "",
-        name = "Bus",
-        duration = "13min",
-        price = "$15",
-        active = true
-    ), false) {}
+    RouteSearchTab(
+        tabItem = TabItem(
+            id = "1",
+            icon = "",
+            duration = "13min",
+            price = "$15",
+            active = true
+        ),
+        modifier = Modifier,
+        isTabSelected = false,
+    ) {}
 }
 
 @Preview(showBackground = true)
 @Composable
-fun ActiveRouteSearchTabDarkPreview(isDarkMode: Boolean = isSystemInDarkTheme()) {
-    RouteSearchTab(TabItem(
-        id = "1",
-        icon = "",
-        name = "Bus",
-        duration = "13min",
-        price = "$15",
-        active = true
-    ), true) {}
+fun ActiveRouteSearchTabDarkPreview() {
+    MaasTheme(colors = MaasTheme.darkColors()) {
+        RouteSearchTab(
+            tabItem = TabItem(
+                id = "1",
+                icon = "",
+                duration = "13min",
+                price = "$15",
+                active = true
+            ),
+            modifier = Modifier,
+            isTabSelected = true,
+        ) {}
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun RouteSearchTabDarkPreview() {
-    RouteSearchTab(TabItem(
-        id = "1",
-        icon = "",
-        name = "Bus",
-        duration = "13min",
-        price = "$15",
-        active = true
-    ), false) {}
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewVehiclesList() {
-//    VehiclesList(mockVehicleTypes){}
+    MaasTheme(colors = MaasTheme.darkColors()) {
+        RouteSearchTab(
+            tabItem = TabItem(
+                id = "1",
+                icon = "",
+                duration = "13min",
+                price = "$15",
+                active = true
+            ),
+            modifier = Modifier,
+            isTabSelected = false
+        ) {}
+    }
 }
