@@ -17,11 +17,11 @@ jobs:
       
       - uses: actions/checkout@v2
         
-      #- name: PackagesUpdate
-      #  run: swift package update
+      - name: Build xcframework
+        run: cd common && ./gradlew xcframeworkSimulator && cd ..
         
       - name: Test
-        run: xcodebuild -scheme MaaS-Package test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8'
+        run: xcodebuild -scheme MaaS-Package test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' | xcpretty
         
       - name: Publish artifacts
         if: always()

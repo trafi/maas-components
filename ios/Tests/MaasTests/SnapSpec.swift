@@ -10,7 +10,7 @@ extension QuickSpec {
         _: S.Type,
         file: StaticString = #file,
         line: UInt = #line,
-        precision: Float = 1
+        precision: Float = 0.999
     ) where S: PreviewProvider, S: Snapped {
 //        isRecording = true
         it(S.name) {
