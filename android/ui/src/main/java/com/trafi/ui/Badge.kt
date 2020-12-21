@@ -52,7 +52,7 @@ fun Badge(
             modifier = modifier,
             icon = icon,
             subbadgeIcon = subbadgeIcon,
-            isEnabled = isEnabled
+            isEnabled = isEnabled,
         )
     } else {
         StackedBadge(
@@ -60,7 +60,8 @@ fun Badge(
             badge = badge,
             alternativeBadges = alternativeBadges,
             icon = icon,
-            badgeType = badgeType
+            badgeType = badgeType,
+            subbadgeIcon = subbadgeIcon,
         )
     }
 }
@@ -75,12 +76,14 @@ private fun SingleBadge(
     subbadgeIcon: ImageVector? = null,
     isEnabled: Boolean = true,
 ) {
-    ConstraintLayout {
+    ConstraintLayout(
+        modifier = modifier
+    ) {
         Surface(
             color = if (isEnabled) badge.backgroundColor else constants.disabledColor,
             contentColor = badge.contentColor ?: constants.defaultContentColor,
             shape = RoundedCornerShape(badgeType.badgeRounding),
-            modifier = modifier.sizeIn(minHeight = badgeType.badgeHeight)
+            modifier = Modifier.sizeIn(minHeight = badgeType.badgeHeight)
                 .constrainAs(createRef()) {
                     bottom.linkTo(parent.bottom)
                 }
@@ -120,7 +123,9 @@ private fun StackedBadge(
     subbadgeIcon: ImageVector? = null,
     alternativeBadges: List<BadgeInfo> = listOf(),
 ) {
-    ConstraintLayout {
+    ConstraintLayout(
+        modifier = modifier
+    ) {
         val altBadgesSublist = alternativeBadges.take(constants.maxStackedBadgesNumber)
         altBadgesSublist.forEachIndexed { index, smallScheduleBadge ->
             Surface(
@@ -128,7 +133,7 @@ private fun StackedBadge(
                 contentColor = smallScheduleBadge.contentColor ?: constants.defaultContentColor,
                 border = BorderStroke(constants.borderWidth, color = constants.borderColor),
                 shape = RoundedCornerShape(badgeType.badgeRounding),
-                modifier = modifier.height(badgeType.badgeHeight + (index * 4).dp)
+                modifier = Modifier.height(badgeType.badgeHeight + (index * 4).dp)
                     .padding(top = (index * 4).dp)
             ) {
                 BadgeFiller(
@@ -146,7 +151,7 @@ private fun StackedBadge(
             contentColor = badge.contentColor ?: constants.defaultContentColor,
             border = BorderStroke(constants.borderWidth, color = constants.borderColor),
             shape = RoundedCornerShape(badgeType.badgeRounding),
-            modifier = modifier
+            modifier = Modifier
                 .sizeIn(minHeight = badgeType.badgeHeight + (altBadgesSublist.size * 4).dp + (constants.borderWidth * 2))
                 .padding(top = (altBadgesSublist.size * 4).dp)
         ) {
