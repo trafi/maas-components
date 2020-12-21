@@ -35,7 +35,5 @@ class BadgeConstants(theme: CurrentTheme) {
 
     val maxStackedBadgesNumber = 2
 
-    val maxAlternativeBadges = 2
-
     val borderWidth = 1.5.dp
 }

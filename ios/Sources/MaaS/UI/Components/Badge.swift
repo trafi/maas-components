@@ -108,8 +108,7 @@ private struct BaseBadge: View, Swappable {
 
             if showText {
                 Text(input.text!)
-                    .font(font)
-                    .bold()
+                    .textStyle(textStyle)
             }
         }
         .padding(padding)
@@ -135,7 +134,7 @@ private struct BaseBadge: View, Swappable {
         }
     }
 
-    private var font: Font {
+    private var textStyle: TextStyle {
         switch input.type {
         case .small:
             return constants.textStyleSmall
@@ -208,7 +207,7 @@ private struct StackedBadge: View, Swappable {
                 BaseBadge(input: badges[$0])
                     .frame(maxWidth: .infinity)
                     .withStroke(cornerRadius: constants.cornerRadiusMedium,
-                                fillColor: badges[$0].backgroundColor ?? .clear,
+                                fillColor: badges[$0].backgroundColor ?? .clear, borderColor: constants.borderColor,
                                 lineWidth: constants.borderWidth)
                     .padding(.top, spacing(index: $0))
             }
@@ -220,7 +219,7 @@ private struct StackedBadge: View, Swappable {
     }
 
     private var badges: [Badge.InputType] {
-        let alternativeBadges = Array(input.colors.prefix(Int(constants.maxAlternativeBadges))).toAlternativeBadges()
+        let alternativeBadges = Array(input.colors.prefix(Int(constants.maxStackedBadgesNumber))).toAlternativeBadges()
         return alternativeBadges + [input.base]
     }
 
@@ -256,10 +255,10 @@ private extension View {
         )
     }
 
-    func withStroke(cornerRadius: CGFloat, fillColor: Color, lineWidth: CGFloat) -> some View {
+    func withStroke(cornerRadius: CGFloat, fillColor: Color, borderColor: Color, lineWidth: CGFloat) -> some View {
         background(
             RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                .stroke(Color.white, lineWidth: lineWidth)
+                .stroke(borderColor, lineWidth: lineWidth)
                 .roundedBackground(cornerRadius: cornerRadius, fillColor: fillColor)
         )
     }
