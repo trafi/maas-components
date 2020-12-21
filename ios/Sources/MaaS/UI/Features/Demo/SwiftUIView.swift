@@ -10,11 +10,11 @@ struct DemoContent: View {
     @State var selection: Int? = nil
     
     var body: some View {
-        VStack(spacing: 10) {            
+        VStack(spacing: 10) {
             Badge(backgroundColor: palette.error, icon: UIImage(systemName: "exclamationmark.triangle.fill"), text: "Error")
             InfoButton("Info", action: {})
             Button("Primary", action: {})
-            Button("Secondary",background: palette.primaryVariant, action: {})
+            Button("Secondary",background: palette.secondary, action: {})
         }
     }
 }
@@ -96,13 +96,10 @@ public struct DarkModeViewModifier: ViewModifier {
 struct BedrockDemo_Previews: PreviewProvider {
     
     static var darkTheme = true
-//    static var darkTheme = false
 
     static var previews: some View {
         BedrockDemo()
             .modifier(DarkModeViewModifier())
-//            .environment(\.colorScheme, darkTheme ? .dark : .light)
-//            .preferredColorScheme(darkTheme ? .dark : .light)
 
     }
 }

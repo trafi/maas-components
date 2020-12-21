@@ -33,6 +33,7 @@ struct JelbiTheme: ViewModifier {
             .environment(\.uiColorOnBackground, .adaptive(onLight: "#252424FF", onDark: "#FAF8FAFF"))
             .environment(\.uiColorOnSurface, .adaptive(onLight: "#110711FF", onDark: "#FAF8FAFF"))
             .environment(\.uiColorOnError, UIColor(hex: "#FFFFFFFF")!)
+            .environment(\.cornerRadiusButton, 0)
 //            .environment(\.grayScale, UIColor(hex: "#6CA130FF")!.grayScale())
     }
 }
@@ -67,12 +68,13 @@ struct MvgoTheme: ViewModifier {
             .environment(\.uiColorSecondaryVariant, UIColor(hex: "#4E0F4F66")!)
             .environment(\.uiColorBackground, .adaptive(onLight: "#FFFFFFFF", onDark: "#110711FF"))
             .environment(\.uiColorSurface, .adaptive(onLight: "#FFFFFFFF", onDark: "#252424FF"))
-            .environment(\.uiColorError, UIColor(hex: "#F22E46FF")!)
+            .environment(\.uiColorError, UIColor(hex: "#F32E47FF")!)
             .environment(\.uiColorOnPrimary, UIColor(hex: "#FFFFFFFF")!)
             .environment(\.uiColorOnSecondary, UIColor(hex: "#FFFFFFFF")!)
             .environment(\.uiColorOnBackground, .adaptive(onLight: "#252424FF", onDark: "#FAF8FAFF"))
             .environment(\.uiColorOnSurface, .adaptive(onLight: "#110711FF", onDark: "#FAF8FAFF"))
             .environment(\.uiColorOnError, UIColor(hex: "#FFFFFFFF")!)
+            .environment(\.cornerRadiusButton, 6)
 //            .environment(\.grayScale, UIColor(hex: "#4764A0FF")!.grayScale())
     }
 }
