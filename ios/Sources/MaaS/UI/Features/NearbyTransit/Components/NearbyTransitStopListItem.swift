@@ -29,7 +29,7 @@ public struct NearbyTransitStopListItem: View, Swappable {
 private extension NearbyTransitStopListItem {
 
     var content: some View {
-        VStack(alignment: .leading, spacing: Spacing.xxs.value) {
+        VStack(alignment: .leading, spacing: Spacing.xs.value) {
 
             VStack(alignment: .leading, spacing: Spacing.xxs.value) {
                 name
@@ -40,7 +40,7 @@ private extension NearbyTransitStopListItem {
             }
             .lineLimit(1)
 
-            NearbyTransitStopBadgeScrollView(schedules: input.data.scheduleDepartures.map { $0.schedule })
+            NearbyTransitScheduleBadgesScrollView(schedules: input.data.scheduleDepartures.map { $0.schedule })
         }
     }
 
@@ -64,7 +64,7 @@ private extension NearbyTransitStopListItem {
             if #available(iOS 14.0, *) {
                 Text(Image(systemName: "deskclock")) + Text(" 3 min. • ")
             } else {
-               Text("Nada")
+               Text("3 min. • ")
             }
         }
         .font(Font(theme.typographyScale.textM))
