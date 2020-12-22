@@ -16,9 +16,9 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.trafi.core.model.*
-import com.trafi.routes.internal.endTimeMillis
-import com.trafi.routes.internal.startTimeMillis
-import com.trafi.routes.mock.RouteSegmentPreviewParameterProvider
+import com.trafi.routes.ui.internal.endTimeMillis
+import com.trafi.routes.ui.internal.startTimeMillis
+import com.trafi.routes.ui.mock.RouteSegmentPreviewParameterProvider
 import com.trafi.ui.Badge
 import com.trafi.ui.BadgeInfo
 import com.trafi.ui.BadgeType

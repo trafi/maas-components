@@ -1,4 +1,4 @@
-package com.trafi.routes.internal
+package com.trafi.routes.ui.internal
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -11,7 +11,7 @@ import com.trafi.core.model.RoutesResult
 import com.trafi.routes.RoutesApi
 import kotlinx.coroutines.launch
 
-class RoutesViewModel(private val routesApi: RoutesApi) : ViewModel() {
+internal class RoutesViewModel(private val routesApi: RoutesApi) : ViewModel() {
 
     var state: RoutesResultState by mutableStateOf(RoutesResultState.NoResults)
         private set

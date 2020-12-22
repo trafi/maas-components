@@ -1,4 +1,4 @@
-package com.trafi.routes.internal
+package com.trafi.routes.ui.internal
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -27,8 +27,8 @@ import androidx.compose.ui.text.SoftwareKeyboardController
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.trafi.routes.ui.R
-import com.trafi.routes.mock.vilniusAirport
-import com.trafi.routes.mock.vilniusCathedral
+import com.trafi.routes.ui.mock.vilniusAirport
+import com.trafi.routes.ui.mock.vilniusCathedral
 import com.trafi.ui.OutlinedTextField
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.Spacing

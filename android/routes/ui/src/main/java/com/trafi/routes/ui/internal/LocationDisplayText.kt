@@ -1,4 +1,4 @@
-package com.trafi.routes.internal
+package com.trafi.routes.ui.internal
 
 import com.trafi.core.model.Location
 

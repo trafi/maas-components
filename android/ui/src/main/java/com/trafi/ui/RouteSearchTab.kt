@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.trafi.ui.component.internal.RouteSearchTabConstants
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.currentTheme
@@ -32,14 +31,14 @@ data class TabItem(
 @Composable
 fun RouteSearchTab(
     tabItem: TabItem,
-    modifier: Modifier,
-    isTabSelected: Boolean,
-    onVehicleClick: () -> Unit,
+    isSelected: Boolean,
+    modifier: Modifier = Modifier,
+    onRouteTabClick: () -> Unit,
 ) {
     Card(
         shape = RoundedCornerShape(constants.borderRadius),
         border = BorderStroke(constants.borderWidth,
-            color = if (isTabSelected) constants.borderColorActive else constants.defaultBackgroundColor),
+            color = if (isSelected) constants.borderColorActive else constants.defaultBackgroundColor),
         modifier = modifier
             .padding(constants.padding)
             .widthIn(min = constants.minTabWidth)
@@ -47,8 +46,8 @@ fun RouteSearchTab(
     ) {
         Box(
             modifier = modifier
-                .clickable(onClick = onVehicleClick)
-                .background(if (isTabSelected) constants.activeBackgroundColor else constants.defaultBackgroundColor)
+                .clickable(onClick = onRouteTabClick)
+                .background(if (isSelected) constants.activeBackgroundColor else constants.defaultBackgroundColor)
         ) {
             Column(
                 modifier = Modifier
@@ -95,7 +94,7 @@ fun ActiveRouteSearchTabPreview() {
             active = true
         ),
         modifier = Modifier,
-        isTabSelected = true
+        isSelected = true
     ) {}
 }
 
@@ -111,7 +110,7 @@ fun RouteSearchTabPreview() {
             active = true
         ),
         modifier = Modifier,
-        isTabSelected = false,
+        isSelected = false,
     ) {}
 }
 
@@ -128,7 +127,7 @@ fun ActiveRouteSearchTabDarkPreview() {
                 active = true
             ),
             modifier = Modifier,
-            isTabSelected = true,
+            isSelected = true,
         ) {}
     }
 }
@@ -146,7 +145,7 @@ fun RouteSearchTabDarkPreview() {
                 active = true
             ),
             modifier = Modifier,
-            isTabSelected = false
+            isSelected = false
         ) {}
     }
 }

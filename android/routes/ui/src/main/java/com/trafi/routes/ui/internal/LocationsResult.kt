@@ -1,4 +1,4 @@
-package com.trafi.routes.internal
+package com.trafi.routes.ui.internal
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -21,7 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.trafi.core.model.AutoCompleteLocation
 import com.trafi.core.model.Location
-import com.trafi.routes.mock.vilniusCathedral
+import com.trafi.routes.ui.mock.vilniusCathedral
 import com.trafi.ui.theme.MaasTheme
 
 @Composable

@@ -25,8 +25,8 @@ import com.trafi.core.model.RouteDisruption
 import com.trafi.core.model.RouteSegment
 import com.trafi.core.model.RouteSegmentPersonalVehicle
 import com.trafi.core.model.mockRoute
-import com.trafi.routes.internal.endTimeMillis
-import com.trafi.routes.internal.startTimeMillis
+import com.trafi.routes.ui.internal.endTimeMillis
+import com.trafi.routes.ui.internal.startTimeMillis
 import com.trafi.ui.theme.MaasTheme
 import java.text.DateFormat
 import java.util.Date

@@ -25,14 +25,14 @@ import com.trafi.core.model.Location
 import com.trafi.core.model.Route
 import com.trafi.locations.LocationsApi
 import com.trafi.routes.RoutesApi
-import com.trafi.routes.internal.LocationSearchResultState
-import com.trafi.routes.internal.LocationSearchViewModel
-import com.trafi.routes.internal.LocationsResult
-import com.trafi.routes.internal.RouteSearchHeader
-import com.trafi.routes.internal.RoutesResultState
-import com.trafi.routes.internal.RoutesViewModel
-import com.trafi.routes.internal.displayText
-import com.trafi.routes.mock.mockVehicleTypes
+import com.trafi.routes.ui.internal.LocationSearchResultState
+import com.trafi.routes.ui.internal.LocationSearchViewModel
+import com.trafi.routes.ui.internal.LocationsResult
+import com.trafi.routes.ui.internal.RouteSearchHeader
+import com.trafi.routes.ui.internal.RoutesResultState
+import com.trafi.routes.ui.internal.RoutesViewModel
+import com.trafi.routes.ui.internal.displayText
+import com.trafi.routes.ui.mock.mockVehicleTypes
 import com.trafi.ui.RouteSearchTab
 import com.trafi.ui.TabItem
 import com.trafi.ui.theme.MaasTheme
@@ -153,33 +153,30 @@ fun RoutesScreen(
 }
 
 @Composable
-private fun RouteSearchBody(
+private fun ColumnScope.RouteSearchBody(
     state: RoutesResultState,
     onRouteClick: (Route) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column {
-        Divider(
-            modifier = Modifier
-                .padding(horizontal = MaasTheme.spacing.globalMargin)
-        )
-        when (state) {
-            RoutesResultState.NoResults -> {
-                Text(
-                    "No results",
-                    modifier = modifier.align(Alignment.CenterHorizontally),
-                    style = MaasTheme.typography.textL
-                )
-            }
-            RoutesResultState.Loading -> {
-                CircularProgressIndicator(
-                    modifier = modifier.align(Alignment.CenterHorizontally)
-                )
-            }
-            is RoutesResultState.Loaded -> RoutesResult(state.result, onRouteClick, modifier)
+    Divider(
+        modifier = Modifier
+            .padding(horizontal = MaasTheme.spacing.globalMargin)
+    )
+    when (state) {
+        RoutesResultState.NoResults -> {
+            Text(
+                "No results",
+                modifier = modifier.align(Alignment.CenterHorizontally),
+                style = MaasTheme.typography.textL
+            )
         }
+        RoutesResultState.Loading -> {
+            CircularProgressIndicator(
+                modifier = modifier.align(Alignment.CenterHorizontally)
+            )
+        }
+        is RoutesResultState.Loaded -> RoutesResult(state.result, onRouteClick, modifier)
     }
-
 }
 
 @Composable
@@ -208,21 +205,18 @@ private fun ColumnScope.LocationSearchBody(
 }
 
 @Composable
-fun RouteSearchTabsList(
-    modifier: Modifier,
-    vehicleTypes: List<TabItem>,
+private fun RouteSearchTabsList(
+    items: List<TabItem>,
     selectedItemId: String,
-    onVehicleClick: (String) -> Unit,
-    itemModifier: Modifier = Modifier,
+    modifier: Modifier = Modifier,
+    onRouteTabClick: (String) -> Unit,
 ) {
     ScrollableRow(
         modifier = modifier.padding(horizontal = MaasTheme.spacing.globalMargin)
     ) {
-        vehicleTypes.forEach { tabItem ->
-            RouteSearchTab(tabItem = tabItem,
-                modifier = itemModifier,
-                isTabSelected = selectedItemId == tabItem.id) {
-                onVehicleClick(tabItem.id)
+        items.forEach { tabItem ->
+            RouteSearchTab(tabItem = tabItem, isSelected = selectedItemId == tabItem.id) {
+                onRouteTabClick(tabItem.id)
             }
         }
     }
@@ -230,13 +224,13 @@ fun RouteSearchTabsList(
 
 @Preview
 @Composable
-fun RouteSearchTabsListPreview(){
-    val (selectedItemId, selectItem) = remember { mutableStateOf("1")}
+fun RouteSearchTabsListPreview() {
+    val (selectedItemId, selectItem) = remember { mutableStateOf("1") }
     RouteSearchTabsList(
         modifier = Modifier,
-        vehicleTypes = mockVehicleTypes,
+        items = mockVehicleTypes,
         selectedItemId = selectedItemId,
-        onVehicleClick = selectItem
+        onRouteTabClick = selectItem
     )
 }
 

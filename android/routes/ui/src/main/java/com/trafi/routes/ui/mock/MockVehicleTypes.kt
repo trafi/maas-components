@@ -1,4 +1,4 @@
-package com.trafi.routes.mock
+package com.trafi.routes.ui.mock
 
 import androidx.compose.runtime.Stable
 import com.trafi.ui.TabItem
