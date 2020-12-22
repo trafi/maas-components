@@ -52,7 +52,6 @@ private struct GradientBoundsScrollView<Content>: View where Content: View {
             )
         }
         .frame(height: trackableScrollData.contentSize.height)
-        .overlay(Text("\(trackableScrollData.contentSize.height)"))
     }
 
     func gradient(at position: CGFloat, opacity: Double, reversed: Bool) -> some View {
@@ -115,11 +114,9 @@ public struct NearbyTransitScheduleBadgesScrollView: View, Swappable {
     public var defaultBody: some View {
         GradientBoundsScrollView {
             HStack {
-                ForEach(input.schedules.indices) {
+                ForEach(input.schedules.indices, id: \.self) {
                     fakeBadge(input.schedules[$0].name, color: input.schedules[$0].color.parseColor())
-
                 }
-
             }
         }
     }
@@ -154,13 +151,9 @@ struct NearbyTransitScheduleBadgesScrollView_Previews: PreviewProvider, Snapped 
 
     static var snapped: [String: AnyView] {
         [
-            "Non Scrolling": AnyView(
-                NearbyTransitScheduleBadgesScrollView(schedules: Array(schedules.prefix(4)))
-            ),
-
             "Scrolling": AnyView(
                 NearbyTransitScheduleBadgesScrollView(schedules: schedules)
-
+                    .defaultFrame
             ),
 
             "Scrolled - Full": AnyView(
@@ -169,11 +162,12 @@ struct NearbyTransitScheduleBadgesScrollView_Previews: PreviewProvider, Snapped 
                         ScrollViewReader { sc in
                         NearbyTransitScheduleBadgesScrollView(schedules: schedules)
                             .onAppear {
-                                sc.scrollTo(102, anchor: .center)
+                                withAnimation { sc.scrollTo(9, anchor: .trailing) }
                             }
                         }
                     }
                 }
+                .defaultFrame
             ),
 
             "Scrolled - Half": AnyView(
@@ -181,13 +175,29 @@ struct NearbyTransitScheduleBadgesScrollView_Previews: PreviewProvider, Snapped 
                     if #available(iOS 14.0, *) {
                         ScrollViewReader { sc in
                         NearbyTransitScheduleBadgesScrollView(schedules: schedules)
-
                             .onAppear {
-                                withAnimation { sc.scrollTo(99, anchor: .center) }
+                                withAnimation { sc.scrollTo(4, anchor: .center) }
                             }
                         }
                     }
                 }
+                .defaultFrame
+            ),
+
+            "Swapped": AnyView(
+                NearbyTransitScheduleBadgesScrollView(schedules: schedules)
+                    .swapView(
+                        { input in
+                            ScrollView(.horizontal) {
+                                HStack {
+                                    ForEach(0..<input.schedules.count, id: \.self) {
+                                        Text(input.schedules[$0].name)
+                                    }
+                                }
+                            }
+                        },
+                        insteadOf: NearbyTransitScheduleBadgesScrollView.self
+                    )
             ),
         ]
     }
@@ -199,6 +209,6 @@ struct NearbyTransitScheduleBadgesScrollView_Previews: PreviewProvider, Snapped 
 
 private extension View {
 
-    var paddingThatFitsPreview: some View { padding([.bottom], 16) }
+    var defaultFrame: some View { frame(height: 55) }
 }
 #endif
