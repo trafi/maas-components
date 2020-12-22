@@ -7,5 +7,6 @@ final class Features: QuickSpec {
         snapshot(NearbyTransitFilterItemView_Previews.self)
         snapshot(NearbyTransitFilterView_Previews.self)
         snapshot(NearbyTransitScheduleBadgesScrollView_Previews.self)
+        snapshot(NearbyTransitStopBadgeView_Previews.self)
     }
 }

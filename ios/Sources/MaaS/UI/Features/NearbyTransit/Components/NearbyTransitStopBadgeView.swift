@@ -1,13 +1,26 @@
 import SwiftUI
+import Swappable
 
-struct NearbyTransitStopBadgeView: View {
+struct NearbyTransitStopBadgeView: View, Swappable {
 
-    let schedules: [Schedule]
-    private var slicedFilteredSchedules: [Schedule] {
-        schedules.filterDuplicates(includeElement: { $0.transportId == $1.transportId })
+    public struct InputType {
+        public let schedules: [Schedule]
+    }
+    let input: InputType
+
+    public init(input: InputType) {
+        self.input = input
     }
 
-    var body: some View {
+    public init(schedules: [Schedule]) {
+        self.input = .init(schedules: schedules)
+    }
+
+    private var slicedFilteredSchedules: [Schedule] {
+        input.schedules.filterDuplicates(includeElement: { $0.transportId == $1.transportId })
+    }
+
+    var defaultBody: some View {
         ZStack {
             ForEach(slicedFilteredSchedules.indices) {
                 imageView(schedule: slicedFilteredSchedules[$0])
@@ -42,8 +55,45 @@ private extension Array {
     }
 }
 
-struct NearbyTransitStopBadgeView_Previews: PreviewProvider {
-    static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+#if DEBUG
+struct NearbyTransitStopBadgeView_Previews: PreviewProvider, Snapped {
+
+    static let schedules = NearbyTransitComponentsPreviewData.stopWithSchedulesWithDepartures
+        .scheduleDepartures
+        .map { $0.schedule }
+
+    static var snapped: [String: AnyView] {
+        [
+            "Multi": AnyView(
+                NearbyTransitStopBadgeView(schedules: schedules)
+            ),
+
+            "Single": AnyView(
+                NearbyTransitStopBadgeView(schedules: Array(schedules.prefix(1)))
+            ),
+
+            "Swapped": AnyView(
+                NearbyTransitStopBadgeView(schedules: schedules)
+                    .swapView(
+                        { input in
+                            ZStack {
+                                ForEach(input.schedules.prefix(2).indices) { index in
+                                    let item = input.schedules[index]
+                                    Text(item.name)
+                                        .background(item.color.parseColor())
+                                        .padding([.bottom, .trailing], -CGFloat(index) * 16)
+                                        .shadow(radius: 1)
+                                }
+                            }
+                        },
+                        insteadOf: NearbyTransitStopBadgeView.self
+                    )
+            ),
+        ]
     }
+
+    static var elementWidth: CGFloat? { 100 }
+
+    static var detailed: Bool { true }
 }
+#endif
