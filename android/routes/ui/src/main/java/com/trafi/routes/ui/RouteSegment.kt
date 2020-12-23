@@ -19,7 +19,9 @@ import com.trafi.core.model.*
 import com.trafi.routes.ui.internal.endTimeMillis
 import com.trafi.routes.ui.internal.startTimeMillis
 import com.trafi.routes.ui.mock.RouteSegmentPreviewParameterProvider
-import com.trafi.ui.*
+import com.trafi.ui.Badge
+import com.trafi.ui.BadgeInfo
+import com.trafi.ui.BadgeType
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.internal.toColor
 
