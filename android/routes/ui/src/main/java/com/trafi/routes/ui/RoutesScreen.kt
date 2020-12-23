@@ -1,13 +1,11 @@
 package com.trafi.routes.ui
 
+import androidx.compose.foundation.ScrollableRow
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.AmbientContentColor
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Providers
@@ -18,6 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.SoftwareKeyboardController
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -33,6 +32,9 @@ import com.trafi.routes.ui.internal.RouteSearchHeader
 import com.trafi.routes.ui.internal.RoutesResultState
 import com.trafi.routes.ui.internal.RoutesViewModel
 import com.trafi.routes.ui.internal.displayText
+import com.trafi.routes.ui.mock.mockVehicleTypes
+import com.trafi.ui.RouteSearchTab
+import com.trafi.ui.TabItem
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.Spacing
 
@@ -143,7 +145,7 @@ fun RoutesScreen(
                 RouteSearchBody(
                     state = routesViewModel.state,
                     onRouteClick = onRouteClick,
-                    modifier = Modifier.padding(top = Spacing.md)
+                    modifier = Modifier.padding(top = Spacing.md),
                 )
             }
         }
@@ -156,6 +158,10 @@ private fun ColumnScope.RouteSearchBody(
     onRouteClick: (Route) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    Divider(
+        modifier = Modifier
+            .padding(horizontal = MaasTheme.spacing.globalMargin)
+    )
     when (state) {
         RoutesResultState.NoResults -> {
             Text(
@@ -196,6 +202,36 @@ private fun ColumnScope.LocationSearchBody(
         }
         is LocationSearchResultState.Loaded -> LocationsResult(state.result, onClick, modifier)
     }
+}
+
+@Composable
+private fun RouteSearchTabsList(
+    items: List<TabItem>,
+    selectedItemId: String,
+    onRouteTabClick: (String) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    ScrollableRow(
+        modifier = modifier.padding(horizontal = MaasTheme.spacing.globalMargin)
+    ) {
+        items.forEach { tabItem ->
+            RouteSearchTab(tabItem = tabItem,
+                isSelected = selectedItemId == tabItem.id,
+                onRouteTabClick = { onRouteTabClick(tabItem.id) })
+        }
+    }
+}
+
+@Preview
+@Composable
+fun RouteSearchTabsListPreview() {
+    val (selectedItemId, selectItem) = remember { mutableStateOf("1") }
+    RouteSearchTabsList(
+        modifier = Modifier,
+        items = mockVehicleTypes,
+        selectedItemId = selectedItemId,
+        onRouteTabClick = selectItem
+    )
 }
 
 private class ViewModelFactory(baseUrl: String, apiKey: String, regionId: String) :
