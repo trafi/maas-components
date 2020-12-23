@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.trafi.ui.component.internal.RouteSearchTabConstants
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.currentTheme
@@ -28,24 +29,27 @@ data class TabItem(
     val price: String?,
 )
 
+@OptIn(ExperimentalLayout::class)
 @Composable
 fun RouteSearchTab(
     tabItem: TabItem,
     isSelected: Boolean,
-    modifier: Modifier = Modifier,
     onRouteTabClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Card(
         shape = RoundedCornerShape(constants.borderRadius),
         border = BorderStroke(constants.borderWidth,
             color = if (isSelected) constants.borderColorActive else constants.defaultBackgroundColor),
         modifier = modifier
+            .preferredWidth(IntrinsicSize.Min)
             .padding(constants.padding)
             .widthIn(min = constants.minTabWidth)
-            .heightIn(min = constants.minTabHeight)
+            .heightIn(min = constants.minTabHeight),
     ) {
         Box(
-            modifier = modifier
+            modifier = Modifier
+                .fillMaxWidth()
                 .clickable(onClick = onRouteTabClick)
                 .background(if (isSelected) constants.activeBackgroundColor else constants.defaultBackgroundColor)
         ) {
@@ -93,9 +97,10 @@ fun ActiveRouteSearchTabPreview() {
             price = "$15",
             active = true
         ),
-        modifier = Modifier,
-        isSelected = true
-    ) {}
+        isSelected = true,
+        modifier = Modifier.width(150.dp).padding(10.dp),
+        onRouteTabClick = {},
+    )
 }
 
 @Preview(showBackground = true)
@@ -109,9 +114,9 @@ fun RouteSearchTabPreview() {
             price = "$15",
             active = true
         ),
-        modifier = Modifier,
         isSelected = false,
-    ) {}
+        onRouteTabClick = {},
+    )
 }
 
 @Preview(showBackground = true)
@@ -126,9 +131,9 @@ fun ActiveRouteSearchTabDarkPreview() {
                 price = "$15",
                 active = true
             ),
-            modifier = Modifier,
             isSelected = true,
-        ) {}
+            onRouteTabClick = {},
+        )
     }
 }
 
@@ -144,8 +149,8 @@ fun RouteSearchTabDarkPreview() {
                 price = "$15",
                 active = true
             ),
-            modifier = Modifier,
-            isSelected = false
-        ) {}
+            isSelected = false,
+            onRouteTabClick = {},
+        )
     }
 }

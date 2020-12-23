@@ -208,16 +208,16 @@ private fun ColumnScope.LocationSearchBody(
 private fun RouteSearchTabsList(
     items: List<TabItem>,
     selectedItemId: String,
-    modifier: Modifier = Modifier,
     onRouteTabClick: (String) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     ScrollableRow(
         modifier = modifier.padding(horizontal = MaasTheme.spacing.globalMargin)
     ) {
         items.forEach { tabItem ->
-            RouteSearchTab(tabItem = tabItem, isSelected = selectedItemId == tabItem.id) {
-                onRouteTabClick(tabItem.id)
-            }
+            RouteSearchTab(tabItem = tabItem,
+                isSelected = selectedItemId == tabItem.id,
+                onRouteTabClick = { onRouteTabClick(tabItem.id) })
         }
     }
 }

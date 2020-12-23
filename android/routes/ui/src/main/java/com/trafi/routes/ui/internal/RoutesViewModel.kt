@@ -28,7 +28,7 @@ internal class RoutesViewModel(private val routesApi: RoutesApi) : ViewModel() {
     }
 }
 
-sealed class RoutesResultState {
+internal sealed class RoutesResultState {
     object NoResults : RoutesResultState()
     object Loading : RoutesResultState()
     data class Loaded(val result: RoutesResult) : RoutesResultState()
