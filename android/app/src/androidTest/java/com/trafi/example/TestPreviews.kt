@@ -9,21 +9,29 @@ import com.trafi.ui.SmallBadgePreview
 import com.trafi.ui.SmallDisabledBadgePreview
 import com.trafi.ui.SmallBadgeWithIconPreview
 import com.trafi.ui.BadgeWithoutIconPreview
+import com.trafi.ui.InfoButtonDisabledPreview
+import com.trafi.ui.InfoButtonLongTextPreview
+import com.trafi.ui.InfoButtonStyledDarkPreview
+import com.trafi.ui.InfoButtonThemedPreview
 import com.trafi.ui.StackedBadgePreview
 import com.trafi.ui.StackedBadgePreviewWithSubbadge
 import com.trafi.ui.StackedBadgeDarkPreview
 
 @Suppress("RemoveExplicitTypeArguments")
 val testPreviews = listOf<Pair<@Composable () -> Unit, String>>(
-        Pair({ ButtonPreview() }, "ButtonPreview"),
-        Pair({ ButtonStyledCornerRadiusPreview() }, "ButtonStyledCornerRadiusPreview"),
-        Pair({ BadgePreview() }, "BadgePreview"),
-        Pair({ BadgePreviewWithSubbadge() }, "BadgePreviewWithSubbadge"),
-        Pair({ SmallBadgePreview() }, "SmallBadgePreview"),
-        Pair({ SmallDisabledBadgePreview() }, "SmallDisabledBadgePreview"),
-        Pair({ SmallBadgeWithIconPreview() }, "SmallBadgeWithIconPreview"),
-        Pair({ BadgeWithoutIconPreview() }, "BadgeWithoutIconPreview"),
-        Pair({ StackedBadgePreview() }, "StackedBadgePreview"),
-        Pair({ StackedBadgePreviewWithSubbadge() }, "StackedBadgePreviewWithSubbadge"),
-        Pair({ StackedBadgeDarkPreview()}, "StackedBadgeDarkPreview")
+    Pair({ ButtonPreview() }, "Button"),
+    Pair({ ButtonStyledCornerRadiusPreview() }, "ButtonStyledCornerRadius"),
+    Pair({ BadgePreview() }, "Badge"),
+    Pair({ BadgeWithoutIconPreview() }, "BadgeWithoutIcon"),
+    Pair({ BadgePreviewWithSubbadge() }, "BadgeWithSubbadge"),
+    Pair({ SmallBadgePreview() }, "SmallBadge"),
+    Pair({ SmallDisabledBadgePreview() }, "SmallDisabledBadge"),
+    Pair({ SmallBadgeWithIconPreview() }, "SmallBadgeWithIcon"),
+    Pair({ StackedBadgePreview() }, "StackedBadge"),
+    Pair({ StackedBadgePreviewWithSubbadge() }, "StackedBadgeWithSubbadge"),
+    Pair({ StackedBadgeDarkPreview() }, "StackedBadgeDark"),
+    Pair({ InfoButtonDisabledPreview() }, "InfoButtonDisabled"),
+    Pair({ InfoButtonLongTextPreview() }, "InfoButtonLongText"),
+    Pair({ InfoButtonStyledDarkPreview() }, "InfoButtonStyledDark"),
+    Pair({ InfoButtonThemedPreview() }, "InfoButtonThemed"),
 )
