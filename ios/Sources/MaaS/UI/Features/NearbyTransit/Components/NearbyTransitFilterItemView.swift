@@ -41,7 +41,7 @@ public struct NearbyTransitFilterItemView: View, Swappable {
     private var badgeView: some View {
         RoundedRectangle(cornerRadius: constants.cornerRadius)
             .foregroundColor(foregroundColor)
-            .frame(minWidth: constants.minWidth, minHeight: constants.minHeight)
+            .frame(minWidth: constants.contentMinWidth, minHeight: constants.contentMinHeight)
     }
 
     private var transportImageView: some View {
