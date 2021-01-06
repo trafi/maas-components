@@ -1,4 +1,4 @@
-package com.trafi.transit.ui
+package com.trafi.maas.transit.ui
 
 import com.trafi.core.model.FilterItem
 

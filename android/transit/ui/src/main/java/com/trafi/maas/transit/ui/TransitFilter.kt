@@ -1,4 +1,4 @@
-package com.trafi.transit.ui
+package com.trafi.maas.transit.ui
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
