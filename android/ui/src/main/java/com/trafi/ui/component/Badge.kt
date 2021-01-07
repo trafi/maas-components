@@ -1,8 +1,17 @@
-package com.trafi.ui
+package com.trafi.ui.component
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.ConstraintLayout
+import androidx.compose.foundation.layout.ExperimentalLayout
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -17,8 +26,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.trafi.ui.BadgeType.Medium
-import com.trafi.ui.BadgeType.Small
+import com.trafi.ui.R
+import com.trafi.ui.component.BadgeType.Medium
+import com.trafi.ui.component.BadgeType.Small
 import com.trafi.ui.component.internal.BadgeConstants
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.currentTheme
