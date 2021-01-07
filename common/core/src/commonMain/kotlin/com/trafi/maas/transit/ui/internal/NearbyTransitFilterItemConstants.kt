@@ -1,4 +1,4 @@
-package com.trafi.ui.component.internal.nearby.transit
+package com.trafi.maas.transit.ui.internal
 
 import com.trafi.ui.theme.internal.CornerRadiusScale
 import com.trafi.ui.theme.internal.CurrentTheme

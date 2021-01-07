@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.trafi.core.model.ext.FilterItem
 import com.trafi.core.model.mock.mockFilters
-import com.trafi.ui.component.internal.nearby.transit.NearbyTransitFilterItemConstants
+import com.trafi.maas.transit.ui.internal.NearbyTransitFilterItemConstants
 import com.trafi.ui.component.MultiSelectFilter
 import com.trafi.ui.component.SingleSelectFilter
 import com.trafi.ui.theme.MaasTheme
