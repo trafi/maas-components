@@ -18,10 +18,10 @@ object CornerRadius {
 }
 
 @Stable
-internal val Dp.isRound: Boolean
+val Dp.isRound: Boolean
     get() = this == CornerRadius.round
 
 @Immutable
 data class MaasCornerRadius(
-    val buttonRadius: Dp = CornerRadiusScale.Default.ButtonRadius
+    val buttonRadius: Dp = CornerRadiusScale.Default.ButtonRadius,
 )

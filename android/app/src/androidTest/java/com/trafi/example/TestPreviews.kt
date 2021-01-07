@@ -1,21 +1,21 @@
 package com.trafi.example
 
 import androidx.compose.runtime.Composable
-import com.trafi.ui.ButtonPreview
-import com.trafi.ui.ButtonStyledCornerRadiusPreview
-import com.trafi.ui.BadgePreview
-import com.trafi.ui.BadgePreviewWithSubbadge
-import com.trafi.ui.SmallBadgePreview
-import com.trafi.ui.SmallDisabledBadgePreview
-import com.trafi.ui.SmallBadgeWithIconPreview
-import com.trafi.ui.BadgeWithoutIconPreview
-import com.trafi.ui.InfoButtonDisabledPreview
-import com.trafi.ui.InfoButtonLongTextPreview
-import com.trafi.ui.InfoButtonStyledDarkPreview
-import com.trafi.ui.InfoButtonThemedPreview
-import com.trafi.ui.StackedBadgePreview
-import com.trafi.ui.StackedBadgePreviewWithSubbadge
-import com.trafi.ui.StackedBadgeDarkPreview
+import com.trafi.ui.component.InfoButtonDisabledPreview
+import com.trafi.ui.component.InfoButtonLongTextPreview
+import com.trafi.ui.component.InfoButtonStyledDarkPreview
+import com.trafi.ui.component.InfoButtonThemedPreview
+import com.trafi.ui.component.BadgePreview
+import com.trafi.ui.component.BadgePreviewWithSubbadge
+import com.trafi.ui.component.BadgeWithoutIconPreview
+import com.trafi.ui.component.ButtonPreview
+import com.trafi.ui.component.ButtonStyledCornerRadiusPreview
+import com.trafi.ui.component.SmallBadgePreview
+import com.trafi.ui.component.SmallBadgeWithIconPreview
+import com.trafi.ui.component.SmallDisabledBadgePreview
+import com.trafi.ui.component.StackedBadgeDarkPreview
+import com.trafi.ui.component.StackedBadgePreview
+import com.trafi.ui.component.StackedBadgePreviewWithSubbadge
 
 @Suppress("RemoveExplicitTypeArguments")
 val testPreviews = listOf<Pair<@Composable () -> Unit, String>>(

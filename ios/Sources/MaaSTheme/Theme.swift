@@ -36,7 +36,8 @@ public extension EnvironmentValues {
                     globalMargin: Float(spacingGlobalMargin)
                 ),
                 cornerRadiusScale: CurrentCornerRadiusScale(
-                    buttonRadius: Float(cornerRadiusButton))
+                    buttonRadius: Float(cornerRadiusButton)
+                )
             )
         }
     }

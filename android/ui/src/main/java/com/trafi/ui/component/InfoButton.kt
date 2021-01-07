@@ -1,4 +1,4 @@
-package com.trafi.ui
+package com.trafi.ui.component
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,6 +15,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.trafi.ui.R
 import com.trafi.ui.component.internal.InfoButtonConstants
 import com.trafi.ui.theme.*
 import com.trafi.ui.theme.internal.TextStyle

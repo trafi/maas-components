@@ -32,9 +32,7 @@ import com.trafi.routes.ui.internal.RouteSearchHeader
 import com.trafi.routes.ui.internal.RoutesResultState
 import com.trafi.routes.ui.internal.RoutesViewModel
 import com.trafi.routes.ui.internal.displayText
-import com.trafi.routes.ui.mock.mockVehicleTypes
-import com.trafi.ui.RouteSearchTab
-import com.trafi.ui.TabItem
+import com.trafi.routes.ui.mock.mockTabItems
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.Spacing
 
@@ -228,7 +226,7 @@ fun RouteSearchTabsListPreview() {
     val (selectedItemId, selectItem) = remember { mutableStateOf("1") }
     RouteSearchTabsList(
         modifier = Modifier,
-        items = mockVehicleTypes,
+        items = mockTabItems,
         selectedItemId = selectedItemId,
         onRouteTabClick = selectItem
     )
