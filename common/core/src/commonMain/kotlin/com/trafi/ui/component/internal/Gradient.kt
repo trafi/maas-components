@@ -16,4 +16,3 @@ class Gradient(
 
     enum class Direction { Horizontal, Vertical }
 }
-
