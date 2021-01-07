@@ -1,4 +1,4 @@
-package com.trafi.core.model
+package com.trafi.core.model.ext
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

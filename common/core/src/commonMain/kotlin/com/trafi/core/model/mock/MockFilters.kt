@@ -1,6 +1,6 @@
 package com.trafi.core.model.mock
 
-import com.trafi.core.model.FilterItem
+import com.trafi.core.model.ext.FilterItem
 
 public val mockFilters: List<FilterItem> = listOf(
     FilterItem(
