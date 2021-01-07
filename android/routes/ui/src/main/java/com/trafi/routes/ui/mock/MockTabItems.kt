@@ -1,10 +1,10 @@
 package com.trafi.routes.ui.mock
 
 import androidx.compose.runtime.Stable
-import com.trafi.ui.TabItem
+import com.trafi.routes.ui.TabItem
 
 @Stable
-internal val group1 = TabItem(
+private val mockTabItem1 = TabItem(
     id = "1",
     icon = "",
     duration = "13min",
@@ -13,7 +13,7 @@ internal val group1 = TabItem(
 )
 
 @Stable
-internal val group2 = TabItem(
+private val mockTabItem2 = TabItem(
     id = "2",
     icon = "",
     duration = "35min",
@@ -22,7 +22,7 @@ internal val group2 = TabItem(
 )
 
 @Stable
-internal val group3 = TabItem(
+private val mockTabItem3 = TabItem(
     id = "3",
     icon = "",
     duration = "2h",
@@ -31,7 +31,7 @@ internal val group3 = TabItem(
 )
 
 @Stable
-internal val group4 = TabItem(
+private val mockTabItem4 = TabItem(
     id = "4",
     icon = "",
     duration = "1h",
@@ -40,7 +40,7 @@ internal val group4 = TabItem(
 )
 
 @Stable
-internal val group5 = TabItem(
+private val mockTabItem5 = TabItem(
     id = "5",
     icon = "",
     duration = "10min",
@@ -48,7 +48,7 @@ internal val group5 = TabItem(
     active = false,
 )
 @Stable
-internal val group6 = TabItem(
+private val mockTabItem6 = TabItem(
     id = "6",
     icon = "",
     duration = "3h",
@@ -56,11 +56,11 @@ internal val group6 = TabItem(
     active = false,
 )
 
-internal val mockVehicleTypes = listOf(
-    group1,
-    group2,
-    group3,
-    group4,
-    group5,
-    group6
+internal val mockTabItems = listOf(
+    mockTabItem1,
+    mockTabItem2,
+    mockTabItem3,
+    mockTabItem4,
+    mockTabItem5,
+    mockTabItem6
 )
