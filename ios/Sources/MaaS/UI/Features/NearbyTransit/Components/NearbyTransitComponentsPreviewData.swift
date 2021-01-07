@@ -70,56 +70,7 @@ enum NearbyTransitComponentsPreviewData {
         ]
     )
 
-    static let mockFilterDataItems: [FilterItem] = [
-        FilterItem(
-            id : "ubahns",
-            name : "U-Bahn",
-            icon : "ubahn",
-            color : "115D91",
-            accentColor : "FFFFFF",
-            transportsIds : ["debe_ubahn"]
-        ),
-        FilterItem(
-            id : "sbahns",
-            name : "S-Bahn",
-            icon : "sbahn",
-            color : "45935D",
-            accentColor : "FFFFFF",
-            transportsIds : ["debe_sbahn"]
-        ),
-        FilterItem(
-            id : "trams",
-            name : "Trams",
-            icon : "tram",
-            color : "BE1414",
-            accentColor : "FFFFFF",
-            transportsIds : ["debe_berlintram", "debe_potsdamtram", "debe_suburbtram"]
-        ),
-        FilterItem(
-            id : "buses",
-            name : "Buses",
-            icon : "bus",
-            color : "95276E",
-            accentColor : "FFFFFF",
-            transportsIds : ["debe_regiobus", "debe_bvgbus"]
-        ),
-        FilterItem(
-            id : "trains",
-            name : "Trains",
-            icon : "train",
-            color : "BE1414",
-            accentColor : "FFFFFF",
-            transportsIds : ["debe_trainz"]
-        ),
-        FilterItem(
-            id : "ferry",
-            name : "Ferries",
-            icon : "ferry",
-            color : "528DBA",
-            accentColor : "FFFFFF",
-            transportsIds : ["debe_ferry"]
-        )
-    ]
+    static let mockFilterDataItems: [FilterItem] = MockFiltersKt.mockFilters
 }
 
 extension StopWithSchedulesWithDepartures: Identifiable { }

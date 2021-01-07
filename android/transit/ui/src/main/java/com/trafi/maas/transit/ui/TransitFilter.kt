@@ -19,6 +19,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.trafi.core.model.FilterItem
+import com.trafi.core.model.mock.mockFilters
 import com.trafi.ui.component.internal.nearby.transit.NearbyTransitFilterItemConstants
 import com.trafi.ui.component.MultiSelectFilter
 import com.trafi.ui.component.SingleSelectFilter
@@ -85,7 +86,7 @@ private fun String.iconRes(): Int {
 @Preview
 @Composable
 private fun MultiFilterPreview() {
-    val filters = listOfFilters()
+    val filters = mockFilters
     val startPadding = Modifier.padding(8.dp)
     Column {
         Text(
@@ -147,7 +148,7 @@ private fun MultiFilterPreview() {
 @Preview
 @Composable
 private fun SingleFilterPreview() {
-    val filters = listOfFilters()
+    val filters = mockFilters
     val startPadding = Modifier.padding(8.dp)
     Column {
         Text(
