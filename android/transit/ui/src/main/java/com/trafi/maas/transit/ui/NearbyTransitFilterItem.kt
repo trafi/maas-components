@@ -1,6 +1,5 @@
 package com.trafi.maas.transit.ui
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -58,28 +57,23 @@ fun NearbyTransitFilterItem(
                     minHeight = constants.contentMinHeight
                 )
         ) {
-            val image = vectorResource(id = item.icon.iconRes())
+            val vector = vectorResource(when (item.icon) {
+                "ubahn" -> R.drawable.providers_ubahn_xs
+                "sbahn" -> R.drawable.providers_sbahn_xs
+                "bus" -> R.drawable.providers_bus_xs
+                "tram" -> R.drawable.providers_trams_xs
+                "train" -> R.drawable.providers_train_xs
+                "ferry" -> R.drawable.providers_ferry_xs
+                else -> R.drawable.providers_bus_xs
+            })
             Image(
-                imageVector = image,
+                imageVector = vector,
                 modifier = Modifier
                     .width(constants.imageWidth)
                     .height(constants.imageHeight),
                 colorFilter = ColorFilter.tint(color = item.accentColor.toColor())
             )
         }
-    }
-}
-
-@DrawableRes
-private fun String.iconRes(): Int {
-    return when (this) {
-        "ubahn" -> R.drawable.providers_ubahn_xs
-        "sbahn" -> R.drawable.providers_sbahn_xs
-        "bus" -> R.drawable.providers_bus_xs
-        "tram" -> R.drawable.providers_trams_xs
-        "train" -> R.drawable.providers_train_xs
-        "ferry" -> R.drawable.providers_ferry_xs
-        else -> R.drawable.providers_bus_xs
     }
 }
 
