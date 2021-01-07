@@ -34,8 +34,8 @@ private val constants
 
 @Composable
 fun NearbyTransitFilterItem(
-    isEnabled: Boolean,
-    filterItem: FilterItem,
+    item: FilterItem,
+    enabled: Boolean,
     modifier: Modifier = Modifier,
 ) {
     Box(
@@ -51,20 +51,20 @@ fun NearbyTransitFilterItem(
             } else {
                 RoundedCornerShape(constants.cornerRadius)
             },
-            color = if (isEnabled) filterItem.color.toColor() else constants.disabledColor,
+            color = if (enabled) item.color.toColor() else constants.disabledColor,
             modifier = Modifier
                 .sizeIn(
                     minWidth = constants.contentMinWidth,
                     minHeight = constants.contentMinHeight
                 )
         ) {
-            val image = vectorResource(id = filterItem.icon.iconRes())
+            val image = vectorResource(id = item.icon.iconRes())
             Image(
                 imageVector = image,
                 modifier = Modifier
                     .width(constants.imageWidth)
                     .height(constants.imageHeight),
-                colorFilter = ColorFilter.tint(color = filterItem.accentColor.toColor())
+                colorFilter = ColorFilter.tint(color = item.accentColor.toColor())
             )
         }
     }
@@ -92,56 +92,53 @@ private fun MultiFilterPreview() {
         Text(
             text = "Multi select",
             style = MaasTheme.typography.headingM,
-            modifier = startPadding
+            modifier = startPadding,
         )
         Text(
             text = "Deselected",
             style = MaasTheme.typography.textS,
-            modifier = startPadding
+            modifier = startPadding,
         )
         MultiSelectFilter(
             items = filters,
             enabledItems = emptyList(),
-            itemView = { item, isEnabled ->
-                NearbyTransitFilterItem(
-                    isEnabled = isEnabled,
-                    filterItem = item
-                )
-            },
-            onItemClick = { }
-        )
+            onItemClick = { },
+        ) { item, enabled ->
+            NearbyTransitFilterItem(
+                item = item,
+                enabled = enabled,
+            )
+        }
         Text(
             text = "Half selected",
             style = MaasTheme.typography.textS,
-            modifier = startPadding
+            modifier = startPadding,
         )
         MultiSelectFilter(
             items = filters,
             enabledItems = filters.take(3),
-            itemView = { item, isEnabled ->
-                NearbyTransitFilterItem(
-                    isEnabled = isEnabled,
-                    filterItem = item
-                )
-            },
-            onItemClick = { }
-        )
+            onItemClick = { },
+        ) { item, enabled ->
+            NearbyTransitFilterItem(
+                item = item,
+                enabled = enabled,
+            )
+        }
         Text(
             text = "All selected",
             style = MaasTheme.typography.textS,
-            modifier = startPadding
+            modifier = startPadding,
         )
         MultiSelectFilter(
             items = filters,
             enabledItems = filters,
-            itemView = { item, isEnabled ->
-                NearbyTransitFilterItem(
-                    isEnabled = isEnabled,
-                    filterItem = item
-                )
-            },
-            onItemClick = { }
-        )
+            onItemClick = { },
+        ) { item, enabled ->
+            NearbyTransitFilterItem(
+                item = item,
+                enabled = enabled,
+            )
+        }
     }
 }
 
@@ -154,15 +151,14 @@ private fun SingleFilterPreview() {
         Text(
             text = "Single select",
             style = MaasTheme.typography.headingM,
-            modifier = startPadding
+            modifier = startPadding,
         )
         SingleSelectFilter(
             items = filters,
             enabledItem = filters.first(),
-            itemView = { item, isEnabled ->
-                NearbyTransitFilterItem(isEnabled = isEnabled, filterItem = item)
-            },
-            onItemClick = { }
-        )
+            onItemClick = { },
+        ) { item, enabled ->
+            NearbyTransitFilterItem(item = item, enabled = enabled)
+        }
     }
 }

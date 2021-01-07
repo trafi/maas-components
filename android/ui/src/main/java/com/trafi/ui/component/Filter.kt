@@ -12,19 +12,18 @@ import androidx.compose.ui.graphics.Color
 private fun <T> ScrollableTappableView(
     items: List<T>,
     onItemClick: (T) -> Unit,
-    itemView: @Composable (T) -> Unit,
     modifier: Modifier = Modifier,
+    itemContent: @Composable (T) -> Unit,
 ) {
     LazyRowFor(
         items = items,
-        modifier = modifier
-            .fillMaxWidth()
+        modifier = modifier.fillMaxWidth(),
     ) { item ->
         Surface(
             color = Color.Transparent,
             modifier = Modifier.clickable(onClick = { onItemClick(item) })
         ) {
-            itemView(item)
+            itemContent(item)
         }
     }
 }
@@ -34,16 +33,16 @@ fun <T> MultiSelectFilter(
     items: List<T>,
     enabledItems: List<T>,
     onItemClick: (T) -> Unit,
-    itemView: @Composable (T, Boolean) -> Unit,
     modifier: Modifier = Modifier,
+    itemContent: @Composable (T, Boolean) -> Unit,
 ) {
     ScrollableTappableView(
         modifier = modifier,
         items = items,
-        itemView = { item ->
-            itemView(item, enabledItems.find { it == item } != null)
+        itemContent = { item ->
+            itemContent(item, enabledItems.find { it == item } != null)
         },
-        onItemClick = onItemClick
+        onItemClick = onItemClick,
     )
 }
 
@@ -52,15 +51,15 @@ fun <T> SingleSelectFilter(
     items: List<T>,
     enabledItem: T,
     onItemClick: (T) -> Unit,
-    itemView: @Composable (item: T, isEnabled: Boolean) -> Unit,
     modifier: Modifier = Modifier,
+    itemContent: @Composable (item: T, isEnabled: Boolean) -> Unit,
 ) {
     ScrollableTappableView(
         modifier = modifier,
         items = items,
-        itemView = { item ->
-            itemView(item, enabledItem == item)
+        itemContent = { item ->
+            itemContent(item, enabledItem == item)
         },
-        onItemClick = onItemClick
+        onItemClick = onItemClick,
     )
 }
