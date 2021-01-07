@@ -33,7 +33,7 @@ import java.util.Date
 import java.util.TimeZone
 
 @Composable
-fun Route(route: Route, onClick: () -> Unit, modifier: Modifier = Modifier) {
+public fun Route(route: Route, onClick: () -> Unit, modifier: Modifier = Modifier) {
     Surface(
         modifier = modifier
             .semantics(mergeDescendants = true) {

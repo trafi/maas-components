@@ -1,6 +1,7 @@
 package com.trafi.ui.component
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -26,7 +27,7 @@ private val constants
     get() = InfoButtonConstants(currentTheme)
 
 @Composable
-fun InfoButton(
+public fun InfoButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -76,7 +77,7 @@ fun InfoButton(
 
 @Preview(showBackground = true, backgroundColor = 0xffffffff, widthDp = 150)
 @Composable
-fun InfoButtonPreview() {
+private fun InfoButtonPreview() {
     MaasTheme {
         InfoButton(
             text = "Info view view view",
@@ -87,7 +88,7 @@ fun InfoButtonPreview() {
 
 @Preview
 @Composable
-fun InfoButtonStyledCornerRadiusPreview() {
+private fun InfoButtonStyledCornerRadiusPreview() {
     MaasTheme(cornerRadius = MaasCornerRadius(buttonRadius = 0.dp)) {
         InfoButton(
             text = "Info",
@@ -98,7 +99,8 @@ fun InfoButtonStyledCornerRadiusPreview() {
 
 @Preview
 @Composable
-fun InfoButtonDisabledPreview() {
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+public fun InfoButtonDisabledPreview() {
     MaasTheme {
         InfoButton(
             text = "Info",
@@ -110,7 +112,8 @@ fun InfoButtonDisabledPreview() {
 
 @Preview
 @Composable
-fun InfoButtonStyledDarkPreview() {
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+public fun InfoButtonStyledDarkPreview() {
     MaasTheme(colors = MaasTheme.darkColors()) {
         InfoButton(
             text = "How it works",
@@ -121,7 +124,7 @@ fun InfoButtonStyledDarkPreview() {
 
 @Preview(showBackground = true, backgroundColor = 0xff000000)
 @Composable
-fun InfoButtonStyledDarkDisabledPreview() {
+private fun InfoButtonStyledDarkDisabledPreview() {
     MaasTheme(colors = MaasTheme.darkColors()) {
         InfoButton(
             text = "How it works",
@@ -133,7 +136,8 @@ fun InfoButtonStyledDarkDisabledPreview() {
 
 @Preview(widthDp = 150)
 @Composable
-fun InfoButtonLongTextPreview() {
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+public fun InfoButtonLongTextPreview() {
     MaasTheme {
         InfoButton(
             text = "Info view view view",
@@ -144,7 +148,8 @@ fun InfoButtonLongTextPreview() {
 
 @Preview
 @Composable
-fun InfoButtonThemedPreview() {
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+public fun InfoButtonThemedPreview() {
     MaasTheme {
         InfoButton(
             text = "Info",

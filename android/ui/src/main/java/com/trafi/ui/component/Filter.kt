@@ -29,7 +29,7 @@ private fun <T> ScrollableTappableView(
 }
 
 @Composable
-fun <T> MultiSelectFilter(
+public fun <T> MultiSelectFilter(
     items: List<T>,
     enabledItems: List<T>,
     onItemClick: (T) -> Unit,
@@ -47,7 +47,7 @@ fun <T> MultiSelectFilter(
 }
 
 @Composable
-fun <T> SingleSelectFilter(
+public fun <T> SingleSelectFilter(
     items: List<T>,
     enabledItem: T,
     onItemClick: (T) -> Unit,

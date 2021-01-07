@@ -7,7 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticAmbientOf
 
 @Composable
-fun MaasTheme(
+public fun MaasTheme(
     colors: MaasColorPalette = MaasTheme.colors,
     typography: MaasTypography = MaasTheme.typography,
     spacing: MaasSpacing = MaasTheme.spacing,
@@ -30,21 +30,21 @@ fun MaasTheme(
     }
 }
 
-object MaasTheme {
+public object MaasTheme {
     @Composable
-    val colors: MaasColorPalette
+    public val colors: MaasColorPalette
         get() = AmbientColor.current
 
     @Composable
-    val typography: MaasTypography
+    public val typography: MaasTypography
         get() = AmbientTypography.current
 
     @Composable
-    val spacing: MaasSpacing
+    public val spacing: MaasSpacing
         get() = AmbientSpacing.current
 
     @Composable
-    val cornerRadius: MaasCornerRadius
+    public val cornerRadius: MaasCornerRadius
         get() = AmbientCornerRadius.current
 }
 

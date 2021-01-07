@@ -37,7 +37,7 @@ import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.Spacing
 
 @Composable
-fun RoutesScreen(
+public fun RoutesScreen(
     baseUrl: String,
     apiKey: String,
     regionId: String,
@@ -222,7 +222,7 @@ private fun RouteSearchTabsList(
 
 @Preview
 @Composable
-fun RouteSearchTabsListPreview() {
+private fun RouteSearchTabsListPreview() {
     val (selectedItemId, selectItem) = remember { mutableStateOf("1") }
     RouteSearchTabsList(
         modifier = Modifier,

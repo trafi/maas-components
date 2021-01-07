@@ -1,5 +1,6 @@
 package com.trafi.ui.component
 
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -38,15 +39,20 @@ import com.trafi.ui.theme.darkColors
 private val constants
     get() = BadgeConstants(currentTheme)
 
-data class BadgeInfo(
+public data class BadgeInfo(
     val text: String?,
     val backgroundColor: Color,
     val contentColor: Color? = null,
 )
 
+public enum class BadgeType {
+    Small,
+    Medium,
+}
+
 @OptIn(ExperimentalLayout::class)
 @Composable
-fun Badge(
+public fun Badge(
     badge: BadgeInfo,
     modifier: Modifier = Modifier,
     badgeType: BadgeType = Medium,
@@ -269,16 +275,12 @@ private val BadgeType.textStyle: TextStyle
         Medium -> constants.textStyleMedium
     }
 
-enum class BadgeType {
-    Small,
-    Medium,
-}
-
 private fun Dp.plusIf(shouldInclude: Boolean, other: Dp) = if (shouldInclude) this + other else this
 
 @Preview
 @Composable
-fun BadgePreview() {
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+public fun BadgePreview() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),
         icon = vectorResource(R.drawable.providers_ubahn_xs),
@@ -288,7 +290,8 @@ fun BadgePreview() {
 
 @Preview
 @Composable
-fun BadgePreviewWithSubbadge() {
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+public fun BadgePreviewWithSubbadge() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),
         icon = vectorResource(R.drawable.providers_ubahn_xs),
@@ -299,7 +302,8 @@ fun BadgePreviewWithSubbadge() {
 
 @Preview
 @Composable
-fun SmallBadgePreview() {
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+public fun SmallBadgePreview() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),
         badgeType = Small
@@ -308,7 +312,8 @@ fun SmallBadgePreview() {
 
 @Preview
 @Composable
-fun SmallDisabledBadgePreview() {
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+public fun SmallDisabledBadgePreview() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),
         badgeType = Small,
@@ -318,7 +323,8 @@ fun SmallDisabledBadgePreview() {
 
 @Preview
 @Composable
-fun SmallBadgeWithIconPreview() {
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+public fun SmallBadgeWithIconPreview() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),
         icon = vectorResource(R.drawable.providers_ubahn_xs),
@@ -328,7 +334,8 @@ fun SmallBadgeWithIconPreview() {
 
 @Preview
 @Composable
-fun BadgeWithoutIconPreview() {
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+public fun BadgeWithoutIconPreview() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),
         badgeType = Medium
@@ -337,7 +344,8 @@ fun BadgeWithoutIconPreview() {
 
 @Preview
 @Composable
-fun StackedBadgePreview() {
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+public fun StackedBadgePreview() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),
         alternativeBadges = listOf(
@@ -350,7 +358,8 @@ fun StackedBadgePreview() {
 
 @Preview
 @Composable
-fun StackedBadgeDarkPreview() {
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+public fun StackedBadgeDarkPreview() {
     val darkColors = MaasTheme.darkColors()
     MaasTheme(colors = darkColors) {
         Badge(
@@ -366,7 +375,8 @@ fun StackedBadgeDarkPreview() {
 
 @Preview
 @Composable
-fun StackedBadgePreviewWithSubbadge() {
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+public fun StackedBadgePreviewWithSubbadge() {
     Badge(
         badge = BadgeInfo("5G", Color.Magenta),
         alternativeBadges = listOf(BadgeInfo("135", Color.Green),

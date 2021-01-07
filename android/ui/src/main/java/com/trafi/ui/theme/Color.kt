@@ -9,7 +9,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import com.trafi.ui.theme.internal.ColorPalette
 
-fun MaasTheme.lightColors(
+public fun MaasTheme.lightColors(
     primary: Color = ColorPalette.DefaultLight.Primary,
     primaryVariant: Color = ColorPalette.DefaultLight.PrimaryVariant,
     secondary: Color = ColorPalette.DefaultLight.Secondary,
@@ -40,7 +40,7 @@ fun MaasTheme.lightColors(
     isLight = true,
 )
 
-fun MaasTheme.darkColors(
+public fun MaasTheme.darkColors(
     primary: Color = ColorPalette.DefaultDark.Primary,
     primaryVariant: Color = ColorPalette.DefaultDark.PrimaryVariant,
     secondary: Color = ColorPalette.DefaultDark.Secondary,
@@ -72,7 +72,7 @@ fun MaasTheme.darkColors(
 )
 
 @Stable
-class MaasColorPalette(
+public class MaasColorPalette(
     primary: Color,
     primaryVariant: Color,
     secondary: Color,
@@ -88,36 +88,36 @@ class MaasColorPalette(
     grayScale: GrayScale,
     isLight: Boolean,
 ) {
-    var primary by mutableStateOf(primary)
+    public var primary: Color by mutableStateOf(primary)
         private set
-    var primaryVariant by mutableStateOf(primaryVariant)
+    public var primaryVariant: Color by mutableStateOf(primaryVariant)
         private set
-    var secondary by mutableStateOf(secondary)
+    public var secondary: Color by mutableStateOf(secondary)
         private set
-    var secondaryVariant by mutableStateOf(secondaryVariant)
+    public var secondaryVariant: Color by mutableStateOf(secondaryVariant)
         private set
-    var background by mutableStateOf(background)
+    public var background: Color by mutableStateOf(background)
         private set
-    var surface by mutableStateOf(surface)
+    public var surface: Color by mutableStateOf(surface)
         private set
-    var error by mutableStateOf(error)
+    public var error: Color by mutableStateOf(error)
         private set
-    var onPrimary by mutableStateOf(onPrimary)
+    public var onPrimary: Color by mutableStateOf(onPrimary)
         private set
-    var onSecondary by mutableStateOf(onSecondary)
+    public var onSecondary: Color by mutableStateOf(onSecondary)
         private set
-    var onBackground by mutableStateOf(onBackground)
+    public var onBackground: Color by mutableStateOf(onBackground)
         private set
-    var onSurface by mutableStateOf(onSurface)
+    public var onSurface: Color by mutableStateOf(onSurface)
         private set
-    var onError by mutableStateOf(onError)
+    public var onError: Color by mutableStateOf(onError)
         private set
-    var grayScale by mutableStateOf(grayScale)
+    public var grayScale: GrayScale by mutableStateOf(grayScale)
         private set
-    var isLight by mutableStateOf(isLight)
+    public var isLight: Boolean by mutableStateOf(isLight)
         private set
 
-    fun updateColorsFrom(other: MaasColorPalette) {
+    public fun updateColorsFrom(other: MaasColorPalette) {
         primary = other.primary
         primaryVariant = other.primaryVariant
         secondary = other.secondary
