@@ -1,8 +1,8 @@
 package com.trafi.example
 
 import androidx.compose.runtime.Composable
-import com.trafi.ui.ButtonPreview
-import com.trafi.ui.ButtonStyledCornerRadiusPreview
+import com.trafi.ui.component.ButtonPreview
+import com.trafi.ui.component.ButtonStyledCornerRadiusPreview
 import com.trafi.ui.BadgePreview
 import com.trafi.ui.BadgePreviewWithSubbadge
 import com.trafi.ui.SmallBadgePreview
