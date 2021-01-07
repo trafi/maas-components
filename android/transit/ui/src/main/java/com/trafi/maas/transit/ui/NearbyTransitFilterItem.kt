@@ -32,7 +32,7 @@ private val constants
     get() = NearbyTransitFilterItemConstants(currentTheme)
 
 @Composable
-fun NearbyTransitFilterItem(
+internal fun NearbyTransitFilterItem(
     item: FilterItem,
     enabled: Boolean,
     modifier: Modifier = Modifier,
