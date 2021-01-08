@@ -31,7 +31,7 @@ states: default, active
 
 [embedmd]:# (../../common/core/src/commonMain/kotlin/com/trafi/ui/component/internal/RouteSearchTabConstants.kt kotlin /class / $)
 ```kotlin
-class RouteSearchTabConstants (theme: CurrentTheme) {
+class RouteSearchTabConstants(theme: CurrentTheme) {
     val contentColorPrimary = theme.colorPalette.onSurface
     val contentColorSecondary = theme.colorPalette.grayScale.gray600
     val defaultBackgroundColor = theme.colorPalette.grayScale.gray100
