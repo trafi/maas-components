@@ -1,6 +1,5 @@
 package com.trafi.ui.theme.internal
 
-import com.trafi.ui.theme.GrayScale
 import com.trafi.ui.theme.internal.type.BasicFontWeight
 import com.trafi.ui.theme.internal.type.Color
 import com.trafi.ui.theme.internal.type.dark
@@ -26,27 +25,27 @@ object ColorPalette {
         val OnBackground = Color(0xff212121) dark White
         val OnSurface = Color(0xff212121) dark White
         val OnError = White
-        val GrayScale = GrayScale(
-            gray100 = Color(0xfff5f5f5),
-            gray200 = Color(0xffeeeeee),
-            gray300 = Color(0xffe0e0e0),
-            gray400 = Color(0xffbdbdbd),
-            gray500 = Color(0xff9e9e9e),
-            gray600 = Color(0xff757575),
-            gray700 = Color(0xff616161),
-            gray800 = Color(0xff424242),
-            gray900 = Color(0xff212121),
-        ) dark GrayScale(
-            gray100 = Color(0xff212121),
-            gray200 = Color(0xff424242),
-            gray300 = Color(0xff616161),
-            gray400 = Color(0xff757575),
-            gray500 = Color(0xff9e9e9e),
-            gray600 = Color(0xffbdbdbd),
-            gray700 = Color(0xffe0e0e0),
-            gray800 = Color(0xffeeeeee),
-            gray900 = Color(0xfff5f5f5),
-        )
+        val GrayScale = grayScale {
+            gray100 = Color(0xfff5f5f5)
+            gray200 = Color(0xffeeeeee)
+            gray300 = Color(0xffe0e0e0)
+            gray400 = Color(0xffbdbdbd)
+            gray500 = Color(0xff9e9e9e)
+            gray600 = Color(0xff757575)
+            gray700 = Color(0xff616161)
+            gray800 = Color(0xff424242)
+            gray900 = Color(0xff212121)
+        } dark grayScale {
+            gray100 = Color(0xff212121)
+            gray200 = Color(0xff424242)
+            gray300 = Color(0xff616161)
+            gray400 = Color(0xff757575)
+            gray500 = Color(0xff9e9e9e)
+            gray600 = Color(0xffbdbdbd)
+            gray700 = Color(0xffe0e0e0)
+            gray800 = Color(0xffeeeeee)
+            gray900 = Color(0xfff5f5f5)
+        }
     }
 }
 
