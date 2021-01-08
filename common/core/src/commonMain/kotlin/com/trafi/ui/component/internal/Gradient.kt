@@ -1,3 +1,5 @@
+@file:Suppress("EXPERIMENTAL_API_USAGE")
+
 package com.trafi.ui.component.internal
 
 import com.trafi.ui.theme.internal.type.Color
