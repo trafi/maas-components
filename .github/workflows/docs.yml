@@ -1,7 +1,12 @@
 name: docs
 
 on:
-  pull_request:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - docs/**
+      - ios/Tests/MaasTests/__Snapshots__/**
 
 jobs:
   build:
