@@ -10,19 +10,19 @@ import androidx.compose.ui.graphics.Color
 import com.trafi.ui.theme.internal.ColorPalette
 
 public fun MaasTheme.lightColors(
-    primary: Color = ColorPalette.DefaultLight.Primary,
-    primaryVariant: Color = ColorPalette.DefaultLight.PrimaryVariant,
-    secondary: Color = ColorPalette.DefaultLight.Secondary,
-    secondaryVariant: Color = ColorPalette.DefaultLight.SecondaryVariant,
-    background: Color = ColorPalette.DefaultLight.Background,
-    surface: Color = ColorPalette.DefaultLight.Surface,
-    error: Color = ColorPalette.DefaultLight.Error,
-    onPrimary: Color = ColorPalette.DefaultLight.OnPrimary,
-    onSecondary: Color = ColorPalette.DefaultLight.OnSecondary,
-    onBackground: Color = ColorPalette.DefaultLight.OnBackground,
-    onSurface: Color = ColorPalette.DefaultLight.OnSurface,
-    onError: Color = ColorPalette.DefaultLight.OnError,
-    grayScale: GrayScale = ColorPalette.DefaultLight.GrayScale,
+    primary: Color = ColorPalette.Default.Primary.light,
+    primaryVariant: Color = ColorPalette.Default.PrimaryVariant.light,
+    secondary: Color = ColorPalette.Default.Secondary.light,
+    secondaryVariant: Color = ColorPalette.Default.SecondaryVariant.light,
+    background: Color = ColorPalette.Default.Background.light,
+    surface: Color = ColorPalette.Default.Surface.light,
+    error: Color = ColorPalette.Default.Error.light,
+    onPrimary: Color = ColorPalette.Default.OnPrimary.light,
+    onSecondary: Color = ColorPalette.Default.OnSecondary.light,
+    onBackground: Color = ColorPalette.Default.OnBackground.light,
+    onSurface: Color = ColorPalette.Default.OnSurface.light,
+    onError: Color = ColorPalette.Default.OnError.light,
+    grayScale: GrayScale = ColorPalette.Default.GrayScale.light,
 ): MaasColorPalette = MaasColorPalette(
     primary = primary,
     primaryVariant = primaryVariant,
@@ -41,19 +41,19 @@ public fun MaasTheme.lightColors(
 )
 
 public fun MaasTheme.darkColors(
-    primary: Color = ColorPalette.DefaultDark.Primary,
-    primaryVariant: Color = ColorPalette.DefaultDark.PrimaryVariant,
-    secondary: Color = ColorPalette.DefaultDark.Secondary,
-    secondaryVariant: Color = ColorPalette.DefaultDark.SecondaryVariant,
-    background: Color = ColorPalette.DefaultDark.Background,
-    surface: Color = ColorPalette.DefaultDark.Surface,
-    error: Color = ColorPalette.DefaultDark.Error,
-    onPrimary: Color = ColorPalette.DefaultDark.OnPrimary,
-    onSecondary: Color = ColorPalette.DefaultDark.OnSecondary,
-    onBackground: Color = ColorPalette.DefaultDark.OnBackground,
-    onSurface: Color = ColorPalette.DefaultDark.OnSurface,
-    onError: Color = ColorPalette.DefaultDark.OnError,
-    grayScale: GrayScale = ColorPalette.DefaultDark.GrayScale,
+    primary: Color = ColorPalette.Default.Primary.dark,
+    primaryVariant: Color = ColorPalette.Default.PrimaryVariant.dark,
+    secondary: Color = ColorPalette.Default.Secondary.dark,
+    secondaryVariant: Color = ColorPalette.Default.SecondaryVariant.dark,
+    background: Color = ColorPalette.Default.Background.dark,
+    surface: Color = ColorPalette.Default.Surface.dark,
+    error: Color = ColorPalette.Default.Error.dark,
+    onPrimary: Color = ColorPalette.Default.OnPrimary.dark,
+    onSecondary: Color = ColorPalette.Default.OnSecondary.dark,
+    onBackground: Color = ColorPalette.Default.OnBackground.dark,
+    onSurface: Color = ColorPalette.Default.OnSurface.dark,
+    onError: Color = ColorPalette.Default.OnError.dark,
+    grayScale: GrayScale = ColorPalette.Default.GrayScale.dark,
 ): MaasColorPalette = MaasColorPalette(
     primary = primary,
     primaryVariant = primaryVariant,
@@ -134,3 +134,6 @@ public class MaasColorPalette(
         isLight = other.isLight
     }
 }
+
+private val Color.light: Color get() = this
+private val Color.dark: Color get() = this
