@@ -1,5 +1,6 @@
 package com.trafi.ui.component.internal
 
+import com.trafi.ui.component.internal.Gradient.Direction.*
 import com.trafi.ui.theme.internal.CurrentTheme
 import com.trafi.ui.theme.internal.SpacingScale
 import com.trafi.ui.theme.internal.type.BasicFontWeight.*
@@ -24,7 +25,7 @@ class InfoButtonConstants(theme: CurrentTheme) {
     val disabledContentColor = defaultContentColor.alpha(0.38f)
 
     val highlightedGradient = Gradient(
-        direction = Gradient.Direction.Horizontal,
+        direction = Horizontal,
         colors = listOf(
             theme.colorPalette.grayScale.gray300.alpha(0f),
             theme.colorPalette.grayScale.gray300,
