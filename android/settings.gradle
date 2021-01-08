@@ -1,6 +1,6 @@
 rootProject.name = "maas-components-android"
 include ':app'
-include ':ui'
+include ':ui-android'
 include ':routes-ui-android'
 include ':transit-ui-android'
 
