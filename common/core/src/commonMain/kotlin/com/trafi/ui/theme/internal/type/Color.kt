@@ -5,7 +5,7 @@
 )
 @file:JvmName("Color")
 
-package com.trafi.ui.theme.internal
+package com.trafi.ui.theme.internal.type
 
 import kotlin.jvm.JvmName
 

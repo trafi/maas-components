@@ -1,4 +1,4 @@
-package com.trafi.ui.theme.internal
+package com.trafi.ui.theme.internal.type
 
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight

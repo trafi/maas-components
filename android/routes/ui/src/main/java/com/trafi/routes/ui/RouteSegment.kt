@@ -24,7 +24,7 @@ import com.trafi.ui.component.Badge
 import com.trafi.ui.component.BadgeInfo
 import com.trafi.ui.component.BadgeType
 import com.trafi.ui.theme.MaasTheme
-import com.trafi.ui.theme.internal.toColor
+import com.trafi.ui.theme.internal.type.toColor
 
 private typealias PersonalVehicleType = RouteSegmentPersonalVehicle.Vehicle
 
