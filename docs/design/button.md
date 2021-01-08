@@ -1,7 +1,16 @@
-# Button component
+# Button
+
+[API](#api) [SwiftUI][button-swiftui] [Jetpack Compose][button-compose]
 
 ## Preview
-[See in Figma](https://www.figma.com/file/1P6PQxKaqIaLjxxfy1cFtH/MaaS-Design-System?node-id=410%3A0)
+
+<iframe
+    style="border: 1px solid rgba(0, 0, 0, 0.1);"
+    width="800"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F1P6PQxKaqIaLjxxfy1cFtH%2FMaaS-Design-System%3Fnode-id%3D410%253A0"
+    allowfullscreen
+/></iframe>
 
 
 ## Specifications
@@ -15,9 +24,8 @@
 - Keep text concise. Text longer than 22 symbols, might be truncated on smaller screens.
 
 ## API
-[ButtonConstants.kt](ButtonConstants.kt)
 
-[embedmd]:# (ButtonConstants.kt kotlin /class / $)
+[embedmd]:# (../../common/core/src/commonMain/kotlin/com/trafi/ui/component/internal/ButtonConstants.kt kotlin /class / $)
 ```kotlin
 class ButtonConstants(theme: CurrentTheme) {
     val defaultBackgroundColor = theme.colorPalette.primary
@@ -32,4 +40,7 @@ class ButtonConstants(theme: CurrentTheme) {
 ```
 
 ## Preview from automated tests
-<img src="../../../../../../../../../../ios/Tests/MaasTests/__Snapshots__/Components/Button.2x.png" width="100%">
+![Button](../../ios/Tests/MaasTests/__Snapshots__/Components/Button.2x.png)
+
+[button-swiftui]: https://github.com/trafi/maas-components/blob/main/ios/Sources/MaaS/UI/Components/Button.swift
+[button-compose]: https://github.com/trafi/maas-components/blob/main/android/ui/src/main/java/com/trafi/ui/Button.kt
