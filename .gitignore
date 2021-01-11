@@ -5,3 +5,11 @@
 xcuserdata/
 .swiftpm
 .idea
+*.iml
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+build/
+/*/out
+.gradle
