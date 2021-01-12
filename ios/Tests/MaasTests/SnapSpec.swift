@@ -2,7 +2,7 @@ import SwiftUI
 import XCTest
 import Quick
 import SnapshotTesting
-@testable import MaaS
+@testable import Maas
 
 extension QuickSpec {
 

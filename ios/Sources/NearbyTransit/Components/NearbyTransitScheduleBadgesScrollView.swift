@@ -143,13 +143,13 @@ private struct ScrollViewData: Equatable {
 }
 
 #if DEBUG
-struct NearbyTransitScheduleBadgesScrollView_Previews: PreviewProvider, Snapped {
+public struct NearbyTransitScheduleBadgesScrollView_Previews: PreviewProvider, Snapped {
 
     static let schedules = NearbyTransitComponentsPreviewData.stopWithSchedulesWithDepartures
         .scheduleDepartures
         .map { $0.schedule }
 
-    static var snapped: [String: AnyView] {
+    public static var snapped: [String: AnyView] {
         [
             "Scrolling": AnyView(
                 NearbyTransitScheduleBadgesScrollView(schedules: schedules)
@@ -202,9 +202,9 @@ struct NearbyTransitScheduleBadgesScrollView_Previews: PreviewProvider, Snapped 
         ]
     }
 
-    static var elementWidth: CGFloat? { 200 }
+    public static var elementWidth: CGFloat? { 200 }
 
-    static var detailed: Bool { true }
+    public static var detailed: Bool { true }
 }
 
 private extension View {

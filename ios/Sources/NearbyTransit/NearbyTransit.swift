@@ -1,2 +1,2 @@
-@_exported import MaaS
+@_exported import Maas
 @_exported import MaasCore

@@ -45,14 +45,14 @@ private extension NearbyTransitStopListItem {
 
     var name: some View {
         Text(input.data.stop.name)
-            .textStyle(theme.typographyScale.textL)
+            // .textStyle(theme.typographyScale.textL)
             .lineLimit(1)
     }
 
     var direction: some View {
         input.data.stop.direction.flatMap {
             Text("Towards " + $0)
-                .textStyle(theme.typographyScale.textM)
+                // .textStyle(theme.typographyScale.textM)
                 .foregroundColor(Color(UIColor.systemGray))
         }
     }
@@ -65,7 +65,7 @@ private extension NearbyTransitStopListItem {
                Text("3 min. • ")
             }
         }
-        .textStyle(theme.typographyScale.textM)
+        // .textStyle(theme.typographyScale.textM)
         // .foregroundColor(theme.colorPalette.grayScale.gray100)
     }
 

@@ -1,4 +1,4 @@
-@testable import MaaS
+@testable import Maas
 import Quick
 
 final class Components: QuickSpec {

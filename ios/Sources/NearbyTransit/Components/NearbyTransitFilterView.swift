@@ -19,9 +19,9 @@ struct NearbyTransitFilterView: View {
 
 // MARK: - Preview
 #if DEBUG
-struct NearbyTransitFilterView_Previews: PreviewProvider, Snapped {
+public struct NearbyTransitFilterView_Previews: PreviewProvider, Snapped {
 
-    static var snapped: [String: AnyView] {
+    public static var snapped: [String: AnyView] {
         [
             "Filter": AnyView(
                 MultiSelectFilter(
@@ -51,7 +51,7 @@ struct NearbyTransitFilterView_Previews: PreviewProvider, Snapped {
         ]
     }
 
-    static var elementWidth: CGFloat? { 290 }
+    public static var elementWidth: CGFloat? { 290 }
 }
 
 // MARK: - Mock Data

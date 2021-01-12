@@ -56,13 +56,13 @@ private extension Array {
 }
 
 #if DEBUG
-struct NearbyTransitStopBadgeView_Previews: PreviewProvider, Snapped {
+public struct NearbyTransitStopBadgeView_Previews: PreviewProvider, Snapped {
 
     static let schedules = NearbyTransitComponentsPreviewData.stopWithSchedulesWithDepartures
         .scheduleDepartures
         .map { $0.schedule }
 
-    static var snapped: [String: AnyView] {
+    public static var snapped: [String: AnyView] {
         [
             "Multi": AnyView(
                 NearbyTransitStopBadgeView(schedules: schedules)
@@ -92,8 +92,8 @@ struct NearbyTransitStopBadgeView_Previews: PreviewProvider, Snapped {
         ]
     }
 
-    static var elementWidth: CGFloat? { 100 }
+    public static var elementWidth: CGFloat? { 100 }
 
-    static var detailed: Bool { true }
+    public static var detailed: Bool { true }
 }
 #endif

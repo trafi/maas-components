@@ -1,5 +1,6 @@
-@testable import MaaS
+@testable import Maas
 import Quick
+import NearbyTransit
 
 final class Features: QuickSpec {
     override func spec() {

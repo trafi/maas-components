@@ -62,8 +62,8 @@ public struct NearbyTransitFilterItemView: View, Swappable {
 // MARK: - Preview
 
 #if DEBUG
-struct NearbyTransitFilterItemView_Previews: PreviewProvider, Snapped {
-    static var snapped: [String: AnyView] {
+public struct NearbyTransitFilterItemView_Previews: PreviewProvider, Snapped {
+    public static var snapped: [String: AnyView] {
         [
             "Enabled": AnyView(
                 NearbyTransitFilterItemView(
@@ -89,7 +89,7 @@ struct NearbyTransitFilterItemView_Previews: PreviewProvider, Snapped {
         ]
     }
     
-    static var elementWidth: CGFloat? { 90 }
+    public static var elementWidth: CGFloat? { 90 }
 }
 
 extension FilterItem: Identifiable {}
