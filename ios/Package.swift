@@ -4,15 +4,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "MaaS",
+    name: "Maas",
     platforms: [
         .iOS(.v13),
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "MaaS",
-            targets: ["MaaS"]),
+            name: "Maas",
+            targets: ["Maas"]),
         .library(
             name: "MaasCore",
             targets: ["MaasCore"]),
@@ -38,30 +38,22 @@ let package = Package(
         .binaryTarget(
             name: "MaasCore",
             // Used for production
-            url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev05/MaasCore.xcframework.zip",
-            checksum: "d0e9dfa86527369490cb3293e6370e3d8844d14cd35a19bde44433fc337921ed"),
+            url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev06/MaasCore.xcframework.zip",
+            checksum: "d22ef85f0be67f6bf54267d4e1924fedc94ad54377281db250d2465e8e1b8448"),
             // Used for development
-//            path: "common/core/build/bin/xcframework/MaasCore.xcframework"),
-
+            // path: "common/core/build/bin/xcframework/MaasCore.xcframework"),
         .target(
-            name: "MaaS",
-            dependencies: ["MaasCore", "Swappable", "MaasTheme"],
-            path: "ios/Sources/MaaS"),
-
-        .testTarget(
-            name: "MaasTests",
-            dependencies: ["MaaS", "SnapshotTesting", "Quick"],
-            path: "ios/Tests/MaasTests",
-            exclude: ["__Snapshots__"]),
-
+            name: "Maas",
+            dependencies: ["MaasCore", "MaasTheme", "Swappable"]),
         .target(
             name: "MaasTheme",
-            dependencies: ["MaasCore"],
-            path: "ios/Sources/MaasTheme"),
-
+            dependencies: ["MaasCore"]),
         .target(
             name: "NearbyTransit",
-            dependencies: ["MaasCore", "Swappable", "MaasTheme", "MaaS"],
-            path: "ios/Sources/NearbyTransit"),
+            dependencies: ["Maas"]),
+        .testTarget(
+            name: "MaasTests",
+            dependencies: ["Maas", "SnapshotTesting", "Quick"],
+            exclude: ["__Snapshots__"]),
     ]
 )
