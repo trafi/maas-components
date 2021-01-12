@@ -86,7 +86,7 @@ android {
     }
 }
 
-apply(from = "../../android/scripts/maven-meta.gradle")
+apply(from = "${rootProject.projectDir}/gradle/maven-meta.gradle")
 
 val xcframeworkPath = "../../ios/MaasCore/Sources/MaasCore/Core.xcframework"
 

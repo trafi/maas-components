@@ -24,4 +24,4 @@ artifacts {
     archives androidSourcesJar
 }
 
-apply from: "${rootProject.projectDir}/scripts/maven-meta.gradle"
+apply from: "${rootProject.projectDir}/gradle/maven-meta.gradle"
