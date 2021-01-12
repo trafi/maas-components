@@ -39,4 +39,4 @@ ext {
     PUBLISH_ARTIFACT_ID = 'ui-android'
 }
 
-apply from: "${rootProject.projectDir}/scripts/maven-publish.gradle"
+apply from: "${rootProject.projectDir}/gradle/maven-publish.gradle"
