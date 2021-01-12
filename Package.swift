@@ -40,10 +40,10 @@ let package = Package(
         .binaryTarget(
             name: "MaasCore",
             // Used for production
-//            url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev06/MaasCore.xcframework.zip",
-//            checksum: "d22ef85f0be67f6bf54267d4e1924fedc94ad54377281db250d2465e8e1b8448"),
+            url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev06/MaasCore.xcframework.zip",
+            checksum: "d22ef85f0be67f6bf54267d4e1924fedc94ad54377281db250d2465e8e1b8448"),
             // Used for development
-             path: "common/core/build/bin/xcframework/MaasCore.xcframework"),
+//             path: "common/core/build/bin/xcframework/MaasCore.xcframework"),
         .target(
             name: "Maas",
             dependencies: ["MaasCore", "MaasTheme", "Swappable"],
