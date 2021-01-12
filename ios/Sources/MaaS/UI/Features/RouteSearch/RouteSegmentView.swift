@@ -28,7 +28,7 @@ struct RouteSegmentView: View {
 }
 
 extension String {
-    func parseColor() -> Color {
+    public func parseColor() -> Color {
         .init(hex: self)
     }
 }

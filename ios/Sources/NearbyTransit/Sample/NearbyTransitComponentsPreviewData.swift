@@ -1,3 +1,5 @@
+// Move to kmp
+
 enum NearbyTransitComponentsPreviewData {
 
     static let stop = Stop(

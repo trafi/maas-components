@@ -8,20 +8,20 @@
 import SwiftUI
 import MaasTheme
 
-struct Cell<P: View, S: View, C: View>: View {
+public struct Cell<P: View, S: View, C: View>: View {
 
     let content: () -> C
     let prefix: () -> P?
     let suffix: () -> S?
 
-    init(content: @escaping () -> C)
+    public init(content: @escaping () -> C)
     where P == Never, S == Never {
         self.content = content
         self.prefix = { nil }
         self.suffix = { nil }
     }
 
-    init(content: @escaping () -> C,
+    public init(content: @escaping () -> C,
          prefix: @escaping () -> P?)
     where S == Never {
         self.content = content
@@ -29,7 +29,7 @@ struct Cell<P: View, S: View, C: View>: View {
         self.suffix = { nil }
     }
 
-    init(content: @escaping () -> C,
+    public init(content: @escaping () -> C,
          suffix: @escaping () -> S?)
     where P == Never {
         self.content = content
@@ -37,7 +37,7 @@ struct Cell<P: View, S: View, C: View>: View {
         self.suffix = suffix
     }
 
-    init(content: @escaping () -> C,
+    public init(content: @escaping () -> C,
          prefix: @escaping () -> P?,
          suffix: @escaping () -> S?) {
         self.content = content
@@ -45,7 +45,7 @@ struct Cell<P: View, S: View, C: View>: View {
         self.suffix = suffix
     }
 
-    var body: some View {
+    public var body: some View {
         HStack(spacing: Spacing.listItemGutter.value) {
             prefix()
             content()

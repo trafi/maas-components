@@ -41,6 +41,18 @@ public struct MultiSelectFilter<T, Content>: View where Content : View, T: Ident
     public var didTapItem: (T.ID) -> ()
     public var disabledItems: Set<T.ID>
 
+    public init(
+        items: [T],
+        itemView: @escaping (T, Bool) -> Content,
+        didTapItem: @escaping (T.ID) -> (),
+        disabledItems: Set<T.ID>
+    ) {
+        self.items = items
+        self.itemView = itemView
+        self.didTapItem = didTapItem
+        self.disabledItems = disabledItems
+    }
+
     public var body: some View {
         ScrollableTappableView(
             items: items,
@@ -56,6 +68,18 @@ public struct SingleSelectFilter<T, Content>: View where Content : View, T: Iden
     public let itemView: (T, Bool) -> Content
     public var didTapItem: (T.ID) -> ()
     public var selectedItem: T.ID
+
+    public init(
+        items: [T],
+        itemView: @escaping (T, Bool) -> Content,
+        didTapItem: @escaping (T.ID) -> (),
+        selectedItem: T.ID
+    ) {
+        self.items = items
+        self.itemView = itemView
+        self.didTapItem = didTapItem
+        self.selectedItem = selectedItem
+    }
 
     public var body: some View {
         ScrollableTappableView(

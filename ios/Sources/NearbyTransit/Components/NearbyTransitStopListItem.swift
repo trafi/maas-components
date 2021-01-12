@@ -1,6 +1,5 @@
 import SwiftUI
 import Swappable
-import MaasCore
 import MaasTheme
 
 public struct NearbyTransitStopListItem: View, Swappable {
