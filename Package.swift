@@ -19,6 +19,9 @@ let package = Package(
         .library(
             name: "MaasTheme",
             targets: ["MaasTheme"]),
+        .library(
+            name: "NearbyTransit",
+            targets: ["NearbyTransit"]),
     ],
     dependencies: [
         .package(
@@ -55,5 +58,10 @@ let package = Package(
             name: "MaasTheme",
             dependencies: ["MaasCore"],
             path: "ios/Sources/MaasTheme"),
+
+        .target(
+            name: "NearbyTransit",
+            dependencies: ["MaasCore", "Swappable", "MaasTheme"],
+            path: "ios/Sources/NearbyTransit"),
     ]
 )
