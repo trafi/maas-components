@@ -13,6 +13,12 @@ let package = Package(
         .library(
             name: "MaasCore",
             targets: ["MaasCore", "MaasComponents", "MaasTheme"]),
+        .library(
+            name: "MaasTheme",
+            targets: ["MaasTheme"]),
+        .library(
+            name: "MaasComponents",
+            targets: ["MaasComponents"]),
     ],
     dependencies: [
         .package(
