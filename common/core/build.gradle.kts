@@ -5,6 +5,7 @@ plugins {
     kotlin("plugin.serialization") version "1.4.21"
     id("com.android.library")
     id("maven-publish")
+    id("maven-meta")
 }
 group = "com.trafi.maas"
 version = rootProject.version
@@ -85,8 +86,6 @@ android {
         }
     }
 }
-
-apply(from = "${rootProject.projectDir}/gradle/maven-meta.gradle")
 
 val xcframeworkPath = "../../ios/MaasCore/Sources/MaasCore/Core.xcframework"
 
