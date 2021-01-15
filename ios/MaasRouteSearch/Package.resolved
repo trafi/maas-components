@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Swappable",
+        "repositoryURL": "https://github.com/trafi/swappable.git",
+        "state": {
+          "branch": null,
+          "revision": "5bfceab25e54f587ae258cd71ab672ff0dc39bdc",
+          "version": "0.0.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
