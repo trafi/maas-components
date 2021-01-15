@@ -22,7 +22,7 @@ jobs:
           java-version: 12
 
       -  name: Android Emulator Runner
-         uses: ReactiveCircus/android-emulator-runner@v2.13.0
+         uses: ReactiveCircus/android-emulator-runner@v2.14.3
          with:
            api-level: 28
            target: default
