@@ -1,10 +1,10 @@
 package com.trafi.ui.component.internal
 
-import com.trafi.ui.theme.internal.BasicFontWeight.*
 import com.trafi.ui.theme.internal.CurrentTheme
-import com.trafi.ui.theme.internal.alpha
-import com.trafi.ui.theme.internal.copy
-import com.trafi.ui.theme.internal.dp
+import com.trafi.ui.theme.internal.type.BasicFontWeight.Bold
+import com.trafi.ui.theme.internal.type.alpha
+import com.trafi.ui.theme.internal.type.copy
+import com.trafi.ui.theme.internal.type.dp
 
 class ButtonConstants(theme: CurrentTheme) {
     val defaultBackgroundColor = theme.colorPalette.primary

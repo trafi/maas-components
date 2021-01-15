@@ -40,13 +40,17 @@ subprojects {
 
 subprojects { project ->
     afterEvaluate {
-        tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach { task ->
             kotlinOptions {
                 jvmTarget = '1.8'
-                // avoid kotlin_module clash for projects with the same name, e.g. 'ui' & 'routes:ui"
-                // https://discuss.kotlinlang.org/t/dealing-with-kotlin-module-conflict-when-building-apk-for-project-with-non-unique-project-names/11247
                 if (project.hasProperty('PUBLISH_ARTIFACT_ID')) {
+                    // avoid kotlin_module clash for projects with the same name, e.g. 'ui' & 'routes:ui"
+                    // https://discuss.kotlinlang.org/t/dealing-with-kotlin-module-conflict-when-building-apk-for-project-with-non-unique-project-names/11247
                     freeCompilerArgs += ['-module-name', "com.trafi.maas.$PUBLISH_ARTIFACT_ID"]
+                    // enable explicit API mode, see https://youtrack.jetbrains.com/issue/KT-37652
+                    if (!['test', 'Test'].any { task.name.contains(it) }) {
+                        kotlinOptions.freeCompilerArgs += '-Xexplicit-api=strict'
+                    }
                 }
             }
         }

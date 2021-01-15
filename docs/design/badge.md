@@ -1,11 +1,19 @@
 # Badge
 
+[API](#api) [SwiftUI][badge-swiftui] [Jetpack Compose][badge-compose]
+
 Badge is a block that accomodates small pieces of information
 
 
 ## Preview
 
-[Figma](https://www.figma.com/file/1P6PQxKaqIaLjxxfy1cFtH/MaaS-Design-System?node-id=735%3A11698)
+<iframe
+    style="border: 1px solid rgba(0, 0, 0, 0.1);"
+    width="800"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F1P6PQxKaqIaLjxxfy1cFtH%2FMaaS-Design-System%3Fnode-id%3D735%253A11698"
+    allowfullscreen
+/></iframe>
 
 
 ## Usage
@@ -41,7 +49,7 @@ extension: in PT flow content inside fits a maximum of 4 string characters and t
 
 ## API
 
-[embedmd]:# (BadgeConstants.kt kotlin /class / $)
+[embedmd]:# (../../common/core/src/commonMain/kotlin/com/trafi/ui/component/internal/BadgeConstants.kt kotlin /class / $)
 ```kotlin
 class BadgeConstants(theme: CurrentTheme) {
     val defaultContentColor = theme.colorPalette.onPrimary
@@ -76,5 +84,9 @@ class BadgeConstants(theme: CurrentTheme) {
     val borderWidth = 1.5.dp
 }
 ```
+
 ## Preview from automated tests
-<img src="../../../../../../../../../../ios/Tests/MaasTests/__Snapshots__/Components/Badge.2x.png" width="100%">
+![Badge](../../ios/Tests/MaasTests/__Snapshots__/Components/Badge.2x.png)
+
+[badge-swiftui]: https://github.com/trafi/maas-components/blob/main/ios/Sources/MaaS/UI/Components/Badge.swift
+[badge-compose]: https://github.com/trafi/maas-components/blob/main/android/ui/src/main/java/com/trafi/ui/Badge.kt

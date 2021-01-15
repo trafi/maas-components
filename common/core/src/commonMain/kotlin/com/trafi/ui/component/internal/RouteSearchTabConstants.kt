@@ -1,11 +1,13 @@
 package com.trafi.ui.component.internal
 
-import com.trafi.ui.theme.internal.*
-import com.trafi.ui.theme.internal.BasicFontWeight.Bold
-import com.trafi.ui.theme.internal.BasicFontWeight.Normal
-import com.trafi.ui.theme.internal.dp
+import com.trafi.ui.theme.internal.CurrentTheme
+import com.trafi.ui.theme.internal.SpacingScale
+import com.trafi.ui.theme.internal.type.BasicFontWeight.*
+import com.trafi.ui.theme.internal.type.alpha
+import com.trafi.ui.theme.internal.type.copy
+import com.trafi.ui.theme.internal.type.dp
 
-class RouteSearchTabConstants (theme: CurrentTheme) {
+class RouteSearchTabConstants(theme: CurrentTheme) {
     val contentColorPrimary = theme.colorPalette.onSurface
     val contentColorSecondary = theme.colorPalette.grayScale.gray600
     val defaultBackgroundColor = theme.colorPalette.grayScale.gray100

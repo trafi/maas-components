@@ -1,6 +1,9 @@
 package com.trafi.ui.theme.internal
 
 import com.trafi.ui.theme.GrayScale
+import com.trafi.ui.theme.internal.type.BasicFontWeight
+import com.trafi.ui.theme.internal.type.Color
+import com.trafi.ui.theme.internal.type.dp
 
 object ColorPalette {
     val White = Color(0xffffffff)
@@ -59,5 +62,78 @@ object ColorPalette {
         val OnBackground = White
         val OnSurface = White
         val OnError = White
+    }
+}
+
+object SpacingScale {
+    val xxxs = 2.dp
+    val xxs = 4.dp
+    val xs = 8.dp
+    val sm = 12.dp
+    val md = 16.dp
+    val lg = 20.dp
+    val xl = 24.dp
+    val xxl = 32.dp
+    val xxxl = 48.dp
+
+    object Default {
+        val GlobalMargin = xl
+    }
+}
+
+object CornerRadiusScale {
+    val none = 0.dp
+    val xxs = 4.dp
+    val xs = 6.dp
+    val sm = 8.dp
+    val lg = 12.dp
+    val xl = 20.dp
+    val round = maxValue.dp
+
+    object Default {
+        val ButtonRadius = round
+    }
+}
+
+object TypographyScale {
+    val headingXXL = textStyle {
+        fontWeight = BasicFontWeight.Bold
+        fontSize = 40
+        lineHeight = 50
+    }
+    val headingXL = textStyle {
+        fontWeight = BasicFontWeight.Bold
+        fontSize = 32
+        lineHeight = 40
+    }
+    val headingL = textStyle {
+        fontWeight = BasicFontWeight.Bold
+        fontSize = 28
+        lineHeight = 36
+    }
+    val headingM = textStyle {
+        fontWeight = BasicFontWeight.Bold
+        fontSize = 18
+        lineHeight = 22
+    }
+    val textL = textStyle {
+        fontWeight = BasicFontWeight.Normal
+        fontSize = 16
+        lineHeight = 24
+    }
+    val textM = textStyle {
+        fontWeight = BasicFontWeight.Normal
+        fontSize = 14
+        lineHeight = 20
+    }
+    val textS = textStyle {
+        fontWeight = BasicFontWeight.Normal
+        fontSize = 12
+        lineHeight = 16
+    }
+    val label = textStyle {
+        fontWeight = BasicFontWeight.Bold
+        fontSize = 14
+        lineHeight = 18
     }
 }

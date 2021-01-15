@@ -35,7 +35,7 @@ import com.trafi.ui.theme.darkColors
 private val constants
     get() = RouteSearchTabConstants(currentTheme)
 
-data class TabItem(
+internal data class TabItem(
     val id: String,
     val icon: String,
     val active: Boolean,
@@ -45,7 +45,7 @@ data class TabItem(
 
 @OptIn(ExperimentalLayout::class)
 @Composable
-fun RouteSearchTab(
+internal fun RouteSearchTab(
     tabItem: TabItem,
     isSelected: Boolean,
     onRouteTabClick: () -> Unit,
@@ -102,7 +102,7 @@ fun RouteSearchTab(
 
 @Preview(showBackground = true)
 @Composable
-fun ActiveRouteSearchTabPreview() {
+private fun ActiveRouteSearchTabPreview() {
     RouteSearchTab(
         tabItem = TabItem(
             id = "1",
@@ -119,7 +119,7 @@ fun ActiveRouteSearchTabPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun RouteSearchTabPreview() {
+private fun RouteSearchTabPreview() {
     RouteSearchTab(
         tabItem = TabItem(
             id = "1",
@@ -135,7 +135,7 @@ fun RouteSearchTabPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun ActiveRouteSearchTabDarkPreview() {
+private fun ActiveRouteSearchTabDarkPreview() {
     MaasTheme(colors = MaasTheme.darkColors()) {
         RouteSearchTab(
             tabItem = TabItem(
@@ -153,7 +153,7 @@ fun ActiveRouteSearchTabDarkPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun RouteSearchTabDarkPreview() {
+private fun RouteSearchTabDarkPreview() {
     MaasTheme(colors = MaasTheme.darkColors()) {
         RouteSearchTab(
             tabItem = TabItem(

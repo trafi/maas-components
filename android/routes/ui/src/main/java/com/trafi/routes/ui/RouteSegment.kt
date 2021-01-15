@@ -24,12 +24,12 @@ import com.trafi.ui.component.Badge
 import com.trafi.ui.component.BadgeInfo
 import com.trafi.ui.component.BadgeType
 import com.trafi.ui.theme.MaasTheme
-import com.trafi.ui.theme.internal.toColor
+import com.trafi.ui.theme.internal.type.toColor
 
-typealias PersonalVehicleType = RouteSegmentPersonalVehicle.Vehicle
+private typealias PersonalVehicleType = RouteSegmentPersonalVehicle.Vehicle
 
 @Composable
-fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
+public fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
     when (segment.mode) {
         RouteSegment.Mode.TRANSIT -> {
             val transit = segment.transit ?: return

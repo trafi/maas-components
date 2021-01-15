@@ -1,4 +1,4 @@
-package com.trafi.ui.theme.internal
+package com.trafi.ui.theme.internal.type
 
 actual data class TextStyle(
         val fontWeight: BasicFontWeight,

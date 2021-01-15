@@ -1,7 +1,7 @@
 @file:Suppress("EXPERIMENTAL_FEATURE_WARNING")
 @file:JvmName("Dp")
 
-package com.trafi.ui.theme.internal
+package com.trafi.ui.theme.internal.type
 
 import kotlin.jvm.JvmName
 

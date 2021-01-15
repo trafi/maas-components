@@ -16,7 +16,7 @@ internal val Inter = fontFamily(
 )
 
 @Immutable
-data class MaasTypography internal constructor(
+public data class MaasTypography internal constructor(
     val headingXXL: TextStyle,
     val headingXL: TextStyle,
     val headingL: TextStyle,
@@ -26,7 +26,7 @@ data class MaasTypography internal constructor(
     val textS: TextStyle,
     val label: TextStyle,
 ) {
-    constructor(
+    public constructor(
         defaultFontFamily: FontFamily = Inter,
         headingXXL: TextStyle = TypographyScale.headingXXL,
         headingXL: TextStyle = TypographyScale.headingXL,
