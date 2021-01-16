@@ -101,14 +101,14 @@ kotlin {
 
 val xcframeworkPath = "../../ios/MaasCore/Sources/MaasCore/Core.xcframework"
 
-val cleanXcframework by tasks.creating(Exec::class) {
+val cleanXcframework by tasks.registering(Exec::class) {
 
     group = "cleanup"
 
     commandLine("rm", "-rf", xcframeworkPath)
 }
 
-val xcframework by tasks.creating(Exec::class) {
+val xcframework by tasks.registering(Exec::class) {
 
     group = "build"
 
@@ -130,7 +130,7 @@ val xcframework by tasks.creating(Exec::class) {
     )
 }
 
-val xcframeworkSimulator by tasks.creating(Exec::class) {
+val xcframeworkSimulator by tasks.registering(Exec::class) {
 
     group = "build"
 
