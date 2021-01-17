@@ -4,9 +4,6 @@ plugins {
     id("shot")
 }
 
-val compose_version: String by rootProject.extra
-val kotlin_version: String by rootProject.extra
-
 android {
 
     compileSdkVersion(30)
@@ -44,8 +41,8 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerVersion = kotlin_version
-        kotlinCompilerExtensionVersion = compose_version
+        kotlinCompilerVersion = Versions.kotlin
+        kotlinCompilerExtensionVersion = Versions.compose
     }
     // Workaround for https://github.com/Kotlin/kotlinx.coroutines/issues/2023
     packagingOptions {
@@ -59,21 +56,21 @@ android {
 dependencies {
     implementation(project(":android:ui-android"))
     implementation(project(":android:routes-ui-android"))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlin_version")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}")
     implementation("androidx.core:core-ktx:1.3.2")
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("com.google.android.material:material:1.2.1")
-    implementation("androidx.compose.foundation:foundation-layout:$compose_version")
-    implementation("androidx.compose.material:material:$compose_version")
-    implementation("androidx.compose.ui:ui-tooling:$compose_version")
+    implementation("androidx.compose.foundation:foundation-layout:${Versions.compose}")
+    implementation("androidx.compose.material:material:${Versions.compose}")
+    implementation("androidx.compose.ui:ui-tooling:${Versions.compose}")
     implementation("androidx.navigation:navigation-compose:1.0.0-alpha03")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.activity:activity-ktx:1.1.0")
     implementation("junit:junit:4.13.1")
-    implementation("androidx.compose.ui:ui-test-junit4:$compose_version")
-    implementation("androidx.compose.ui:ui-test:$compose_version")
+    implementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
+    implementation("androidx.compose.ui:ui-test:${Versions.compose}")
     implementation("com.karumi:shot-android:5.5.0")
 }
