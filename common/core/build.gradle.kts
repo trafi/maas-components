@@ -3,14 +3,13 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
-    kotlin("plugin.serialization") version "1.4.21"
+    kotlin("plugin.serialization") version Versions.kotlin
     id("maven-publish")
     id("maven-meta")
 }
 group = "com.trafi.maas"
 version = rootProject.version
 
-val composeVersion = "1.0.0-alpha08"
 val ktorVersion = "1.4.1"
 val serializationVersion = "1.0.1"
 val coroutinesVersion = "1.4.1-native-mt"
@@ -81,7 +80,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-android:$ktorVersion")
-                implementation("androidx.compose.ui:ui:$composeVersion")
+                implementation("androidx.compose.ui:ui:${Versions.compose}")
             }
         }
         val androidTest by getting {
