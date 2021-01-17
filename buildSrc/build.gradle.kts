@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.konan.properties.loadProperties
+
 plugins {
     `kotlin-dsl`
 }
@@ -8,6 +10,8 @@ repositories {
     mavenCentral()
 }
 
+val versions = loadProperties("$projectDir/src/main/resources/versions.properties")
+
 dependencies {
-    implementation("com.android.tools.build:gradle:7.0.0-alpha02")
+    implementation("com.android.tools.build:gradle:${versions["version.androidGradlePlugin"]}")
 }
