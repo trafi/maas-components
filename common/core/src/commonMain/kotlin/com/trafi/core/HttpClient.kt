@@ -22,3 +22,14 @@ internal fun httpClient(apiKey: String) = HttpClient {
         header("x-api-key", apiKey)
     }
 }
+
+internal val HttpClient.authorized
+    get() = config {
+        defaultRequest {
+            Configuration.idToken?.let { idToken ->
+                header("Authorization", "Bearer $idToken")
+            }
+        }
+    }
+
+private val Configuration.idToken: String? get() = identity?.getIdToken?.invoke()
