@@ -88,7 +88,7 @@ android {
 
 apply(from = "../../android/scripts/maven-meta.gradle")
 
-val xcframeworkPath = "build/bin/xcframework/MaasCore.xcframework"
+val xcframeworkPath = "../../ios/MaasCore/Sources/MaasCore/Core.xcframework"
 
 val cleanXcframework by tasks.creating(Exec::class) {
 
