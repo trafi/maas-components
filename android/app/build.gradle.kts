@@ -75,8 +75,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.activity:activity-ktx:1.1.0")
-    implementation("junit:junit:4.13.1")
-    implementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
-    implementation("androidx.compose.ui:ui-test:${Versions.compose}")
-    implementation("com.karumi:shot-android:5.5.0")
+    androidTestImplementation("junit:junit:4.13.1")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
+    androidTestImplementation("androidx.compose.ui:ui-test:${Versions.compose}")
 }
