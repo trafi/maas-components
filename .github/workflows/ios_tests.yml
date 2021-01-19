@@ -16,9 +16,13 @@ jobs:
       - uses: devbotsxyz/xcode-select@v1
       
       - uses: actions/checkout@v2
+
+      - uses: actions/setup-java@v1
+          with:
+            java-version: 11
         
       - name: Build xcframework
-        run: cd common && ./gradlew xcframeworkSimulator && cd ..
+        run: ./gradlew xcframeworkSimulator
         
       - name: Test
         run: xcodebuild -scheme MaaS-Package test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' | xcpretty
