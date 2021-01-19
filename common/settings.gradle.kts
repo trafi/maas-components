@@ -16,3 +16,4 @@ pluginManagement {
 rootProject.name = "maas-components-common"
 
 include(":core")
+include(":localization")
