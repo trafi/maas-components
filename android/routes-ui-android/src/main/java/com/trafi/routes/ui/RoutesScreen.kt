@@ -2,7 +2,11 @@ package com.trafi.routes.ui
 
 import androidx.compose.foundation.ScrollableRow
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.AmbientContentColor
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
@@ -213,9 +217,11 @@ private fun RouteSearchTabsList(
         modifier = modifier.padding(horizontal = MaasTheme.spacing.globalMargin)
     ) {
         items.forEach { tabItem ->
-            RouteSearchTab(tabItem = tabItem,
+            RouteSearchTab(
+                tabItem = tabItem,
                 isSelected = selectedItemId == tabItem.id,
-                onRouteTabClick = { onRouteTabClick(tabItem.id) })
+                onRouteTabClick = { onRouteTabClick(tabItem.id) },
+            )
         }
     }
 }
