@@ -7,9 +7,6 @@ plugins {
     id("maven-publish")
     id("maven-meta")
 }
-group = "com.trafi.maas"
-version = rootProject.version
-
 val ktorVersion = "1.4.1"
 val serializationVersion = "1.0.1"
 val coroutinesVersion = "1.4.1-native-mt"
