@@ -7,9 +7,6 @@ plugins {
     id("maven-publish")
     id("maven-meta")
 }
-val ktorVersion = "1.4.1"
-val serializationVersion = "1.0.1"
-val coroutinesVersion = "1.4.1-native-mt"
 
 repositories {
     gradlePluginPortal()
@@ -19,10 +16,10 @@ repositories {
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdkVersion(Versions.androidCompileSdk)
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(23)
+        minSdkVersion(Versions.androidMinSdk)
         consumerProguardFiles("consumer-rules.pro")
     }
     buildTypes {
@@ -62,10 +59,10 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-                implementation("io.ktor:ktor-client-core:$ktorVersion")
-                implementation("io.ktor:ktor-client-serialization:$ktorVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}")
+                implementation("io.ktor:ktor-client-core:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
             }
         }
         val commonTest by getting {
@@ -76,7 +73,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-android:$ktorVersion")
+                implementation("io.ktor:ktor-client-android:${Versions.ktor}")
                 implementation("androidx.compose.ui:ui:${Versions.compose}")
             }
         }
@@ -88,7 +85,7 @@ kotlin {
         }
         val iosMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-ios:$ktorVersion")
+                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
             }
         }
         val iosTest by getting
