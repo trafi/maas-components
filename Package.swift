@@ -94,8 +94,8 @@ private extension Environment {
             return [
                 .binaryTarget(
                     name: "MaasCore",
-                    url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev06/MaasCore.xcframework.zip",
-                    checksum: "d22ef85f0be67f6bf54267d4e1924fedc94ad54377281db250d2465e8e1b8448"),
+                    url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev07/Core.xcframework.zip",
+                    checksum: "813dd96262bb59a27e0e4d77ce14c8944263b0863dd4947ae3ef65e951dbd984"),
                 .target(
                     name: "MaasTheme", 
                     dependencies: ["Swappable"],
