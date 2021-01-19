@@ -6,13 +6,13 @@ plugins {
 
 android {
 
-    compileSdkVersion(30)
-    buildToolsVersion("30.0.2")
+    compileSdkVersion(Versions.androidCompileSdk)
+    buildToolsVersion(Versions.androidBuildToolsVersion)
 
     defaultConfig {
         applicationId = "com.trafi.example"
-        minSdkVersion(23)
-        targetSdkVersion(30)
+        minSdkVersion(Versions.androidMinSdk)
+        targetSdkVersion(Versions.androidTargetSdk)
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "com.karumi.shot.ShotTestRunner"
@@ -35,6 +35,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
+        jvmTarget = "1.8"
         useIR = true
     }
     buildFeatures {
