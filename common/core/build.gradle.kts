@@ -8,13 +8,6 @@ plugins {
     id("maven-meta")
 }
 
-repositories {
-    gradlePluginPortal()
-    google()
-    jcenter()
-    mavenCentral()
-}
-
 android {
     compileSdkVersion(Versions.androidCompileSdk)
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
