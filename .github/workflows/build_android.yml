@@ -17,32 +17,24 @@ jobs:
         if: always()
         uses: eskatos/gradle-command-action@v1
         with:
-          build-root-directory: android
-          wrapper-directory: android
           arguments: ktlintCheck
       - name: Lint
         if: always()
         uses: eskatos/gradle-command-action@v1
         with:
-          build-root-directory: android
-          wrapper-directory: android
           arguments: lint
       - name: Retain lint artifacts
         uses: actions/upload-artifact@v2
         with:
           name: lint
-          path: android/routes/ui/build/reports/lint-results.html
+          path: android/**/build/reports/lint-results.html
       - name: Test
         if: always()
         uses: eskatos/gradle-command-action@v1
         with:
-          build-root-directory: android
-          wrapper-directory: android
           arguments: test
       - name: Assemble
         if: always()
         uses: eskatos/gradle-command-action@v1
         with:
-          build-root-directory: android
-          wrapper-directory: android
           arguments: assemble

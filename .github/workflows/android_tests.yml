@@ -31,7 +31,6 @@ jobs:
            emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
            disable-animations: true
            script: ./gradlew executeScreenshotTests
-           working-directory: ./android
        
       -  name: Publish artifacts
          if: always()
