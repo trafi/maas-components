@@ -16,7 +16,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.trafi.core.model.*
+import com.trafi.core.model.Provider
+import com.trafi.core.model.RouteSegment
+import com.trafi.core.model.RouteSegmentPersonalVehicle
+import com.trafi.core.model.Schedule
+import com.trafi.core.model.SharedVehicle
 import com.trafi.routes.ui.internal.endTimeMillis
 import com.trafi.routes.ui.internal.startTimeMillis
 import com.trafi.routes.ui.mock.RouteSegmentPreviewParameterProvider
@@ -157,7 +161,6 @@ private fun Provider.toBadgeInfo(): BadgeInfo = BadgeInfo(
 
 private val Long.millisToDurationText: String
     get() = maxOf(1, ((this / 1000 + 30) / 60)).toString()
-
 
 @Preview(showBackground = false)
 @Composable

@@ -125,7 +125,6 @@ private fun SingleBadge(
     }
 }
 
-
 @OptIn(ExperimentalLayout::class)
 @Composable
 private fun StackedBadge(
@@ -241,14 +240,12 @@ private val BadgeType.badgeHeight: Dp
         Medium -> constants.minHeightMedium
     }
 
-
 @Composable
 private val BadgeType.badgeRounding: Dp
     get() = when (this) {
         Small -> constants.cornerRadiusSmall
         Medium -> constants.cornerRadiusMedium
     }
-
 
 @Composable
 private fun BadgeType.getHorizontalPadding(isStackedBadge: Boolean): Dp {
@@ -266,7 +263,6 @@ private val BadgeType.verticalPadding: Dp
         Small -> constants.verticalPaddingSmall
         Medium -> constants.verticalPaddingMedium
     }
-
 
 @Composable
 private val BadgeType.textStyle: TextStyle

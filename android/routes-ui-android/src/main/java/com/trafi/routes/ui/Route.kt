@@ -61,7 +61,8 @@ public fun Route(route: Route, onClick: () -> Unit, modifier: Modifier = Modifie
                     disruption.title?.let { disruptionTitle ->
                         val vector = vectorResource(
                             when (disruption.severity) {
-                                RouteDisruption.Severity.NOT_AFFECTED, RouteDisruption.Severity.INFORMATION -> R.drawable.warning_info_s
+                                RouteDisruption.Severity.NOT_AFFECTED,
+                                RouteDisruption.Severity.INFORMATION -> R.drawable.warning_info_s
                                 RouteDisruption.Severity.WARNING -> R.drawable.warning_warning_s
                                 RouteDisruption.Severity.ALERT -> R.drawable.warning_alert_s
                             }
