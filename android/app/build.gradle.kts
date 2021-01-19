@@ -16,12 +16,17 @@ android {
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "com.karumi.shot.ShotTestRunner"
-        buildConfigField("String", "API_BASE_URL",
-                "\"${resolveProperty("trafi.apiBaseUrl", "TRAFI_API_BASE_URL") ?: ""}\"")
-        buildConfigField("String", "API_KEY",
-                "\"${resolveProperty("trafi.apiKey", "TRAFI_API_KEY") ?: ""}\"")
-        buildConfigField("String", "REGION_ID",
-                "\"${resolveProperty("trafi.regionId", "TRAFI_REGION_ID") ?: ""}\"")
+        buildConfigField(
+            type = "String",
+            name = "API_BASE_URL",
+            value = "\"${resolveProperty("trafi.apiBaseUrl", "TRAFI_API_BASE_URL") ?: ""}\"")
+        buildConfigField(type = "String",
+            name = "API_KEY",
+            value = "\"${resolveProperty("trafi.apiKey", "TRAFI_API_KEY") ?: ""}\"")
+        buildConfigField(
+            type = "String",
+            name = "REGION_ID",
+            value = "\"${resolveProperty("trafi.regionId", "TRAFI_REGION_ID") ?: ""}\"")
     }
 
     buildTypes {
