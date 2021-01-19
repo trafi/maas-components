@@ -97,6 +97,6 @@ var dependencies: [Package.Dependency] {
 2. Go to Build Section -> Pre-Actions.
 3. Change path in to your local sources directory.
 ```
-cd ~/path/common
+cd ~/path/to/maas-components
 ./gradlew xcframeworkSimulator
 ```
