@@ -1,8 +1,8 @@
 rootProject.name = "maas-components-android"
 include ':app'
-include ':ui'
-include ':routes:ui'
-include ':transit:ui'
+include ':ui-android'
+include ':routes-ui-android'
+include ':transit-ui-android'
 
 include ':common'
 project(':common').projectDir = file("../common")
