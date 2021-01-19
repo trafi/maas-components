@@ -1,25 +1,38 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
-    kotlin("multiplatform")
-    kotlin("plugin.serialization") version "1.4.21"
     id("com.android.library")
+    kotlin("multiplatform")
+    kotlin("plugin.serialization") version Versions.kotlin
+    id("org.jlleitschuh.gradle.ktlint")
     id("maven-publish")
+    id("maven-meta")
 }
-group = "com.trafi.maas"
-version = rootProject.version
 
-val composeVersion = "1.0.0-alpha08"
-val ktorVersion = "1.4.1"
-val serializationVersion = "1.0.1"
-val coroutinesVersion = "1.4.1-native-mt"
-
-repositories {
-    gradlePluginPortal()
-    google()
-    jcenter()
-    mavenCentral()
+android {
+    compileSdkVersion(Versions.androidCompileSdk)
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    defaultConfig {
+        minSdkVersion(Versions.androidMinSdk)
+        consumerProguardFiles("consumer-rules.pro")
+    }
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+        }
+    }
+    // workaround for https://youtrack.jetbrains.com/issue/KT-43944
+    // the android { } block had to be moved before kotlin { } due to this, too
+    configurations {
+        create("androidTestApi")
+        create("androidTestDebugApi")
+        create("androidTestReleaseApi")
+        create("testApi")
+        create("testDebugApi")
+        create("testReleaseApi")
+    }
 }
+
 kotlin {
     android {
         publishAllLibraryVariants()
@@ -40,10 +53,10 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-                implementation("io.ktor:ktor-client-core:$ktorVersion")
-                implementation("io.ktor:ktor-client-serialization:$ktorVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}")
+                implementation("io.ktor:ktor-client-core:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
             }
         }
         val commonTest by getting {
@@ -54,8 +67,8 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-android:$ktorVersion")
-                implementation("androidx.compose.ui:ui:$composeVersion")
+                implementation("io.ktor:ktor-client-android:${Versions.ktor}")
+                implementation("androidx.compose.ui:ui:${Versions.compose}")
             }
         }
         val androidTest by getting {
@@ -66,38 +79,31 @@ kotlin {
         }
         val iosMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-ios:$ktorVersion")
+                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
             }
         }
         val iosTest by getting
     }
 }
-android {
-    compileSdkVersion(30)
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdkVersion(23)
-        consumerProguardFiles("consumer-rules.pro")
-    }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
+
+ktlint {
+    disabledRules.set(setOf("no-wildcard-imports"))
+    filter {
+        exclude("**/com/trafi/core/model/**")
+        exclude("**/kotlinx/serialization/internal/**")
     }
 }
 
-apply(from = "../../android/scripts/maven-meta.gradle")
-
 val xcframeworkPath = "../../ios/MaasCore/Sources/MaasCore/Core.xcframework"
 
-val cleanXcframework by tasks.creating(Exec::class) {
+val cleanXcframework by tasks.registering(Exec::class) {
 
     group = "cleanup"
 
     commandLine("rm", "-rf", xcframeworkPath)
 }
 
-val xcframework by tasks.creating(Exec::class) {
+val xcframework by tasks.registering(Exec::class) {
 
     group = "build"
 
@@ -119,7 +125,7 @@ val xcframework by tasks.creating(Exec::class) {
     )
 }
 
-val xcframeworkSimulator by tasks.creating(Exec::class) {
+val xcframeworkSimulator by tasks.registering(Exec::class) {
 
     group = "build"
 
