@@ -53,8 +53,14 @@ internal fun RouteSearchTab(
 ) {
     Card(
         shape = RoundedCornerShape(constants.borderRadius),
-        border = BorderStroke(constants.borderWidth,
-            color = if (isSelected) constants.borderColorActive else constants.defaultBackgroundColor),
+        border = BorderStroke(
+            width = constants.borderWidth,
+            color = if (isSelected) {
+                constants.borderColorActive
+            } else {
+                constants.defaultBackgroundColor
+            }
+        ),
         modifier = modifier
             .preferredWidth(IntrinsicSize.Min)
             .padding(constants.padding)
@@ -112,7 +118,9 @@ private fun ActiveRouteSearchTabPreview() {
             active = true
         ),
         isSelected = true,
-        modifier = Modifier.width(150.dp).padding(10.dp),
+        modifier = Modifier
+            .width(150.dp)
+            .padding(10.dp),
         onRouteTabClick = {},
     )
 }

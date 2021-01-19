@@ -11,7 +11,9 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-class ComposablePreviewsTests(private val previewWithName: Pair<@Composable () -> Unit, String>): ScreenshotTest {
+class ComposablePreviewsTests(
+    private val previewWithName: Pair<@Composable () -> Unit, String>,
+) : ScreenshotTest {
     companion object {
         @JvmStatic
         @Parameterized.Parameters
@@ -37,4 +39,3 @@ class ComposablePreviewsTests(private val previewWithName: Pair<@Composable () -
             }
     }
 }
-

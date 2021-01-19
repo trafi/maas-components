@@ -1,15 +1,15 @@
 package com.trafi.example
 
 import androidx.compose.runtime.Composable
-import com.trafi.ui.component.InfoButtonDisabledPreview
-import com.trafi.ui.component.InfoButtonLongTextPreview
-import com.trafi.ui.component.InfoButtonStyledDarkPreview
-import com.trafi.ui.component.InfoButtonThemedPreview
 import com.trafi.ui.component.BadgePreview
 import com.trafi.ui.component.BadgePreviewWithSubbadge
 import com.trafi.ui.component.BadgeWithoutIconPreview
 import com.trafi.ui.component.ButtonPreview
 import com.trafi.ui.component.ButtonStyledCornerRadiusPreview
+import com.trafi.ui.component.InfoButtonDisabledPreview
+import com.trafi.ui.component.InfoButtonLongTextPreview
+import com.trafi.ui.component.InfoButtonStyledDarkPreview
+import com.trafi.ui.component.InfoButtonThemedPreview
 import com.trafi.ui.component.SmallBadgePreview
 import com.trafi.ui.component.SmallBadgeWithIconPreview
 import com.trafi.ui.component.SmallDisabledBadgePreview
