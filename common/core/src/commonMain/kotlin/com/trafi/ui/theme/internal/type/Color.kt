@@ -11,7 +11,7 @@ import kotlin.jvm.JvmName
 
 expect inline class Color(val value: ULong)
 
-internal fun Color.alpha(value : Float): Color {
+internal fun Color.alpha(value: Float): Color {
     require(
         value in 0f..1f
     ) {
