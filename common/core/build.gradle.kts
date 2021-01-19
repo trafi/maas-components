@@ -4,6 +4,7 @@ plugins {
     id("com.android.library")
     kotlin("multiplatform")
     kotlin("plugin.serialization") version Versions.kotlin
+    id("org.jlleitschuh.gradle.ktlint")
     id("maven-publish")
     id("maven-meta")
 }
@@ -82,6 +83,14 @@ kotlin {
             }
         }
         val iosTest by getting
+    }
+}
+
+ktlint {
+    disabledRules.set(setOf("no-wildcard-imports"))
+    filter {
+        exclude("**/com/trafi/core/model/**")
+        exclude("**/kotlinx/serialization/internal/**")
     }
 }
 
