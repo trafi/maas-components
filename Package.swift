@@ -74,9 +74,6 @@ private extension Environment {
             ]
         case .production:
             return [
-                .library(
-                    name: "MaasCore",
-                    targets: ["MaasCore"]),
                .library(
                    name: "MaasRouteSearch",
                    targets: ["MaasRouteSearch"]),
@@ -106,7 +103,7 @@ private extension Environment {
                     path: "ios/MaasCore/Sources/MaasComponents"), 
                 .target(
                     name: "MaasRouteSearch",
-                    dependencies: ["MaasCore", "MaasTheme", "MaasComponents", "Swappable"],
+                    dependencies: ["CoreBinary", "MaasTheme", "MaasComponents", "Swappable"],
                     path: "ios/MaasRouteSearch/Sources",
                     exclude: ["Package.resolved"]),
             ]
