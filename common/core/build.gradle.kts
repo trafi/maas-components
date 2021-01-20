@@ -46,7 +46,7 @@ kotlin {
     ios {
         binaries {
             framework {
-                baseName = "MaasCore"
+                baseName = "CoreBinary"
             }
         }
     }
@@ -94,7 +94,7 @@ ktlint {
     }
 }
 
-val xcframeworkPath = "../../ios/MaasCore/Sources/MaasCore/Core.xcframework"
+val xcframeworkPath = "../../ios/MaasCore/Sources/MaasCore/CoreBinary.xcframework"
 
 val cleanXcframework by tasks.registering(Exec::class) {
 
