@@ -1,14 +1,17 @@
 package com.trafi.users
 
 import com.trafi.core.ApiResult
-import com.trafi.core.authorized
+import com.trafi.core.Configuration
+import com.trafi.core.ConfiguredApi
+import com.trafi.core.configure
 import com.trafi.core.httpClient
 import com.trafi.core.model.Profile
 import com.trafi.core.model.UpdateProfileParameters
 import com.trafi.core.model.User
 import io.ktor.client.request.put
 
-class UsersApi(private val baseApiUrl: String, apiKey: String) {
+class UsersApi(configuration: Configuration): ConfiguredApi by configuration.configure {
+
     private val httpClient = httpClient(apiKey = apiKey)
 
     suspend fun createOrGetUser(profile: Profile? = null): ApiResult<User> = try {

@@ -1,13 +1,6 @@
 package com.trafi.core
 
-import kotlin.native.concurrent.ThreadLocal
+class Configuration(val api: ApiConfiguration, val identity: IdentityConfiguration)
 
-// TODO does @ThreadLocal make sense??
-@ThreadLocal
-object Configuration {
-    var api: ApiConfig? = null
-    var identity: IdentityConfig? = null
-}
-
-class ApiConfig(val baseUrl: String, val apiKey: String)
-class IdentityConfig(val getIdToken: () -> String?)
+class ApiConfiguration(val baseUrl: String, val apiKey: String)
+class IdentityConfiguration(val getIdToken: () -> String?)
