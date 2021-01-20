@@ -2,6 +2,7 @@
 /.build
 /Packages
 /*.xcodeproj
+*.xcframework
 xcuserdata/
 .swiftpm
 .idea
