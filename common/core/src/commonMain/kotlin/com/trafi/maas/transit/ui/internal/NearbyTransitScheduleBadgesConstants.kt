@@ -4,5 +4,5 @@ import com.trafi.ui.theme.internal.CurrentTheme
 import com.trafi.ui.theme.internal.SpacingScale
 
 class NearbyTransitScheduleBadgesConstants() {
-    val spacing = SpacingScale.sm
+    val spacing = SpacingScale.xxs
 }

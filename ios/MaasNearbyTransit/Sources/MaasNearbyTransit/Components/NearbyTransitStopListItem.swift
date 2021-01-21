@@ -73,12 +73,57 @@ private extension NearbyTransitStopListItem {
 
 // MARK: - Preview
 
-struct NearbyTransitStopListItem_Previews: PreviewProvider {
+#if DEBUG
+public struct NearbyTransitStopListItem_Previews: PreviewProvider, Snapped {
 
-    static var previews: some View {
-        NearbyTransitStopListItem(
-            input: .init(data: NearbyTransitComponentsPreviewData.stopWithSchedulesWithDepartures)
+    public static var snapped: [String: AnyView] {
+        [
+            "Default": AnyView(
+                NearbyTransitStopListItem(
+                    input: .init(data: NearbyTransitComponentsPreviewData.stopWithSchedulesWithDepartures)
+                )
+            ),
+
+            "Swapped": AnyView(
+                NearbyTransitStopListItem(
+                    input: .init(data: NearbyTransitComponentsPreviewData.stopWithSchedulesWithDepartures)
+                )
+                .swapView(Mock.init, insteadOf: NearbyTransitStopListItem.self)
+            )
+        ]
+    }
+
+    public static var elementWidth: CGFloat? { 375 }
+
+}
+
+struct Mock: View {
+
+    let input: NearbyTransitStopListItem.InputType
+
+    var body: some View {
+        Cell(
+            content: {
+                VStack(alignment: .leading) {
+                    Text(input.data.stop.name)
+                        .font(.headline)
+                    Text(input.data.stop.direction ?? "No directions")
+                        .font(.subheadline)
+                    Text("Schedules count: \(input.data.scheduleDepartures.count)")
+                        .font(.footnote)
+                }
+                .lineLimit(1)
+
+            },
+            prefix: {
+                VStack {
+                    ForEach(input.data.scheduleDepartures.prefix(2).indices) {
+                        Text(input.data.scheduleDepartures[$0].schedule.name)
+                    }
+                }
+            }
         )
-        .previewLayout(.fixed(width: 375, height: 100))
     }
 }
+
+#endif
