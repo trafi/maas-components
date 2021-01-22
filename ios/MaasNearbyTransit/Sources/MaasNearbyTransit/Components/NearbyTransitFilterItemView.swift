@@ -1,6 +1,3 @@
-import SwiftUI
-import Swappable
-
 public struct NearbyTransitFilterItemView: View, Swappable {
 
     public struct InputType {

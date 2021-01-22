@@ -14,6 +14,9 @@ let package = Package(
             name: "MaasCore",
             targets: ["MaasCore", "MaasComponents", "MaasTheme"]),
         .library(
+            name: "CoreBinary",
+            targets: ["CoreBinary"]),
+        .library(
             name: "MaasTheme",
             targets: ["MaasTheme"]),
         .library(
@@ -37,7 +40,7 @@ let package = Package(
             path: "Sources/MaasCore"),
         .target(
             name: "MaasTheme",
-            dependencies: ["Swappable"],
+            dependencies: ["CoreBinary", "Swappable"],
             path: "Sources/MaasTheme"),
         .target(
             name: "MaasComponents",

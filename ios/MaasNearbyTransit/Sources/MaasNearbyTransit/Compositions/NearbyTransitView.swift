@@ -1,21 +1,23 @@
-import SwiftUI
+public struct NearbyTransitView: View, Swappable {
 
-public struct NearbyTransitView: View {
+    public struct InputType {
+        let stopWithSchedulesWithDepartures: [StopWithSchedulesWithDepartures]
+        public init(stopWithSchedulesWithDepartures: [StopWithSchedulesWithDepartures]) {
+            self.stopWithSchedulesWithDepartures = stopWithSchedulesWithDepartures
+        }
+    }
 
-    let iitems = [
-        NearbyTransitComponentsPreviewData.stopWithSchedulesWithDepartures,
-        NearbyTransitComponentsPreviewData.stopWithSchedulesWithDepartures,
-        NearbyTransitComponentsPreviewData.stopWithSchedulesWithDepartures,
-        NearbyTransitComponentsPreviewData.stopWithSchedulesWithDepartures,
-        NearbyTransitComponentsPreviewData.stopWithSchedulesWithDepartures,
-        NearbyTransitComponentsPreviewData.stopWithSchedulesWithDepartures,
-        NearbyTransitComponentsPreviewData.stopWithSchedulesWithDepartures,
-        NearbyTransitComponentsPreviewData.stopWithSchedulesWithDepartures,
-    ]
+    public let input: InputType
 
-    public init() {}
+    public init(input: InputType) {
+        self.input = input
+    }
 
-    public var body: some View {
+    public init(stopWithSchedulesWithDepartures: [StopWithSchedulesWithDepartures]) {
+        self.init(input: .init(stopWithSchedulesWithDepartures: stopWithSchedulesWithDepartures))
+    }
+
+    public var defaultBody: some View {
         VStack {
             filterView()
             scrollView()
@@ -30,7 +32,7 @@ private extension NearbyTransitView {
     func scrollView() -> some View {
         ScrollView {
             VStack(spacing: 0) {
-                ForEach(iitems) { item in
+                ForEach(input.stopWithSchedulesWithDepartures) { item in
                     VStack(spacing: 0) {
                         NearbyTransitStopListItem(input: .init(data: item))
                         Divider()
@@ -53,8 +55,17 @@ private extension NearbyTransitView {
     }
 }
 
-struct NearbyTransitView_Previews: PreviewProvider {
-    static var previews: some View {
-        NearbyTransitView()
+#if DEBUG
+
+#endif
+public struct NearbyTransitView_Previews: PreviewProvider {
+
+    public static var input: NearbyTransitView.InputType {
+        let item = NearbyTransitComponentsPreviewData.stopWithSchedulesWithDepartures
+        return .init(stopWithSchedulesWithDepartures: .init(repeating: item, count: 12))
+    }
+
+    public static var previews: some View {
+        NearbyTransitView(input: input)
     }
 }

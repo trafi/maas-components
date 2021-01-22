@@ -18,8 +18,8 @@ public struct ExamplesView: View {
 
     var nearbyTransitExample: some View {
         NavigationLink(
-            destination: Text("RouteSearch"),
-            label: { Text("RouteSearch") }
+            destination: NearbyTransitView_Previews.previews,
+            label: { Text("Nearby transit") }
         )
     }
 }

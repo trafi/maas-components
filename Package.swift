@@ -40,6 +40,7 @@ let package = Package(
         .target(
             name: "Examples",
             dependencies: [
+                "MaasCore",
                 "MaasRouteSearch",
                 "MaasNearbyTransit",
             ],
@@ -76,6 +77,9 @@ private extension Environment {
         case .production:
             return [
                 .library(
+                    name: "MaasCore",
+                    targets: ["CoreBinary", "MaasCore", "MaasComponents", "MaasTheme"]),
+                .library(
                     name: "MaasRouteSearch",
                     targets: ["MaasRouteSearch"]),
                 .library(
@@ -97,16 +101,11 @@ private extension Environment {
                     name: "CoreBinary",
                     url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev07/CoreBinary.xcframework.zip",
                     checksum: "50308f39f322be329f65b12f24340d7de22094973dac9159a1c753d1a069e138"),
-                .target(
-                    name: "MaasTheme",
-                    dependencies: ["Swappable"],
-                    path: "ios/MaasCore/Sources/MaasTheme"),
-                .target(
-                    name: "MaasComponents",
-                    dependencies: ["MaasTheme", "Swappable"],
-                    path: "ios/MaasCore/Sources/MaasComponents"),
-                .maasTarget(name: "MaasNearbyTransit"),
+                .maasCoreTarget(name: "MaasCore"),
+                .maasCoreTarget(name: "MaasTheme"),
+                .maasCoreTarget(name: "MaasComponents", dependencies: ["MaasTheme"]),
                 .maasTarget(name: "MaasRouteSearch"),
+                .maasTarget(name: "MaasNearbyTransit"),
             ]
         }
     }
@@ -135,6 +134,14 @@ private extension Target {
             dependencies: ["CoreBinary", "MaasTheme", "MaasComponents", "Swappable"],
             path: "ios/\(name)/Sources",
             exclude: ["Package.resolved"]
+        )
+    }
+
+    static func maasCoreTarget(name: String, dependencies: [Target.Dependency] = []) -> Target {
+        .target(
+            name: name,
+            dependencies: dependencies + ["CoreBinary", "Swappable"],
+            path: "ios/MaasCore/Sources/\(name)"
         )
     }
 }

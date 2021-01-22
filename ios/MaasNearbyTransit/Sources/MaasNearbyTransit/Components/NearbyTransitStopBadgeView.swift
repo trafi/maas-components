@@ -1,14 +1,11 @@
-import SwiftUI
-import Swappable
-
-struct NearbyTransitStopBadgeView: View, Swappable {
+public struct NearbyTransitStopBadgeView: View, Swappable {
 
     var constants: Kotlin<NearbyTransitStopBadgeConstants> { Kotlin(NearbyTransitStopBadgeConstants()) }
 
     public struct InputType {
         public let schedules: [Schedule]
     }
-    let input: InputType
+    public let input: InputType
 
     public init(input: InputType) {
         self.input = input
@@ -18,24 +15,33 @@ struct NearbyTransitStopBadgeView: View, Swappable {
         self.input = .init(schedules: schedules)
     }
 
+    public var defaultBody: some View {
+        ZStack {
+            ForEach(slicedFilteredSchedules.indices) {
+                imageView(schedule: slicedFilteredSchedules[$0])
+                    .padding([.leading, .bottom], paddingForItem(at: $0))
+            }
+        }
+    }
+}
+
+private extension NearbyTransitStopBadgeView {
+
+    func imageView(schedule: Schedule) -> some View {
+        Image.from(image: UIImage(named: schedule.transportId))
+            .frame(width: constants.imageWidth, height: constants.imageHeight, alignment: .center)
+    }
+
     private var slicedFilteredSchedules: [Schedule] {
         input.schedules.filterDuplicates(includeElement: { $0.transportId == $1.transportId })
     }
 
-    var defaultBody: some View {
-        ZStack {
-            ForEach(slicedFilteredSchedules.indices) {
-                imageView(schedule: slicedFilteredSchedules[$0])
-                    .padding([.leading, .bottom], $0 != 0 ? CGFloat((-constants.offsetXY * CGFloat($0))) : 0)
-            }
-        }
-    }
-
-    private func imageView(schedule: Schedule) -> some View {
-        Image.from(image: UIImage(named: schedule.transportId))
-            .frame(width: constants.imageWidth, height: constants.imageHeight, alignment: .center)
-            .background(schedule.color.parseColor())
-            .foregroundColor(Color.white)
+    func paddingForItem(at index: Int) -> CGFloat {
+        let isFirstIndex = index == 0
+        let offsetXY: CGFloat = -constants.offsetXY * CGFloat(index)
+        return isFirstIndex
+            ? 0
+            : offsetXY
     }
 }
 
@@ -45,10 +51,8 @@ private extension Array {
         var results = [Element]()
 
         forEach { (element) in
-            let existingElements = results.filter {
-                return includeElement(element, $0)
-            }
-            if existingElements.count == 0 {
+            let existingElement = results.first { includeElement(element, $0) }
+            if existingElement == nil {
                 results.append(element)
             }
         }

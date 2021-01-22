@@ -1,13 +1,10 @@
-import SwiftUI
-import Swappable
-
-struct NearbyTransitFilterView: View {
+public struct NearbyTransitFilterView: View {
 
     public let items: [FilterItem]
     public var didTapItem: (FilterItem.ID) -> ()
     public var disabledItems: Set<FilterItem.ID>
 
-    var body: some View {
+    public var body: some View {
         MultiSelectFilter(
             items: items,
             itemView: NearbyTransitFilterItemView.init,

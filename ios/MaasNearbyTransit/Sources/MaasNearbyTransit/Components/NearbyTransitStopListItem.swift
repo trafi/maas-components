@@ -1,7 +1,3 @@
-import SwiftUI
-import Swappable
-import MaasComponents
-
 public struct NearbyTransitStopListItem: View, Swappable {
 
     @Environment(\.textStyleTextL) var textStyleTextL
@@ -25,19 +21,16 @@ public struct NearbyTransitStopListItem: View, Swappable {
     }
 }
 
-// MARK: - Content
-
 private extension NearbyTransitStopListItem {
+
+    // MARK: - Content
 
     var content: some View {
         VStack(alignment: .leading, spacing: Spacing.xs.value) {
 
             VStack(alignment: .leading, spacing: Spacing.xxs.value) {
-                name
-                HStack(spacing: 0) {
-                    walkDuration
-                    direction
-                }
+                stopName
+                stopDurationAndDirection
             }
             .lineLimit(1)
 
@@ -45,12 +38,19 @@ private extension NearbyTransitStopListItem {
         }
     }
 
-    var name: some View {
+    var stopName: some View {
         Text(input.data.stop.name)
             .textStyle(textStyleTextL)
-            .lineLimit(1)
     }
 
+    var stopDurationAndDirection: some View {
+        HStack(spacing: 0) {
+            walkDuration
+            direction
+        }
+    }
+
+    #warning("L10ns")
     var direction: some View {
         input.data.stop.direction.flatMap {
             Text("Towards " + $0)
@@ -65,6 +65,8 @@ private extension NearbyTransitStopListItem {
             .textStyle(textStyleTextM)
             .foregroundColor(grayScale.gray600.color)
     }
+
+    // MARK: - Prefix
 
     var prefix: some View {
         NearbyTransitStopBadgeView(schedules: input.data.scheduleDepartures.map { $0.schedule })

@@ -1,6 +1,3 @@
-import SwiftUI
-import Swappable
-
 public struct NearbyTransitScheduleBadgesScrollView: View, Swappable {
 
     var constants: Kotlin<NearbyTransitScheduleBadgesConstants> { Kotlin(NearbyTransitScheduleBadgesConstants()) }
@@ -15,11 +12,11 @@ public struct NearbyTransitScheduleBadgesScrollView: View, Swappable {
     }
 
     public init(schedules: [Schedule]) {
-        self.input = .init(schedules: schedules)
+        self.init(input: .init(schedules: schedules))
     }
 
     public var defaultBody: some View {
-        GradientBoundsScrollView {
+        GradientBoundsScrollView(showsIndicators: false) {
             HStack(spacing: constants.spacing) {
                 ForEach(input.schedules.indices, id: \.self) {
                     let schedule = input.schedules[$0]
