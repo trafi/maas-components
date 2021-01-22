@@ -1,3 +1,5 @@
+import struct SwiftUI.State
+
 struct ScrollViewData: Equatable {
     let size: CGSize
     let contentOffset: CGFloat
