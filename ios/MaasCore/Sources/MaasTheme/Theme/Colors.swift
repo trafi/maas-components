@@ -186,6 +186,19 @@ extension UInt64 {
     var toKotlin: UInt64 { self << 32 }
 }
 
+public extension Color {
+    /**
+     Parses a hexadecimal string color representation.
+     
+     If the input is nil or parsing fails, falls back to black. Supports ARGB (e.g. "ff0a0a0a") or RGB (e.g. "f0f0f0") formats.
+     - Tag: colorInitHex
+     */
+    init(hex: String?) {
+        let uiColor: UIColor = ColorKt.toColor(hex, fallback: 0xFF_000000).color
+        self.init(uiColor)
+    }
+}
+
 // MARK: - To Kotlin
 
 extension UIColor {
