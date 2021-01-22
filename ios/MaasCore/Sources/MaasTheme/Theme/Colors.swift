@@ -220,8 +220,8 @@ private extension ColorScheme {
 }
 
 extension GrayScalePalette {
-    func ui64(_ colorScheme: ColorScheme) -> MaasCore.GrayScale {
-        MaasCore.GrayScale(
+    func ui64(_ colorScheme: ColorScheme) -> CoreBinary.GrayScale {
+        CoreBinary.GrayScale(
             gray100: gray100.ui64(colorScheme),
             gray200: gray200.ui64(colorScheme),
             gray300: gray300.ui64(colorScheme),
