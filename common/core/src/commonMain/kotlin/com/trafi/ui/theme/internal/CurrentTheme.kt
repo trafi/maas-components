@@ -1,6 +1,7 @@
 package com.trafi.ui.theme.internal
 
 import com.trafi.ui.theme.GrayScale
+import com.trafi.ui.theme.internal.CurrentAccessibilityFontScale.*
 import com.trafi.ui.theme.internal.type.Color
 import com.trafi.ui.theme.internal.type.Dp
 import com.trafi.ui.theme.internal.type.TextStyle
@@ -13,6 +14,7 @@ class CurrentTheme(
     internal val typographyScale: CurrentTypographyScale,
     internal val spacingScale: CurrentSpacingScale,
     internal val cornerRadiusScale: CurrentCornerRadiusScale,
+    internal val accessibility: CurrentAccessibility,
 )
 
 class CurrentColorPalette(
@@ -49,3 +51,19 @@ class CurrentSpacingScale(
 class CurrentCornerRadiusScale(
     internal val buttonRadius: Dp,
 )
+
+class CurrentAccessibility(
+    fontScale: Float,
+) {
+    internal val fontScale: CurrentAccessibilityFontScale = when {
+        fontScale >= 1.5f -> ExtraLarge
+        fontScale >= 1.15f -> Large
+        else -> Normal
+    }
+}
+
+enum class CurrentAccessibilityFontScale {
+    Normal,
+    Large,
+    ExtraLarge,
+}

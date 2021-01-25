@@ -33,6 +33,9 @@ public extension EnvironmentValues {
                 ),
                 cornerRadiusScale: CurrentCornerRadiusScale(
                     buttonRadius: Float(cornerRadiusButton)
+                ),
+                accessibility: CurrentAccessibility(
+                    fontScale: Float(sizeCategory.scaleFactor)
                 )
             )
         }
