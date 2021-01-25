@@ -23,22 +23,20 @@ internal fun httpClient(apiKey: String) = HttpClient {
     }
 }
 
-internal interface ConfiguredApi {
-    val apiKey: String
-    val baseApiUrl: String
+internal fun ApiConfiguration.defaultHttpClient(): HttpClient = httpClient(apiKey)
 
+internal interface ConfiguredApi {
+    val baseApiUrl: String
     val HttpClient.authorized: HttpClient
 }
 
-internal val Configuration.configure: ConfiguredApi get() = object : ConfiguredApi {
-    override val apiKey: String
-        get() = api.apiKey
+internal fun ApiConfiguration.api(): ConfiguredApi = object : ConfiguredApi {
     override val baseApiUrl: String
-        get() = api.baseUrl
+        get() = baseUrl
     override val HttpClient.authorized: HttpClient
         get() = config {
             defaultRequest {
-                identity.getIdToken()?.let { idToken ->
+                getIdToken()?.let { idToken ->
                     header("Authorization", "Bearer $idToken")
                 }
             }
