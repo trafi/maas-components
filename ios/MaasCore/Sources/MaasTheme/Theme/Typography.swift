@@ -168,6 +168,11 @@ extension TextStyle {
     }
 }
 
+extension ContentSizeCategory {
+    
+    var scaleFactor: CGFloat { UIFont.TextStyle.body.scaleFactor(for: self) }
+}
+
 private extension UIFont.TextStyle {
 
     func scaleFactor(for sizeCategory: ContentSizeCategory) -> CGFloat {
