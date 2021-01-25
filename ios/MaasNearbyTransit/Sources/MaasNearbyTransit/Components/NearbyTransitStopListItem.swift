@@ -1,8 +1,7 @@
 public struct NearbyTransitStopListItem: View, Swappable {
 
-    @Environment(\.textStyleTextL) var textStyleTextL
-    @Environment(\.textStyleTextM) var textStyleTextM
-    @Environment(\.grayScale) var grayScale
+    @Environment(\.currentTheme) var theme
+    var constants: Kotlin<NearbyTransitListItemConstants> { Kotlin(NearbyTransitListItemConstants(theme: theme)) }
 
     public struct InputType {
         public let data: StopWithSchedulesWithDepartures
@@ -40,7 +39,7 @@ private extension NearbyTransitStopListItem {
 
     var stopName: some View {
         Text(input.data.stop.name)
-            .textStyle(textStyleTextL)
+            .textStyle(constants.titleTextStyle)
     }
 
     var stopDurationAndDirection: some View {
@@ -54,16 +53,16 @@ private extension NearbyTransitStopListItem {
     var direction: some View {
         input.data.stop.direction.flatMap {
             Text("Towards " + $0)
-                .textStyle(textStyleTextM)
-                .foregroundColor(grayScale.gray600.color)
+                .textStyle(constants.subtitleTextStyle)
+                .foregroundColor(constants.subtitleColor)
         }
     }
 
     #warning("Must be updated for custom font and correct duration value.")
     var walkDuration: some View {
         Text("3 min. • ")
-            .textStyle(textStyleTextM)
-            .foregroundColor(grayScale.gray600.color)
+            .textStyle(constants.subtitleTextStyle)
+            .foregroundColor(constants.subtitleColor)
     }
 
     // MARK: - Prefix

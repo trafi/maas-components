@@ -1,6 +1,5 @@
 private struct SpacingGlobalMargin: EnvironmentKey {
-    static var defaultValue: CGFloat { CGFloat(SpacingScale.Default().GlobalMargin)
-    }
+    static var defaultValue: CGFloat { CGFloat(SpacingScale.Default().GlobalMargin) }
 }
 public extension EnvironmentValues {
     var spacingGlobalMargin: CGFloat {

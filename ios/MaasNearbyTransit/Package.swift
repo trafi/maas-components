@@ -25,8 +25,5 @@ let package = Package(
         .target(
             name: "MaasNearbyTransit",
             dependencies: ["MaasCore", "Swappable"]),
-        .testTarget(
-            name: "MaasNearbyTransitTests",
-            dependencies: ["MaasNearbyTransit"]),
     ]
 )
