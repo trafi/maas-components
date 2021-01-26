@@ -40,21 +40,10 @@ class UsersApi internal constructor(
     }
 }
 
-// TODO remove experiments
-
-// shadowed name
 fun UsersApi.createOrGetUser(profile: Profile? = null): CFlow<ApiResult<User>> = flow {
     emit(createOrGetUser(profile))
 }.wrap()
 
-// request object
-fun UsersApi.CreateOrGetUser(profile: Profile? = null): CreateOrGetUser =
-    CreateOrGetUser(this, profile)
-
-class CreateOrGetUser internal constructor(
-    private val usersApi: UsersApi,
-    private val profile: Profile?,
-) {
-    suspend fun request(): ApiResult<User> = usersApi.createOrGetUser(profile)
-    val flow: CFlow<ApiResult<User>> get() = flow { emit(request()) }.wrap()
-}
+fun UsersApi.updateProfile(profile: Profile? = null): CFlow<ApiResult<User>> = flow {
+    emit(updateProfile(profile))
+}.wrap()
