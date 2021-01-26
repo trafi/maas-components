@@ -209,6 +209,9 @@ class NearbyTransitListItemConstants(theme: CurrentTheme) {
         Normal -> 1
         Large, ExtraLarge -> 2
     }
+
+    val verticalContentSpacing = SpacingScale.xs
+    val verticalTextSpacing = SpacingScale.xxs
 }
 ```
 
