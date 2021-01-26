@@ -55,6 +55,8 @@ public struct NearbyTransitFilterItemView: View, Swappable {
     }
 }
 
+extension FilterItem: Identifiable {}
+
 // MARK: - Preview
 
 #if DEBUG
@@ -87,8 +89,6 @@ public struct NearbyTransitFilterItemView_Previews: PreviewProvider, Snapped {
     
     public static var elementWidth: CGFloat? { 90 }
 }
-
-extension FilterItem: Identifiable {}
 
 // MARK: - Mock Data
 
