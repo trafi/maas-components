@@ -4,6 +4,12 @@ public struct NearbyTransitFilterView: View {
     public var didTapItem: (FilterItem.ID) -> ()
     public var disabledItems: Set<FilterItem.ID>
 
+    public init(items: [FilterItem], didTapItem: @escaping (FilterItem.ID) -> (), disabledItems: Set<FilterItem.ID>) {
+        self.items = items
+        self.didTapItem = didTapItem
+        self.disabledItems = disabledItems
+    }
+
     public var body: some View {
         MultiSelectFilter(
             items: items,

@@ -12,6 +12,10 @@ public struct NearbyTransitStopListItem: View, Swappable {
         self.input = input
     }
 
+    public init(stopWithSchedulesWithDepartures: StopWithSchedulesWithDepartures) {
+        self.init(input: .init(data: stopWithSchedulesWithDepartures))
+    }
+
     public var defaultBody: some View {
         Cell(
             content: { content },
