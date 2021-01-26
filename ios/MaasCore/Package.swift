@@ -40,7 +40,7 @@ let package = Package(
             path: "Sources/MaasCore"),
         .target(
             name: "MaasTheme",
-            dependencies: ["CoreBinary", "Swappable"],
+            dependencies: ["CoreBinary"],
             path: "Sources/MaasTheme"),
         .target(
             name: "MaasComponents",

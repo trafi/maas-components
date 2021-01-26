@@ -103,7 +103,7 @@ private extension Environment {
                     checksum: "50308f39f322be329f65b12f24340d7de22094973dac9159a1c753d1a069e138"),
                 .maasCoreTarget(name: "MaasCore"),
                 .maasCoreTarget(name: "MaasTheme"),
-                .maasCoreTarget(name: "MaasComponents", dependencies: ["MaasTheme"]),
+                .maasCoreTarget(name: "MaasComponents", dependencies: ["MaasTheme", "Swappable"]),
                 .maasTarget(name: "MaasRouteSearch"),
                 .maasTarget(name: "MaasNearbyTransit"),
             ]
@@ -140,7 +140,7 @@ private extension Target {
     static func maasCoreTarget(name: String, dependencies: [Target.Dependency] = []) -> Target {
         .target(
             name: name,
-            dependencies: dependencies + ["CoreBinary", "Swappable"],
+            dependencies: dependencies + ["CoreBinary"],
             path: "ios/MaasCore/Sources/\(name)"
         )
     }
