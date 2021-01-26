@@ -96,7 +96,7 @@ private extension Environment {
                 // --
             ]
         case .production:
-            return [ 
+            return [
                 .binaryTarget(
                     name: "CoreBinary",
                     url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev07/CoreBinary.xcframework.zip",
