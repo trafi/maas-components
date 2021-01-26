@@ -5,7 +5,7 @@ import PackageDescription
 
 // MARK: - Setup
 
-private let environment: Environment = .production
+private let environment: Environment = .development
 
 let package = Package(
     name: "Maas",
@@ -131,7 +131,7 @@ private extension Target {
     static func maasTarget(name: String) -> Target {
         .target(
             name: name,
-            dependencies: ["CoreBinary", "MaasTheme", "MaasComponents", "Swappable"],
+            dependencies: ["MaasCore", "MaasTheme", "MaasComponents", "Swappable"],
             path: "ios/\(name)/Sources",
             exclude: ["Package.resolved"]
         )

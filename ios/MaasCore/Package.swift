@@ -33,7 +33,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
          .binaryTarget(
              name: "CoreBinary",
-             path: "Sources/MaasCore/CoreBinary.xcframework"),
+             path: "Sources/CoreBinary/CoreBinary.xcframework"),
         .target(
             name: "MaasCore",
             dependencies: ["CoreBinary", "MaasTheme", "MaasComponents"],

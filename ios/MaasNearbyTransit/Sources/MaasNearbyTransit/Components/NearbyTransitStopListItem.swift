@@ -31,7 +31,6 @@ private extension NearbyTransitStopListItem {
                 stopName
                 stopDurationAndDirection
             }
-            .lineLimit(1)
 
             NearbyTransitScheduleBadgesScrollView(schedules: input.data.scheduleDepartures.map { $0.schedule })
         }
@@ -40,6 +39,7 @@ private extension NearbyTransitStopListItem {
     var stopName: some View {
         Text(input.data.stop.name)
             .textStyle(constants.titleTextStyle)
+            .lineLimit(constants.titleTextLineLimit)
     }
 
     var stopDurationAndDirection: some View {
@@ -47,6 +47,7 @@ private extension NearbyTransitStopListItem {
             walkDuration
             direction
         }
+        .lineLimit(constants.subtitleTextLineLimit)
     }
 
     #warning("L10ns")
@@ -54,15 +55,15 @@ private extension NearbyTransitStopListItem {
         input.data.stop.direction.flatMap {
             Text("Towards " + $0)
                 .textStyle(constants.subtitleTextStyle)
-                .foregroundColor(constants.subtitleColor)
+                .foregroundColor(constants.subtitleTextColor)
         }
     }
 
-    #warning("Must be updated for custom font and correct duration value.")
+    #warning("L10ns")
     var walkDuration: some View {
         Text("3 min. • ")
             .textStyle(constants.subtitleTextStyle)
-            .foregroundColor(constants.subtitleColor)
+            .foregroundColor(constants.subtitleTextColor)
     }
 
     // MARK: - Prefix
