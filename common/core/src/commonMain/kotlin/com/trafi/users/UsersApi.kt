@@ -43,11 +43,7 @@ class UsersApi internal constructor(
 // TODO remove experiments
 
 // shadowed name
-fun UsersApi.createOrGetUser(profile: Profile? = null): CFlow<ApiResult<User>> =
-    createOrGetUserFlow(profile)
-
-// flow extension
-fun UsersApi.createOrGetUserFlow(profile: Profile? = null): CFlow<ApiResult<User>> = flow {
+fun UsersApi.createOrGetUser(profile: Profile? = null): CFlow<ApiResult<User>> = flow {
     emit(createOrGetUser(profile))
 }.wrap()
 
@@ -60,28 +56,5 @@ class CreateOrGetUser internal constructor(
     private val profile: Profile?,
 ) {
     suspend fun request(): ApiResult<User> = usersApi.createOrGetUser(profile)
-    val flow: CFlow<ApiResult<User>> get() = usersApi.createOrGetUserFlow(profile)
-}
-
-// request object without config
-fun UsersApi.CreateOrGetUserAlt(profile: Profile? = null): CreateOrGetUserAlt =
-    com.trafi.users.CreateOrGetUserAlt(profile)
-
-class CreateOrGetUserAlt(
-    private val profile: Profile? = null,
-) {
-    suspend fun request(config: ApiConfiguration): ApiResult<User> = with(config.api()) {
-        val httpClient = config.defaultHttpClient()
-        try {
-            val result = httpClient.authorized.put<User>(baseApiUrl + "v1/users/me") {
-                body = UpdateProfileParameters(profile)
-            }
-            ApiResult.Success(result)
-        } catch (e: Throwable) {
-            ApiResult.Failure(e)
-        }
-    }
-
-    fun flow(config: ApiConfiguration): CFlow<ApiResult<User>> =
-        flow { emit(request(config)) }.wrap()
+    val flow: CFlow<ApiResult<User>> get() = flow { emit(request()) }.wrap()
 }
