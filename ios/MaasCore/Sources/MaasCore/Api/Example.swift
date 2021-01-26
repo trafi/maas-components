@@ -46,6 +46,33 @@ private class Example2 {
     }
 }
 
+private class Example3 {
+    
+    // generated extension for each Endpoint object to conform to swifty protocol ApiEndpoint
+    
+    func example() {
+        let usersApi = UsersApi(config: ApiConfiguration.config)
+        let requestPublisher = usersApi.CreateOrGetUser(profile: nil).publisher
+        print(requestPublisher)
+    }
+    
+    func minimisedUsage() {
+        UsersApi.shared.CreateOrGetUser(profile: nil)
+            .publisher
+            .sink { (completion) in
+                
+            } receiveValue: { (user) in
+                
+            }
+            .store(in: &cancelableStore)
+    }
+}
+
+func compare() {
+    KotlinApi(UsersApi.shared.CreateOrGetUser(profile: nil)).flow
+    UsersApi.shared.createOrGetUser(profile: nil).publisher
+    UsersApi.shared.CreateOrGetUser(profile: nil).publisher
+}
 
 
 // Example convenience
