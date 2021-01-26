@@ -2,6 +2,7 @@ package com.trafi.maas.transit.ui.internal
 
 import com.trafi.ui.theme.internal.CurrentAccessibilityFontScale.*
 import com.trafi.ui.theme.internal.CurrentTheme
+import com.trafi.ui.theme.internal.SpacingScale
 
 class NearbyTransitListItemConstants(theme: CurrentTheme) {
     val titleTextStyle = theme.typographyScale.textL
@@ -16,4 +17,7 @@ class NearbyTransitListItemConstants(theme: CurrentTheme) {
         Normal -> 1
         Large, ExtraLarge -> 2
     }
+
+    val verticalContentSpacing = SpacingScale.xs
+    val verticalTextSpacing = SpacingScale.xxs
 }

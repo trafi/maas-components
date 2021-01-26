@@ -29,9 +29,9 @@ private extension NearbyTransitStopListItem {
     // MARK: - Content
 
     var content: some View {
-        VStack(alignment: .leading, spacing: Spacing.xs.value) {
+        VStack(alignment: .leading, spacing: constants.verticalContentSpacing) {
 
-            VStack(alignment: .leading, spacing: Spacing.xxs.value) {
+            VStack(alignment: .leading, spacing: constants.verticalTextSpacing) {
                 stopName
                 stopDurationAndDirection
             }
