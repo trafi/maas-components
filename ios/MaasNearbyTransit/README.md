@@ -59,7 +59,7 @@ class FilterItem(
 
 ```
 
-```
+```swift
 public init(items: [FilterItem], didTapItem: @escaping (FilterItem.ID) -> (), disabledItems: Set<FilterItem.ID>) {
     self.items = items
     self.didTapItem = didTapItem
@@ -118,7 +118,7 @@ data class Schedule(
 )
 ```
 
-```
+```swift
 public init(schedules: [Schedule]) {
     self.init(input: .init(schedules: schedules))
 }
@@ -177,7 +177,7 @@ data class Schedule(
 )
 ```
 
-```    
+```swift
 public init(schedules: [Schedule]) {
     self.init(input: .init(schedules: schedules))
 }
@@ -236,7 +236,7 @@ data class StopWithSchedulesWithDepartures(
 )
 ```
 
-```
+```swift
 public init(stopWithSchedulesWithDepartures: StopWithSchedulesWithDepartures) {
     self.init(input: .init(data: stopWithSchedulesWithDepartures))
 }
