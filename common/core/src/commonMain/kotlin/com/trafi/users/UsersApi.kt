@@ -2,17 +2,14 @@ package com.trafi.users
 
 import com.trafi.core.ApiConfiguration
 import com.trafi.core.ApiResult
-import com.trafi.core.CFlow
 import com.trafi.core.ConfiguredApi
 import com.trafi.core.api
 import com.trafi.core.defaultHttpClient
 import com.trafi.core.model.Profile
 import com.trafi.core.model.UpdateProfileParameters
 import com.trafi.core.model.User
-import com.trafi.core.wrap
 import io.ktor.client.HttpClient
 import io.ktor.client.request.put
-import kotlinx.coroutines.flow.flow
 
 class UsersApi internal constructor(
     config: ApiConfiguration,
@@ -39,11 +36,3 @@ class UsersApi internal constructor(
         ApiResult.Failure(e)
     }
 }
-
-fun UsersApi.createOrGetUser(profile: Profile? = null): CFlow<ApiResult<User>> = flow {
-    emit(createOrGetUser(profile))
-}.wrap()
-
-fun UsersApi.updateProfile(profile: Profile? = null): CFlow<ApiResult<User>> = flow {
-    emit(updateProfile(profile))
-}.wrap()
