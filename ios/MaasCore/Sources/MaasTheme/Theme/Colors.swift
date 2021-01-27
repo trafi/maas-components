@@ -145,15 +145,15 @@ public struct GrayScalePalette {
         self.gray900 = gray900
     }
     
-    let gray100: UIColor
-    let gray200: UIColor
-    let gray300: UIColor
-    let gray400: UIColor
-    let gray500: UIColor
-    let gray600: UIColor
-    let gray700: UIColor
-    let gray800: UIColor
-    let gray900: UIColor
+    public let gray100: UIColor
+    public let gray200: UIColor
+    public let gray300: UIColor
+    public let gray400: UIColor
+    public let gray500: UIColor
+    public let gray600: UIColor
+    public let gray700: UIColor
+    public let gray800: UIColor
+    public let gray900: UIColor
 }
 
 // MARK: - From Kotlin
@@ -203,6 +203,8 @@ extension UIColor {
 
         return colorValue.toKotlin
     }
+
+    public var color: Color { .init(self) }
 }
 
 
@@ -220,8 +222,8 @@ private extension ColorScheme {
 }
 
 extension GrayScalePalette {
-    func ui64(_ colorScheme: ColorScheme) -> MaasCore.GrayScale {
-        MaasCore.GrayScale(
+    func ui64(_ colorScheme: ColorScheme) -> CoreBinary.GrayScale {
+        CoreBinary.GrayScale(
             gray100: gray100.ui64(colorScheme),
             gray200: gray200.ui64(colorScheme),
             gray300: gray300.ui64(colorScheme),

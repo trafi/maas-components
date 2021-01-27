@@ -94,7 +94,7 @@ ktlint {
     }
 }
 
-val xcframeworkPath = "../../ios/MaasCore/Sources/MaasCore/CoreBinary.xcframework"
+val xcframeworkPath = "../../ios/MaasCore/Sources/CoreBinary/CoreBinary.xcframework"
 
 val cleanXcframework by tasks.registering(Exec::class) {
 

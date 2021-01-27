@@ -1,4 +1,4 @@
-## MaaS Components for iOS
+## Maas components for iOS
 
 *Work in progress, not ready for use in production.*
 

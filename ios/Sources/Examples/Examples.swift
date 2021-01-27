@@ -1,22 +1,25 @@
 import SwiftUI
 import MaasRouteSearch
+import MaasNearbyTransit
 
-struct ExamplesView: View {
+public struct ExamplesView: View {
 
-    var body: some View {
+    public init() {}
+
+    public var body: some View {
         NavigationView {
             List {
-                routeSearchExample
+                nearbyTransitExample
             }
             .id(UUID())
             .navigationBarTitle("Examples")
         }
     }
 
-    var routeSearchExample: some View {
+    var nearbyTransitExample: some View {
         NavigationLink(
-            destination: Text("RouteSearch"),
-            label: { Text("RouteSearch") }
+            destination: NearbyTransitView_Previews.previews,
+            label: { Text("Nearby transit") }
         )
     }
 }

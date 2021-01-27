@@ -32,7 +32,7 @@ public struct Kotlin<T> {
         Int(value[keyPath: keyPath])
     }
     
-    public subscript(dynamicMember keyPath: KeyPath<T, MaasCore.Gradient>) -> LinearGradient {
+    public subscript(dynamicMember keyPath: KeyPath<T, CoreBinary.Gradient>) -> LinearGradient {
         let gradient = value[keyPath: keyPath]
         let startPoint: UnitPoint
         let endPoint: UnitPoint

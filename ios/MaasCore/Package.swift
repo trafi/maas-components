@@ -13,6 +13,15 @@ let package = Package(
         .library(
             name: "MaasCore",
             targets: ["MaasCore", "MaasComponents", "MaasTheme"]),
+        .library(
+            name: "CoreBinary",
+            targets: ["CoreBinary"]),
+        .library(
+            name: "MaasTheme",
+            targets: ["MaasTheme"]),
+        .library(
+            name: "MaasComponents",
+            targets: ["MaasComponents"]),
     ],
     dependencies: [
         .package(
@@ -24,14 +33,14 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
          .binaryTarget(
              name: "CoreBinary",
-             path: "Sources/MaasCore/CoreBinary.xcframework"),
+             path: "Sources/CoreBinary/CoreBinary.xcframework"),
         .target(
             name: "MaasCore",
             dependencies: ["CoreBinary", "MaasTheme", "MaasComponents"],
             path: "Sources/MaasCore"),
         .target(
             name: "MaasTheme",
-            dependencies: ["Swappable"],
+            dependencies: ["CoreBinary"],
             path: "Sources/MaasTheme"),
         .target(
             name: "MaasComponents",

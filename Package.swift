@@ -5,7 +5,7 @@ import PackageDescription
 
 // MARK: - Setup
 
-private let environment: Environment = .production
+private let environment: Environment = .development
 
 let package = Package(
     name: "Maas",
@@ -40,7 +40,9 @@ let package = Package(
         .target(
             name: "Examples",
             dependencies: [
+                "MaasCore",
                 "MaasRouteSearch",
+                "MaasNearbyTransit",
             ],
             path: "ios/Sources/Examples"
         ),
@@ -49,19 +51,19 @@ let package = Package(
             dependencies: [
                 "Maas",
                 "MaasRouteSearch",
+                "MaasNearbyTransit",
                 "SnapshotTesting",
                 "Quick"
             ],
             path: "ios/Tests/MaasTests",
             exclude: ["__Snapshots__"]), 
-    ] + environment.targets 
+    ] + environment.targets
 )
 
 // MARK: - Environment
 
 private enum Environment {
-    case development
-    case production
+    case development, production
 }
 
 private extension Environment {
@@ -74,9 +76,15 @@ private extension Environment {
             ]
         case .production:
             return [
-               .library(
-                   name: "MaasRouteSearch",
-                   targets: ["MaasRouteSearch"]),
+                .library(
+                    name: "MaasCore",
+                    targets: ["CoreBinary", "MaasCore", "MaasComponents", "MaasTheme"]),
+                .library(
+                    name: "MaasRouteSearch",
+                    targets: ["MaasRouteSearch"]),
+                .library(
+                    name: "MaasNearbyTransit",
+                    targets: ["MaasNearbyTransit"]),
            ]
         }
     }
@@ -93,21 +101,13 @@ private extension Environment {
                     name: "CoreBinary",
                     url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev07/CoreBinary.xcframework.zip",
                     checksum: "50308f39f322be329f65b12f24340d7de22094973dac9159a1c753d1a069e138"),
-                .target(
-                    name: "MaasTheme", 
-                    dependencies: ["Swappable"],
-                    path: "ios/MaasCore/Sources/MaasTheme"),
-                .target(
-                    name: "MaasComponents",
-                    dependencies: ["MaasTheme", "Swappable"],
-                    path: "ios/MaasCore/Sources/MaasComponents"), 
-                .target(
-                    name: "MaasRouteSearch",
-                    dependencies: ["CoreBinary", "MaasTheme", "MaasComponents", "Swappable"],
-                    path: "ios/MaasRouteSearch/Sources",
-                    exclude: ["Package.resolved"]),
+                .maasCoreTarget(name: "MaasCore"),
+                .maasCoreTarget(name: "MaasTheme"),
+                .maasCoreTarget(name: "MaasComponents", dependencies: ["MaasTheme", "Swappable"]),
+                .maasTarget(name: "MaasRouteSearch"),
+                .maasTarget(name: "MaasNearbyTransit"),
             ]
-        } 
+        }
     }
 
     var dependencies: [Package.Dependency] {
@@ -116,11 +116,32 @@ private extension Environment {
             return [
                 .package(path: "ios/MaasCore"),
                 .package(path: "ios/MaasRouteSearch"),
+                .package(path: "ios/MaasNearbyTransit"),
             ] 
         case .production:
             return [
                 // --
             ]
         }
+    }
+}
+
+private extension Target {
+
+    static func maasTarget(name: String) -> Target {
+        .target(
+            name: name,
+            dependencies: ["MaasCore", "MaasTheme", "MaasComponents", "Swappable"],
+            path: "ios/\(name)/Sources",
+            exclude: ["Package.resolved"]
+        )
+    }
+
+    static func maasCoreTarget(name: String, dependencies: [Target.Dependency] = []) -> Target {
+        .target(
+            name: name,
+            dependencies: dependencies + ["CoreBinary"],
+            path: "ios/MaasCore/Sources/\(name)"
+        )
     }
 }

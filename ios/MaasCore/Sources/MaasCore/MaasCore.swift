@@ -1,1 +1,1 @@
-@_exported import MaasCore
+@_exported import CoreBinary
