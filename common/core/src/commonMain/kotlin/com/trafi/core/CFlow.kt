@@ -7,7 +7,9 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
@@ -53,3 +55,4 @@ class CFlow<T>(private val origin: Flow<T>) : Flow<T> by origin {
 }
 
 internal fun <T> Flow<T>.wrap(): CFlow<T> = CFlow(this)
+internal fun <T> cFlow(block: suspend FlowCollector<T>.() -> Unit): CFlow<T> = flow(block).wrap()
