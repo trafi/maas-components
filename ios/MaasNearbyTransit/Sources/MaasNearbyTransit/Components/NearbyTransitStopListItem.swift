@@ -46,27 +46,16 @@ private extension NearbyTransitStopListItem {
             .lineLimit(constants.titleTextLineLimit)
     }
 
+    #warning("L10ns")
     var stopDurationAndDirection: some View {
-        HStack(spacing: 0) {
-            walkDuration
-            direction
-        }
-        .lineLimit(constants.subtitleTextLineLimit)
-    }
+        let walkDuration = Text("3 min.")
+        let duration = input.data.stop.direction.flatMap { Text("Towards " + $0) }
 
-    #warning("L10ns")
-    var direction: some View {
-        input.data.stop.direction.flatMap {
-            Text("Towards " + $0)
-                .textStyle(constants.subtitleTextStyle)
-                .foregroundColor(constants.subtitleTextColor)
-        }
-    }
-
-    #warning("L10ns")
-    var walkDuration: some View {
-        Text("3 min. • ")
+        return [walkDuration, duration]
+            .compactMap { $0 }
+            .joined(with: .dot())
             .textStyle(constants.subtitleTextStyle)
+            .lineLimit(constants.subtitleTextLineLimit)
             .foregroundColor(constants.subtitleTextColor)
     }
 
