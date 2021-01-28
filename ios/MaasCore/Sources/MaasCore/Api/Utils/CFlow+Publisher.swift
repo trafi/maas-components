@@ -8,10 +8,6 @@ extension CFlow where T == ApiResult<User> {
     var publisher: AnyPublisher<User, ApiError> { cflowToPublisher(self) }
 }
 
-extension CFlow where T == ApiResult<Profile> {
-    var publisher: AnyPublisher<Profile, ApiError> { cflowToPublisher(self) }
-}
-
 /// For every Possible Response type:
 
 //extension CFlow where T == ApiResult<<#Type#>> {
