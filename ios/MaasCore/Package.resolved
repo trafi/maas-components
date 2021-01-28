@@ -2,12 +2,39 @@
   "object": {
     "pins": [
       {
+        "package": "combine-schedulers",
+        "repositoryURL": "https://github.com/pointfreeco/combine-schedulers",
+        "state": {
+          "branch": null,
+          "revision": "ff42ec9061d864de7982162011321d3df5080c10",
+          "version": "0.1.2"
+        }
+      },
+      {
         "package": "Swappable",
         "repositoryURL": "https://github.com/trafi/swappable.git",
         "state": {
           "branch": null,
           "revision": "5bfceab25e54f587ae258cd71ab672ff0dc39bdc",
           "version": "0.0.1"
+        }
+      },
+      {
+        "package": "swift-case-paths",
+        "repositoryURL": "https://github.com/pointfreeco/swift-case-paths",
+        "state": {
+          "branch": null,
+          "revision": "ed1838ab4fa5d47db8aa640736dd5b7672548873",
+          "version": "0.1.2"
+        }
+      },
+      {
+        "package": "swift-composable-architecture",
+        "repositoryURL": "https://github.com/pointfreeco/swift-composable-architecture",
+        "state": {
+          "branch": null,
+          "revision": "6d4c40d8c2faea519e090d1c342cbaf7bd7e9b9a",
+          "version": "0.10.0"
         }
       }
     ]
