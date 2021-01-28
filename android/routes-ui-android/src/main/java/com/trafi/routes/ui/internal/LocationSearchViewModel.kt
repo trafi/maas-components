@@ -29,7 +29,7 @@ internal class LocationSearchViewModel(private val locationsApi: LocationsApi) :
             val result = locationsApi.search(query)
             state = when (result) {
                 is ApiResult.Success -> {
-                    val results = result.value
+                    val results = result.value.locations
                     if (results.isNotEmpty()) {
                         LocationSearchResultState.Loaded(results)
                     } else {

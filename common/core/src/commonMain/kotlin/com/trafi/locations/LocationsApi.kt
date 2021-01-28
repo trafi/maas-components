@@ -26,7 +26,7 @@ class LocationsApi(
     suspend fun search(
         query: String,
         coordinate: LatLng? = null
-    ): ApiResult<List<AutoCompleteLocation>> = try {
+    ): ApiResult<AutoCompleteLocations> = try {
         val result = httpClient.get<AutoCompleteLocations>(baseApiUrl + "v1/autocomplete") {
             parameter("q", query)
             parameter("regionId", regionId)
@@ -34,7 +34,7 @@ class LocationsApi(
             parameter("lat", coordinate?.lat)
             parameter("lng", coordinate?.lng)
         }
-        ApiResult.Success(result.locations)
+        ApiResult.Success(result)
     } catch (e: Throwable) {
         ApiResult.Failure(e)
     }
