@@ -26,11 +26,7 @@ private extension ApiKotlinFlowPublisher {
         init(_ flow: CFlow<ApiResult<T>>, _ subscriber: S) {
             self.subscriber = subscriber
             
-            self.closable = flow.watch {
-                guard let result = $0 else {
-                    subscriber.receive(completion: .failure(ApiError.error("ApiResult is nil.. expectingType: \(T.self)")))
-                    return
-                }
+            self.closable = flow.watch { result in
                 if let success = result as? ApiResultSuccess<T> {
                     let _ = subscriber.receive(success.value)
                 } else if let failure = result as? ApiResultFailure<T> {
