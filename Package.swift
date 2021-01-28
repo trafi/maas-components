@@ -5,7 +5,7 @@ import PackageDescription
 
 // MARK: - Setup
 
-private let environment: Environment = .development
+private let environment: Environment = .production
 
 let package = Package(
     name: "Maas",
@@ -99,8 +99,8 @@ private extension Environment {
             return [
                 .binaryTarget(
                     name: "CoreBinary",
-                    url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev07/CoreBinary.xcframework.zip",
-                    checksum: "50308f39f322be329f65b12f24340d7de22094973dac9159a1c753d1a069e138"),
+                    url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev03/CoreBinary.xcframework.zip",
+                    checksum: "08d2bc473fe1ea73d9d389b8b491ecd378fde82c49d24bc1579804f0e8ed978b"),
                 .maasCoreTarget(name: "MaasCore"),
                 .maasCoreTarget(name: "MaasTheme"),
                 .maasCoreTarget(name: "MaasComponents", dependencies: ["MaasTheme", "Swappable"]),
