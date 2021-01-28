@@ -55,3 +55,49 @@ public struct Kotlin<T> {
                               endPoint: endPoint)
     }
 }
+
+// MARK: - Wrapper
+
+@propertyWrapper
+public struct KotlinShared<T: NSObject>: DynamicProperty {
+
+    @Environment(\.currentTheme) var theme
+    var defaultValue: State<Kotlin<T>> {
+
+        // Should we have only a inits with theme.
+        // Make me safer.
+        let constants = T.init()
+        constants.perform(Selector("initWithTheme:"), with: theme)
+
+        return .init(wrappedValue: .init(constants))
+    }
+
+    public init () { /* - */ }
+
+    public var wrappedValue: Kotlin<T> {
+        get { defaultValue.wrappedValue }
+    }
+}
+
+struct Example: View {
+
+    // Remove Kotlin<..>
+    // Better name?
+    @KotlinShared private var constants: Kotlin<ButtonConstants>
+
+    var body: some View {
+        HStack {
+            RoundedRectangle(cornerRadius: 25.0)
+                .fill(constants.defaultBackgroundColor)
+                .frame(width: 50, height: 50, alignment: .center)
+        }
+    }
+}
+
+struct Preview: PreviewProvider {
+
+    static var previews: some View {
+        Example()
+            .environment(\.uiColorPrimary, .systemBlue)
+    }
+}
