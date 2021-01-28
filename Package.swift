@@ -99,7 +99,7 @@ private extension Environment {
             return [
                 .binaryTarget(
                     name: "CoreBinary",
-                    url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev01/CoreBinary.xcframework.zip",
+                    url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev03/CoreBinary.xcframework.zip",
                     checksum: "08d2bc473fe1ea73d9d389b8b491ecd378fde82c49d24bc1579804f0e8ed978b"),
                 .maasCoreTarget(name: "MaasCore"),
                 .maasCoreTarget(name: "MaasTheme"),
