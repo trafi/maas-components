@@ -47,16 +47,16 @@ class LocationsApi internal constructor(
         }
         ApiResult.Success(result)
     } catch (e: Throwable) {
-        ApiResult.Failure(e)
+        ApiResult.ktorFailure(e)
     }
 
     suspend fun resolveLocation(location: AutoCompleteLocation): ApiResult<Location> = try {
         location.toLocation()?.let { ApiResult.Success(it) }
             ?: httpClient.get<AutoCompleteLocation>(baseApiUrl + "v1/autocomplete/id/${location.id}")
                 .toLocation()?.let { ApiResult.Success(it) }
-            ?: ApiResult.Failure(IllegalArgumentException("Failed to resolve coordinate for location id ${location.id}"))
+            ?: ApiResult.Failure.Generic(IllegalArgumentException("Failed to resolve coordinate for location id ${location.id}"))
     } catch (e: Throwable) {
-        ApiResult.Failure(e)
+        ApiResult.ktorFailure(e)
     }
 
     suspend fun resolveAddress(coordinate: LatLng): ApiResult<ReverseGeocodeResponse> = try {
@@ -67,7 +67,7 @@ class LocationsApi internal constructor(
             }
         ApiResult.Success(result)
     } catch (e: Throwable) {
-        ApiResult.Failure(e)
+        ApiResult.ktorFailure(e)
     }
 }
 

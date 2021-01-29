@@ -29,6 +29,6 @@ class RoutesApi internal constructor(
         }
         ApiResult.Success(result)
     } catch (e: Throwable) {
-        ApiResult.Failure(e)
+        ApiResult.ktorFailure(e)
     }
 }
