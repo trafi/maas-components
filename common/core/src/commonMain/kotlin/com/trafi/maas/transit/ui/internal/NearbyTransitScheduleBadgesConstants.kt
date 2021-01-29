@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_PARAMETER")
+
 package com.trafi.maas.transit.ui.internal
 
 import com.trafi.ui.theme.internal.CurrentTheme

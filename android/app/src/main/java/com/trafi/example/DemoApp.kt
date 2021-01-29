@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
+import com.trafi.core.ApiConfiguration
 import com.trafi.example.ui.DemoMaasTheme
 import com.trafi.routes.ui.RoutesScreen
 
@@ -27,8 +28,7 @@ private fun AppContent() {
         }
         composable("routes") {
             RoutesScreen(
-                baseUrl = BuildConfig.API_BASE_URL,
-                apiKey = BuildConfig.API_KEY,
+                apiConfig = apiConfig,
                 regionId = BuildConfig.REGION_ID,
                 onRouteClick = {},
                 onBackClick = { navController.popBackStack() },
@@ -36,3 +36,9 @@ private fun AppContent() {
         }
     }
 }
+
+private val apiConfig: ApiConfiguration =
+    ApiConfiguration(
+        baseUrl = BuildConfig.API_BASE_URL,
+        apiKey = BuildConfig.API_KEY,
+    )
