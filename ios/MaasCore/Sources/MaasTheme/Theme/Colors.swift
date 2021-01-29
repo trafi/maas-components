@@ -1,53 +1,53 @@
 private enum ColorKeys {
     struct Primary: EnvironmentKey {
-        static var defaultValue: UIColor { .adaptive(light: \.Primary, dark: \.Primary) }
+        static var defaultValue: UIColor { .adaptive(\.Primary) }
     }
     struct OnPrimary: EnvironmentKey {
-        static var defaultValue: UIColor { .adaptive(light: \.OnPrimary, dark: \.OnPrimary) }
+        static var defaultValue: UIColor { .adaptive(\.OnPrimary) }
     }
     struct PrimaryVariant: EnvironmentKey {
-        static var defaultValue: UIColor { .adaptive(light: \.PrimaryVariant, dark: \.PrimaryVariant) }
+        static var defaultValue: UIColor { .adaptive(\.PrimaryVariant) }
     }
     struct Secondary: EnvironmentKey {
-        static var defaultValue: UIColor { .adaptive(light: \.Secondary, dark: \.Secondary) }
+        static var defaultValue: UIColor { .adaptive(\.Secondary) }
     }
     struct OnSecondary: EnvironmentKey {
-        static var defaultValue: UIColor { .adaptive(light: \.OnSecondary, dark: \.OnSecondary) }
+        static var defaultValue: UIColor { .adaptive(\.OnSecondary) }
     }
     struct SecondaryVariant: EnvironmentKey {
-        static var defaultValue: UIColor { .adaptive(light: \.SecondaryVariant, dark: \.SecondaryVariant) }
+        static var defaultValue: UIColor { .adaptive(\.SecondaryVariant) }
     }
     struct Background: EnvironmentKey {
-        static var defaultValue: UIColor { .adaptive(light: \.Background, dark: \.Background) }
+        static var defaultValue: UIColor { .adaptive(\.Background) }
     }
     struct OnBackground: EnvironmentKey {
-        static var defaultValue: UIColor { .adaptive(light: \.OnBackground, dark: \.OnBackground) }
+        static var defaultValue: UIColor { .adaptive(\.OnBackground) }
     }
     struct Surface: EnvironmentKey {
-        static var defaultValue: UIColor { .adaptive(light: \.Surface, dark: \.Surface) }
+        static var defaultValue: UIColor { .adaptive(\.Surface) }
     }
     struct OnSurface: EnvironmentKey {
-        static var defaultValue: UIColor { .adaptive(light: \.OnSurface, dark: \.OnSurface) }
+        static var defaultValue: UIColor { .adaptive(\.OnSurface) }
     }
     struct Error: EnvironmentKey {
-        static var defaultValue: UIColor { .adaptive(light: \.Error, dark: \.Error) }
+        static var defaultValue: UIColor { .adaptive(\.Error) }
     }
     struct OnError: EnvironmentKey {
-        static var defaultValue: UIColor { .adaptive(light: \.OnError, dark: \.OnError) }
+        static var defaultValue: UIColor { .adaptive(\.OnError) }
     }
     
     struct GrayScale: EnvironmentKey {
         static var defaultValue: GrayScalePalette {
             GrayScalePalette(
-                gray100: .adaptive(light: \.GrayScale.gray100, dark: \.GrayScale.gray100),
-                gray200: .adaptive(light: \.GrayScale.gray200, dark: \.GrayScale.gray200),
-                gray300: .adaptive(light: \.GrayScale.gray300, dark: \.GrayScale.gray300),
-                gray400: .adaptive(light: \.GrayScale.gray400, dark: \.GrayScale.gray400),
-                gray500: .adaptive(light: \.GrayScale.gray500, dark: \.GrayScale.gray500),
-                gray600: .adaptive(light: \.GrayScale.gray600, dark: \.GrayScale.gray600),
-                gray700: .adaptive(light: \.GrayScale.gray700, dark: \.GrayScale.gray700),
-                gray800: .adaptive(light: \.GrayScale.gray800, dark: \.GrayScale.gray800),
-                gray900: .adaptive(light: \.GrayScale.gray900, dark: \.GrayScale.gray900)
+                gray100: .adaptive(\.gray100),
+                gray200: .adaptive(\.gray200),
+                gray300: .adaptive(\.gray300),
+                gray400: .adaptive(\.gray400),
+                gray500: .adaptive(\.gray500),
+                gray600: .adaptive(\.gray600),
+                gray700: .adaptive(\.gray700),
+                gray800: .adaptive(\.gray800),
+                gray900: .adaptive(\.gray900)
             )
         }
     }
@@ -159,12 +159,23 @@ public struct GrayScalePalette {
 // MARK: - From Kotlin
 
 private extension UIColor {
-    static func adaptive(light: KeyPath<ColorPalette.DefaultLight, UInt64>,
-                         dark: KeyPath<ColorPalette.DefaultDark, UInt64>) -> UIColor {
+    static func adaptive(_ keyPath: KeyPath<ColorPalette.Default, UInt64>) -> UIColor {
+        ColorPalette.Default()[keyPath: keyPath].color
+    }
+    
+    static func adaptive(_ keyPath: KeyPath<ColorPalette.Default, LightDarkColor>) -> UIColor {
         UIColor { traits in
             traits.userInterfaceStyle == .dark ?
-                ColorPalette.DefaultDark()[keyPath: dark].color :
-                ColorPalette.DefaultLight()[keyPath: light].color
+                ColorPalette.Default()[keyPath: keyPath].dark.color :
+                ColorPalette.Default()[keyPath: keyPath].light.color
+        }
+    }
+    
+    static func adaptive(_ keyPath: KeyPath<GrayScale, UInt64>) -> UIColor {
+        UIColor { traits in
+            traits.userInterfaceStyle == .dark ?
+                ColorPalette.Default().GrayScale.dark[keyPath: keyPath].color :
+                ColorPalette.Default().GrayScale.light[keyPath: keyPath].color
         }
     }
 }
