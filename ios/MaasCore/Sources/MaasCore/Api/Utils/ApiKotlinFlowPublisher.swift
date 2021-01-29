@@ -31,17 +31,17 @@ private extension ApiKotlinFlowPublisher {
                 case let success as ApiResultSuccess<T>:
                     let _ = subscriber.receive(success.value)
                 case let failure as ApiResultFailureUnauthorized<T>:
-                    subscriber.receive(completion: .failure(ApiError.unauthorized(error: failure.error)))
+                    subscriber.receive(completion: .failure(.unauthorized(error: failure.error)))
                 case let failure as ApiResultFailureError<T>:
-                    subscriber.receive(completion: .failure(ApiError.error(error: failure.error)))
+                    subscriber.receive(completion: .failure(.error(error: failure.error)))
                 case let failure as ApiResultFailureGeneric<T>:
-                    subscriber.receive(completion: .failure(ApiError.failure(developerMessage: failure.throwable.message)))
+                    subscriber.receive(completion: .failure(.failure(developerMessage: failure.throwable.message)))
                 case let failure as ApiResultFailure<T>:
                     let message = "ApiResult: could not parse \(failure) as sub-type of ApiResultFailure. Failure message: \(failure.throwable.message ?? "nil")"
-                    subscriber.receive(completion: .failure(ApiError.failure(developerMessage: message)))
+                    subscriber.receive(completion: .failure(.failure(developerMessage: message)))
                 default:
                     let message = "ApiResult: unable to parse \(result) as ApiResultSuccess or ApiResultFailure"
-                    subscriber.receive(completion: .failure(ApiError.failure(developerMessage: message)))
+                    subscriber.receive(completion: .failure(.failure(developerMessage: message)))
                 }
             } completion: {
                 subscriber.receive(completion: .finished)
