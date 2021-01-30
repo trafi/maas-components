@@ -14,7 +14,7 @@ object Versions {
 
     const val compose = "1.0.0-alpha08"
 
-    const val ktor = "1.4.1"
+    const val ktor = "1.5.1"
     const val coroutines = "1.4.1-native-mt"
     const val kotlinxSerialization = "1.0.1"
 
