@@ -68,6 +68,7 @@ internal fun NearbyTransitFilterItem(
             })
             Image(
                 imageVector = vector,
+                contentDescription = null,
                 modifier = Modifier
                     .width(constants.imageWidth)
                     .height(constants.imageHeight),

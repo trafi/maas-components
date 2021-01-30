@@ -80,6 +80,7 @@ internal fun RouteSearchTab(
             ) {
                 Image(
                     vectorResource(id = R.drawable.ic_route_search_bike_s),
+                    contentDescription = null,
                     colorFilter = ColorFilter.tint(constants.contentColorPrimary),
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)

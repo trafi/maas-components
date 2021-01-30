@@ -41,7 +41,7 @@ public fun Button(
         } else {
             RoundedCornerShape(constants.cornerRadius)
         },
-        colors = androidx.compose.material.ButtonConstants.defaultButtonColors(
+        colors = androidx.compose.material.ButtonDefaults.buttonColors(
             backgroundColor = color,
             disabledBackgroundColor = disabledColor,
             contentColor = contentColor,

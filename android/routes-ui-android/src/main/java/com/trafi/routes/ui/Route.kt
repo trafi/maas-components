@@ -15,7 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.semantics.accessibilityLabel
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,7 +37,7 @@ public fun Route(route: Route, onClick: () -> Unit, modifier: Modifier = Modifie
     Surface(
         modifier = modifier
             .semantics(mergeDescendants = true) {
-                accessibilityLabel = route.accessibilityLabel
+                contentDescription = route.accessibilityLabel
             }
             .clickable(onClick = onClick)
     ) {
@@ -70,6 +70,7 @@ public fun Route(route: Route, onClick: () -> Unit, modifier: Modifier = Modifie
                         Row(modifier = Modifier.padding(top = 8.dp)) {
                             Image(
                                 vector,
+                                contentDescription = null,
                                 modifier = Modifier.align(Alignment.CenterVertically)
                             )
                             Spacer(modifier = Modifier.size(4.dp))

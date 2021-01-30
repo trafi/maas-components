@@ -76,7 +76,11 @@ private fun LocationResult(
                 .defaultMinSizeConstraints(minHeight = 60.dp)
                 .padding(horizontal = MaasTheme.spacing.globalMargin, vertical = 12.dp)
         ) {
-            Icon(Icons.Outlined.LocationOn, modifier = Modifier.size(24.dp))
+            Icon(
+                Icons.Outlined.LocationOn,
+                contentDescription = null,
+                modifier = Modifier.size(24.dp),
+            )
             Column(modifier = Modifier.padding(start = 12.dp)) {
                 Text(
                     name,

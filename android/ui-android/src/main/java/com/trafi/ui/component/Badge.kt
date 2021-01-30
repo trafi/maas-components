@@ -111,6 +111,7 @@ private fun SingleBadge(
         subbadgeIcon?.let {
             Image(
                 subbadgeIcon,
+                contentDescription = null,
                 modifier = Modifier
                     .width(constants.subBadgeIconWidth)
                     .height(constants.subBadgeIconHeight)
@@ -176,6 +177,7 @@ private fun StackedBadge(
         subbadgeIcon?.let {
             Image(
                 subbadgeIcon,
+                contentDescription = null,
                 modifier = Modifier
                     .width(constants.subBadgeIconWidth)
                     .height(constants.subBadgeIconHeight)
@@ -212,6 +214,7 @@ private fun BadgeFiller(
             icon?.let {
                 Image(
                     icon,
+                    contentDescription = null,
                     colorFilter = ColorFilter.tint(badge.contentColor
                         ?: constants.defaultContentColor),
                     modifier = Modifier.align(Alignment.CenterVertically)
