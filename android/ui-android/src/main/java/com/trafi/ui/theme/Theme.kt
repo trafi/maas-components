@@ -31,21 +31,17 @@ public fun MaasTheme(
 }
 
 public object MaasTheme {
-    @Composable
     public val colors: MaasColorPalette
-        get() = AmbientColor.current
+        @Composable get() = AmbientColor.current
 
-    @Composable
     public val typography: MaasTypography
-        get() = AmbientTypography.current
+        @Composable get() = AmbientTypography.current
 
-    @Composable
     public val spacing: MaasSpacing
-        get() = AmbientSpacing.current
+        @Composable get() = AmbientSpacing.current
 
-    @Composable
     public val cornerRadius: MaasCornerRadius
-        get() = AmbientCornerRadius.current
+        @Composable get() = AmbientCornerRadius.current
 }
 
 private val AmbientColor = staticAmbientOf { MaasTheme.lightColors() }

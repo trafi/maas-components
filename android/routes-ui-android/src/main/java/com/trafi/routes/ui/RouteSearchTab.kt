@@ -31,9 +31,8 @@ import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.currentTheme
 import com.trafi.ui.theme.darkColors
 
-@Composable
 private val constants
-    get() = RouteSearchTabConstants(currentTheme)
+    @Composable get() = RouteSearchTabConstants(currentTheme)
 
 internal data class TabItem(
     val id: String,

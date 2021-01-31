@@ -17,9 +17,8 @@ import com.trafi.ui.theme.currentTheme
 import com.trafi.ui.theme.isRound
 import com.trafi.ui.theme.lightColors
 
-@Composable
 private val constants
-    get() = ButtonConstants(currentTheme)
+    @Composable get() = ButtonConstants(currentTheme)
 
 @Composable
 public fun Button(
