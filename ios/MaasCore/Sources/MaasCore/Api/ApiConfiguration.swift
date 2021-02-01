@@ -11,12 +11,15 @@ class ApiConfiguration: ApiConfig {
     func getIdToken() -> String? {
         return ""
     }
+    
+    var logger: Logger? { nil }
 }
 
 protocol ApiConfig {
     var baseUrl: String { get }
     var apiKey: String { get }
     func getIdToken() -> String?
+    var logger: Logger? { get }
 }
 
 extension ApiConfig {
@@ -25,7 +28,8 @@ extension ApiConfig {
         .init(
             baseUrl: baseUrl,
             apiKey: apiKey,
-            getIdToken: getIdToken
+            getIdToken: getIdToken,
+            logger: logger
         )
     }
 }
