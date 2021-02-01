@@ -27,21 +27,10 @@ private extension ApiKotlinFlowPublisher {
             self.subscriber = subscriber
             
             self.closable = flow.watch { result in
-                switch result {
-                case let success as ApiResultSuccess<T>:
+                if let success = result as? ApiResultSuccess<T> {
                     let _ = subscriber.receive(success.value)
-                case let failure as ApiResultFailureUnauthorized<T>:
-                    subscriber.receive(completion: .failure(.unauthorized(error: failure.error)))
-                case let failure as ApiResultFailureError<T>:
-                    subscriber.receive(completion: .failure(.error(error: failure.error)))
-                case let failure as ApiResultFailureGeneric<T>:
-                    subscriber.receive(completion: .failure(.failure(developerMessage: failure.throwable.message)))
-                case let failure as ApiResultFailure<T>:
-                    let message = "ApiResult: could not parse \(failure) as sub-type of ApiResultFailure. Failure message: \(failure.throwable.message ?? "nil")"
-                    subscriber.receive(completion: .failure(.failure(developerMessage: message)))
-                default:
-                    let message = "ApiResult: unable to parse \(result) as ApiResultSuccess or ApiResultFailure"
-                    subscriber.receive(completion: .failure(.failure(developerMessage: message)))
+                } else {
+                    subscriber.receive(completion: .failure(ApiError(result)))
                 }
             } completion: {
                 subscriber.receive(completion: .finished)
@@ -57,6 +46,26 @@ private extension ApiKotlinFlowPublisher {
             closable?.close()
             closable = nil
             subscriber = nil
+        }
+    }
+}
+
+extension ApiError {
+    
+    init<T>(_ result: ApiResult<T>) {
+        switch result {
+        case let unauthorized as ApiResultFailureUnauthorized<T>:
+            self = .unauthorized(error: unauthorized.error)
+        case let failure as ApiResultFailureError<T>:
+            self = .error(error: failure.error)
+        case let failure as ApiResultFailureGeneric<T>:
+            self = .failure(developerMessage: failure.throwable.message)
+        case let failure as ApiResultFailure<T>:
+            let message = "ApiResult: could not parse \(failure) as sub-type of ApiResultFailure. Failure message: \(failure.throwable.message ?? "nil")"
+            self = .failure(developerMessage: message)
+        default:
+            let message = "ApiResult: unable to parse \(result) as ApiResultFailure"
+            self = .failure(developerMessage: message)
         }
     }
 }
