@@ -45,7 +45,7 @@ sealed class ApiResult<out T : Any> {
                     val error: Error? = try {
                         Json.decodeFromString(throwable.response.content.readRemaining().readText())
                     } catch (e: SerializationException) {
-                        null
+                        Error(e.message ?: "unable to decode error, ktorFailure")
                     }
 
                     if (throwable.response.status == HttpStatusCode.Unauthorized) {
