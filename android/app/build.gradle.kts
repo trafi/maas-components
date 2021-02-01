@@ -70,7 +70,7 @@ dependencies {
     implementation("androidx.compose.foundation:foundation-layout:${Versions.compose}")
     implementation("androidx.compose.material:material:${Versions.compose}")
     implementation("androidx.compose.ui:ui-tooling:${Versions.compose}")
-    implementation("androidx.navigation:navigation-compose:1.0.0-alpha03")
+    implementation("androidx.navigation:navigation-compose:${Versions.composeNavigation}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
