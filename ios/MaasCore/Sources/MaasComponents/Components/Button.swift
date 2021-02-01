@@ -24,8 +24,7 @@ public struct Button: View, Swappable {
 
 
     @Environment(\.isEnabled) var isEnabled
-    @Environment(\.currentTheme) var theme
-    var constants: Kotlin<ButtonConstants> { Kotlin(ButtonConstants(theme: theme)) }
+    @Themeable(ButtonConstants.init) var constants
 
     public var defaultBody: some View {
         SwiftUI.Button(

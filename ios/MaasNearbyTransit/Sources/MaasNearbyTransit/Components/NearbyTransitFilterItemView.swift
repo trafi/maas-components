@@ -6,8 +6,7 @@ public struct NearbyTransitFilterItemView: View, Swappable {
     }
     public let input: InputType
 
-    @Environment(\.currentTheme) var theme
-    var constants: Kotlin<NearbyTransitFilterItemConstants> { Kotlin(NearbyTransitFilterItemConstants(theme: theme)) }
+    @Themeable(NearbyTransitFilterItemConstants.init) var constants
 
     public init(input: InputType) {
         self.input = input
