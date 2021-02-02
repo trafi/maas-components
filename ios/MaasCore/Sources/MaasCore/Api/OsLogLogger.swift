@@ -6,6 +6,13 @@ class ApiLogger : CoreBinary.Logger {
     static let `default` = ApiLogger()
     
     func log(message: String) {
-        os_log("%@", log: .default, type: .debug, message)
+        os_log("%@", log: .MaasComponentsApi, type: .debug, message)
     }
+}
+
+extension OSLog {
+    
+    private static var subsystem = Bundle.main.bundleIdentifier!
+    
+    static let MaasComponentsApi = OSLog(subsystem: subsystem, category: "MaasComponents")
 }
