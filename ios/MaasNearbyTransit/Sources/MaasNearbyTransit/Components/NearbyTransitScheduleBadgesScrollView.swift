@@ -1,7 +1,6 @@
 public struct NearbyTransitScheduleBadgesScrollView: View, Swappable {
 
-    @Environment(\.currentTheme) var theme
-    var constants: Kotlin<NearbyTransitScheduleBadgesConstants> { Kotlin(NearbyTransitScheduleBadgesConstants(theme: theme)) }
+    @Themeable(NearbyTransitScheduleBadgesConstants.init) var constants
 
     public struct InputType {
         let schedules: [Schedule]

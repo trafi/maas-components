@@ -23,9 +23,7 @@ struct InfoButton: View {
     }
     
     @Environment(\.isEnabled) var isEnabled
-    @Environment(\.currentTheme) var theme
-    
-    var constants: Kotlin<InfoButtonConstants> { Kotlin(InfoButtonConstants(theme: theme)) }
+    @Themeable(InfoButtonConstants.init) var constants
     
     private var foregroundColor: Color {
         input.contentColor ?? (isEnabled ? constants.defaultContentColor : constants.disabledContentColor)

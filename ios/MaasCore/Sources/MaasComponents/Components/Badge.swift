@@ -24,9 +24,7 @@ public struct Badge: View, Swappable {
         self.input = input
     }
 
-    @Environment(\.currentTheme) var theme
-
-    var constants: Kotlin<BadgeConstants> { Kotlin(BadgeConstants(theme: theme)) }
+    @Themeable(BadgeConstants.init) var constants
 
     public init(type: BadgeType = .medium,
                 backgroundColor: Color?,
@@ -87,9 +85,7 @@ private struct BaseBadge: View, Swappable {
         self.input = input
     }
 
-    @Environment(\.currentTheme) var theme
-
-    var constants: Kotlin<BadgeConstants> { Kotlin(BadgeConstants(theme: theme)) }
+    @Themeable(BadgeConstants.init) var constants
 
     var defaultBody: some View {
         HStack(spacing: constants.spacer) {
@@ -191,9 +187,7 @@ private struct StackedBadge: View, Swappable {
         )
     }
 
-    @Environment(\.currentTheme) var theme
-
-    var constants: Kotlin<BadgeConstants> { Kotlin(BadgeConstants(theme: theme)) }
+    @Themeable(BadgeConstants.init) var constants
 
     var defaultBody: some View {
 
