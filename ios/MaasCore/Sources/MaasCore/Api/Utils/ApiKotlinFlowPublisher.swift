@@ -54,12 +54,12 @@ extension ApiError {
     
     init<T>(_ result: ApiResult<T>) {
         switch result {
-        case let unauthorized as ApiResultFailureUnauthorized<T>:
-            self = .unauthorized(error: unauthorized.error)
-        case let failure as ApiResultFailureError<T>:
-            self = .error(error: failure.error)
-        case let failure as ApiResultFailureGeneric<T>:
-            self = .failure(developerMessage: failure.throwable.message)
+        case let unauthorizedFailure as ApiResultFailureUnauthorized<T>:
+            self = .unauthorized(error: ApiResultError(unauthorizedFailure))
+        case let errorFailure as ApiResultFailureError<T>:
+            self = .error(error: ApiResultError(errorFailure))
+        case let genericFailure as ApiResultFailureGeneric<T>:
+            self = .failure(developerMessage: genericFailure.throwable.message)
         case let failure as ApiResultFailure<T>:
             let message = "ApiResult: could not parse \(failure) as sub-type of ApiResultFailure. Failure message: \(failure.throwable.message ?? "nil")"
             self = .failure(developerMessage: message)
@@ -67,5 +67,26 @@ extension ApiError {
             let message = "ApiResult: unable to parse \(result) as ApiResultFailure"
             self = .failure(developerMessage: message)
         }
+    }
+}
+
+extension ApiResultError {
+    
+    init<T>(_ unauthorized: ApiResultFailureUnauthorized<T>) {
+        self.init(
+            developerMessage: unauthorized.error?.developerMessage ?? unauthorized.throwable.message,
+            fallbackMessage: unauthorized.error?.fallbackMessage,
+            translationKey: unauthorized.error?.translationKey,
+            statusCode: Int(unauthorized.httpStatusCode)
+        )
+    }
+    
+    init<T>(_ failure: ApiResultFailureError<T>) {
+        self.init(
+            developerMessage: failure.error?.developerMessage ?? failure.throwable.message,
+            fallbackMessage: failure.error?.fallbackMessage,
+            translationKey: failure.error?.translationKey,
+            statusCode: Int(failure.httpStatusCode)
+        )
     }
 }
