@@ -12,7 +12,7 @@ class ApiConfiguration: ApiConfig {
         return ""
     }
     
-    var logger: Logger? { nil }
+    var logger: Logger? { ApiLogger.default }
 }
 
 protocol ApiConfig {
