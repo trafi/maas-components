@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.trafi.core.ApiConfiguration
 import com.trafi.core.model.AutoCompleteLocation
 import com.trafi.core.model.Location
 import com.trafi.core.model.Route
@@ -42,8 +43,7 @@ import com.trafi.ui.theme.Spacing
 
 @Composable
 public fun RoutesScreen(
-    baseUrl: String,
-    apiKey: String,
+    apiConfig: ApiConfiguration,
     regionId: String,
     onBackClick: () -> Unit,
     onRouteClick: (Route) -> Unit,
@@ -51,7 +51,7 @@ public fun RoutesScreen(
     initialStart: Location? = null,
     initialEnd: Location? = null,
 ) {
-    val factory = ViewModelFactory(baseUrl, apiKey, regionId)
+    val factory = ViewModelFactory(apiConfig, regionId)
     val routesViewModel: RoutesViewModel = viewModel(factory = factory)
     val locationViewModel: LocationSearchViewModel = viewModel(factory = factory)
 
@@ -238,11 +238,11 @@ private fun RouteSearchTabsListPreview() {
     )
 }
 
-private class ViewModelFactory(baseUrl: String, apiKey: String, regionId: String) :
+private class ViewModelFactory(apiConfig: ApiConfiguration, regionId: String) :
     ViewModelProvider.Factory {
 
-    private val locationsApi: LocationsApi by lazy { LocationsApi(baseUrl, apiKey, regionId) }
-    private val routesApi: RoutesApi by lazy { RoutesApi(baseUrl, apiKey) }
+    private val locationsApi: LocationsApi by lazy { LocationsApi(apiConfig, regionId) }
+    private val routesApi: RoutesApi by lazy { RoutesApi(apiConfig) }
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

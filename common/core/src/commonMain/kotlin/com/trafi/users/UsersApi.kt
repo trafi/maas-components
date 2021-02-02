@@ -24,7 +24,7 @@ class UsersApi internal constructor(
         }
         ApiResult.Success(result)
     } catch (e: Throwable) {
-        ApiResult.Failure(e)
+        ApiResult.ktorFailure(e)
     }
 
     suspend fun updateProfile(profile: Profile? = null): ApiResult<User> = try {
@@ -33,6 +33,6 @@ class UsersApi internal constructor(
         }
         ApiResult.Success(result)
     } catch (e: Throwable) {
-        ApiResult.Failure(e)
+        ApiResult.ktorFailure(e)
     }
 }

@@ -1,14 +1,22 @@
 package com.trafi.routes
 
+import com.trafi.core.ApiConfiguration
 import com.trafi.core.ApiResult
-import com.trafi.core.httpClient
+import com.trafi.core.ConfiguredApi
+import com.trafi.core.api
+import com.trafi.core.defaultHttpClient
 import com.trafi.core.model.Location
 import com.trafi.core.model.RoutesResult
+import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 
-class RoutesApi(private val baseApiUrl: String, apiKey: String) {
-    private val httpClient = httpClient(apiKey = apiKey)
+class RoutesApi internal constructor(
+    config: ApiConfiguration,
+    private val httpClient: HttpClient,
+) : ConfiguredApi by config.api() {
+
+    constructor(config: ApiConfiguration) : this(config, config.defaultHttpClient())
 
     suspend fun search(start: Location, end: Location): ApiResult<RoutesResult> = try {
         val result = httpClient.get<RoutesResult>(baseApiUrl + "v1/routes") {
@@ -21,6 +29,6 @@ class RoutesApi(private val baseApiUrl: String, apiKey: String) {
         }
         ApiResult.Success(result)
     } catch (e: Throwable) {
-        ApiResult.Failure(e)
+        ApiResult.ktorFailure(e)
     }
 }

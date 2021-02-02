@@ -1,6 +1,9 @@
 package com.trafi.core
 
 import io.ktor.client.HttpClient
+import io.ktor.client.HttpClientConfig
+import io.ktor.client.engine.HttpClientEngineConfig
+import io.ktor.client.engine.HttpClientEngineFactory
 import io.ktor.client.features.defaultRequest
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
@@ -9,7 +12,7 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import kotlinx.serialization.json.Json
 
-internal fun httpClient(apiKey: String) = HttpClient {
+internal val ApiConfiguration.defaultHttpClientConfig: HttpClientConfig<*>.() -> Unit get() = {
     install(JsonFeature) {
         val json = Json {
             isLenient = true
@@ -23,7 +26,15 @@ internal fun httpClient(apiKey: String) = HttpClient {
     }
 }
 
-internal fun ApiConfiguration.defaultHttpClient(): HttpClient = httpClient(apiKey)
+internal fun ApiConfiguration.defaultHttpClient(): HttpClient = HttpClient(defaultHttpClientConfig)
+
+internal fun <T : HttpClientEngineConfig> ApiConfiguration.httpClient(
+    engineFactory: HttpClientEngineFactory<T>,
+    config: HttpClientConfig<T>.() -> Unit,
+) = HttpClient(engineFactory) {
+    defaultHttpClientConfig()
+    config()
+}
 
 internal interface ConfiguredApi {
     val baseApiUrl: String
