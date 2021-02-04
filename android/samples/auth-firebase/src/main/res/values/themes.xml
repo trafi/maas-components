@@ -1,0 +1,8 @@
+<resources>
+
+    <style name="Theme.MaasComponents" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/status_bar</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+</resources>
