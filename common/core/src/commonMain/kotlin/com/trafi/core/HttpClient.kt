@@ -7,6 +7,8 @@ import io.ktor.client.engine.HttpClientEngineFactory
 import io.ktor.client.features.defaultRequest
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.features.logging.LogLevel
+import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.header
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
@@ -19,6 +21,12 @@ internal val ApiConfiguration.defaultHttpClientConfig: HttpClientConfig<*>.() ->
             ignoreUnknownKeys = true
         }
         serializer = KotlinxSerializer(json)
+    }
+    logger?.let { logger ->
+        install(Logging) {
+            this.logger = logger
+            level = LogLevel.ALL
+        }
     }
     defaultRequest {
         contentType(ContentType.Application.Json)
