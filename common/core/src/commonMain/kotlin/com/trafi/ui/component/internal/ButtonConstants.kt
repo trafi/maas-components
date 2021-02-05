@@ -2,7 +2,6 @@ package com.trafi.ui.component.internal
 
 import com.trafi.ui.theme.internal.CurrentTheme
 import com.trafi.ui.theme.internal.SpacingScale
-import com.trafi.ui.theme.internal.maxValue
 import com.trafi.ui.theme.internal.type.BasicFontWeight.Bold
 import com.trafi.ui.theme.internal.type.alpha
 import com.trafi.ui.theme.internal.type.copy
