@@ -26,6 +26,8 @@ android {
         freeCompilerArgs = freeCompilerArgs + listOf("-module-name", "$group.$name")
         // enable explicit API mode, see https://youtrack.jetbrains.com/issue/KT-37652
         freeCompilerArgs = freeCompilerArgs + "-Xexplicit-api=strict"
+        // allow opting-in to experimental Compose APIs
+        freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
     }
     buildFeatures {
         compose = true

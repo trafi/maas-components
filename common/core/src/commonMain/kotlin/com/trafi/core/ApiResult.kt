@@ -4,8 +4,8 @@ package com.trafi.core
 
 import com.trafi.core.model.Error
 import io.ktor.client.features.ResponseException
+import io.ktor.client.statement.readText
 import io.ktor.http.HttpStatusCode
-import io.ktor.utils.io.readRemaining
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -43,7 +43,7 @@ sealed class ApiResult<out T : Any> {
             when (throwable) {
                 is ResponseException -> {
                     val error: Error? = try {
-                        Json.decodeFromString(throwable.response.content.readRemaining().readText())
+                        Json.decodeFromString(throwable.response.readText())
                     } catch (e: SerializationException) {
                         null
                     }
