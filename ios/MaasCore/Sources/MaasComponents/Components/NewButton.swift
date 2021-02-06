@@ -74,7 +74,7 @@ public struct NewButton: View, Swappable {
     @Environment(\.isEnabled) var isEnabled
     @Themeable(NewButtonConstants.init) var buttonConstants
     
-    private var animation = Animation.easeInOut(duration: 0.2)
+    private var animation = Animation.linear(duration: 0.2)
     
     public var defaultBody: some View {
         SwiftUI.Button(action: input.action) {
@@ -82,22 +82,18 @@ public struct NewButton: View, Swappable {
                 
                 if isLoading || input.icon != nil {
                     ZStack {
+                        
                         if let icon = input.icon {
-                            icon.resizable()
-                                .frame(
-                                    width: buttonConstants.iconWidth,
-                                    height: buttonConstants.iconHeight
-                                )
-                                .show(when: !isLoading)
-                                .animation(isLoading ? nil : animation)
+                            image(icon)
                         }
-                        if isLoading {
-                            loadingSpinner
-                        }
+                        
+                        spinner
                     }
                 }
                 
-                text
+                if !input.text.isEmpty {
+                    text
+                }
             }
             .padding(.horizontal, buttonConstants.paddingHorizontal)
             .frame(maxWidth: input.isHugging ? nil : .infinity, minHeight: buttonConstants.minHeight)
@@ -106,6 +102,7 @@ public struct NewButton: View, Swappable {
         .foregroundColor(foregroundColor)
         .background(backgroundColor)
         .cornerRadius(buttonConstants.cornerRadius)
+        .animation(animation)
     }
     
     private var text: some View {
@@ -113,16 +110,24 @@ public struct NewButton: View, Swappable {
             .lineLimit(0)
             .minimumScaleFactor(0.75)
             .textStyle(buttonConstants.textStyle)
+            .transition(.opacity)
     }
     
-    var loadingSpinner: some View {
+    private var spinner: some View {
         Spinner(color: foregroundColor, isAnimating: $isLoading)
             .frame(
-                width: isLoading ? buttonConstants.iconWidth : 0,
+                width: buttonConstants.iconWidth,
                 height: buttonConstants.iconHeight
             )
-            .show(when: isLoading)
-            .animation(isLoading ? animation : nil)
+    }
+    
+    private func image(_ icon: Image) -> some View {
+        icon.resizable()
+            .frame(
+                width: buttonConstants.iconWidth,
+                height: buttonConstants.iconHeight
+            )
+            .opacity(isLoading ? 0 : 1)
     }
     
     private var foregroundColor: Color {
@@ -135,13 +140,6 @@ public struct NewButton: View, Swappable {
         input.backgroundColor ?? (isEnabled
                                 ? buttonConstants.defaultBackgroundColor
                                 : buttonConstants.disabledBackgroundColor)
-    }
-}
-
-private extension View {
-    
-    func show(when show:Bool) -> some View {
-        self.opacity(show ? 1 : 0.5)
     }
 }
 

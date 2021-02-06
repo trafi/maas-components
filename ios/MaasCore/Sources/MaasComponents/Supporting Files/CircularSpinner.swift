@@ -4,78 +4,56 @@ struct Spinner: View {
     private static let initialSpinnerLength: CGFloat = 0.75
 
     let color: Color
+    var lineWidth: CGFloat = 1.5
     var animationTime: Double = 1
+    var appearDuration: Double = 0.2
     @Binding var isAnimating: Bool
     
     @State private var spinnerStart: CGFloat = 0
     @State private var spinnerEnd: CGFloat = initialSpinnerLength
     @State private var rotationDegree = initialDegree
+    @State private var hasAppeared = false
     
+    private var shouldAnimate: Bool { hasAppeared && isAnimating }
+
     var body: some View {
-        SpinnerCircle(
-            start: spinnerStart,
-            end: spinnerEnd,
-            rotation: rotationDegree,
-            color: isAnimating ? color : .black
-        )
-        .onAppear {
-            animate()
-        }
+        Circle()
+            .trim(
+                from: shouldAnimate ? spinnerStart + 0.1 : spinnerStart,
+                to: shouldAnimate ? spinnerEnd - 0.2 : spinnerEnd
+            )
+            .stroke(style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
+            .fill(color)
+            .animation(lineLengthAnimation)
+            
+            .rotationEffect(shouldAnimate
+                                ? Self.initialDegree + Angle.degrees(360)
+                                : Self.initialDegree + Angle.degrees(0))
+            .animation(rotationAnimation)
+            
+            .scaleEffect(shouldAnimate ? 1 : 0)
+            .animation(.easeOut(duration: appearDuration))
+            // -
+            .padding(lineWidth / 2)
+            .onAppear { hasAppeared = true }
+            .onDisappear { hasAppeared = false }
+            .animation(nil)
+
     }
     
-    private func animate() {
-        spinRound()
-        bounceSipperLength(start: 0.1, end: 0.2)
-    }
-    
-    private func spinRound() {
-        let animation = Animation
-            .linear(duration: animationTime)
-            .repeat(while: isAnimating, autoreverses: false)
-        
-        withAnimation(animation) {
-            self.rotationDegree += .degrees(360)
-        }
-    }
-    
-    private func bounceSipperLength(start: CGFloat, end: CGFloat) {
-        
-        let animation = Animation
+    private var lineLengthAnimation: Animation {
+        Animation
             .easeInOut(duration: animationTime / 2)
-            .repeat(while: isAnimating, autoreverses: true)
-        
-        withAnimation(animation) {
-            self.spinnerEnd -= end
-            self.spinnerStart += start
-        }
-        
-//        animateSpinner(begin: 0, end: 0.5) {
-//            self.spinnerEnd -= end
-//            self.spinnerStart += start
-//        }
-//
-//        animateSpinner(begin: 0.5, end: 1) {
-//            self.spinnerEnd += end
-//            self.spinnerStart -= start
-//        }
+            .repeat(while: shouldAnimate, autoreverses: true)
     }
     
-    
-    /// - Parameters:
-    ///   - begin: 0...1 - a point in time of animation duration
-    ///   - end: 0...1 - a point in time of animation duration
-    private func animateSpinner(
-        begin: Double = 0,
-        end: Double = 1,
-        animation: @escaping (() -> Void)
-    ) {
-        let start = animationTime * begin
-        let duration = (animationTime * end) - start
-        
-//        Timer.scheduledTimer(withTimeInterval: start, repeats: false) { _ in
-            withAnimation(Animation.easeInOut(duration: duration).delay(start).repeat(while: isAnimating, autoreverses: true), animation)
-//        }
+    private var rotationAnimation: Animation {
+        shouldAnimate
+            ? Animation.linear(duration: animationTime)
+            .repeat(while: shouldAnimate, autoreverses: false)
+            : Animation.default
     }
+    
 }
 
 extension Animation {
@@ -89,31 +67,17 @@ extension Animation {
     }
 }
 
-struct SpinnerCircle: View {
-    
-    var start: CGFloat
-    var end: CGFloat
-    var rotation: Angle
-    var color: Color
-    var lineWidth: CGFloat = 1.5
-    
-    var body: some View {
-        Circle()
-            .trim(from: start, to: end)
-            .stroke(style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
-            .fill(color)
-            .rotationEffect(rotation)
-    }
-    
-}
-
 #if DEBUG
 public struct Spinner_Previews: PreviewProvider, Snapped {
     
     public static var snapped: [String: AnyView] {
         [
             "Spinner": AnyView(
-                Spinner(color: .black, isAnimating: .constant(true))
+                Spinner(
+                    color: .black,
+                    animationTime: 8,
+                    isAnimating: .constant(true)
+                )
                     .frame(width: 16, height: 16, alignment: .center)
             ),
         ]
