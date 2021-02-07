@@ -2,7 +2,7 @@
 
 package com.trafi.core
 
-import com.trafi.core.model.Error
+import com.trafi.core.model.PlatformError
 import io.ktor.client.features.ResponseException
 import io.ktor.client.statement.readText
 import io.ktor.http.HttpStatusCode
@@ -24,13 +24,13 @@ sealed class ApiResult<out T : Any> {
         class Unauthorized<T : Any> internal constructor(
             throwable: Throwable,
             val httpStatusCode: Int,
-            val error: com.trafi.core.model.Error? = null,
+            val error: PlatformError? = null,
         ) : Failure<T>(throwable)
 
         class Error<T : Any> internal constructor(
             throwable: Throwable,
             val httpStatusCode: Int,
-            val error: com.trafi.core.model.Error? = null,
+            val error: PlatformError? = null,
         ) : Failure<T>(throwable)
 
         class Generic<T : Any> internal constructor(
@@ -42,7 +42,7 @@ sealed class ApiResult<out T : Any> {
         internal suspend fun <T : Any> ktorFailure(throwable: Throwable): Failure<T> =
             when (throwable) {
                 is ResponseException -> {
-                    val error: Error? = try {
+                    val error: PlatformError? = try {
                         Json.decodeFromString(throwable.response.readText())
                     } catch (e: SerializationException) {
                         null
