@@ -18,7 +18,7 @@ class ButtonConstants(theme: CurrentTheme) {
     val defaultTruncate = true
 }
 
-open class NewButtonConstants(theme: CurrentTheme) {
+class NewButtonConstants(theme: CurrentTheme) {
 
     val defaultBackgroundColor = theme.colorPalette.primary
     val defaultContentColor = theme.colorPalette.onPrimary
@@ -28,18 +28,15 @@ open class NewButtonConstants(theme: CurrentTheme) {
     val iconWidth = 16.dp
     val iconHeight = 16.dp
 
-    open val textStyle = theme.typographyScale.textL.copy(fontWeight = Bold)
+    val textStyle = theme.typographyScale.textL.copy(fontWeight = Bold)
+    val textStyleSmall = theme.typographyScale.textM.copy(fontWeight = Bold)
     val defaultTruncate = true
 
-    open val minHeight = 48.dp
+    val height = 48.dp
+    val heightSmall = 32.dp
 
     val spaceBetween = SpacingScale.xs
     val paddingHorizontal = SpacingScale.md
 
     val cornerRadius = theme.cornerRadiusScale.buttonRadius
-}
-
-class CompactButtonConstants(theme: CurrentTheme) : NewButtonConstants(theme) {
-    override val textStyle = theme.typographyScale.textM.copy(fontWeight = Bold)
-    override val minHeight = 32.dp
 }

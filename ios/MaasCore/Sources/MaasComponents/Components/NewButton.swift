@@ -1,32 +1,3 @@
-public struct NewButtonSmall: View, Swappable {
-    
-    public let input: NewButton.InputType
-    
-    public init(
-        _ text: String,
-        icon: Image? = nil,
-        foregroundColor: Color? = nil,
-        backgroundColor: Color? = nil,
-        isHugging: Bool = false,
-        isLoading: Binding<Bool> = .constant(false),
-        action: @escaping () -> Void) {
-        
-        input = InputType(
-            text: text,
-            icon: icon,
-            foregroundColor: foregroundColor,
-            backgroundColor: backgroundColor,
-            isHugging: isHugging,
-            isLoading: isLoading,
-            action: action
-        )
-    }
-    
-    public var defaultBody: some View {
-        NewButton(input: input, constantsType: CompactButtonConstants.self)
-    }
-}
-
 public struct NewButton: View, Swappable {
 
     public struct InputType {
@@ -34,6 +5,7 @@ public struct NewButton: View, Swappable {
         public let icon: Image?
         public let foregroundColor: Color?
         public let backgroundColor: Color?
+        public let isSmall: Bool
         public let isHugging: Bool
         public let isLoading: Binding<Bool>
         public let action: () -> Void
@@ -52,6 +24,7 @@ public struct NewButton: View, Swappable {
         icon: Image? = nil,
         foregroundColor: Color? = nil,
         backgroundColor: Color? = nil,
+        isSmall: Bool = false,
         isHugging: Bool = false,
         isLoading: Binding<Bool> = .constant(false),
         action: @escaping () -> Void) {
@@ -61,6 +34,7 @@ public struct NewButton: View, Swappable {
             icon: icon,
             foregroundColor: foregroundColor,
             backgroundColor: backgroundColor,
+            isSmall: isSmall,
             isHugging: isHugging,
             isLoading: isLoading,
             action: action
@@ -96,7 +70,10 @@ public struct NewButton: View, Swappable {
                 }
             }
             .padding(.horizontal, buttonConstants.paddingHorizontal)
-            .frame(maxWidth: input.isHugging ? nil : .infinity, minHeight: buttonConstants.minHeight)
+            .frame(
+                maxWidth: input.isHugging ? nil : .infinity,
+                minHeight: input.isSmall ? buttonConstants.heightSmall : buttonConstants.height
+            )
             .animation(animation)
         }
         .foregroundColor(foregroundColor)
@@ -109,7 +86,7 @@ public struct NewButton: View, Swappable {
         Text(input.text)
             .lineLimit(0)
             .minimumScaleFactor(0.75)
-            .textStyle(buttonConstants.textStyle)
+            .textStyle(input.isSmall ? buttonConstants.textStyleSmall : buttonConstants.textStyle)
             .transition(.opacity)
     }
     
@@ -149,28 +126,54 @@ public struct NewButton_Previews: PreviewProvider, Snapped {
     public static var snapped: [String: AnyView] {
         [
             "Button": AnyView(
-                NewButton("Button", action: {})
+                NewButton("Some title", action: {})
             ),
             
             "Button icon": AnyView(
-                NewButton("Button", icon: Image(systemName: "command"), isLoading: .constant(false), action: {})
+                NewButton("Some title", icon: Image(systemName: "command"), isLoading: .constant(false), action: {})
+            ),
+            
+            "Button icon loading": AnyView(
+                NewButton("Some title", icon: Image(systemName: "command"), isLoading: .constant(true), action: {})
             ),
             
             "Button Small": AnyView(
-                NewButtonSmall("Button", isLoading: .constant(true), action: {})
+                NewButton("Some title", isSmall: true, isLoading: .constant(true), action: {})
             ),
             
             "Compact Button": AnyView(
-                NewButton("Button", isHugging: true, action: {})
+                NewButton("Some title", icon: Image(systemName: "command"), isHugging: true, action: {})
             ),
             
             "Small Compact Button": AnyView(
-                NewButtonSmall("Button", isHugging: true, action: {})
+                NewButton("Small title", isSmall: true, isHugging: true, action: {})
+            ),
+            
+            "Colors": AnyView(
+                Button("Some title", foreground: Color(.label), background: Color(.systemFill), action: {})
+            ),
+            
+            "Disabled": AnyView(
+                Button("Some title", action: {})
+                    .disabled(true)
+            ),
+            
+            "Long title": AnyView(
+                Button("Some very very very very very very very long title", action: {})
+            ),
+            
+            "Themed": AnyView(
+                Button("Some title", action: {})
+                    .environment(\.uiColorPrimary, .systemBlue)
+                    .environment(\.uiColorOnPrimary, .systemYellow)
+                    .environment(\.cornerRadiusButton, 20)
+                    .environment(\.textStyleTextL, TextStyle(fontWeight: .normal, fontStyle: .normal, fontSize: 25, lineSpacing: 0, color: nil))
+                    .environment(\.textFont, { Font(UIFont(name: "Papyrus", size: $0)!) })
             ),
         ]
     }
     
-    public static var detailed: Bool { false }
+    public static var detailed: Bool { true }
     public static var elementWidth: CGFloat? { 320 }
 }
 #endif
