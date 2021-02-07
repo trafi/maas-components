@@ -1,7 +1,7 @@
 package com.trafi.core
 
 import com.trafi.core.model.DrivingLicence
-import com.trafi.core.model.Error
+import com.trafi.core.model.PlatformError
 import com.trafi.core.model.Identity
 import com.trafi.core.model.PhoneNumber
 import com.trafi.core.model.Profile
@@ -89,7 +89,7 @@ private val ApiConfiguration.mockHttpClient: HttpClient
                         } else {
                             respondErrorJson(
                                 HttpStatusCode.Unauthorized,
-                                Error(developerMessage = "Invalid id token ${request.bearerToken}")
+                                PlatformError(developerMessage = "Invalid id token ${request.bearerToken}")
                             )
                         }
                     }
@@ -122,7 +122,7 @@ private inline fun <reified T> MockRequestHandleScope.respondJson(
 
 private inline fun MockRequestHandleScope.respondErrorJson(
     status: HttpStatusCode,
-    content: Error? = null,
+    content: PlatformError? = null,
     headers: Headers = content?.let {
         headersOf("Content-Type" to listOf(ContentType.Application.Json.toString()))
     } ?: headersOf(),
