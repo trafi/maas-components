@@ -1,7 +1,7 @@
 package com.trafi.example
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.test.junit4.ComposeTestRule
+import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import androidx.compose.ui.test.junit4.createComposeRule
 import com.karumi.shot.ScreenshotTest
 import org.junit.Before
@@ -23,11 +23,11 @@ class ComposablePreviewsTests(
     lateinit var previewTest: PreviewTest
 
     @get:Rule
-    val composeTestRule: ComposeTestRule = createComposeRule()
+    val composeTestRule: ComposeContentTestRule = createComposeRule()
 
     @Before
     fun init() {
-        previewTest = PreviewTest(composeTestRule = composeTestRule)
+        previewTest = PreviewTest(composeTestRule)
     }
 
     @Test
