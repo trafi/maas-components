@@ -1,9 +1,9 @@
 package com.trafi.core
 
 import com.trafi.core.model.DrivingLicence
-import com.trafi.core.model.PlatformError
 import com.trafi.core.model.Identity
 import com.trafi.core.model.PhoneNumber
+import com.trafi.core.model.PlatformError
 import com.trafi.core.model.Profile
 import com.trafi.core.model.UpdateProfileParameters
 import com.trafi.core.model.User
