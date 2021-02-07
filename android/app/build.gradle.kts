@@ -78,5 +78,5 @@ dependencies {
     implementation("junit:junit:4.13.1")
     implementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
     implementation("androidx.compose.ui:ui-test:${Versions.compose}")
-    implementation("com.karumi:shot-android:5.5.0")
+    implementation("com.karumi:shot-android:${Versions.shot}")
 }
