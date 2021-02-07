@@ -55,9 +55,9 @@ extension ApiError {
     init<T>(_ result: ApiResult<T>) {
         switch result {
         case let unauthorizedFailure as ApiResultFailureUnauthorized<T>:
-            self = .unauthorized(error: ApiResultError(unauthorizedFailure))
+            self = .unauthorized(error: unauthorizedFailure.error)
         case let errorFailure as ApiResultFailureError<T>:
-            self = .error(error: ApiResultError(errorFailure))
+            self = .error(error: errorFailure.error)
         case let genericFailure as ApiResultFailureGeneric<T>:
             self = .failure(developerMessage: genericFailure.throwable.message)
         case let failure as ApiResultFailure<T>:
@@ -67,26 +67,5 @@ extension ApiError {
             let message = "ApiResult: unable to parse \(result) as ApiResultFailure"
             self = .failure(developerMessage: message)
         }
-    }
-}
-
-extension ApiResultError {
-    
-    init<T>(_ unauthorized: ApiResultFailureUnauthorized<T>) {
-        self.init(
-            developerMessage: unauthorized.error?.developerMessage ?? unauthorized.throwable.message,
-            fallbackMessage: unauthorized.error?.fallbackMessage,
-            translationKey: unauthorized.error?.translationKey,
-            statusCode: Int(unauthorized.httpStatusCode)
-        )
-    }
-    
-    init<T>(_ failure: ApiResultFailureError<T>) {
-        self.init(
-            developerMessage: failure.error?.developerMessage ?? failure.throwable.message,
-            fallbackMessage: failure.error?.fallbackMessage,
-            translationKey: failure.error?.translationKey,
-            statusCode: Int(failure.httpStatusCode)
-        )
     }
 }
