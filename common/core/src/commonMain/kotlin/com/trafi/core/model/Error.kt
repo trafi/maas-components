@@ -14,13 +14,17 @@ package com.trafi.core.model
 import kotlinx.serialization.*
 /**
  *
+ * @param uiError
  * @param developerMessage
- * @param translationKey
- * @param fallbackMessage
+ * @param errorCode
+ * @param providerId
+ * @param ext
  */
 @Serializable
 data class Error(
+    @SerialName(value = "uiError") val uiError: UiError? = null,
     @SerialName(value = "developerMessage") val developerMessage: kotlin.String? = null,
-    @SerialName(value = "translationKey") val translationKey: kotlin.String? = null,
-    @SerialName(value = "fallbackMessage") val fallbackMessage: kotlin.String? = null
+    @SerialName(value = "errorCode") val errorCode: kotlin.String? = null,
+    @SerialName(value = "providerId") val providerId: kotlin.String? = null,
+    @SerialName(value = "ext") val ext: kotlin.collections.Map<kotlin.String, kotlin.String>? = null
 )
