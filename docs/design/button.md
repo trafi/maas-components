@@ -28,17 +28,6 @@
 [embedmd]:# (../../common/core/src/commonMain/kotlin/com/trafi/ui/component/internal/ButtonConstants.kt kotlin /class / $)
 ```kotlin
 class ButtonConstants(theme: CurrentTheme) {
-    val defaultBackgroundColor = theme.colorPalette.primary
-    val defaultContentColor = theme.colorPalette.onPrimary
-    val disabledBackgroundColor = theme.colorPalette.primary.alpha(0.12f)
-    val disabledContentColor = theme.colorPalette.onPrimary
-    val textStyle = theme.typographyScale.textL.copy(fontWeight = Bold)
-    val minHeight = 48.dp
-    val cornerRadius = theme.cornerRadiusScale.buttonRadius
-    val defaultTruncate = true
-}
-
-class NewButtonConstants(theme: CurrentTheme) {
 
     val defaultBackgroundColor = theme.colorPalette.primary
     val defaultContentColor = theme.colorPalette.onPrimary
