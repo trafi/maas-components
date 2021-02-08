@@ -27,8 +27,8 @@ class SampleViewModel : ViewModel() {
     private val _user: MutableStateFlow<User?> = MutableStateFlow(null)
     val user: StateFlow<User?> get() = _user
 
-    private val _signInComplete: MutableSharedFlow<Boolean> = MutableSharedFlow()
-    val signInComplete: SharedFlow<Boolean> get() = _signInComplete
+    private val _signInComplete: MutableSharedFlow<SignInResult> = MutableSharedFlow()
+    val signInComplete: SharedFlow<SignInResult> get() = _signInComplete
 
     private val config = ApiConfiguration(
         baseUrl = BuildConfig.API_BASE_URL,
@@ -43,6 +43,7 @@ class SampleViewModel : ViewModel() {
         val result = try {
             user.getIdToken(false).await()
         } catch (e: FirebaseAuthInvalidUserException) {
+            _signInComplete.emit(SignInResult.Error(e.message))
             null
         }
         result?.token?.let { idToken -> createOrGetUser(idToken) }
@@ -50,14 +51,16 @@ class SampleViewModel : ViewModel() {
 
     private suspend fun createOrGetUser(idToken: String) {
         this.idToken = idToken
-        when (val result = usersApi.createOrGetUser()) {
+        val result = usersApi.createOrGetUser()
+        when (result) {
             is ApiResult.Success -> {
                 _user.value = result.value
+                _signInComplete.emit(SignInResult.Success)
             }
             is ApiResult.Failure -> {
+                _signInComplete.emit(SignInResult.Failure(result))
             }
         }
-        _signInComplete.emit(_user.value != null)
     }
 
     fun onSignInSuccess(credential: AuthCredential) = viewModelScope.launch {
@@ -65,16 +68,26 @@ class SampleViewModel : ViewModel() {
             val result = firebaseAuth.signInWithCredential(credential).await()
             result.user
         } catch (e: FirebaseAuthInvalidUserException) {
+            _signInComplete.emit(SignInResult.Error(e.message))
             null
         } catch (e: FirebaseAuthInvalidCredentialsException) {
+            _signInComplete.emit(SignInResult.Error(e.message))
             null
         } catch (e: FirebaseAuthUserCollisionException) {
+            _signInComplete.emit(SignInResult.Error(e.message))
             null
         }
 
         user?.let { signInWithFirebaseUser(it) }
     }
 
-    fun onSignInError(throwable: Throwable) {
+    fun onSignInError(throwable: Throwable) = viewModelScope.launch {
+        _signInComplete.emit(SignInResult.Error(throwable.message))
     }
+}
+
+sealed class SignInResult {
+    object Success : SignInResult()
+    class Failure(val result: ApiResult.Failure<User>) : SignInResult()
+    class Error(val message: String? = null) : SignInResult()
 }
