@@ -30,7 +30,7 @@ struct ExampleButton: View {
                 }
             }
             
-            NewButton(
+            Button(
                 title,
                 icon: icon,
                 isHugging: false,
