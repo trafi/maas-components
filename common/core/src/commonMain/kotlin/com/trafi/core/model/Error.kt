@@ -21,7 +21,7 @@ import kotlinx.serialization.*
  * @param ext
  */
 @Serializable
-data class PlatformError(
+data class Error(
     @SerialName(value = "uiError") val uiError: UiError? = null,
     @SerialName(value = "developerMessage") val developerMessage: kotlin.String? = null,
     @SerialName(value = "errorCode") val errorCode: kotlin.String? = null,
