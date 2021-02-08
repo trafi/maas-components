@@ -13,12 +13,6 @@ public struct NewButton: View, Swappable {
 
     public let input: InputType
     
-    init<T: NewButtonConstants>(input: InputType, constantsType: T.Type) {
-        self.input = input
-        _buttonConstants = .init(T.init)
-        _isLoading = input.isLoading
-    }
-    
     public init(
         _ text: String,
         icon: Image? = nil,
@@ -29,7 +23,7 @@ public struct NewButton: View, Swappable {
         isLoading: Binding<Bool> = .constant(false),
         action: @escaping () -> Void) {
         
-        let input = InputType(
+        input = InputType(
             text: text,
             icon: icon,
             foregroundColor: foregroundColor,
@@ -39,16 +33,14 @@ public struct NewButton: View, Swappable {
             isLoading: isLoading,
             action: action
         )
-        
-        self.init(input: input, constantsType: NewButtonConstants.self)
     }
-
     
-    @Binding private var isLoading: Bool
     @Environment(\.isEnabled) var isEnabled
-    @Themeable(NewButtonConstants.init) var buttonConstants
+    @Themeable(ButtonConstants.init) var buttonConstants
     
     private var animation = Animation.linear(duration: 0.2)
+    
+    private var isLoading: Bool { input.isLoading.wrappedValue }
     
     public var defaultBody: some View {
         SwiftUI.Button(action: input.action) {
@@ -91,7 +83,7 @@ public struct NewButton: View, Swappable {
     }
     
     private var spinner: some View {
-        Spinner(color: foregroundColor, isAnimating: $isLoading)
+        Spinner(color: foregroundColor, isAnimating: input.isLoading)
             .frame(
                 width: buttonConstants.iconWidth,
                 height: buttonConstants.iconHeight
@@ -129,6 +121,27 @@ public struct NewButton_Previews: PreviewProvider, Snapped {
                 NewButton("Some title", action: {})
             ),
             
+            "Button Disabled": AnyView(
+                NewButton("Some title", action: {})
+                    .disabled(true)
+            ),
+            
+            "Button Hugging": AnyView(
+                NewButton("Some title", icon: Image(systemName: "command"), isHugging: true, action: {})
+            ),
+            
+            "Button Hugging Small": AnyView(
+                NewButton("Small title", isSmall: true, isHugging: true, action: {})
+            ),
+            
+            "Button Small": AnyView(
+                NewButton("Some title", isSmall: true, action: {})
+            ),
+            
+            "Button Very Long title": AnyView(
+                NewButton("Some very very very very very very very long title", action: {})
+            ),
+            
             "Button icon": AnyView(
                 NewButton("Some title", icon: Image(systemName: "command"), isLoading: .constant(false), action: {})
             ),
@@ -137,33 +150,12 @@ public struct NewButton_Previews: PreviewProvider, Snapped {
                 NewButton("Some title", icon: Image(systemName: "command"), isLoading: .constant(true), action: {})
             ),
             
-            "Button Small": AnyView(
-                NewButton("Some title", isSmall: true, isLoading: .constant(true), action: {})
-            ),
-            
-            "Compact Button": AnyView(
-                NewButton("Some title", icon: Image(systemName: "command"), isHugging: true, action: {})
-            ),
-            
-            "Small Compact Button": AnyView(
-                NewButton("Small title", isSmall: true, isHugging: true, action: {})
-            ),
-            
             "Colors": AnyView(
-                Button("Some title", foreground: Color(.label), background: Color(.systemFill), action: {})
-            ),
-            
-            "Disabled": AnyView(
-                Button("Some title", action: {})
-                    .disabled(true)
-            ),
-            
-            "Long title": AnyView(
-                Button("Some very very very very very very very long title", action: {})
+                NewButton("Some title", foregroundColor: Color(.label), backgroundColor: Color(.systemFill), action: {})
             ),
             
             "Themed": AnyView(
-                Button("Some title", action: {})
+                NewButton("Some title", action: {})
                     .environment(\.uiColorPrimary, .systemBlue)
                     .environment(\.uiColorOnPrimary, .systemYellow)
                     .environment(\.cornerRadiusButton, 20)
