@@ -1,4 +1,5 @@
 import SwiftUI
+import MaasCore
 
 public struct AlertBottomSheet: View {
 
@@ -59,7 +60,7 @@ public extension AlertBottomSheet {
         let background: Color?
         let action: () -> Void
 
-        init(
+        public init(
             _ text: String,
             image: AnyView? = nil,
             spacing: Float = SpacingScale().xs,
@@ -75,7 +76,7 @@ public extension AlertBottomSheet {
             self.action = action
         }
 
-        static func primary(title: String, image: AnyView? = nil, action: (() -> ())? = nil) -> Self {
+        public static func primary(title: String, image: AnyView? = nil, action: (() -> ())? = nil) -> Self {
             .init(
                 title,
                 image: image,
@@ -83,7 +84,7 @@ public extension AlertBottomSheet {
             )
         }
 
-        static func secondary(title: String, image: AnyView? = nil, action: (() -> ())? = nil) -> Self {
+        public static func secondary(title: String, image: AnyView? = nil, action: (() -> ())? = nil) -> Self {
             .init(
                 title,
                 image: image,
@@ -93,7 +94,7 @@ public extension AlertBottomSheet {
             )
         }
 
-        static func cancel(title: String, image: AnyView? = nil, action: (() -> ())? = nil) -> Self {
+        public static func cancel(title: String, image: AnyView? = nil, action: (() -> ())? = nil) -> Self {
             .init(
                 title,
                 image: image,
@@ -116,27 +117,27 @@ private extension AlertBottomSheet.Button {
 // MARK: - Presenting
 
 // TODO: find better solution to store latest valid value.
-//private var errorFallback: ApiError? = nil
+private var errorFallback: ApiError? = nil
 
 public extension View {
 
-//    func alertBottomSheet(error: Binding<ApiError?>) -> some View {
-//
-//        /* Store latest existing error */
-//        error.wrappedValue.flatMap { errorFallback = $0 }
-//
-//        return alertBottomSheet(
-//            isPresented: .init(
-//                get: { error.wrappedValue != nil },
-//                set: { _ in error.wrappedValue = nil }
-//            ),
-//            title: "Something went wrong",
-//            subtitle: errorFallback?.localizedDescription,
-//            buttons: [
-//                .secondary(title: "Close")
-//            ]
-//        )
-//    }
+    func alertBottomSheet(error: Binding<ApiError?>) -> some View {
+
+        /* Store latest existing error */
+        error.wrappedValue.flatMap { errorFallback = $0 }
+
+        return alertBottomSheet(
+            isPresented: .init(
+                get: { error.wrappedValue != nil },
+                set: { _ in error.wrappedValue = nil }
+            ),
+            title: "Something went wrong",
+            subtitle: errorFallback?.localizedDescription,
+            buttons: [
+                .secondary(title: "Close")
+            ]
+        )
+    }
 
     func alertBottomSheet(
         isPresented: Binding<Bool>,

@@ -1,7 +1,7 @@
 import Combine
 import SwiftUI
 
-class BottomSheetEnvironment: ObservableObject {
+public class BottomSheetEnvironment: ObservableObject {
 
     static var animationDuration: Double = 0.3
 
