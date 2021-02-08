@@ -1,24 +1,24 @@
 import SwiftUI
-import MaasCore
-import MaasComponents
-
-// titleTextStyle
-// subtitleTextStyle
-// verticalSpacing
 
 public struct AlertBottomSheet: View {
 
-    @Environment(\.textStyleHeadingL) var titleTextStyle
-    @Environment(\.textStyleTextL) var subtitleTextStyle
-
-    private var verticalSpacing: CGFloat = 20
-
+    var image: UIImage?
     var title: String?
     var subtitle: String?
     var buttons: [AlertBottomSheet.Button]
+
+    @Themeable(AlertBottomSheetConstants.init) var constants
+
     @Binding var isPresenting: Bool
 
-    public init(isPresenting: Binding<Bool>, title: String? = nil, subtitle: String? = nil, buttons: [AlertBottomSheet.Button]) {
+    public init(
+        isPresenting: Binding<Bool>,
+        image: UIImage? = nil,
+        title: String? = nil,
+        subtitle: String? = nil,
+        buttons: [AlertBottomSheet.Button]
+    ) {
+        self.image = image
         self.title = title
         self.subtitle = subtitle
         self.buttons = buttons
@@ -26,16 +26,16 @@ public struct AlertBottomSheet: View {
     }
 
     public var body: some View {
-        VStack(spacing: verticalSpacing) {
+        VStack(spacing: constants.contentVerticalSpacing) {
 
             if let title = title {
                 Text(title)
-                    .textStyle(titleTextStyle)
+                    .textStyle(constants.titleTextStyle)
             }
 
             if let subtitle = subtitle {
                 Text(subtitle)
-                    .textStyle(subtitleTextStyle)
+                    .textStyle(constants.subtitleTextStyle)
             }
 
             ForEach(buttons.indices, id: \.self) {
@@ -108,44 +108,54 @@ public extension AlertBottomSheet {
 private extension AlertBottomSheet.Button {
 
     func view(tapHandler: @escaping () -> ()) -> MaasComponents.Button {
-        .init(text, image: image, foreground: foreground, background: background, action: { tapHandler(); action() })
+        .init(text, foreground: foreground, background: background, action: { tapHandler(); action() })
     }
 }
+
 
 // MARK: - Presenting
 
 // TODO: find better solution to store latest valid value.
-private var errorFallback: ApiError? = nil
+//private var errorFallback: ApiError? = nil
 
 public extension View {
 
-    func alertBottomSheet(error: Binding<ApiError?>) -> some View {
-
-        /* Store latest existing error */
-        error.wrappedValue.flatMap { errorFallback = $0 }
-
-        return alertBottomSheet(
-            isPresented: .init(
-                get: { error.wrappedValue != nil },
-                set: { _ in error.wrappedValue = nil }
-            ),
-            title: "Something went wrong",
-            subtitle: errorFallback?.localizedDescription,
-            buttons: [
-                .secondary(title: "Close")
-            ]
-        )
-    }
+//    func alertBottomSheet(error: Binding<ApiError?>) -> some View {
+//
+//        /* Store latest existing error */
+//        error.wrappedValue.flatMap { errorFallback = $0 }
+//
+//        return alertBottomSheet(
+//            isPresented: .init(
+//                get: { error.wrappedValue != nil },
+//                set: { _ in error.wrappedValue = nil }
+//            ),
+//            title: "Something went wrong",
+//            subtitle: errorFallback?.localizedDescription,
+//            buttons: [
+//                .secondary(title: "Close")
+//            ]
+//        )
+//    }
 
     func alertBottomSheet(
         isPresented: Binding<Bool>,
+        image: UIImage? = nil,
         title: String? = nil,
         subtitle: String? = nil,
         buttons: [AlertBottomSheet.Button]
     ) -> some View {
         bottomSheet(
             isPresented: isPresented,
-            content: { AlertBottomSheet(isPresenting: isPresented, title: title, subtitle: subtitle, buttons: buttons) }
+            content: {
+                AlertBottomSheet(
+                    isPresenting: isPresented,
+                    image: image,
+                    title: title,
+                    subtitle: subtitle,
+                    buttons: buttons
+                )
+            }
         )
     }
 }

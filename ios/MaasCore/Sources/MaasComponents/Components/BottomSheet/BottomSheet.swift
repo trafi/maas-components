@@ -3,6 +3,8 @@ import Combine
 
 struct BottomSheet: ViewModifier {
 
+    @Themeable(BottomSheetConstants.init) var constants
+
     @EnvironmentObject var environment: BottomSheetEnvironment
 
     @State var dragOffset: CGFloat = 0
@@ -44,24 +46,16 @@ struct BottomSheet: ViewModifier {
 
 private extension BottomSheet {
 
-    // knobCornerRadius
-    // knobColor
-    // knobWidth
-    // knobHeight
-    // knobVerticalSpacing
-
     var sheetKnobView: some View {
         RoundedRectangle(cornerRadius: 2.5)
-            .fill(Color.init(UIColor.systemGray4))
+            .fill(constants.knobColor)
             .frame(width: 32, height: 5, alignment: .center)
             .padding(.top, 8)
     }
 
-    // backgroundColor
-
     var backgroundView: some View {
-        Color.black
-            .opacity(0.16)
+        constants
+            .backgroundColor
             .onTapGesture {
                 withAnimation(.easeInOut(duration: BottomSheetEnvironment.animationDuration)) {
                     environment.isPresented = false
@@ -70,11 +64,6 @@ private extension BottomSheet {
             }
             .edgesIgnoringSafeArea(.vertical)
     }
-
-    // sheetCornerRadius
-    // sheetShadowRadius
-    // sheetShadowColor
-    // sheetPadding
 
     var sheetContentView: some View {
         ZStack {
@@ -87,19 +76,21 @@ private extension BottomSheet {
 
             VStack(spacing: 0) {
                 sheetKnobView
+
                 VStack {
-                    VStack {
-                        environment.sheetContent
-                            .padding(20)
-                            .bounds(key: ContentPreferenceKey.self) { contentBounds = $0 }
-                    }
+
+                    environment.sheetContent
+                        .padding([.top, .bottom] ,constants.sheetContentVerticalPadding)
+                        .padding([.leading, .trailing] ,constants.sheetContentHorizontalPadding)
+                        .bounds(key: ContentPreferenceKey.self) { contentBounds = $0 }
+
                     Spacer()
                 }
             }
             .frame(width: UIScreen.main.bounds.width)
             .background(Color(.systemBackground))
-            .cornerRadius(radius: 20, corners: [.topLeft, .topRight])
-            .shadow(color: Color(.black).opacity(0.16), radius: 10)
+            .cornerRadius(radius: constants.sheetCornerRadius, corners: [.topLeft, .topRight])
+            .shadowStyle(constants.sheetShadowStyle)
             .offset(y: sheetPosition)
             .gesture(dragGesture)
         }
