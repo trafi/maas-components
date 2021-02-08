@@ -26,15 +26,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.trafi.core.model.Profile
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.Spacing
 import com.trafi.ui.theme.internal.CornerRadiusScale
 import com.trafi.ui.theme.internal.SpacingScale
 
 @Composable
-fun ProfileScreen() {
-    var name by remember { mutableStateOf("John") }
-    var surname by remember { mutableStateOf("Smith") }
+fun ProfileScreen(profile: Profile? = null) {
+    var name by remember(profile) { mutableStateOf(profile?.firstName ?: "John") }
+    var surname by remember(profile) { mutableStateOf(profile?.lastName ?: "Smith") }
 
     Column(
         modifier = Modifier
