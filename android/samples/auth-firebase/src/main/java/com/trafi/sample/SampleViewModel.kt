@@ -14,7 +14,9 @@ import com.trafi.core.ApiConfiguration
 import com.trafi.core.ApiResult
 import com.trafi.core.model.User
 import com.trafi.users.UsersApi
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -24,6 +26,9 @@ class SampleViewModel : ViewModel() {
     private var idToken: String? = null
     private val _user: MutableStateFlow<User?> = MutableStateFlow(null)
     val user: StateFlow<User?> get() = _user
+
+    private val _signInComplete: MutableSharedFlow<Boolean> = MutableSharedFlow()
+    val signInComplete: SharedFlow<Boolean> get() = _signInComplete
 
     private val config = ApiConfiguration(
         baseUrl = BuildConfig.API_BASE_URL,
@@ -52,6 +57,7 @@ class SampleViewModel : ViewModel() {
             is ApiResult.Failure -> {
             }
         }
+        _signInComplete.emit(_user.value != null)
     }
 
     fun onSignInSuccess(credential: AuthCredential) = viewModelScope.launch {
