@@ -1,13 +1,13 @@
-struct Spinner: View {
+public struct Spinner: View {
     
     private static let initialDegree = Angle.degrees(135)
     private static let initialSpinnerLength: CGFloat = 0.75
 
-    let color: Color
-    var lineWidth: CGFloat = 1.5
-    var animationTime: Double = 1
-    var appearDuration: Double = 0.2
-    @Binding var isAnimating: Bool
+    public let color: Color
+    public var lineWidth: CGFloat = 1.5
+    public var animationTime: Double = 1
+    public var appearDuration: Double = 0.2
+    @Binding public var isAnimating: Bool
     
     @State private var spinnerStart: CGFloat = 0
     @State private var spinnerEnd: CGFloat = initialSpinnerLength
@@ -16,7 +16,7 @@ struct Spinner: View {
     
     private var shouldAnimate: Bool { hasAppeared && isAnimating }
 
-    var body: some View {
+    public var body: some View {
         Circle()
             .trim(
                 from: shouldAnimate ? spinnerStart + 0.1 : spinnerStart,
