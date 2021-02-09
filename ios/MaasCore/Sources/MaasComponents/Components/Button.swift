@@ -84,19 +84,20 @@ public struct Button: View, Swappable {
     
     private var spinner: some View {
         Spinner(color: foregroundColor, isAnimating: input.isLoading)
-            .frame(
-                width: buttonConstants.iconWidth,
-                height: buttonConstants.iconHeight
-            )
+            .padding(input.isSmall ? 2 : 3)
+            .frame(width: iconSize, height: iconSize)
     }
     
     private func image(_ icon: Image) -> some View {
         icon.resizable()
-            .frame(
-                width: buttonConstants.iconWidth,
-                height: buttonConstants.iconHeight
-            )
+            .frame(width: iconSize, height: iconSize)
             .opacity(isLoading ? 0 : 1)
+    }
+    
+    private var iconSize: CGFloat {
+        input.isSmall
+            ? buttonConstants.iconSizeSmall
+            : buttonConstants.iconSize
     }
     
     private var foregroundColor: Color {
