@@ -61,7 +61,12 @@ fun FirebaseAuthSampleApp(
                     )
                 }
                 composable("profile") {
-                    ProfileScreen(user?.profile)
+                    ProfileScreen(
+                        profile = user?.profile,
+                        onUpdateProfileClick = { viewModel.updateProfile(it) },
+                        onLogOutClick = { viewModel.signOut() },
+                        onCorruptTokenClick = { viewModel.corruptToken() },
+                    )
                 }
             }
         })
