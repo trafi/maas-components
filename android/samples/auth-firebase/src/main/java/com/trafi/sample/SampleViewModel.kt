@@ -12,6 +12,7 @@ import com.google.firebase.ktx.Firebase
 import com.trafi.core.AndroidLogger
 import com.trafi.core.ApiConfiguration
 import com.trafi.core.ApiResult
+import com.trafi.core.model.Profile
 import com.trafi.core.model.User
 import com.trafi.users.UsersApi
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -84,6 +85,12 @@ class SampleViewModel : ViewModel() {
     fun onSignInError(throwable: Throwable) = viewModelScope.launch {
         _signInComplete.emit(SignInResult.Error(throwable.message))
     }
+
+    fun updateProfile(profile: Profile) {}
+
+    fun signOut() {}
+
+    fun corruptToken() {}
 }
 
 sealed class SignInResult {
