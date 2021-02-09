@@ -1,9 +1,6 @@
 package com.trafi.ui.component.internal
 
-import com.trafi.ui.theme.internal.CornerRadiusScale
-import com.trafi.ui.theme.internal.CurrentTheme
-import com.trafi.ui.theme.internal.ShadowPalette
-import com.trafi.ui.theme.internal.SpacingScale
+import com.trafi.ui.theme.internal.*
 import com.trafi.ui.theme.internal.type.*
 import com.trafi.ui.theme.internal.type.alpha
 import com.trafi.ui.theme.internal.type.copy
@@ -13,7 +10,7 @@ class BottomSheetConstants(theme: CurrentTheme) {
 
     val knobColor = theme.colorPalette.grayScale.gray200
 
-    val backgroundColor = theme.colorPalette.onBackground.alpha(0.60f)
+    val backgroundColor = ColorPalette.Black.alpha(0.60f)
 
     val sheetCornerRadius = CornerRadiusScale.xl
     val sheetContentVerticalPadding = sharedContentVerticalSpacing

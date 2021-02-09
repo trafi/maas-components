@@ -2,44 +2,46 @@ import SwiftUI
 
 public struct AlertBottomSheet: View {
 
-    var image: UIImage?
-    var title: String?
-    var subtitle: String?
-    var buttons: [AlertBottomSheet.Button]
+    public class ViewModel: ObservableObject {
 
-    @Themeable(AlertBottomSheetConstants.init) var constants
+        @Published public var image: UIImage?
+        @Published public var title: String?
+        @Published public var subtitle: String?
+        @Published public var buttons: [AlertBottomSheet.Button]
+
+        public init(image: UIImage?, title: String?, subtitle: String?, buttons: [AlertBottomSheet.Button]) {
+            self.image = image
+            self.title = title
+            self.subtitle = subtitle
+            self.buttons = buttons
+        }
+    }
+
+    @EnvironmentObject var viewModel: ViewModel
 
     @Binding var isPresenting: Bool
 
-    public init(
-        isPresenting: Binding<Bool>,
-        image: UIImage? = nil,
-        title: String? = nil,
-        subtitle: String? = nil,
-        buttons: [AlertBottomSheet.Button]
-    ) {
-        self.image = image
-        self.title = title
-        self.subtitle = subtitle
-        self.buttons = buttons
+    @Themeable(AlertBottomSheetConstants.init) var constants
+
+    public init(isPresenting: Binding<Bool>) {
         self._isPresenting = isPresenting
     }
 
     public var body: some View {
         VStack(spacing: constants.contentVerticalSpacing) {
 
-            if let title = title {
+            if let title = viewModel.title {
                 Text(title)
                     .textStyle(constants.titleTextStyle)
             }
 
-            if let subtitle = subtitle {
+            if let subtitle = viewModel.subtitle {
                 Text(subtitle)
                     .textStyle(constants.subtitleTextStyle)
             }
 
-            ForEach(buttons.indices, id: \.self) {
-                buttons[$0].view { isPresenting = false }
+            ForEach(viewModel.buttons.indices, id: \.self) {
+                viewModel.buttons[$0].view { isPresenting = false }
             }
         }
         .multilineTextAlignment(.center)
@@ -48,6 +50,7 @@ public struct AlertBottomSheet: View {
 
 // MARK: - Button
 
+// TODO: Delete Me
 public extension AlertBottomSheet {
 
     struct Button {
@@ -115,27 +118,27 @@ private extension AlertBottomSheet.Button {
 
 // MARK: - Presenting
 
-// TODO: find better solution to store latest valid value.
-private var errorFallback: ApiError? = nil
-
 public extension View {
 
-    func alertBottomSheet(error: Binding<ApiError?>) -> some View {
-
-        /* Store latest existing error */
-        error.wrappedValue.flatMap { errorFallback = $0 }
-
-        // TODO: L10n
-        return alertBottomSheet(
-            isPresented: .init(
-                get: { error.wrappedValue != nil },
-                set: { _ in error.wrappedValue = nil }
-            ),
-            title: "Something went wrong",
-            subtitle: errorFallback?.localizedDescription,
-            buttons: [
-                .secondary(title: "Close")
-            ]
+    func alertBottomSheet(
+        error: Binding<ApiError?>,
+        image: UIImage? = nil,
+        title: String? = nil,
+        subtitle: String? = nil,
+        buttons: [AlertBottomSheet.Button] = [.cancel(title: "Cancel")]
+    ) -> some View {
+        // TODO: L10n | subtitle correct message
+        bottomSheet(
+            isPresented: .bool(error),
+            content: { AlertBottomSheet(isPresenting: .bool(error)) }
+        )
+        .environmentObject(
+            AlertBottomSheet.ViewModel(
+                image: image,
+                title: title ?? "Something went wrong",
+                subtitle: error.wrappedValue?.message ?? subtitle,
+                buttons: buttons
+            )
         )
     }
 
@@ -146,17 +149,37 @@ public extension View {
         subtitle: String? = nil,
         buttons: [AlertBottomSheet.Button]
     ) -> some View {
+
         bottomSheet(
             isPresented: isPresented,
-            content: {
-                AlertBottomSheet(
-                    isPresenting: isPresented,
-                    image: image,
-                    title: title,
-                    subtitle: subtitle,
-                    buttons: buttons
-                )
-            }
+            content: { AlertBottomSheet(isPresenting: isPresented) }
+        )
+        .environmentObject(
+            AlertBottomSheet.ViewModel(image: image, title: title, subtitle: subtitle, buttons: buttons)
+        )
+    }
+}
+// TODO: Is this good ?
+private extension ApiError {
+
+    var message: String? {
+        switch self {
+        case let .error(error):
+            return error?.developerMessage
+        case let .unauthorized(error):
+            return error?.developerMessage
+        case let .failure(developerMessage):
+            return developerMessage
+        }
+    }
+}
+
+private extension Binding where Value == Bool {
+
+    static func bool<T>(_ binding: Binding<T?>) -> Binding<Value> {
+        .init(
+            get: { binding.wrappedValue != nil },
+            set: { if !$0 { binding.wrappedValue = nil } }
         )
     }
 }
