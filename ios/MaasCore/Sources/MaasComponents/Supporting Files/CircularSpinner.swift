@@ -34,7 +34,6 @@ public struct Spinner: View {
             .scaleEffect(shouldAnimate ? 1 : 0)
             .animation(.easeOut(duration: appearDuration))
             // -
-            .padding(lineWidth / 2)
             .onAppear { hasAppeared = true }
             .onDisappear { hasAppeared = false }
             .animation(nil)
