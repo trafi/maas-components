@@ -1,5 +1,4 @@
 import SwiftUI
-import MaasCore
 
 public struct AlertBottomSheet: View {
 
@@ -126,6 +125,7 @@ public extension View {
         /* Store latest existing error */
         error.wrappedValue.flatMap { errorFallback = $0 }
 
+        // TODO: L10n
         return alertBottomSheet(
             isPresented: .init(
                 get: { error.wrappedValue != nil },

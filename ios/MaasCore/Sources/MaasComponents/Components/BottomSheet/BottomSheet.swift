@@ -80,8 +80,8 @@ private extension BottomSheet {
                 VStack {
 
                     environment.sheetContent
-                        .padding([.top, .bottom] ,constants.sheetContentVerticalPadding)
-                        .padding([.leading, .trailing] ,constants.sheetContentHorizontalPadding)
+                        .padding([.top, .bottom], constants.sheetContentVerticalPadding)
+                        .padding([.leading, .trailing], constants.sheetContentHorizontalPadding)
                         .bounds(key: ContentPreferenceKey.self) { contentBounds = $0 }
 
                     Spacer()

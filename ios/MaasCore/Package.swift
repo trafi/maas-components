@@ -36,11 +36,11 @@ let package = Package(
              path: "Sources/CoreBinary/CoreBinary.xcframework"),
         .target(
             name: "MaasCore",
-            dependencies: ["CoreBinary", "MaasTheme", "MaasComponents"],
+            dependencies: ["CoreBinary"],
             path: "Sources/MaasCore"),
         .target(
             name: "MaasTheme",
-            dependencies: ["CoreBinary"],
+            dependencies: ["MaasCore"],
             path: "Sources/MaasTheme"),
         .target(
             name: "MaasComponents",
