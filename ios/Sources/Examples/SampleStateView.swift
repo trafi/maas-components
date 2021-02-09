@@ -1,15 +1,16 @@
 import SwiftUI
 import Combine
 import ComposableArchitecture
+import CoreBinary
 
-struct AppView: View {
+struct SampleStateView: View {
 
-    private let store: Store<AppState, AppAction>
+    private let store: Store<SampleState, SampleAction>
 
-    init(state: AppState, environment: AppEnvironment = AppEnvironment()) {
+    init(state: SampleState, environment: SampleEnvironment = SampleEnvironment()) {
         store = Store(
             initialState: state,
-            reducer: Reducer(AppState.reduce),
+            reducer: Reducer(SampleState.reduce),
             environment: environment
         )
     }
@@ -43,10 +44,10 @@ struct FactAlert: Identifiable {
 
 
 #if DEBUG
-struct AppView_Previews: PreviewProvider {
+struct SampleStateView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AppView(state: AppState(count: 0, numberFactAlert: nil))
+        SampleStateView(state: SampleState(count: 0, numberFactAlert: nil))
     }
 }
 #endif

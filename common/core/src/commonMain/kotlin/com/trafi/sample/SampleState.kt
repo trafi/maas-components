@@ -1,18 +1,21 @@
-package com.trafi.state
+package com.trafi.sample
 
 import com.trafi.core.ApiResult
-import com.trafi.state.AppAction.*
+import com.trafi.sample.SampleAction.*
+import com.trafi.state.Effect
+import com.trafi.state.State
+import com.trafi.state.effect
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 
-data class AppState(
+data class SampleState(
     var count: Int,
     var numberFactAlert: String?,
-) : State<AppState, AppAction, AppEnvironment> {
+) : State<SampleState, SampleAction, SampleEnvironment> {
     override fun reduce(
-        action: AppAction,
-        environment: AppEnvironment,
-    ): Pair<AppState, Effect<AppAction>> = when (action) {
+        action: SampleAction,
+        environment: SampleEnvironment,
+    ): Pair<SampleState, Effect<SampleAction>> = when (action) {
         FactAlertDismissed -> {
             copy(numberFactAlert = null) to Effect.None()
         }
@@ -33,17 +36,17 @@ data class AppState(
     }
 }
 
-sealed class AppAction {
-    object FactAlertDismissed : AppAction()
-    object DecrementButtonTapped : AppAction()
-    object IncrementButtonTapped : AppAction()
-    object NumberFactButtonTapped : AppAction()
-    class NumberFactResponse(val result: ApiResult<String>) : AppAction()
+sealed class SampleAction {
+    object FactAlertDismissed : SampleAction()
+    object DecrementButtonTapped : SampleAction()
+    object IncrementButtonTapped : SampleAction()
+    object NumberFactButtonTapped : SampleAction()
+    class NumberFactResponse(val result: ApiResult<String>) : SampleAction()
 }
 
-class AppEnvironment {
-    var fetchNumberFact: (count: Int) -> Effect<AppAction> = { count ->
-        flow<AppAction> {
+class SampleEnvironment {
+    var fetchNumberFact: (count: Int) -> Effect<SampleAction> = { count ->
+        flow<SampleAction> {
             delay(1000)
             emit(NumberFactResponse(ApiResult.Success("Number $count is great")))
         }.effect("fetch-number-fact", cancelInFlight = true)

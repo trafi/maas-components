@@ -4,19 +4,19 @@ import XCTest
 
 @testable import MaasCore
 
-final class SampleAppStateTests: XCTestCase {
+final class SampleStateTests: XCTestCase {
 
-    func testSampleAppState() {
+    func testSampleState() {
 
-        let environment = AppEnvironment()
-        let numberFactResponse = AppAction.NumberFactResponse(
+        let environment = SampleEnvironment()
+        let numberFactResponse = SampleAction.NumberFactResponse(
             result: ApiResultSuccess(value: "0 is a good number Brent")
         )
         environment.fetchNumberFact = { _ in Just(numberFactResponse).eraseToEffect() }
 
         let store = TestStore(
-            initialState: AppState(count: 0, numberFactAlert: nil),
-            reducer: Reducer(AppState.reduce),
+            initialState: SampleState(count: 0, numberFactAlert: nil),
+            reducer: Reducer(SampleState.reduce),
             environment: environment)
 
         store.assert(
