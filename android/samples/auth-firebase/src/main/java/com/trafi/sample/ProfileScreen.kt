@@ -15,22 +15,18 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.AddCircle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.trafi.core.model.Profile
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.Spacing
 import com.trafi.ui.theme.internal.CornerRadiusScale
-import com.trafi.ui.theme.internal.SpacingScale
 
 @Composable
 fun ProfileScreen(profile: Profile? = null) {
@@ -41,8 +37,10 @@ fun ProfileScreen(profile: Profile? = null) {
         modifier = Modifier
             .background(MaasTheme.colors.background)
             .fillMaxSize()
-            .padding(top = SpacingScale.xl)
-            .padding(horizontal = MaasTheme.spacing.globalMargin),
+            .padding(
+                horizontal = MaasTheme.spacing.globalMargin,
+                vertical = Spacing.xl,
+            ),
         verticalArrangement = Arrangement.spacedBy(Spacing.md),
     ) {
         Text(
