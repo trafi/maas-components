@@ -1,6 +1,6 @@
 import Combine
 
-public func cflowToPublisher<T>(_ cflow: CFlow<ApiResult<T>>) -> AnyPublisher<T, ApiError> {
+func cflowToPublisher<T>(_ cflow: CFlow<ApiResult<T>>) -> AnyPublisher<T, ApiError> {
     ApiKotlinFlowPublisher(cflow).eraseToAnyPublisher().eraseToAnyPublisher()
 }
 
