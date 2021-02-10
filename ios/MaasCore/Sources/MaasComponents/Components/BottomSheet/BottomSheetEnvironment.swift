@@ -4,6 +4,7 @@ import SwiftUI
 public class BottomSheetEnvironment: ObservableObject {
 
     static var animationDuration: Double = 0.3
+    static var defaultAnimation = Animation.easeInOut(duration: animationDuration)
 
     public init() {}
 
@@ -29,7 +30,9 @@ public class BottomSheetEnvironment: ObservableObject {
         }
 
         if let isPresented = isPresented {
-            withAnimation { [unowned self] in self.isPresented = isPresented }
+            withAnimation(BottomSheetEnvironment.defaultAnimation) { [unowned self] in
+                self.isPresented = isPresented
+            }
         }
     }
 }

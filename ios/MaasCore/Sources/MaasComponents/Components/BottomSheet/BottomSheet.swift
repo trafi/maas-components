@@ -37,7 +37,7 @@ struct BottomSheet: ViewModifier {
             content
             sheetContentView
         }
-        .animation(.easeInOut(duration: BottomSheetEnvironment.animationDuration))
+        .animation(BottomSheetEnvironment.defaultAnimation)
         .bounds(key: PresenterContentPreferenceKey.self) { presenterBounds = $0 }
     }
 }
@@ -50,14 +50,13 @@ private extension BottomSheet {
         RoundedRectangle(cornerRadius: 2.5)
             .fill(constants.knobColor)
             .frame(width: 32, height: 5, alignment: .center)
-            .padding(.top, 8)
     }
 
     var backgroundView: some View {
         constants
             .backgroundColor
             .onTapGesture {
-                withAnimation(.easeInOut(duration: BottomSheetEnvironment.animationDuration)) {
+                withAnimation(BottomSheetEnvironment.defaultAnimation) {
                     environment.isPresented = false
                     environment.onDismiss?()
                 }
@@ -68,14 +67,13 @@ private extension BottomSheet {
     var sheetContentView: some View {
         ZStack {
 
-            Group {
-                if environment.isPresented {
-                    backgroundView
-                }
+            if environment.isPresented {
+                backgroundView
             }
 
             VStack(spacing: 0) {
                 sheetKnobView
+                    .padding(.top, 8)
 
                 VStack {
 

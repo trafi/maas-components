@@ -24,7 +24,7 @@ extension BottomSheet {
 
         let predictedEndLocation = value.predictedEndLocation.y - value.location.y
 
-        withAnimation(.easeInOut(duration: BottomSheetEnvironment.animationDuration)) {
+        withAnimation(BottomSheetEnvironment.defaultAnimation) {
 
             switch predictedEndLocation {
             case let position where position > 1:
