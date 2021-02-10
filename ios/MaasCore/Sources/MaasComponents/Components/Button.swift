@@ -173,20 +173,16 @@ public struct Button_Previews: PreviewProvider, Snapped {
 struct ExampleButton: View {
     
     @State private var isLoadingButton = false
-    @State var dFlag = false
+    @State var isIcon = false
     
     var title: String {
-        dFlag
-            ? isLoadingButton
-            ? ""
-            : "Button"
-            :  isLoadingButton
-            ? "Iconning..."
-            : "ICON"
+        isIcon
+            ? isLoadingButton ? "Iconning..." : "ICON"
+            : isLoadingButton ? "" : "Button"
     }
     
     var icon: Image? {
-        dFlag
+        isIcon
             ? Image(systemName: "command")
             : nil
     }
@@ -196,9 +192,7 @@ struct ExampleButton: View {
             HStack {
                 SwiftUI.Button("start") { isLoadingButton = true }
                 SwiftUI.Button("stop") { isLoadingButton = false }
-                SwiftUI.Button("icon") {
-                    dFlag.toggle()
-                }
+                SwiftUI.Button("icon") { isIcon.toggle() }
             }
             
             Button(
