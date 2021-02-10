@@ -15,7 +15,10 @@ extension BottomSheet {
 
         if yOffset > 0 {
             dragOffset = value.translation.height
-        } else if -yOffset + contentBounds.height < UIScreen.main.bounds.height {
+        }
+
+        let shouldStrechContent = -yOffset + contentBounds.height < UIScreen.main.bounds.height
+        if shouldStrechContent {
             dragOffset = yOffset * stiffness
         }
     }
