@@ -29,6 +29,9 @@ let package = Package(
         .package(
             name: "Quick",
             url: "https://github.com/Quick/Quick.git", from: "3.0.0"),
+        .package(
+            name: "swift-composable-architecture",
+            url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.10.0"),
     ] + environment.dependencies,
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -53,7 +56,8 @@ let package = Package(
                 "MaasRouteSearch",
                 "MaasNearbyTransit",
                 "SnapshotTesting",
-                "Quick"
+                "Quick",
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ],
             path: "ios/Tests/MaasTests",
             exclude: ["__Snapshots__"]), 
@@ -101,7 +105,7 @@ private extension Environment {
                     name: "CoreBinary",
                     url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev03/CoreBinary.xcframework.zip",
                     checksum: "08d2bc473fe1ea73d9d389b8b491ecd378fde82c49d24bc1579804f0e8ed978b"),
-                .maasCoreTarget(name: "MaasCore"),
+                .maasCoreTarget(name: "MaasCore", dependencies: [.product(name: "ComposableArchitecture", package: "swift-composable-architecture")]),
                 .maasCoreTarget(name: "MaasTheme"),
                 .maasCoreTarget(name: "MaasComponents", dependencies: ["MaasTheme", "Swappable"]),
                 .maasTarget(name: "MaasRouteSearch"),
