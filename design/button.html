@@ -158,14 +158,26 @@
 <div class="section" id="api">
 <h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ButtonConstants</span><span class="p">(</span><span class="n">theme</span><span class="p">:</span> <span class="n">CurrentTheme</span><span class="p">)</span> <span class="p">{</span>
+
     <span class="k">val</span> <span class="py">defaultBackgroundColor</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">colorPalette</span><span class="p">.</span><span class="n">primary</span>
     <span class="k">val</span> <span class="py">defaultContentColor</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">colorPalette</span><span class="p">.</span><span class="n">onPrimary</span>
     <span class="k">val</span> <span class="py">disabledBackgroundColor</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">colorPalette</span><span class="p">.</span><span class="n">primary</span><span class="p">.</span><span class="n">alpha</span><span class="p">(</span><span class="m">0.12f</span><span class="p">)</span>
     <span class="k">val</span> <span class="py">disabledContentColor</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">colorPalette</span><span class="p">.</span><span class="n">onPrimary</span>
+
     <span class="k">val</span> <span class="py">textStyle</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">typographyScale</span><span class="p">.</span><span class="n">textL</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="n">fontWeight</span> <span class="p">=</span> <span class="n">Bold</span><span class="p">)</span>
-    <span class="k">val</span> <span class="py">minHeight</span> <span class="p">=</span> <span class="m">48.</span><span class="n">dp</span>
-    <span class="k">val</span> <span class="py">cornerRadius</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">cornerRadiusScale</span><span class="p">.</span><span class="n">buttonRadius</span>
+    <span class="k">val</span> <span class="py">textStyleSmall</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">typographyScale</span><span class="p">.</span><span class="n">textM</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="n">fontWeight</span> <span class="p">=</span> <span class="n">Bold</span><span class="p">)</span>
     <span class="k">val</span> <span class="py">defaultTruncate</span> <span class="p">=</span> <span class="k">true</span>
+
+    <span class="k">val</span> <span class="py">height</span> <span class="p">=</span> <span class="m">48.</span><span class="n">dp</span>
+    <span class="k">val</span> <span class="py">heightSmall</span> <span class="p">=</span> <span class="m">32.</span><span class="n">dp</span>
+
+    <span class="k">val</span> <span class="py">iconSize</span> <span class="p">=</span> <span class="m">24.</span><span class="n">dp</span>
+    <span class="k">val</span> <span class="py">iconSizeSmall</span> <span class="p">=</span> <span class="m">16.</span><span class="n">dp</span>
+
+    <span class="k">val</span> <span class="py">spaceBetween</span> <span class="p">=</span> <span class="n">SpacingScale</span><span class="p">.</span><span class="n">xs</span>
+    <span class="k">val</span> <span class="py">paddingHorizontal</span> <span class="p">=</span> <span class="n">SpacingScale</span><span class="p">.</span><span class="n">md</span>
+
+    <span class="k">val</span> <span class="py">cornerRadius</span> <span class="p">=</span> <span class="n">theme</span><span class="p">.</span><span class="n">cornerRadiusScale</span><span class="p">.</span><span class="n">buttonRadius</span>
 <span class="p">}</span>
 </pre></div>
 </div>
