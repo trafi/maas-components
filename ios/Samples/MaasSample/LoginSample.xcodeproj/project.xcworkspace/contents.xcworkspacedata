@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/ignasjasiunas/Documents/maas-components/ios/Samples/MaasSample/LoginSample.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
