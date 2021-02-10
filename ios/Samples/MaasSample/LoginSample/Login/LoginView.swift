@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 import MaasComponents
+import struct SwiftUI.State
 
 struct LoginView: View {
 
@@ -15,12 +16,70 @@ struct LoginView: View {
     @State var show: Bool = false
 
     var body: some View {
-        VStack {
-            Spacer()
-            logoView()
-            Spacer()
-            loadingIndicatorView()
-            loginProviderButtonsView()
+        NavigationView {
+            VStack {
+                Spacer()
+                logoView()
+                Spacer()
+                loadingIndicatorView()
+                loginProviderButtonsView()
+            }
+            .background(
+                NavigationLink(
+                    destination: LoginDetails(user: $viewModel.user),
+                    isActive: $viewModel.presentDetails,
+                    label: { EmptyView() }
+                )
+            )
+        }
+    }
+}
+
+struct LoginDetails: View {
+
+    @State var user: User?
+
+    public init(user: Binding<User?>) {
+        self._user = .init(wrappedValue: user.wrappedValue)
+    }
+
+    var body: some View {
+        List {
+            TextField(
+                "Display Name",
+                text: .init(
+                    get: { user?.profile.firstName ?? "" },
+                    set: { value in
+
+                        guard let user = self.user else { return }
+
+                        let newProfile = Profile(
+                            gender: user.profile.gender,
+                            ext: user.profile.ext,
+                            firstName: value,
+                            lastName: user.profile.lastName,
+                            displayName: user.profile.displayName,
+                            email: user.profile.email,
+                            address: user.profile.address,
+                            birthDate: user.profile.birthDate
+                        )
+
+                        let newUser = User(
+                            id: user.id,
+                            identity: user.identity,
+                            profile: newProfile,
+                            phoneNumber: user.phoneNumber,
+                            providerAccounts: user.providerAccounts,
+                            drivingLicence: user.drivingLicence,
+                            terms: user.terms,
+                            paymentMethods: user.paymentMethods,
+                            memberships: user.memberships
+                        )
+
+                        self.user = newUser
+                    }
+                )
+            )
         }
     }
 }

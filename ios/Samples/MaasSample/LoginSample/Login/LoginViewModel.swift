@@ -15,9 +15,17 @@ class LoginViewModel: ObservableObject {
         }
     }
 
+    @Published var user: User? = nil {
+        didSet {
+            presentDetails = user != nil
+        }
+    }
+
     @Published var error: ApiError? = nil {
         didSet { authenticationProvider = nil }
     }
+
+    @Published var presentDetails: Bool = false
 
     var isEnabled: Bool { authenticationProvider == nil }
 }
@@ -31,7 +39,15 @@ private extension LoginViewModel {
         FacebookAuthentication().authenticate
             .flatMap { FirebaseAuthentication.init(authCredential: $0).signIn() }
             .mapError {
-                ApiError.error(error: .init(developerMessage: $0.localizedDescription, translationKey: nil, fallbackMessage: nil))
+                ApiError.error(
+                    error: .init(
+                        uiError: nil,
+                        developerMessage: $0.localizedDescription,
+                        errorCode: nil,
+                        providerId: nil,
+                        ext: [:]
+                    )
+                )
             }
             .sink(
                 receiveCompletion: { [unowned self] in self.mapError($0) },
@@ -49,7 +65,7 @@ private extension LoginViewModel {
             .eraseToAnyPublisher()
             .sink(
                 receiveCompletion: { [unowned self] in self.mapError($0) },
-                receiveValue: { print("Received user: \($0)") }
+                receiveValue: { [unowned self] in self.user = $0; print("Magic: \($0)") }
             )
             .store(in: &cancelableStore)
     }
