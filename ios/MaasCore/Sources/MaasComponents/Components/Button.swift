@@ -76,7 +76,7 @@ public struct Button: View, Swappable {
     
     private var text: some View {
         Text(input.text)
-            .lineLimit(0)
+            .lineLimit(1)
             .minimumScaleFactor(0.75)
             .textStyle(input.isSmall ? buttonConstants.textStyleSmall : buttonConstants.textStyle)
             .transition(.opacity)
