@@ -18,22 +18,22 @@ import kotlinx.serialization.json.Json
  * [interop with Objective-C](https://kotlinlang.org/docs/reference/native/objc_interop.html#generics).
  */
 sealed class ApiResult<out T : Any> {
-    class Success<T : Any> internal constructor(val value: T) : ApiResult<T>()
+    class Success<T : Any>(val value: T) : ApiResult<T>()
 
     sealed class Failure<T : Any>(val throwable: Throwable) : ApiResult<T>() {
-        class Unauthorized<T : Any> internal constructor(
+        class Unauthorized<T : Any>(
             throwable: Throwable,
             val httpStatusCode: Int,
             val error: com.trafi.core.model.Error? = null,
         ) : Failure<T>(throwable)
 
-        class Error<T : Any> internal constructor(
+        class Error<T : Any>(
             throwable: Throwable,
             val httpStatusCode: Int,
             val error: com.trafi.core.model.Error? = null,
         ) : Failure<T>(throwable)
 
-        class Generic<T : Any> internal constructor(
+        class Generic<T : Any>(
             throwable: Throwable,
         ) : Failure<T>(throwable)
     }
