@@ -1,6 +1,6 @@
 import Combine
 
-func cflowToPublisher<T>(_ cflow: CFlow<ApiResult<T>>) -> AnyPublisher<T, ApiError> {
+private func cflowToPublisher<T>(_ cflow: CFlow<ApiResult<T>>) -> AnyPublisher<T, ApiError> {
     ApiKotlinFlowPublisher(cflow).eraseToAnyPublisher().eraseToAnyPublisher()
 }
 
@@ -26,6 +26,6 @@ public extension CFlow where T == ApiResult<RoutesResult> {
 
 /// For every Possible Response type:
 
-//extension CFlow where T == ApiResult<<#Type#>> {
+//public extension CFlow where T == ApiResult<<#Type#>> {
 //    var publisher: AnyPublisher<<#Type#>, ApiError> { cflowToPublisher(self) }
 //}

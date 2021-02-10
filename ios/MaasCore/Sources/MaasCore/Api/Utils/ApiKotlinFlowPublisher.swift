@@ -2,16 +2,16 @@ import Combine
 
 class ApiKotlinFlowPublisher<T: AnyObject>: Publisher {
     
-    public typealias Output = T
-    public typealias Failure = ApiError
+    typealias Output = T
+    typealias Failure = ApiError
     
     private let flow: CFlow<ApiResult<T>>
     
-    public init(_ flow: CFlow<ApiResult<T>>) {
+    init(_ flow: CFlow<ApiResult<T>>) {
         self.flow = flow
     }
     
-    public func receive<S>(subscriber: S) where S: Subscriber, S.Failure == ApiError, S.Input == T {
+    func receive<S>(subscriber: S) where S: Subscriber, S.Failure == ApiError, S.Input == T {
         subscriber.receive(subscription: ApiKotlinFlowSubscription(flow, subscriber))
     }
 }
