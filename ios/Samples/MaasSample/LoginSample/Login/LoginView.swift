@@ -10,10 +10,13 @@ import Combine
 import MaasComponents
 import struct SwiftUI.State
 
+// MARK: -
+
 struct LoginView: View {
 
+    @EnvironmentObject var destination: Destination
+
     @ObservedObject var viewModel: LoginViewModel = .init()
-    @State var show: Bool = false
 
     var body: some View {
         NavigationView {
@@ -24,74 +27,22 @@ struct LoginView: View {
                 loadingIndicatorView()
                 loginProviderButtonsView()
             }
-            .background(
-                NavigationLink(
-                    destination: LoginDetails(viewModel: viewModel),
-                    isActive: $viewModel.presentDetails,
-                    label: { EmptyView() }
-                )
-            )
         }
-    }
-}
-
-struct LoginDetails: View {
-
-    @ObservedObject var viewModel: LoginViewModel
-
-    var body: some View {
-        List {
-            TextField(
-                "Display Name",
-                text: .init(
-                    get: { viewModel.user?.profile.firstName ?? "" },
-                    set: { value in
-
-                        guard let user = self.viewModel.user else { return }
-
-                        let newProfile = Profile(
-                            gender: user.profile.gender,
-                            ext: user.profile.ext,
-                            firstName: value,
-                            lastName: user.profile.lastName,
-                            displayName: user.profile.displayName,
-                            email: user.profile.email,
-                            address: user.profile.address,
-                            birthDate: user.profile.birthDate
-                        )
-
-                        let newUser = User(
-                            id: user.id,
-                            identity: user.identity,
-                            profile: newProfile,
-                            phoneNumber: user.phoneNumber,
-                            providerAccounts: user.providerAccounts,
-                            drivingLicence: user.drivingLicence,
-                            terms: user.terms,
-                            paymentMethods: user.paymentMethods,
-                            memberships: user.memberships
-                        )
-
-                        self.viewModel.user = newUser
-                    }
-                )
-            )
+        .onAppear {
+            if MaasConfiguration.accessToken != nil {
+                viewModel.getOrCreateUser()
+            }
         }
+        .onChange(
+            of: viewModel.presentDetails,
+            perform: { if $0 { destination.path = .details(viewModel.user) } }
+        )
         .alert(item: $viewModel.error) {
             Alert(title: Text($0.developerMessage ?? ""))
         }
-        
-        VStack(spacing: 10) {
-            Button("Save") {
-                viewModel.updateProfile()
-            }
-            
-            Button("🔥 token") {
-                MaasConfiguration.accessToken = ""
-            }
-        }.padding()
     }
 }
+
 
 // MARK: - View
 
@@ -119,13 +70,6 @@ private extension LoginView {
     func loginProviderButtonsView() -> some View {
         VStack(spacing: 16) {
 
-            // Button enable disable ?
-            // Button icons ? (width/height) UIImage vs Image vs View
-            // Control spacing between icon and text ?
-            // Button multi line text ?
-            // Action why not publisher ?
-            // Passed foreground/background colors don't react in enviroment changes ?
-
             ForEach([AuthenticationProvider.allCases.last!], id: \.self) { provider in
                 Button(
                     provider.title,
@@ -137,7 +81,7 @@ private extension LoginView {
 
             Button(
                 "Other ways to sign-up",
-                action: { show.toggle() }
+                action: {  }
             )
             .environment(\.uiColorPrimary, .systemGray2)
         }
@@ -183,16 +127,4 @@ struct ActivityIndicator: UIViewRepresentable {
 private extension View {
 
     var erased: AnyView { AnyView(self) }
-}
-
-struct LoginPreview: PreviewProvider {
-
-    @State static var show: Bool = false
-
-    static var previews: some View {
-        HStack {
-            Text("Hello, world!")
-            Button("Display", action: { show.toggle() })
-        }
-    }
 }

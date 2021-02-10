@@ -8,6 +8,38 @@
 import SwiftUI
 import MaasComponents
 
+class Destination: ObservableObject {
+
+    enum `Path`: Equatable {
+        case login
+        case details(User?)
+    }
+
+    @Published var path: Path
+
+    init() { self.path = .login /* Some Extra magic */ }
+}
+
+struct LaunchView: View {
+
+    @ObservedObject var destination: Destination = .init()
+
+    var body: some View {
+        Group {
+            switch destination.path {
+            case .login:
+                LoginView()
+            case let .details(user):
+                NavigationView {
+                    ProfileView(user: user)
+                }
+            }
+        }
+        .animation(.default)
+        .environmentObject(destination)
+    }
+}
+
 @main
 struct MaasSampleApp: App {
 
@@ -18,7 +50,7 @@ struct MaasSampleApp: App {
 
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            LaunchView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

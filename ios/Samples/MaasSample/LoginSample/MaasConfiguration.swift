@@ -6,7 +6,9 @@ class MaasConfiguration: ApiConfig {
 
     static let shared = MaasConfiguration()
     static var config: CoreBinary.ApiConfiguration { shared.config }
-    static var accessToken: String? = nil
+
+    @UserDefault(key: "accessTokenn", defaultValue: nil)
+    static var accessToken: String?
 
     var baseUrl: String { "https://api-trafi.bedrock.dev.trafi.com/" }
     var apiKey: String { "OwJwMJr8x11WfgqJlTmZJ3cpXHBPIdob3TNvTgmk" }

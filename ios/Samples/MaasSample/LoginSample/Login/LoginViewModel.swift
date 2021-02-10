@@ -1,5 +1,6 @@
 import Combine
 import MaasCore
+import SwiftUI
 
 class LoginViewModel: ObservableObject {
 
@@ -16,9 +17,7 @@ class LoginViewModel: ObservableObject {
     }
 
     @Published var user: User? = nil {
-        didSet {
-            presentDetails = user != nil
-        }
+        didSet { presentDetails = user != nil }
     }
 
     @Published var error: ApiError? = nil {
@@ -56,16 +55,6 @@ extension LoginViewModel {
     /* Request for new user creation or just get created one. */
     func getOrCreateUser() {
         UsersApi.shared.createOrGetUser(profile: .default).publisher
-            .eraseToAnyPublisher()
-            .sink(
-                receiveCompletion: { [unowned self] in self.mapError($0) },
-                receiveValue: { [unowned self] in self.user = $0; print("Magic: \($0)") }
-            )
-            .store(in: &cancelableStore)
-    }
-
-    func updateProfile() {
-        UsersApi.shared.updateProfile(profile: user?.profile).publisher
             .eraseToAnyPublisher()
             .sink(
                 receiveCompletion: { [unowned self] in self.mapError($0) },
