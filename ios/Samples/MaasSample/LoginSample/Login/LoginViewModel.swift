@@ -32,7 +32,7 @@ class LoginViewModel: ObservableObject {
 
 // MARK: - Authentication
 
-private extension LoginViewModel {
+extension LoginViewModel {
 
     /* Login and store accessToken */
     func authenticate(_ provider: AuthenticationProvider) {
@@ -40,13 +40,7 @@ private extension LoginViewModel {
             .flatMap { FirebaseAuthentication.init(authCredential: $0).signIn() }
             .mapError {
                 ApiError.error(
-                    error: .init(
-                        uiError: nil,
-                        developerMessage: $0.localizedDescription,
-                        errorCode: nil,
-                        providerId: nil,
-                        ext: [:]
-                    )
+                    error: .just(devMessage: $0.localizedDescription)
                 )
             }
             .sink(
@@ -70,6 +64,16 @@ private extension LoginViewModel {
             .store(in: &cancelableStore)
     }
 
+    func updateProfile() {
+        UsersApi.shared.updateProfile(profile: user?.profile).publisher
+            .eraseToAnyPublisher()
+            .sink(
+                receiveCompletion: { [unowned self] in self.mapError($0) },
+                receiveValue: { [unowned self] in self.user = $0; print("Magic: \($0)") }
+            )
+            .store(in: &cancelableStore)
+    }
+    
     func mapError(_ state: Subscribers.Completion<ApiError>) {
         switch state {
         case .failure(let e): error = e;

@@ -26,7 +26,7 @@ struct LoginView: View {
             }
             .background(
                 NavigationLink(
-                    destination: LoginDetails(user: $viewModel.user),
+                    destination: LoginDetails(viewModel: viewModel),
                     isActive: $viewModel.presentDetails,
                     label: { EmptyView() }
                 )
@@ -37,21 +37,17 @@ struct LoginView: View {
 
 struct LoginDetails: View {
 
-    @State var user: User?
-
-    public init(user: Binding<User?>) {
-        self._user = .init(wrappedValue: user.wrappedValue)
-    }
+    @ObservedObject var viewModel: LoginViewModel
 
     var body: some View {
         List {
             TextField(
                 "Display Name",
                 text: .init(
-                    get: { user?.profile.firstName ?? "" },
+                    get: { viewModel.user?.profile.firstName ?? "" },
                     set: { value in
 
-                        guard let user = self.user else { return }
+                        guard let user = self.viewModel.user else { return }
 
                         let newProfile = Profile(
                             gender: user.profile.gender,
@@ -76,11 +72,24 @@ struct LoginDetails: View {
                             memberships: user.memberships
                         )
 
-                        self.user = newUser
+                        self.viewModel.user = newUser
                     }
                 )
             )
         }
+        .alert(item: $viewModel.error) {
+            Alert(title: Text($0.developerMessage ?? ""))
+        }
+        
+        VStack(spacing: 10) {
+            Button("Save") {
+                viewModel.updateProfile()
+            }
+            
+            Button("🔥 token") {
+                MaasConfiguration.accessToken = ""
+            }
+        }.padding()
     }
 }
 
