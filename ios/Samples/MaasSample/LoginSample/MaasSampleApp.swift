@@ -20,7 +20,6 @@ struct MaasSampleApp: App {
         WindowGroup {
             LoginView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(BottomSheetEnvironment())
         }
     }
 }

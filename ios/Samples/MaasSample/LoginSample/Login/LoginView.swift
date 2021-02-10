@@ -61,7 +61,6 @@ private extension LoginView {
             ForEach([AuthenticationProvider.allCases.last!], id: \.self) { provider in
                 Button(
                     provider.title,
-                    image: provider.imageView,
                     action: { viewModel.authenticationProvider = provider }
                 )
                 .environment(\.uiColorPrimary, provider.primaryColor)
