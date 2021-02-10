@@ -34,15 +34,15 @@ class ButtonConstants(theme: CurrentTheme) {
     val disabledBackgroundColor = theme.colorPalette.primary.alpha(0.12f)
     val disabledContentColor = theme.colorPalette.onPrimary
 
-    val iconWidth = 16.dp
-    val iconHeight = 16.dp
-
     val textStyle = theme.typographyScale.textL.copy(fontWeight = Bold)
     val textStyleSmall = theme.typographyScale.textM.copy(fontWeight = Bold)
     val defaultTruncate = true
 
     val height = 48.dp
     val heightSmall = 32.dp
+
+    val iconSize = 24.dp
+    val iconSizeSmall = 16.dp
 
     val spaceBetween = SpacingScale.xs
     val paddingHorizontal = SpacingScale.md
