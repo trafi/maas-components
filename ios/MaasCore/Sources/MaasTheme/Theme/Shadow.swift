@@ -8,7 +8,6 @@ public extension View {
 private struct ShadowStyleModifier: ViewModifier {
 
     let shadowStyle: ShadowStyle
-    @Environment(\.textFont) var textFont
 
     func body(content: Content) -> some View {
 
