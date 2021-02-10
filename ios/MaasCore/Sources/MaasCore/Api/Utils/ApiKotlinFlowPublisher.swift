@@ -1,6 +1,6 @@
 import Combine
 
-public class ApiKotlinFlowPublisher<T: AnyObject>: Publisher {
+class ApiKotlinFlowPublisher<T: AnyObject>: Publisher {
     
     public typealias Output = T
     public typealias Failure = ApiError
