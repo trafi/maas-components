@@ -53,7 +53,7 @@ private extension LoginView {
             ForEach(AuthenticationProvider.allCases, id: \.self) { provider in
                 Button(
                     provider.title,
-                    icon: Image(provider.rawValue),
+                    icon: provider.icon,
                     isLoading: viewModel.isLoading,
                     action: { viewModel.authenticationProvider = provider }
                 )

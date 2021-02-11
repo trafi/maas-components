@@ -17,11 +17,8 @@ extension AuthenticationProvider {
 
     var title: String { "Continue with \(self.rawValue)" }
 
-    var imageView: Image? {
-        UIImage(named: rawValue.lowercased()).flatMap {
-            Image(uiImage: $0)
-                .resizable(capInsets: .init(top: 12, leading: 12, bottom: 12, trailing: 12), resizingMode: .tile)
-        }
+    var icon: Image? {
+        UIImage(named: rawValue.lowercased()).flatMap { Image(uiImage: $0) }
     }
 
     var primaryColor: UIColor { UIColor(named: rawValue.lowercased() + "-color") ?? .black }
