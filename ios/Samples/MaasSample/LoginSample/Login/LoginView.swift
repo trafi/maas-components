@@ -25,7 +25,7 @@ struct LoginView: View {
         }
         .onAppear {
             if MaasConfiguration.accessToken?.isEmpty == false {
-                viewModel.api.getOrCreateUser()
+                viewModel.getOrCreateUser()
             }
         }
         .onChange(

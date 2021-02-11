@@ -4,7 +4,10 @@ import SwiftUI
 
 import struct SwiftUI.State
 
+// 😭
 class API {
+
+    public var someUser = PassthroughSubject<User, Never>()
 
     @Binding var user: User?
     @Binding var error: AuthenticationError?
@@ -21,14 +24,12 @@ class API {
 
     func getOrCreateUser() {
         UsersApi.shared.createOrGetUser(profile: .default).publisher
-            .eraseToAnyPublisher()
             .sink(receiveCompletion: onError, receiveValue: onValue)
             .store(in: &cancelableStore)
     }
 
     func updateProfile() {
         UsersApi.shared.updateProfile(profile: user?.profile).publisher
-            .eraseToAnyPublisher()
             .sink(receiveCompletion: onError, receiveValue: onValue)
             .store(in: &cancelableStore)
     }
@@ -49,7 +50,7 @@ class API {
     }
 }
 
-private extension Profile {
+extension Profile {
 
     static var `default`: Self {
         .init(
