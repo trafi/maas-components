@@ -5,7 +5,7 @@ import PackageDescription
 
 // MARK: - Setup
 
-private let environment: Environment = .production
+private let environment: Environment = .development
 
 let package = Package(
     name: "Maas",
