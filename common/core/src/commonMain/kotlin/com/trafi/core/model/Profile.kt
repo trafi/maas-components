@@ -26,14 +26,14 @@ import kotlinx.serialization.internal.CommonEnumSerializer
  */
 @Serializable
 data class Profile(
-    @SerialName(value = "gender") @Required val gender: Profile.Gender,
-    @SerialName(value = "ext") @Required val ext: kotlin.collections.Map<kotlin.String, kotlin.String>,
-    @SerialName(value = "firstName") val firstName: kotlin.String? = null,
-    @SerialName(value = "lastName") val lastName: kotlin.String? = null,
-    @SerialName(value = "displayName") val displayName: kotlin.String? = null,
-    @SerialName(value = "email") val email: kotlin.String? = null,
-    @SerialName(value = "address") val address: Address? = null,
-    @SerialName(value = "birthDate") val birthDate: kotlin.String? = null
+    @SerialName(value = "gender") @Required var gender: Profile.Gender,
+    @SerialName(value = "ext") @Required var ext: kotlin.collections.Map<kotlin.String, kotlin.String>,
+    @SerialName(value = "firstName") var firstName: kotlin.String? = null,
+    @SerialName(value = "lastName") var lastName: kotlin.String? = null,
+    @SerialName(value = "displayName") var displayName: kotlin.String? = null,
+    @SerialName(value = "email") var email: kotlin.String? = null,
+    @SerialName(value = "address") var address: Address? = null,
+    @SerialName(value = "birthDate") var birthDate: kotlin.String? = null
 ) {
 
     /**
