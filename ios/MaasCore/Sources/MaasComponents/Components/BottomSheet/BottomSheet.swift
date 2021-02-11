@@ -86,7 +86,7 @@ private extension BottomSheet {
                 }
             }
             .frame(width: UIScreen.main.bounds.width)
-            .background(Color(.systemBackground))
+            .background(constants.backgroundColor)
             .cornerRadius(radius: constants.sheetCornerRadius, corners: [.topLeft, .topRight])
             .shadowStyle(constants.sheetShadowStyle)
             .offset(y: sheetPosition)
