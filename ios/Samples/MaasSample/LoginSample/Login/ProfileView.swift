@@ -15,7 +15,7 @@ struct ProfileView: View {
         List {
             TextField(
                 "Display Name",
-                text: viewModel.firstName
+                text: $viewModel.firstName
             )
 
             Section {
