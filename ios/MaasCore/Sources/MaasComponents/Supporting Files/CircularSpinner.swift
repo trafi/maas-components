@@ -1,3 +1,5 @@
+import struct SwiftUI.State
+
 public struct Spinner: View {
     
     private static let initialDegree = Angle.degrees(135)
