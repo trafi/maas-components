@@ -1,3 +1,5 @@
+import struct SwiftUI.State
+
 public struct Button: View, Swappable {
     
     public struct InputType {
