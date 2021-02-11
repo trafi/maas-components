@@ -27,6 +27,7 @@ class LoginViewModel: ObservableObject {
     @Published var presentDetails: Bool = false
 
     var isEnabled: Bool { authenticationProvider == nil }
+    var isLoading: Bool { authenticationProvider != nil }
 }
 
 // MARK: - Authentication

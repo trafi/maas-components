@@ -10,6 +10,8 @@ class ProfileViewModel: ObservableObject {
     
     @Published var error: ApiError? = nil
     
+    @Published var isLoading: Bool = false
+    
     lazy var firstName: Binding<String> = {
         .init(
             get: { self.user?.profile.firstName ?? "" },
@@ -50,8 +52,9 @@ class ProfileViewModel: ObservableObject {
     }
 
     // MARK: - Requests
-
+    
     func updateProfile() {
+        isLoading = true
         UsersApi.shared.updateProfile(profile: user?.profile).publisher
             .eraseToAnyPublisher()
             .sink(
@@ -62,6 +65,7 @@ class ProfileViewModel: ObservableObject {
     }
 
     func mapError(_ state: Subscribers.Completion<ApiError>) {
+        isLoading = false
         switch state {
         case .failure(let e): error = e;
         case .finished: error = nil

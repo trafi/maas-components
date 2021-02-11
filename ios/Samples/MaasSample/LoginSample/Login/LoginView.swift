@@ -29,7 +29,7 @@ struct LoginView: View {
             }
         }
         .onAppear {
-            if MaasConfiguration.accessToken != nil {
+            if MaasConfiguration.accessToken?.isEmpty == false {
                 viewModel.getOrCreateUser()
             }
         }
@@ -71,8 +71,11 @@ private extension LoginView {
         VStack(spacing: 16) {
 
             ForEach([AuthenticationProvider.allCases.last!], id: \.self) { provider in
+
                 Button(
                     provider.title,
+                    icon: Image(provider.rawValue),
+                    isLoading: viewModel.isLoading,
                     action: { viewModel.authenticationProvider = provider }
                 )
                 .environment(\.uiColorPrimary, provider.primaryColor)
