@@ -17,7 +17,13 @@ class ApiConfiguration: ApiConfig {
 
 public protocol ApiConfig {
     var baseUrl: String { get }
+    /**
+     - Tag: ApiConfig.apiKey
+     */
     var apiKey: String { get }
+    /**
+     - Tag: ApiConfig.getIdToken
+     */
     func getIdToken() -> String?
     var logger: Logger? { get }
 }

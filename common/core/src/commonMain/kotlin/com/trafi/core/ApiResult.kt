@@ -21,18 +21,40 @@ sealed class ApiResult<out T : Any> {
     class Success<T : Any>(val value: T) : ApiResult<T>()
 
     sealed class Failure<T : Any>(val throwable: Throwable) : ApiResult<T>() {
+        /**
+         * The server returned 401 Unauthorized.
+         * The Authorization header Bearer token retrieved using [ApiConfiguration.getIdToken]
+         * may be invalid or expired.
+         */
         class Unauthorized<T : Any>(
             throwable: Throwable,
             val httpStatusCode: Int,
             val error: com.trafi.core.model.Error? = null,
         ) : Failure<T>(throwable)
 
+        /**
+         * The server returned 403 Forbidden.
+         * The x-api-key header retrieved using [ApiConfiguration.apiKey]
+         * may be invalid or not subscribed to the API.
+         */
+        class Forbidden<T : Any>(
+            throwable: Throwable,
+            val httpStatusCode: Int,
+            val error: com.trafi.core.model.Error? = null,
+        ) : Failure<T>(throwable)
+
+        /**
+         * The server returned an error not covered by the more specific [Failure] types.
+         */
         class Error<T : Any>(
             throwable: Throwable,
             val httpStatusCode: Int,
             val error: com.trafi.core.model.Error? = null,
         ) : Failure<T>(throwable)
 
+        /**
+         * A generic failure not covered by the more specific [Failure] types.
+         */
         class Generic<T : Any>(
             throwable: Throwable,
         ) : Failure<T>(throwable)
@@ -48,14 +70,18 @@ sealed class ApiResult<out T : Any> {
                         null
                     }
 
-                    if (throwable.response.status == HttpStatusCode.Unauthorized) {
-                        Failure.Unauthorized(
+                    when (throwable.response.status) {
+                        HttpStatusCode.Unauthorized -> Failure.Unauthorized(
                             throwable = throwable,
                             httpStatusCode = throwable.response.status.value,
                             error = error,
                         )
-                    } else {
-                        Failure.Error(
+                        HttpStatusCode.Forbidden -> Failure.Forbidden(
+                            throwable = throwable,
+                            httpStatusCode = throwable.response.status.value,
+                            error = error,
+                        )
+                        else -> Failure.Error(
                             throwable = throwable,
                             httpStatusCode = throwable.response.status.value,
                             error = error,
