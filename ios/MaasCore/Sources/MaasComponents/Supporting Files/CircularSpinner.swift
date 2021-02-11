@@ -9,7 +9,7 @@ public struct Spinner: View {
     public var lineWidth: CGFloat = 1.5
     public var animationTime: Double = 1
     public var appearDuration: Double = 0.2
-    @Binding public var isAnimating: Bool
+    public var isAnimating: Bool
     
     @State private var spinnerStart: CGFloat = 0
     @State private var spinnerEnd: CGFloat = initialSpinnerLength
@@ -76,8 +76,8 @@ public struct Spinner_Previews: PreviewProvider, Snapped {
             "Spinner": AnyView(
                 Spinner(
                     color: .black,
-                    animationTime: 8,
-                    isAnimating: .constant(true)
+                    animationTime: 2,
+                    isAnimating: true
                 )
                     .frame(width: 16, height: 16, alignment: .center)
             ),
