@@ -17,7 +17,7 @@ class Destination: ObservableObject {
 
     @Published var path: Path
 
-    init() { self.path = .login /* Some Extra magic */ }
+    init() { self.path = .login }
 }
 
 struct LaunchView: View {

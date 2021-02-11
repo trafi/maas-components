@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  MaasSample
-//
-//  Created by Ignas Jasiunas on 2021-01-28.
-//
-
 import SwiftUI
 import Combine
 import MaasComponents
@@ -24,22 +17,16 @@ struct LoginView: View {
                 Spacer()
                 logoView()
                 Spacer()
-                loadingIndicatorView()
                 loginProviderButtonsView()
             }
         }
-        .onAppear {
-            if MaasConfiguration.accessToken != nil {
-                viewModel.getOrCreateUser()
-            }
+        .alert(item: $viewModel.error) {
+            Alert(title: Text($0.message ?? ""))
         }
         .onChange(
             of: viewModel.presentDetails,
             perform: { if $0 { destination.path = .details(viewModel.user) } }
         )
-        .alert(item: $viewModel.error) {
-            Alert(title: Text($0.developerMessage ?? ""))
-        }
     }
 }
 
@@ -55,28 +42,17 @@ private extension LoginView {
             .padding(100)
     }
 
-    func loadingIndicatorView() -> some View {
-        HStack {
-            if let title = viewModel.authenticationProvider?.rawValue {
-                ActivityIndicator()
-                Text(title)
-                    .font(.callout)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color(.systemGray2))
-            }
-        }
-    }
-
     func loginProviderButtonsView() -> some View {
         VStack(spacing: 16) {
 
-            ForEach([AuthenticationProvider.allCases.last!], id: \.self) { provider in
+            ForEach(AuthenticationProvider.allCases, id: \.self) { provider in
                 Button(
                     provider.title,
+                    isLoading: $viewModel.isLoading,
                     action: { viewModel.authenticationProvider = provider }
                 )
                 .environment(\.uiColorPrimary, provider.primaryColor)
-                .environment(\.isEnabled, viewModel.isEnabled && provider.isEnabled)
+                .environment(\.isEnabled, !viewModel.isLoading)
             }
 
             Button(
@@ -87,44 +63,4 @@ private extension LoginView {
         }
         .padding(24)
     }
-}
-
-// MARK: - Authentication Data
-
-private extension AuthenticationProvider {
-
-    var title: String { "Continue with \(self.rawValue)" }
-
-    var imageView: AnyView? {
-        UIImage(named: rawValue.lowercased()).flatMap {
-            Image(uiImage: $0)
-                .resizable()
-                .frame(width: 20, height: 20)
-                .erased
-        }
-    }
-
-    var primaryColor: UIColor { UIColor(named: rawValue.lowercased() + "-color") ?? .black }
-
-    var isEnabled: Bool { self == .facebook }
-}
-
-// MARK: - ActivityIndicator
-
-struct ActivityIndicator: UIViewRepresentable {
-
-    func makeUIView(context: Context) -> some UIActivityIndicatorView {
-        UIActivityIndicatorView()
-    }
-
-    func updateUIView(_ uiView: UIViewType, context: Context) {
-        uiView.startAnimating()
-    }
-}
-
-// MARK: - Preview
-
-private extension View {
-
-    var erased: AnyView { AnyView(self) }
 }
