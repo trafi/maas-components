@@ -13,38 +13,7 @@ struct ProfileView: View {
         List {
             TextField(
                 "Display Name",
-                text: .init(
-                    get: { viewModel.user?.profile.firstName ?? "" },
-                    set: { value in
-
-                        guard let user = self.viewModel.user else { return }
-
-                        let newProfile = Profile(
-                            gender: user.profile.gender,
-                            ext: user.profile.ext,
-                            firstName: value,
-                            lastName: user.profile.lastName,
-                            displayName: user.profile.displayName,
-                            email: user.profile.email,
-                            address: user.profile.address,
-                            birthDate: user.profile.birthDate
-                        )
-
-                        let newUser = User(
-                            id: user.id,
-                            identity: user.identity,
-                            profile: newProfile,
-                            phoneNumber: user.phoneNumber,
-                            providerAccounts: user.providerAccounts,
-                            drivingLicence: user.drivingLicence,
-                            terms: user.terms,
-                            paymentMethods: user.paymentMethods,
-                            memberships: user.memberships
-                        )
-
-                        self.viewModel.user = newUser
-                    }
-                )
+                text: viewModel.firstName
             )
 
             Section {
