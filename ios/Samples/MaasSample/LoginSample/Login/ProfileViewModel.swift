@@ -17,11 +17,11 @@ class ProfileViewModel: ObservableObject {
         )
     }
 
-    private var cancelableStore = Set<AnyCancellable>()
-
     @Published var user: User?
     
     @Published var error: AuthenticationError? = nil
+    
+    @Published var isLoading: Bool = false
     
     lazy var firstName: Binding<String> = {
         .init(

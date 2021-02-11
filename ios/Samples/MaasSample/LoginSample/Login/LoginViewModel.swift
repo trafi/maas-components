@@ -6,7 +6,7 @@ import struct SwiftUI.State
 
 class LoginViewModel: ObservableObject {
 
-    private var api: API {
+    var api: API {
         API(
             user: .init(
                 get: { self.user },
@@ -43,8 +43,9 @@ class LoginViewModel: ObservableObject {
 
     @Published var presentDetails: Bool = false
 
-    @Published var isLoading: Bool = false
+    var isLoading: Bool = false
 
+    // MARK: - Authentication
 
     /* Login and store accessToken */
     func authenticate(_ provider: AuthenticationProvider) {

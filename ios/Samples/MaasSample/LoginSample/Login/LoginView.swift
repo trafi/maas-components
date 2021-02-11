@@ -23,6 +23,11 @@ struct LoginView: View {
         .alert(item: $viewModel.error) {
             Alert(title: Text($0.message ?? ""))
         }
+        .onAppear {
+            if MaasConfiguration.accessToken?.isEmpty == false {
+                viewModel.api.getOrCreateUser()
+            }
+        }
         .onChange(
             of: viewModel.presentDetails,
             perform: { if $0 { destination.path = .details(viewModel.user) } }
@@ -48,7 +53,8 @@ private extension LoginView {
             ForEach(AuthenticationProvider.allCases, id: \.self) { provider in
                 Button(
                     provider.title,
-                    isLoading: $viewModel.isLoading,
+                    icon: Image(provider.rawValue),
+                    isLoading: viewModel.isLoading,
                     action: { viewModel.authenticationProvider = provider }
                 )
                 .environment(\.uiColorPrimary, provider.primaryColor)

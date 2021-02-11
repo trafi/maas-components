@@ -9,7 +9,7 @@ public struct Button: View, Swappable {
         public let backgroundColor: Color?
         public let isSmall: Bool
         public let isHugging: Bool
-        public let isLoading: Binding<Bool>
+        public let isLoading: Bool
         public let action: () -> Void
     }
     
@@ -22,7 +22,7 @@ public struct Button: View, Swappable {
         backgroundColor: Color? = nil,
         isSmall: Bool = false,
         isHugging: Bool = false,
-        isLoading: Binding<Bool> = .constant(false),
+        isLoading: Bool = false,
         action: @escaping () -> Void) {
         
         input = InputType(
@@ -41,14 +41,12 @@ public struct Button: View, Swappable {
     @Themeable(ButtonConstants.init) var buttonConstants
     
     private var animation = Animation.linear(duration: 0.2)
-    
-    private var isLoading: Bool { input.isLoading.wrappedValue }
-    
+        
     public var defaultBody: some View {
         SwiftUI.Button(action: input.action) {
             HStack(spacing: buttonConstants.spaceBetween) {
                 
-                if isLoading || input.icon != nil {
+                if input.isLoading || input.icon != nil {
                     ZStack {
                         
                         if let icon = input.icon {
@@ -93,7 +91,7 @@ public struct Button: View, Swappable {
     private func image(_ icon: Image) -> some View {
         icon.resizable()
             .frame(width: iconSize, height: iconSize)
-            .opacity(isLoading ? 0 : 1)
+            .opacity(input.isLoading ? 0 : 1)
     }
     
     private var iconSize: CGFloat {
@@ -146,11 +144,11 @@ public struct Button_Previews: PreviewProvider, Snapped {
             ),
             
             "Button icon": AnyView(
-                Button("Some title", icon: Image(systemName: "command"), isLoading: .constant(false), action: {})
+                Button("Some title", icon: Image(systemName: "command"), isLoading: false, action: {})
             ),
             
             "Button icon loading": AnyView(
-                Button("Some title", icon: Image(systemName: "command"), isLoading: .constant(true), action: {})
+                Button("Some title", icon: Image(systemName: "command"), isLoading: true, action: {})
             ),
             
             "Colors": AnyView(
@@ -201,11 +199,11 @@ struct ExampleButton: View {
                 title,
                 icon: icon,
                 isHugging: false,
-                isLoading: $isLoadingButton,
+                isLoading: isLoadingButton,
                 action: tappedButton
             ).padding()
             
-            Spinner(color: .black, lineWidth: 20, isAnimating: $isLoadingButton)
+            Spinner(color: .black, lineWidth: 20, isAnimating: isLoadingButton)
                 .frame(width: 100, height: 100, alignment: .center)
         }
     }
