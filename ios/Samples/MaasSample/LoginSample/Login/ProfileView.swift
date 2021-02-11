@@ -19,10 +19,11 @@ struct ProfileView: View {
             )
 
             Section {
+
                 Button(
                     "Save",
                     isLoading: viewModel.isLoading,
-                    action: viewModel.updateProfile
+                    action: viewModel.api.updateProfile
                 )
 
                 Button("🔥 token") {
@@ -37,7 +38,7 @@ struct ProfileView: View {
         .navigationTitle("Profile")
         .listStyle(InsetGroupedListStyle())
         .alert(item: $viewModel.error) {
-            Alert(title: Text($0.developerMessage ?? ""))
+            Alert(title: Text($0.message ?? ""))
         }
     }
 }
