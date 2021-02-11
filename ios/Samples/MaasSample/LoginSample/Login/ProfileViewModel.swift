@@ -4,6 +4,8 @@ import MaasCore
 
 class ProfileViewModel: ObservableObject {
 
+    private var cancelableStore = Set<AnyCancellable>()
+
     var api: API {
         API(
             user: .init(
@@ -13,7 +15,8 @@ class ProfileViewModel: ObservableObject {
             error: .init(
                 get: { self.error },
                 set: { self.error = $0 }
-            )
+            ),
+            cancelableStore: &cancelableStore
         )
     }
 

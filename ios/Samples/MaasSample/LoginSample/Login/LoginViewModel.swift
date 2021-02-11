@@ -6,6 +6,8 @@ import struct SwiftUI.State
 
 class LoginViewModel: ObservableObject {
 
+    private var cancelableStore = Set<AnyCancellable>()
+
     var api: API {
         API(
             user: .init(
@@ -15,7 +17,8 @@ class LoginViewModel: ObservableObject {
             error: .init(
                 get: { self.error },
                 set: { self.error = $0 }
-            )
+            ),
+            cancelableStore: &cancelableStore
         )
     }
 
@@ -64,6 +67,6 @@ class LoginViewModel: ObservableObject {
                     self.api.getOrCreateUser()
                 }
             )
-            .store(in: &API.cancelableStore)
+            .store(in: &cancelableStore)
     }
 }
