@@ -52,8 +52,7 @@ class SampleViewModel : ViewModel() {
 
     private suspend fun createOrGetUser(idToken: String) {
         this.idToken = idToken
-        val result = usersApi.createOrGetUser()
-        when (result) {
+        when (val result = usersApi.createOrGetUser()) {
             is ApiResult.Success -> {
                 _user.value = result.value
                 _signInComplete.emit(SignInResult.Success)
@@ -86,7 +85,15 @@ class SampleViewModel : ViewModel() {
         _signInComplete.emit(SignInResult.Error(throwable.message))
     }
 
-    fun updateProfile(profile: Profile) {}
+    fun updateProfile(profile: Profile) = viewModelScope.launch {
+        when (val result = usersApi.updateProfile(profile)) {
+            is ApiResult.Success -> {
+                _user.value = result.value
+            }
+            is ApiResult.Failure -> {
+            }
+        }
+    }
 
     fun signOut() {}
 
