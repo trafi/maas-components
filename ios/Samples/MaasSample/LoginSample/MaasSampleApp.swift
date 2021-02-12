@@ -8,35 +8,25 @@
 import SwiftUI
 import MaasComponents
 
-class Destination: ObservableObject {
-
-    enum `Path`: Equatable {
-        case login
-        case details(User?)
-    }
-
-    @Published var path: Path
-
-    init() { self.path = .login }
-}
-
 struct LaunchView: View {
 
-    @ObservedObject var destination: Destination = .init()
+    @ObservedObject var appState: AppState = .init()
 
     var body: some View {
         Group {
-            switch destination.path {
-            case .login:
+            if appState.user == nil {
                 LoginView()
-            case let .details(user):
+            } else {
                 NavigationView {
-                    ProfileView(user: user)
+                    ProfileView()
                 }
             }
         }
+        .alert(item: $appState.error) {
+            Alert(title: Text($0.message ?? ""))
+        }
         .animation(.default)
-        .environmentObject(destination)
+        .environmentObject(appState)
     }
 }
 
