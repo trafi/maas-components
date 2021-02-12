@@ -88,41 +88,11 @@ class AppState: ObservableObject {
     }
 
     // MARK: - Bindings
-
-    lazy var firstName: Binding<String> = {
-        .init(
-            get: { self.user?.profile.firstName ?? "" },
-            set: { value in
-
-                guard let user = self.user else { return }
-
-                let newProfile = Profile(
-                    gender: user.profile.gender,
-                    ext: user.profile.ext,
-                    firstName: value,
-                    lastName: user.profile.lastName,
-                    displayName: user.profile.displayName,
-                    email: user.profile.email,
-                    address: user.profile.address,
-                    birthDate: user.profile.birthDate
-                )
-
-                let newUser = User(
-                    id: user.id,
-                    identity: user.identity,
-                    profile: newProfile,
-                    phoneNumber: user.phoneNumber,
-                    providerAccounts: user.providerAccounts,
-                    drivingLicence: user.drivingLicence,
-                    terms: user.terms,
-                    paymentMethods: user.paymentMethods,
-                    memberships: user.memberships
-                )
-
-                self.user = newUser
-            }
-        )
-    }()
+    
+    var firstName: String {
+        get { user?.profile.firstName ?? "" }
+        set { user?.profile.firstName = newValue }
+    }
 }
 
 extension Profile {

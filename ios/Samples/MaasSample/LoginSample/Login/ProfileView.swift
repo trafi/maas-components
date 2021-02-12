@@ -10,7 +10,7 @@ struct ProfileView: View {
         List {
             TextField(
                 "Display Name",
-                text: appState.firstName
+                text: $appState.firstName
             )
         }
         .overlay(buttonsStack, alignment: .bottom)
