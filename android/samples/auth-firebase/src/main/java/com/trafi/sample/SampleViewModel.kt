@@ -33,8 +33,8 @@ class SampleViewModel : ViewModel() {
     private val _user: MutableStateFlow<User?> = MutableStateFlow(null)
     val user: StateFlow<User?> get() = _user
 
-    private val _signInComplete: MutableSharedFlow<SignInResult> = MutableSharedFlow()
-    val signInComplete: SharedFlow<SignInResult> get() = _signInComplete
+    private val _error: MutableSharedFlow<Error> = MutableSharedFlow()
+    val error: SharedFlow<Error> get() = _error
 
     val userSignedIn: SharedFlow<Boolean> = _user.map { it != null }
         .drop(1)
@@ -54,7 +54,7 @@ class SampleViewModel : ViewModel() {
         val result = try {
             user.getIdToken(false).await()
         } catch (e: FirebaseAuthInvalidUserException) {
-            _signInComplete.emit(SignInResult.Error(e.message))
+            _error.emit(Error.Message(e.message))
             null
         }
         result?.token?.let { idToken -> createOrGetUser(idToken) }
@@ -65,10 +65,9 @@ class SampleViewModel : ViewModel() {
         when (val result = usersApi.createOrGetUser()) {
             is ApiResult.Success -> {
                 _user.value = result.value
-                _signInComplete.emit(SignInResult.Success)
             }
             is ApiResult.Failure -> {
-                _signInComplete.emit(SignInResult.Failure(result))
+                _error.emit(Error.Failure(result))
             }
         }
     }
@@ -78,13 +77,13 @@ class SampleViewModel : ViewModel() {
             val result = firebaseAuth.signInWithCredential(credential).await()
             result.user
         } catch (e: FirebaseAuthInvalidUserException) {
-            _signInComplete.emit(SignInResult.Error(e.message))
+            _error.emit(Error.Message(e.message))
             null
         } catch (e: FirebaseAuthInvalidCredentialsException) {
-            _signInComplete.emit(SignInResult.Error(e.message))
+            _error.emit(Error.Message(e.message))
             null
         } catch (e: FirebaseAuthUserCollisionException) {
-            _signInComplete.emit(SignInResult.Error(e.message))
+            _error.emit(Error.Message(e.message))
             null
         }
 
@@ -92,7 +91,7 @@ class SampleViewModel : ViewModel() {
     }
 
     fun onSignInError(throwable: Throwable) = viewModelScope.launch {
-        _signInComplete.emit(SignInResult.Error(throwable.message))
+        _error.emit(Error.Message(throwable.message))
     }
 
     fun updateProfile(profile: Profile) = viewModelScope.launch {
@@ -101,6 +100,7 @@ class SampleViewModel : ViewModel() {
                 _user.value = result.value
             }
             is ApiResult.Failure -> {
+                _error.emit(Error.Failure(result))
             }
         }
     }
@@ -113,8 +113,7 @@ class SampleViewModel : ViewModel() {
     fun corruptToken() {}
 }
 
-sealed class SignInResult {
-    object Success : SignInResult()
-    class Failure(val result: ApiResult.Failure<User>) : SignInResult()
-    class Error(val message: String? = null) : SignInResult()
+sealed class Error {
+    class Failure(val result: ApiResult.Failure<User>) : Error()
+    class Message(val message: String? = null) : Error()
 }

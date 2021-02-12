@@ -34,7 +34,7 @@ fun FirebaseAuthSampleApp(
 
     var errorText by remember { mutableStateOf(defaultErrorMessage) }
 
-    fun showError(failure: SignInResult.Failure) {
+    fun showError(failure: Error.Failure) {
         errorText = when (val result = failure.result) {
             is ApiResult.Failure.Unauthorized -> result.error?.developerMessage
             is ApiResult.Failure.Forbidden -> result.error?.developerMessage
@@ -44,7 +44,7 @@ fun FirebaseAuthSampleApp(
         sheetState.show()
     }
 
-    fun showError(error: SignInResult.Error) {
+    fun showError(error: Error.Message) {
         errorText = error.message ?: defaultErrorMessage
         sheetState.show()
     }
@@ -58,7 +58,7 @@ fun FirebaseAuthSampleApp(
             NavHost(navController, startDestination = "welcome") {
                 composable("welcome") {
                     WelcomeScreen(
-                        onLaterClick = { showError(SignInResult.Error()) },
+                        onLaterClick = { showError(Error.Message()) },
                         onContinueWithGoogleClick = onContinueWithGoogleClick,
                     )
                 }
@@ -77,14 +77,18 @@ fun FirebaseAuthSampleApp(
         })
 
     LaunchedEffect(Unit) {
-        viewModel.signInComplete.collect { result ->
+        viewModel.userSignedIn.collect { signedIn ->
+            if (signedIn) {
+                sheetState.hide()
+                navController.navigate("profile")
+            } else {
+                navController.popBackStack()
+            }
+        }
+        viewModel.error.collect { result ->
             when (result) {
-                SignInResult.Success -> {
-                    sheetState.hide()
-                    navController.navigate("profile")
-                }
-                is SignInResult.Failure -> showError(result)
-                is SignInResult.Error -> showError(result)
+                is Error.Failure -> showError(result)
+                is Error.Message -> showError(result)
             }
         }
     }
