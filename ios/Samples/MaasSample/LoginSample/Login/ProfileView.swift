@@ -16,9 +16,6 @@ struct ProfileView: View {
         .overlay(buttonsStack, alignment: .bottom)
         .navigationTitle("Profile")
         .listStyle(InsetGroupedListStyle())
-        .alert(item: $appState.error) {
-            Alert(title: Text($0.message ?? ""))
-        }
     }
 
     private var buttonsStack: some View {

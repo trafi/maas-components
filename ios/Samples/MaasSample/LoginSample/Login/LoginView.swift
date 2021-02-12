@@ -18,9 +18,6 @@ struct LoginView: View {
                 loginProviderButtonsView()
             }
         }
-        .alert(item: $appState.error) {
-            Alert(title: Text($0.message ?? ""))
-        }
         .onAppear {
             if MaasConfiguration.accessToken?.isEmpty == false {
                 appState.getOrCreateUser()
