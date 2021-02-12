@@ -8,20 +8,6 @@ class LoginViewModel: ObservableObject {
 
     private var cancelableStore = Set<AnyCancellable>()
 
-    var api: API {
-        API(
-            user: .init(
-                get: { self.user },
-                set: { self.user = $0 }
-            ),
-            error: .init(
-                get: { self.error },
-                set: { self.error = $0 }
-            ),
-            cancelableStore: &cancelableStore
-        )
-    }
-
     @Published var authenticationProvider: AuthenticationProvider? = nil {
         didSet {
 
@@ -36,7 +22,7 @@ class LoginViewModel: ObservableObject {
         }
     }
 
-    @Published var user: User? = nil {
+    @Published var user: MaasCore.User? = nil {
         didSet { presentDetails = user != nil }
     }
 
@@ -64,9 +50,33 @@ class LoginViewModel: ObservableObject {
                 },
                 receiveValue: { [unowned self] in
                     MaasConfiguration.accessToken = $0
-                    self.api.getOrCreateUser()
+                    MaasConfiguration.temporaryAccessToken = $0
+                    self.getOrCreateUser()
                 }
             )
             .store(in: &cancelableStore)
+    }
+
+    func getOrCreateUser() {
+        UsersApi.shared.createOrGetUser(profile: .default).publisher
+            .sink(receiveCompletion: onError, receiveValue: onValue)
+            .store(in: &cancelableStore)
+    }
+
+    // MARK: - Handlers
+
+    private func onError(_ completion: Subscribers.Completion<ApiError>) {
+        switch completion {
+        case .finished:
+            error = nil
+        case let .failure(apiError):
+            error = .apiError(apiError)
+        }
+
+        isLoading = false
+    }
+
+    private func onValue(_ completion: MaasCore.User) {
+        user = completion
     }
 }
