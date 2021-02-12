@@ -26,6 +26,7 @@ import kotlinx.coroutines.flow.collect
 fun FirebaseAuthSampleApp(
     viewModel: SampleViewModel,
     onContinueWithGoogleClick: () -> Unit,
+    onSignOutClick: () -> Unit,
 ) {
     val user by viewModel.user.collectAsState()
     val navController = rememberNavController()
@@ -65,7 +66,10 @@ fun FirebaseAuthSampleApp(
                     ProfileScreen(
                         profile = user?.profile,
                         onUpdateProfileClick = { viewModel.updateProfile(it) },
-                        onLogOutClick = { viewModel.signOut() },
+                        onLogOutClick = {
+                            viewModel.signOut()
+                            onSignOutClick()
+                        },
                         onCorruptTokenClick = { viewModel.corruptToken() },
                     )
                 }

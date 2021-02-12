@@ -105,7 +105,10 @@ class SampleViewModel : ViewModel() {
         }
     }
 
-    fun signOut() {}
+    fun signOut() {
+        firebaseAuth.signOut()
+        _user.value = null
+    }
 
     fun corruptToken() {}
 }
