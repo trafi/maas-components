@@ -21,9 +21,7 @@ class MaasConfiguration: ApiConfig {
 
     var logger: Logger? { nil }
 
-    func getIdToken() -> String? {
-        MaasConfiguration.accessToken
-    }
+    func getIdToken() -> String? { MaasConfiguration.accessToken }
 
     // 1. Update
     // 2. bad token
@@ -32,13 +30,12 @@ class MaasConfiguration: ApiConfig {
     // 5. Update
     // 6. ---
 
-
     // Config.accessToken = ******
     // Config.refreshToken = ???? -> (*****)
 
-    func getIdToken(_ compl: () -> (String))  {
-        MaasConfiguration.accessToken
-    }
+//    func getIdToken(_ compl: () -> (String))  {
+//        MaasConfiguration.accessToken
+//    }
 
     static func refreshToken(_ completion: @escaping () -> ()) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {

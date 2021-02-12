@@ -7,9 +7,7 @@ import struct SwiftUI.State
 
 struct LoginView: View {
 
-    @EnvironmentObject var destination: Destination
-
-    @ObservedObject var viewModel: LoginViewModel = .init()
+    @EnvironmentObject var appState: AppState
 
     var body: some View {
         NavigationView {
@@ -20,18 +18,14 @@ struct LoginView: View {
                 loginProviderButtonsView()
             }
         }
-        .alert(item: $viewModel.error) {
+        .alert(item: $appState.error) {
             Alert(title: Text($0.message ?? ""))
         }
         .onAppear {
             if MaasConfiguration.accessToken?.isEmpty == false {
-                viewModel.getOrCreateUser()
+                appState.getOrCreateUser()
             }
         }
-        .onChange(
-            of: viewModel.presentDetails,
-            perform: { if $0 { destination.path = .details(viewModel.user) } }
-        )
     }
 }
 
@@ -54,11 +48,11 @@ private extension LoginView {
                 Button(
                     provider.title,
                     icon: provider.icon,
-                    isLoading: viewModel.isLoading,
-                    action: { viewModel.authenticationProvider = provider }
+                    isLoading: appState.isLoading,
+                    action: { appState.authenticationProvider = provider }
                 )
                 .environment(\.uiColorPrimary, provider.primaryColor)
-                .environment(\.isEnabled, !viewModel.isLoading)
+                .environment(\.isEnabled, !appState.isLoading)
             }
 
             Button(
