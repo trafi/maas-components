@@ -110,7 +110,9 @@ class SampleViewModel : ViewModel() {
         _user.value = null
     }
 
-    fun corruptToken() {}
+    fun corruptToken() {
+        idToken = null
+    }
 }
 
 sealed class Error {
