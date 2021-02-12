@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A37EFCE25D6CCD2003046DB /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A37EFCD25D6CCD2003046DB /* Authentication.swift */; };
 		C0072C0325D42B9A00E80529 /* UserDefaults+PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0072C0225D42B9A00E80529 /* UserDefaults+PropertyWrapper.swift */; };
 		C06576AF25D4314A0084EB39 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06576AE25D4314A0084EB39 /* ProfileView.swift */; };
 		C06576B725D538200084EB39 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06576B625D538200084EB39 /* AppState.swift */; };
@@ -18,7 +19,6 @@
 		C09FD9B125C310DF00FF87BA /* MaasSample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C09FD9AF25C310DF00FF87BA /* MaasSample.xcdatamodeld */; };
 		C09FD9BA25C3112100FF87BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FD9B925C3112100FF87BA /* AppDelegate.swift */; };
 		C09FD9C725C3132500FF87BA /* MaasConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FD9C625C3132500FF87BA /* MaasConfiguration.swift */; };
-		C09FD9DD25C3FB5900FF87BA /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FD9DC25C3FB5900FF87BA /* Authentication.swift */; };
 		C0A5FFDB25D2B43500EDFF48 /* Maas in Frameworks */ = {isa = PBXBuildFile; productRef = C0A5FFDA25D2B43500EDFF48 /* Maas */; };
 		C0DDDF8225C42E1400C750DA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C0DDDF8125C42E1400C750DA /* FirebaseAuth */; };
 		C0DDDF8D25C4309300C750DA /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = C0DDDF8C25C4309300C750DA /* FacebookCore */; };
@@ -27,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A37EFCD25D6CCD2003046DB /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		C0072C0225D42B9A00E80529 /* UserDefaults+PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+PropertyWrapper.swift"; sourceTree = "<group>"; };
 		C06576AE25D4314A0084EB39 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		C06576B625D538200084EB39 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -40,7 +41,6 @@
 		C09FD9B225C310DF00FF87BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C09FD9B925C3112100FF87BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C09FD9C625C3132500FF87BA /* MaasConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaasConfiguration.swift; sourceTree = "<group>"; };
-		C09FD9DC25C3FB5900FF87BA /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		C0CB4AC525D3E00D0047B93D /* maas-components */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "maas-components"; path = ../../..; sourceTree = "<group>"; };
 		C0DDDFAE25C4401F00C750DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,6 +60,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A37EFCC25D6CCD2003046DB /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				3A37EFCD25D6CCD2003046DB /* Authentication.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		C0072C0125D42B8E00E80529 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,8 +102,8 @@
 				C09FD9B925C3112100FF87BA /* AppDelegate.swift */,
 				C09FD9A425C310DD00FF87BA /* MaasSampleApp.swift */,
 				C09FD9C625C3132500FF87BA /* MaasConfiguration.swift */,
+				3A37EFCC25D6CCD2003046DB /* Authentication */,
 				C09FD9D325C3FB3000FF87BA /* Login */,
-				C09FD9D025C3FB1500FF87BA /* Authentication */,
 				C09FD9D825C3FB4500FF87BA /* Supporting Files */,
 				C09FD9AA25C310DF00FF87BA /* Preview Content */,
 			);
@@ -115,14 +123,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C09FD9D025C3FB1500FF87BA /* Authentication */ = {
-			isa = PBXGroup;
-			children = (
-				C09FD9DC25C3FB5900FF87BA /* Authentication.swift */,
-			);
-			path = Authentication;
 			sourceTree = "<group>";
 		};
 		C09FD9D325C3FB3000FF87BA /* Login */ = {
@@ -229,10 +229,10 @@
 				C09FD9C725C3132500FF87BA /* MaasConfiguration.swift in Sources */,
 				C09FD9AE25C310DF00FF87BA /* Persistence.swift in Sources */,
 				C06576AF25D4314A0084EB39 /* ProfileView.swift in Sources */,
+				3A37EFCE25D6CCD2003046DB /* Authentication.swift in Sources */,
 				C09FD9A725C310DD00FF87BA /* LoginView.swift in Sources */,
 				C0072C0325D42B9A00E80529 /* UserDefaults+PropertyWrapper.swift in Sources */,
 				C09FD9A525C310DD00FF87BA /* MaasSampleApp.swift in Sources */,
-				C09FD9DD25C3FB5900FF87BA /* Authentication.swift in Sources */,
 				C09FD9BA25C3112100FF87BA /* AppDelegate.swift in Sources */,
 				C06576B725D538200084EB39 /* AppState.swift in Sources */,
 				C09FD9B125C310DF00FF87BA /* MaasSample.xcdatamodeld in Sources */,

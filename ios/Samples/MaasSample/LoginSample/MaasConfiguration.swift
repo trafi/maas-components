@@ -1,4 +1,5 @@
 import MaasCore
+import Combine
 
 class MaasConfiguration: ApiConfig {
 
@@ -25,6 +26,33 @@ class MaasConfiguration: ApiConfig {
             accessToken = temporaryAccessToken
             completion()
         }
+    }
+    
+    private static var isRefreshing = false
+    private static var activeRefreshTokenPublisher: AnyPublisher<Bool, ApiError>!
+    
+    static func refreshTokenPublisher() -> AnyPublisher<Bool, ApiError> {
+        Deferred { () -> AnyPublisher<Bool, ApiError> in
+            if !isRefreshing {
+                isRefreshing = true
+                activeRefreshTokenPublisher = performTokenRefresh()
+                    .handleEvents(receiveCompletion: { _ in isRefreshing = false })
+                    .eraseToAnyPublisher()
+            }
+            return activeRefreshTokenPublisher
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    
+    private static func performTokenRefresh() -> AnyPublisher<Bool, ApiError> {
+        Future<Bool, ApiError> { promise in
+            print("🔃 token")
+            MaasConfiguration.refreshToken {
+                print("✅ token")
+                promise(.success(true))
+            }
+        }.eraseToAnyPublisher()
     }
 }
 
