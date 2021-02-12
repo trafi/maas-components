@@ -36,6 +36,7 @@ fun FirebaseAuthSampleApp(
     fun showError(failure: SignInResult.Failure) {
         errorText = when (val result = failure.result) {
             is ApiResult.Failure.Unauthorized -> result.error?.developerMessage
+            is ApiResult.Failure.Forbidden -> result.error?.developerMessage
             is ApiResult.Failure.Error -> result.error?.developerMessage
             is ApiResult.Failure.Generic -> result.throwable.message
         } ?: defaultErrorMessage
