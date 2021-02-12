@@ -84,7 +84,6 @@ struct FirebaseAuthentication {
                 if let error = error {
                     promise(.failure(.error(error.localizedDescription)))
                 } else if let result = result {
-                    MaasConfiguration.refreshToken = result.user.refreshToken
                     self.getIDToken(result, promise: promise)
                 } else {
                     promise(.failure(.unknown))
