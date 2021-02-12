@@ -55,9 +55,12 @@ class SampleViewModel : ViewModel() {
 
     private val mutex: Mutex = Mutex()
     private suspend fun refresh() {
+        val token = idToken
         mutex.withLock {
-            delay(3000)
-            firebaseAuth.currentUser?.let { signInWithFirebaseUser(it) }
+            if (idToken == token) {
+                delay(3000)
+                firebaseAuth.currentUser?.let { signInWithFirebaseUser(it) }
+            } // else, the id token was already refreshed before us
         }
     }
 
