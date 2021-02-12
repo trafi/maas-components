@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
             FirebaseAuthSampleApp(
                 viewModel = viewModel,
                 onContinueWithGoogleClick = { googleIdp.signIn() },
+                onSignOutClick = { googleIdp.signOut() }
             )
         }
     }

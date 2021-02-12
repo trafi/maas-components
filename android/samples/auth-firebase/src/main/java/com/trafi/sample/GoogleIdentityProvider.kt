@@ -81,6 +81,10 @@ class GoogleIdentityProvider(
                 onSignInError(e)
             }
     }
+
+    fun signOut() {
+        Identity.getSignInClient(activity).signOut()
+    }
 }
 
 private val TAG = GoogleIdentityProvider::class.simpleName
