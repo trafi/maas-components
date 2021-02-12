@@ -18,7 +18,12 @@ import com.trafi.users.UsersApi
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
@@ -30,6 +35,11 @@ class SampleViewModel : ViewModel() {
 
     private val _signInComplete: MutableSharedFlow<SignInResult> = MutableSharedFlow()
     val signInComplete: SharedFlow<SignInResult> get() = _signInComplete
+
+    val userSignedIn: SharedFlow<Boolean> = _user.map { it != null }
+        .drop(1)
+        .distinctUntilChanged()
+        .shareIn(viewModelScope, SharingStarted.Eagerly)
 
     private val config = ApiConfiguration(
         baseUrl = BuildConfig.API_BASE_URL,
