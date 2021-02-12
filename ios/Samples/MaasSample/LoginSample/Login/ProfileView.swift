@@ -8,10 +8,16 @@ struct ProfileView: View {
 
     var body: some View {
         List {
-            TextField(
-                "Display Name",
-                text: $appState.firstName
-            )
+            Section(header: Text("Profile")) {
+                HStack {
+                    Text("First Name")
+                    TextField(
+                        "First Name",
+                        text: $appState.firstName
+                    )
+                    .multilineTextAlignment(.trailing)
+                }
+            }
         }
         .overlay(buttonsStack, alignment: .bottom)
         .navigationTitle("Profile")

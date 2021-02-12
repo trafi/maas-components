@@ -41,7 +41,7 @@ data class Profile(
      * Values: NOT_SPECIFIED,FEMALE,MALE,OTHER
      */
     @Serializable(with = Gender.Serializer::class)
-    enum class Gender(val value: kotlin.String) {
+    enum class Gender(var value: kotlin.String) {
         NOT_SPECIFIED("NOT_SPECIFIED"),
         FEMALE("FEMALE"),
         MALE("MALE"),

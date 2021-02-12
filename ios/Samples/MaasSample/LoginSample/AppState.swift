@@ -74,6 +74,13 @@ class AppState: ObservableObject {
         user = completion
     }
 
+    // MARK: - Bindings
+
+    var firstName: String {
+        get { user?.profile.firstName ?? "" }
+        set { user?.profile.firstName = newValue }
+    }
+
     // MARK: - Queries
 
     var isLoading: Bool = false
@@ -85,13 +92,6 @@ class AppState: ObservableObject {
 
     func corruptToken() {
         MaasConfiguration.accessToken = ""
-    }
-
-    // MARK: - Bindings
-    
-    var firstName: String {
-        get { user?.profile.firstName ?? "" }
-        set { user?.profile.firstName = newValue }
     }
 }
 
