@@ -15,6 +15,7 @@ import com.trafi.core.ApiResult
 import com.trafi.core.model.Profile
 import com.trafi.core.model.User
 import com.trafi.users.UsersApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -25,6 +26,8 @@ import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.tasks.await
 
 class SampleViewModel : ViewModel() {
@@ -49,6 +52,14 @@ class SampleViewModel : ViewModel() {
     )
     private val usersApi = UsersApi(config)
     private val firebaseAuth = Firebase.auth
+
+    private val mutex: Mutex = Mutex()
+    private suspend fun refresh() {
+        mutex.withLock {
+            delay(3000)
+            firebaseAuth.currentUser?.let { signInWithFirebaseUser(it) }
+        }
+    }
 
     private suspend fun signInWithFirebaseUser(user: FirebaseUser) {
         val result = try {
@@ -95,7 +106,7 @@ class SampleViewModel : ViewModel() {
     }
 
     fun updateProfile(profile: Profile) = viewModelScope.launch {
-        when (val result = usersApi.updateProfile(profile)) {
+        when (val result = retry(::refresh) { usersApi.updateProfile(profile) }) {
             is ApiResult.Success -> {
                 _user.value = result.value
             }
