@@ -36,7 +36,7 @@ import kotlinx.serialization.json.Json
 class ApiResultTests {
     @Test
     fun successfulResultReturns200(): Unit = runBlocking {
-        val usersApi = MockUsersApi(ApiConfiguration(getIdToken = { validIdToken }))
+        val usersApi = MockUsersApi(ApiConfiguration(validApiKey, getIdToken = { validIdToken }))
         val result = usersApi.createOrGetUser()
         assertTrue(result is ApiResult.Success)
         assertEquals(mockUser, result.value)
@@ -44,7 +44,7 @@ class ApiResultTests {
 
     @Test
     fun unauthorizedResultReturns401(): Unit = runBlocking {
-        val usersApi = MockUsersApi(ApiConfiguration(getIdToken = { null }))
+        val usersApi = MockUsersApi(ApiConfiguration(validApiKey, getIdToken = { null }))
         val result = usersApi.createOrGetUser()
         assertTrue(result is ApiResult.Failure.Unauthorized)
         assertEquals(result.httpStatusCode, 401)
@@ -52,8 +52,18 @@ class ApiResultTests {
     }
 
     @Test
+    fun forbiddenResultReturns403(): Unit = runBlocking {
+        val usersApi =
+            MockUsersApi(ApiConfiguration(apiKey = "invalid", getIdToken = { validIdToken }))
+        val result = usersApi.createOrGetUser()
+        assertTrue(result is ApiResult.Failure.Forbidden)
+        assertEquals(result.httpStatusCode, 403)
+        assertNotNull(result.error)
+    }
+
+    @Test
     fun internalServerErrorReturns500(): Unit = runBlocking {
-        val usersApi = MockUsersApi(ApiConfiguration(getIdToken = { validIdToken }))
+        val usersApi = MockUsersApi(ApiConfiguration(validApiKey, getIdToken = { validIdToken }))
         val result = usersApi.createOrGetUser(profile = bomb500)
         assertTrue(result is ApiResult.Failure.Error)
         assertEquals(result.httpStatusCode, 500)
@@ -65,19 +75,28 @@ private fun MockUsersApi(configuration: ApiConfiguration): UsersApi =
     UsersApi(configuration, configuration.mockHttpClient)
 
 @Suppress("TestFunctionName")
-private fun ApiConfiguration(getIdToken: () -> String?): ApiConfiguration = ApiConfiguration(
+private fun ApiConfiguration(
+    apiKey: String,
+    getIdToken: () -> String?,
+): ApiConfiguration = ApiConfiguration(
     baseUrl = "https://trafi.com/",
-    apiKey = "123",
+    apiKey = apiKey,
     getIdToken = getIdToken,
 )
 
+private const val validApiKey = "123"
 private const val validIdToken = "valid"
 
 private val ApiConfiguration.mockHttpClient: HttpClient
     get() = httpClient(MockEngine) {
         engine {
             addHandler { request ->
-                when (request.url.fullPath) {
+                if (request.apiKey != validApiKey) {
+                    respondErrorJson(
+                        HttpStatusCode.Forbidden,
+                        Error(developerMessage = "Invalid API key ${request.apiKey}")
+                    )
+                } else when (request.url.fullPath) {
                     "/v1/users/me" -> {
                         if (request.bearerToken == validIdToken) {
                             val profile = request.parseBodyJson
@@ -98,6 +117,9 @@ private val ApiConfiguration.mockHttpClient: HttpClient
             }
         }
     }
+
+private val HttpRequestData.apiKey: String?
+    get() = headers["x-api-key"]
 
 private val HttpRequestData.bearerToken: String?
     get() {

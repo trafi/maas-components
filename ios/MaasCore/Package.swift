@@ -39,11 +39,14 @@ let package = Package(
              path: "Sources/CoreBinary/CoreBinary.xcframework"),
         .target(
             name: "MaasCore",
-            dependencies: ["CoreBinary", "MaasTheme", "MaasComponents", .product(name: "ComposableArchitecture", package: "swift-composable-architecture")],
+            dependencies: [
+              "CoreBinary",
+              .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+            ],
             path: "Sources/MaasCore"),
         .target(
             name: "MaasTheme",
-            dependencies: ["CoreBinary"],
+            dependencies: ["MaasCore"],
             path: "Sources/MaasTheme"),
         .target(
             name: "MaasComponents",

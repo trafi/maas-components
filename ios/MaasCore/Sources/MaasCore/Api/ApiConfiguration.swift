@@ -1,12 +1,17 @@
 public protocol ApiConfig {
     var baseUrl: String { get }
+    /**
+     - Tag: ApiConfig.apiKey
+     */
     var apiKey: String { get }
-    
-    /// - Tag: getIdToken
+
+    /**
+     - Tag: ApiConfig.getIdToken
+     */
     func getIdToken() -> String?
     
-    /// Description
-    ///  must ensure that when completion is called, [getIdToken()](x-source-tag://getIdToken) will return refreshed token
+    /// - Tag: ApiConfig.getIdToken
+    ///  must ensure that when completion is called, [getIdToken()](x-source-tag://ApiConfig.getIdToken) will return refreshed token
     func refreshIdToken(completion: @escaping (String?) -> ())
     
     var logger: Logger? { get }
