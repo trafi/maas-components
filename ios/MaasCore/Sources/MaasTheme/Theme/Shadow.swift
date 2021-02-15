@@ -13,7 +13,7 @@ private struct ShadowStyleModifier: ViewModifier {
 
         var modifiedContent = AnyView(content)
 
-        Kotlin(self.shadowStyle).shadows.forEach {
+        self.shadowStyle.shadows.forEach {
             let shadow = Kotlin($0)
             modifiedContent = AnyView(
                 modifiedContent
