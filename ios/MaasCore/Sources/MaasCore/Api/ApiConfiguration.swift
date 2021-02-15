@@ -1,24 +1,14 @@
-class ApiConfiguration: ApiConfig {
-    
-    private init() {}
-    
-    static let shared = ApiConfiguration()
-    static var config: CoreBinary.ApiConfiguration { shared.config }
-
-    var baseUrl: String { "" }
-    var apiKey: String { "" }
-    
-    func getIdToken() -> String? {
-        return ""
-    }
-    
-    var logger: Logger? { ApiLogger.default }
-}
-
 public protocol ApiConfig {
     var baseUrl: String { get }
     var apiKey: String { get }
+    
+    /// - Tag: getIdToken
     func getIdToken() -> String?
+    
+    /// Description
+    ///  must ensure that when completion is called, [getIdToken()](x-source-tag://getIdToken) will return refreshed token
+    func refreshIdToken(completion: @escaping (String?) -> ())
+    
     var logger: Logger? { get }
 }
 
@@ -32,4 +22,38 @@ public extension ApiConfig {
             logger: logger
         )
     }
+}
+
+
+import Combine
+
+private var isRefreshing = false
+private var activeRefreshTokenPublisher: AnyPublisher<Bool, ApiError>!
+
+extension ApiConfig {
+    
+    func refreshTokenPublisher() -> AnyPublisher<Bool, ApiError> {
+        Deferred { () -> AnyPublisher<Bool, ApiError> in
+            if !isRefreshing {
+                isRefreshing = true
+                activeRefreshTokenPublisher = performTokenRefresh()
+                    .handleEvents(receiveCompletion: { _ in isRefreshing = false })
+                    .eraseToAnyPublisher()
+            }
+            return activeRefreshTokenPublisher
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    
+    private func performTokenRefresh() -> AnyPublisher<Bool, ApiError> {
+        Future<Bool, ApiError> { promise in
+            print("🔃 token")
+            refreshIdToken() {
+                print("✅ refreshedToken: \($0)")
+                promise(.success(true))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
 }

@@ -3,6 +3,7 @@ import UIKit
 
 import FBSDKCoreKit
 import Firebase
+import MaasCore
 
 // @UIApplicationMain
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -21,6 +22,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         // Setup Firebase
         FirebaseApp.configure()
 
+        // setup SDK
+        MaasCore.configure(api: MaasConfiguration.shared)
+        
         return true
     }
 }
