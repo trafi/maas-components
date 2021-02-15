@@ -1,4 +1,5 @@
-enum Maas {
+public enum Maas {
+    
     private static var apiConfiguration: ApiConfig?
     
     static var apiConfig: ApiConfig {

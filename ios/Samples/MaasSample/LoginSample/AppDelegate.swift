@@ -23,7 +23,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         FirebaseApp.configure()
 
         // setup SDK
-        MaasCore.configure(api: MaasConfiguration.shared)
+        Maas.configure(api: MaasConfiguration.shared)
         
         return true
     }
