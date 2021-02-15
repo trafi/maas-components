@@ -1,9 +1,6 @@
 package com.trafi.ui.theme.internal
 
-import com.trafi.ui.theme.internal.type.BasicFontWeight
-import com.trafi.ui.theme.internal.type.Color
-import com.trafi.ui.theme.internal.type.dark
-import com.trafi.ui.theme.internal.type.dp
+import com.trafi.ui.theme.internal.type.*
 
 object ColorPalette {
     val White = Color(0xffffffff)
@@ -120,4 +117,28 @@ object TypographyScale {
         fontSize = 14
         lineHeight = 18
     }
+}
+
+object ShadowPalette {
+
+    val ambientLight = ShadowStyle(
+        listOf(
+            Shadow(color = ColorPalette.Black.alpha(0.14f), radius = 8.dp, x = 0.dp, y = 0.dp),
+            Shadow(color = ColorPalette.Black.alpha(0.02f), radius = 8.dp, x = 0.dp, y = 2.dp),
+        )
+    )
+
+    val ambientMedium = ShadowStyle(
+        listOf(
+            Shadow(color = ColorPalette.Black.alpha(0.12f), radius = 12.dp, x = 0.dp, y = 0.dp),
+            Shadow(color = ColorPalette.Black.alpha(0.04f), radius = 12.dp, x = 0.dp, y = 4.dp),
+        )
+    )
+
+    val ambientLarge = ShadowStyle(
+        listOf(
+            Shadow(color = ColorPalette.Black.alpha(0.12f), radius = 16.dp, x = 0.dp, y = 0.dp),
+            Shadow(color = ColorPalette.Black.alpha(0.04f), radius = 16.dp, x = 0.dp, y = 6.dp),
+        )
+    )
 }
