@@ -5,7 +5,6 @@ import Combine
 extension Publishers {
 
     /// A publisher that attempts to recreate its subscription to a failed upstream publisher.
-    @available(iOS 14.0, *)
     public struct RetryOn<Upstream: Publisher, ChainedPublisher: Publisher>: Publisher {
         
         public typealias Output = Upstream.Output
@@ -55,7 +54,6 @@ extension Publishers {
 
 extension Publisher {
 
-    @available(iOS 14.0, *)
     public func retryOn<ChainedPublisher: Publisher>(
         failureShouldRetry: @escaping (Failure) -> Bool,
         retries: UInt,
