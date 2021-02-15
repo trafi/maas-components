@@ -1,7 +1,7 @@
 /**
  - Tag: ApiError
  */
-enum ApiError: Swift.Error, Equatable, Hashable {
+public enum ApiError: Swift.Error, Equatable, Hashable {
     /**
      The server returned 401.
      - Parameter error: optional error message.

@@ -159,7 +159,7 @@ public extension View {
         )
     }
 }
-// TODO: Is this good ?
+
 private extension ApiError {
 
     var message: String? {
