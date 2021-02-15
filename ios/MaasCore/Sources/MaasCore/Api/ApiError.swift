@@ -3,15 +3,22 @@
  */
 public enum ApiError: Swift.Error, Equatable, Hashable {
     /**
-     The server returned 401.
+     The server returned 401 Unauthorized.
+     The Authorization header Bearer token retrieved using [ApiConfig.getIdToken](x-source-tag://ApiConfig.getIdToken) may be invalid or expired.
      - Parameter error: optional error message.
      */
-    case unauthorized(error: Error?)
+    case unauthorized(error: CoreBinary.Error?)
     /**
-     The server returned an error.
+     The server returned 403 Forbidden.
+     The x-api-key header retrieved using [ApiConfig.apiKey](x-source-tag://ApiConfig.apiKey) may be invalid or not subscribed to the API.
      - Parameter error: optional error message.
      */
-    case error(error: Error?)
+    case forbidden(error: CoreBinary.Error?)
+    /**
+     The server returned an error not covered by the more specific [ApiError](x-source-tag://ApiError) types..
+     - Parameter error: optional error message.
+     */
+    case error(error: CoreBinary.Error?)
     /**
      A generic failure not covered by the more specific [ApiError](x-source-tag://ApiError) types.
      - Parameter developerMessage: optional message to help identify the error.

@@ -15,14 +15,20 @@ class ApiConfiguration: ApiConfig {
     var logger: Logger? { ApiLogger.default }
 }
 
-protocol ApiConfig {
+public protocol ApiConfig {
     var baseUrl: String { get }
+    /**
+     - Tag: ApiConfig.apiKey
+     */
     var apiKey: String { get }
+    /**
+     - Tag: ApiConfig.getIdToken
+     */
     func getIdToken() -> String?
     var logger: Logger? { get }
 }
 
-extension ApiConfig {
+public extension ApiConfig {
     
     var config: CoreBinary.ApiConfiguration {
         .init(

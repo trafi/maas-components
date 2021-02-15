@@ -1,3 +1,5 @@
+import struct SwiftUI.State
+
 // MARK: - Filter
 
 public struct ScrollableTappableView<T, Content>: View where Content : View, T: Identifiable {

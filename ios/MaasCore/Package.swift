@@ -27,6 +27,9 @@ let package = Package(
         .package(
             name: "Swappable",
             url: "https://github.com/trafi/swappable.git", .upToNextMinor(from: "0.0.1")),
+        .package(
+            name: "swift-composable-architecture",
+            url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.10.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -36,7 +39,10 @@ let package = Package(
              path: "Sources/CoreBinary/CoreBinary.xcframework"),
         .target(
             name: "MaasCore",
-            dependencies: ["CoreBinary"],
+            dependencies: [
+              "CoreBinary",
+              .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+            ],
             path: "Sources/MaasCore"),
         .target(
             name: "MaasTheme",
