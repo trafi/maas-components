@@ -78,7 +78,6 @@ private extension BottomSheet {
                     .padding(.top, 8)
 
                 VStack {
-
                     environment.sheetContent
                         .padding([.top, .bottom], constants.sheetContentVerticalPadding)
                         .padding([.leading, .trailing], constants.sheetContentHorizontalPadding)
@@ -88,11 +87,12 @@ private extension BottomSheet {
                 }
             }
             .frame(width: UIScreen.main.bounds.width)
-            .background(constants.backgroundColor)
+            .background(constants.sheetBackgroundColor)
             .cornerRadius(radius: constants.sheetCornerRadius, corners: [.topLeft, .topRight])
             .shadowStyle(constants.sheetShadowStyle)
             .offset(y: sheetPosition)
             .gesture(dragGesture)
+            .edgesIgnoringSafeArea(.top)
         }
     }
 }

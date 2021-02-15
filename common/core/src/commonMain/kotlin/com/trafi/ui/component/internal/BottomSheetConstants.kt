@@ -15,6 +15,7 @@ class BottomSheetConstants(theme: CurrentTheme) {
     val sheetCornerRadius = CornerRadiusScale.xl
     val sheetContentVerticalPadding = sharedContentVerticalSpacing
     val sheetContentHorizontalPadding = SpacingScale.xl
+    val sheetBackgroundColor = theme.colorPalette.background
 
     val sheetShadowStyle = ShadowPalette.ambientLarge
 }
