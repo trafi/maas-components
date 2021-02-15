@@ -1,20 +1,16 @@
 public enum Maas {
     
-    private static var apiConfiguration: ApiConfig?
-    
-    static var apiConfig: ApiConfig {
-        get {
-            guard let apiConfiguration = apiConfiguration else {
-                fatalError("Maas not configured. Must call MaasCore.configure")
-            }
-            return apiConfiguration
-        }
-        set { apiConfiguration = newValue }
+    static public func configure(api: ApiConfig) {
+        apiConfiguration = api
     }
     
+    private static var apiConfiguration: ApiConfig?
     
-    static public func configure(api: ApiConfig) {
-        apiConfig = api
+    public static var apiConfig: ApiConfig {
+        guard let apiConfiguration = apiConfiguration else {
+            fatalError("Maas SDK not configured before usage. Must call MaasCore.configure")
+        }
+        return apiConfiguration
     }
     
 }
