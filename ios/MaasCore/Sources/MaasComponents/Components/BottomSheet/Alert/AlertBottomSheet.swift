@@ -2,14 +2,14 @@ import SwiftUI
 
 public struct AlertBottomSheet: View {
 
-    public class ViewModel: ObservableObject {
+    class ViewModel: ObservableObject {
 
-        @Published public var image: UIImage?
-        @Published public var title: String?
-        @Published public var subtitle: String?
-        @Published public var buttons: [AlertBottomSheet.Button]
+        @Published var image: UIImage?
+        @Published var title: String?
+        @Published var subtitle: String?
+        @Published var buttons: [AlertBottomSheet.Button]
 
-        public init(image: UIImage?, title: String?, subtitle: String?, buttons: [AlertBottomSheet.Button]) {
+        init(image: UIImage?, title: String?, subtitle: String?, buttons: [AlertBottomSheet.Button]) {
             self.image = image
             self.title = title
             self.subtitle = subtitle
