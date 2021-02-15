@@ -1,4 +1,4 @@
-public protocol ApiConfig {
+public protocol ApiConfig: class {
     var baseUrl: String { get }
     /**
      - Tag: ApiConfig.apiKey
@@ -33,15 +33,15 @@ public extension ApiConfig {
 import Combine
 
 private var isRefreshing = false
-private var activeRefreshTokenPublisher: AnyPublisher<Bool, ApiError>!
+private var activeRefreshTokenPublisher: AnyPublisher<Void, Never>!
 
 extension ApiConfig {
     
-    func refreshTokenPublisher() -> AnyPublisher<Bool, ApiError> {
-        Deferred { () -> AnyPublisher<Bool, ApiError> in
+    func refreshTokenPublisher() -> AnyPublisher<Void, Never> {
+        Deferred { [weak self] () -> AnyPublisher<Void, Never> in
             if !isRefreshing {
                 isRefreshing = true
-                activeRefreshTokenPublisher = performTokenRefresh()
+                activeRefreshTokenPublisher = self?.performTokenRefresh()
                     .handleEvents(receiveCompletion: { _ in isRefreshing = false })
                     .eraseToAnyPublisher()
             }
@@ -51,12 +51,12 @@ extension ApiConfig {
     }
     
     
-    private func performTokenRefresh() -> AnyPublisher<Bool, ApiError> {
-        Future<Bool, ApiError> { promise in
+    private func performTokenRefresh() -> AnyPublisher<Void, Never> {
+        Future<Void, Never> { promise in
             print("🔃 token")
-            refreshIdToken() {
-                print("✅ refreshedToken: \($0)")
-                promise(.success(true))
+            self.refreshIdToken() {
+                print("✅ refreshedToken: \($0?.count ?? 0) characters")
+                promise(.success(()))
             }
         }.eraseToAnyPublisher()
     }
