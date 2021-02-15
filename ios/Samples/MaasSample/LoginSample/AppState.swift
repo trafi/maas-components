@@ -56,15 +56,6 @@ class AppState: ObservableObject {
     func updateProfile() {
         UsersApi.shared.updateProfile(profile: user?.profile)
             .publisher
-            .retryOn(
-                failureShouldRetry: {
-                    if case .unauthorized = $0 { return true }
-                    else { return false }
-                },
-                retries: 2,
-                chainedPublisher: MaasConfiguration.refreshTokenPublisher(),
-                chainOnEveryError: true
-            )
             .sink(receiveCompletion: onError, receiveValue: onValue)
             .store(in: &cancelableStore)
     }
