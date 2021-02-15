@@ -56,7 +56,7 @@ class AppState: ObservableObject {
     func updateProfile() {
         UsersApi.shared.updateProfile(profile: user?.profile)
             .publisher
-            .maybeRetryOn(
+            .retryOn(
                 failureShouldRetry: {
                     if case .unauthorized = $0 { return true }
                     else { return false }

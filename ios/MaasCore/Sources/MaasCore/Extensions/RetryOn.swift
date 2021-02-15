@@ -40,7 +40,49 @@ extension Publishers {
                         .eraseToAnyPublisher()
                     
                     if let chainedPublisher = chainedPublisher {
-                        return chainedPublisher
+                        return chainedPublisher 
+                            .catch { _ in Fail(error: e) }
+                            .flatMap { _ in retriedUpstream }
+                            .eraseToAnyPublisher()
+                    }
+                    return retriedUpstream
+                }
+                .subscribe(subscriber)
+        }
+    }
+    
+    /// A publisher that attempts to recreate its subscription to a failed upstream publisher.
+    public struct RetryWhen<Upstream: Publisher, ChainedPublisher: Publisher>: Publisher {
+        
+        public typealias Output = Upstream.Output
+        
+        public typealias Failure = Upstream.Failure
+        
+        let upstream: Upstream
+        let retries: UInt
+        let failureRecovery: (Failure) -> ChainedPublisher?
+        
+        public init(upstream: Upstream, retries: UInt, failureRecovery: @escaping (Failure) -> ChainedPublisher?) {
+            self.upstream = upstream
+            self.retries = retries
+            self.failureRecovery = failureRecovery
+        }
+        
+        public func receive<S: Subscriber>(subscriber: S) where Upstream.Failure == S.Failure, Upstream.Output == S.Input {
+            self.upstream
+                .catch { e -> AnyPublisher<Output, Failure> in
+                    guard retries > 0 else {
+                        return Fail<Output, Failure>(error: e)
+                            .eraseToAnyPublisher()
+                    }
+                    
+                    let retriedUpstream = upstream
+                        .retryWhen(retries: retries - 1,
+                                   failureRecovery: failureRecovery)
+                        .eraseToAnyPublisher()
+                    
+                    if let recoveryPublisher = failureRecovery(e) {
+                        return recoveryPublisher
                             .catch { _ in Fail(error: e) }
                             .flatMap { _ in retriedUpstream }
                             .eraseToAnyPublisher()
@@ -65,6 +107,16 @@ extension Publisher {
               failureShouldRetry: failureShouldRetry,
               chainedPublisher: chainedPublisher,
               chainOnEveryError: chainOnEveryError
+        )
+    }
+    
+    public func retryWhen<ChainedPublisher: Publisher>(
+        retries: UInt,
+        failureRecovery: @escaping (Failure) -> ChainedPublisher?
+    ) -> Publishers.RetryWhen<Self, ChainedPublisher> {
+        .init(upstream: self,
+              retries: retries,
+              failureRecovery: failureRecovery
         )
     }
 }
