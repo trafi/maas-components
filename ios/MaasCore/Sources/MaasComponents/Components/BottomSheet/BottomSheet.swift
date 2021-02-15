@@ -1,6 +1,8 @@
 import SwiftUI
 import Combine
 
+import struct SwiftUI.State
+
 struct BottomSheet: ViewModifier {
 
     @Themeable(BottomSheetConstants.init) var constants

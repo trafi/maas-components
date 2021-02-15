@@ -56,7 +56,7 @@ public extension AlertBottomSheet {
     struct Button {
 
         let text: String
-        let image: AnyView?
+        let image: Image?
         let spacing: Float
         let foreground: Color?
         let background: Color?
@@ -64,7 +64,7 @@ public extension AlertBottomSheet {
 
         public init(
             _ text: String,
-            image: AnyView? = nil,
+            image: Image? = nil,
             spacing: Float = SpacingScale().xs,
             foreground: Color? = nil,
             background: Color? = nil,
@@ -78,7 +78,7 @@ public extension AlertBottomSheet {
             self.action = action
         }
 
-        public static func primary(title: String, image: AnyView? = nil, action: (() -> ())? = nil) -> Self {
+        public static func primary(title: String, image: Image? = nil, action: (() -> ())? = nil) -> Self {
             .init(
                 title,
                 image: image,
@@ -86,7 +86,7 @@ public extension AlertBottomSheet {
             )
         }
 
-        public static func secondary(title: String, image: AnyView? = nil, action: (() -> ())? = nil) -> Self {
+        public static func secondary(title: String, image: Image? = nil, action: (() -> ())? = nil) -> Self {
             .init(
                 title,
                 image: image,
@@ -96,7 +96,7 @@ public extension AlertBottomSheet {
             )
         }
 
-        public static func cancel(title: String, image: AnyView? = nil, action: (() -> ())? = nil) -> Self {
+        public static func cancel(title: String, image: Image? = nil, action: (() -> ())? = nil) -> Self {
             .init(
                 title,
                 image: image,
@@ -111,7 +111,7 @@ public extension AlertBottomSheet {
 private extension AlertBottomSheet.Button {
 
     func view(tapHandler: @escaping () -> ()) -> MaasComponents.Button {
-        .init(text, foreground: foreground, background: background, action: { tapHandler(); action() })
+        .init(text, icon: image, foregroundColor: foreground, backgroundColor: background, action: { tapHandler(); action() })
     }
 }
 
@@ -170,6 +170,8 @@ private extension ApiError {
             return error?.developerMessage
         case let .failure(developerMessage):
             return developerMessage
+        case let .forbidden(error):
+            return error?.developerMessage
         }
     }
 }
