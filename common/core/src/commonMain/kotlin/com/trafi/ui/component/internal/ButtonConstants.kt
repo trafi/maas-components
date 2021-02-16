@@ -11,12 +11,11 @@ class ButtonConstants(theme: CurrentTheme) {
 
     val defaultBackgroundColor = theme.colorPalette.primary
     val defaultContentColor = theme.colorPalette.onPrimary
-    val disabledBackgroundColor = theme.colorPalette.primary.alpha(0.12f)
+    val disabledBackgroundColor = theme.colorPalette.primary.alpha(0.30f)
     val disabledContentColor = theme.colorPalette.onPrimary
 
     val textStyle = theme.typographyScale.textL.copy(fontWeight = Bold)
     val textStyleSmall = theme.typographyScale.textM.copy(fontWeight = Bold)
-    val defaultTruncate = true
 
     val height = 48.dp
     val heightSmall = 32.dp
@@ -26,6 +25,8 @@ class ButtonConstants(theme: CurrentTheme) {
 
     val spaceBetween = SpacingScale.xs
     val paddingHorizontal = SpacingScale.md
+    val paddingVertical = 12.dp
+    val paddingVerticalSmall = 6.dp
 
     val cornerRadius = theme.cornerRadiusScale.buttonRadius
 }
