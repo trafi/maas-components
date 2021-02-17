@@ -25,7 +25,7 @@ extension Publishers {
             self.upstream
                 .catch { e -> AnyPublisher<Output, Failure> in
                     guard failureShouldRetry(e) else {
-                        return Fail<Output, Failure>(error: e)
+                        return Fail(error: e)
                             .eraseToAnyPublisher()
                     }
                     
@@ -59,7 +59,7 @@ extension Publishers {
             self.upstream
                 .catch { e -> AnyPublisher<Output, Failure> in
                     guard failureShouldRetry(e), retries > 0 else {
-                        return Fail<Output, Failure>(error: e)
+                        return Fail(error: e)
                             .eraseToAnyPublisher()
                     }
                     
