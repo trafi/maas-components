@@ -97,13 +97,12 @@
 		C09FD9A325C310DD00FF87BA /* LoginSample */ = {
 			isa = PBXGroup;
 			children = (
-				C0072C0125D42B8E00E80529 /* Utilities */,
 				C06576B625D538200084EB39 /* AppState.swift */,
 				C09FD9B925C3112100FF87BA /* AppDelegate.swift */,
 				C09FD9A425C310DD00FF87BA /* MaasSampleApp.swift */,
 				C09FD9C625C3132500FF87BA /* MaasConfiguration.swift */,
-				3A37EFCC25D6CCD2003046DB /* Authentication */,
 				C09FD9D325C3FB3000FF87BA /* Login */,
+				C0CC6D1725DD59B100637F8D /* Ondemand */,
 				C09FD9D825C3FB4500FF87BA /* Supporting Files */,
 				C09FD9AA25C310DF00FF87BA /* Preview Content */,
 			);
@@ -128,6 +127,7 @@
 		C09FD9D325C3FB3000FF87BA /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				3A37EFCC25D6CCD2003046DB /* Authentication */,
 				C09FD9A625C310DD00FF87BA /* LoginView.swift */,
 				C06576AE25D4314A0084EB39 /* ProfileView.swift */,
 			);
@@ -137,6 +137,7 @@
 		C09FD9D825C3FB4500FF87BA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C0072C0125D42B8E00E80529 /* Utilities */,
 				C09FD9AD25C310DF00FF87BA /* Persistence.swift */,
 				C09FD9A825C310DF00FF87BA /* Assets.xcassets */,
 				C09FD9B225C310DF00FF87BA /* Info.plist */,
@@ -144,6 +145,13 @@
 				C09FD9AF25C310DF00FF87BA /* MaasSample.xcdatamodeld */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C0CC6D1725DD59B100637F8D /* Ondemand */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Ondemand;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

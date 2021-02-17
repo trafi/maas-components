@@ -2,7 +2,7 @@ import Combine
 
 private var isRefreshing = false
 private var activeRefreshTokenPublisher: AnyPublisher<Void, Never>!
-static var access = NSLock()
+private var access = NSLock()
 
 extension ApiConfig {
         
