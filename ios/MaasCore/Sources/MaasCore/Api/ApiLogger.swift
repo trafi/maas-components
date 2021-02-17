@@ -5,6 +5,8 @@ class ApiLogger : CoreBinary.Logger {
     private init() {}
     static let `default` = ApiLogger()
     
+    var apiLogLevel: Ktor_client_loggingLogLevel { .all }
+    
     func log(message: String) {
         os_log("%@", log: .MaasComponentsApi, type: .debug, message)
     }

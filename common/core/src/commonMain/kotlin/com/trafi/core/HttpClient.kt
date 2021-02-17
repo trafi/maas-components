@@ -7,7 +7,6 @@ import io.ktor.client.engine.HttpClientEngineFactory
 import io.ktor.client.features.defaultRequest
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
-import io.ktor.client.features.logging.LogLevel
 import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.header
 import io.ktor.http.ContentType
@@ -25,7 +24,7 @@ internal val ApiConfiguration.defaultHttpClientConfig: HttpClientConfig<*>.() ->
     logger?.let { logger ->
         install(Logging) {
             this.logger = logger
-            level = LogLevel.ALL
+            level = logger.apiLogLevel
         }
     }
     defaultRequest {

@@ -29,11 +29,13 @@ class MaasConfiguration: ApiConfig {
     }
 }
 
-class ExampleLogger: Logger {
+class ExampleLogger: CoreBinary.Logger {
     
     private init() {}
     static let shared = ExampleLogger()
     
+    var apiLogLevel: Ktor_client_loggingLogLevel { .info }
+
     func log(message: String) {
         print("SDK example log: \(message)")
     }
