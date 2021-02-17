@@ -31,9 +31,8 @@ import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.currentTheme
 import com.trafi.ui.theme.darkColors
 
-@Composable
 private val constants
-    get() = RouteSearchTabConstants(currentTheme)
+    @Composable get() = RouteSearchTabConstants(currentTheme)
 
 internal data class TabItem(
     val id: String,
@@ -80,6 +79,7 @@ internal fun RouteSearchTab(
             ) {
                 Image(
                     vectorResource(id = R.drawable.ic_route_search_bike_s),
+                    contentDescription = null,
                     colorFilter = ColorFilter.tint(constants.contentColorPrimary),
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)

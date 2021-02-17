@@ -1,6 +1,6 @@
 package com.trafi.ui.component
 
-import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.InteractionState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -19,15 +19,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.focus.ExperimentalFocus
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.isFocused
-import androidx.compose.ui.focusObserver
-import androidx.compose.ui.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.useOrElse
+import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.node.Ref
 import androidx.compose.ui.text.SoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
@@ -39,7 +38,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.trafi.ui.theme.MaasTheme
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalFocus::class)
 @Composable
 public fun OutlinedTextField(
     value: String,
@@ -63,8 +61,8 @@ public fun OutlinedTextField(
     val textFieldModifier = Modifier
         .padding(horizontal = 12.dp, vertical = 8.dp)
         .focusRequester(focusRequester)
-        .focusObserver { isFocused = it.isFocused }
-        .clickable(indication = null) {
+        .onFocusChanged { isFocused = it.isFocused }
+        .clickable(interactionState = remember { InteractionState() }, indication = null) {
             focusRequester.requestFocus()
             // TODO(b/163109449): Showing and hiding keyboard should be handled by BaseTextField.
             //  The requestFocus() call here should be enough to trigger the software keyboard.
@@ -93,7 +91,7 @@ public fun OutlinedTextField(
         outlinedBorderParams.borderWidth.value = borderWidth
     }
 
-    val textColor = textStyle.color.useOrElse {
+    val textColor = textStyle.color.takeOrElse {
         AmbientContentColor.current.copy(alpha = AmbientContentAlpha.current)
     }
 

@@ -27,9 +27,8 @@ import com.trafi.ui.theme.currentTheme
 import com.trafi.ui.theme.internal.type.toColor
 import com.trafi.ui.theme.isRound
 
-@Composable
 private val constants
-    get() = NearbyTransitFilterItemConstants(currentTheme)
+    @Composable get() = NearbyTransitFilterItemConstants(currentTheme)
 
 @Composable
 internal fun NearbyTransitFilterItem(
@@ -68,6 +67,7 @@ internal fun NearbyTransitFilterItem(
             })
             Image(
                 imageVector = vector,
+                contentDescription = null,
                 modifier = Modifier
                     .width(constants.imageWidth)
                     .height(constants.imageHeight),

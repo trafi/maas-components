@@ -111,6 +111,7 @@ public fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
             Row(modifier = modifier.defaultMinSizeConstraints(minHeight = 24.dp)) {
                 Image(
                     vector,
+                    contentDescription = null,
                     modifier = Modifier.align(Alignment.CenterVertically),
                     colorFilter = ColorFilter.tint(AmbientContentColor.current)
                 )
@@ -134,6 +135,7 @@ public fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
             Row(modifier = modifier.defaultMinSizeConstraints(minHeight = 24.dp)) {
                 Image(
                     vector,
+                    contentDescription = null,
                     modifier = Modifier.align(Alignment.CenterVertically),
                     colorFilter = ColorFilter.tint(AmbientContentColor.current)
                 )

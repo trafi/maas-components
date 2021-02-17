@@ -30,7 +30,7 @@ fun OnboardingScreen(onComplete: () -> Unit = {}) {
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Image(asset)
+        Image(asset, contentDescription = null)
         Text(
             text = "Welcome to our MaaS!",
             textAlign = TextAlign.Center,
