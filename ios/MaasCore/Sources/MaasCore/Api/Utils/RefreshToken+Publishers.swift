@@ -2,11 +2,15 @@ import Combine
 
 private var isRefreshing = false
 private var activeRefreshTokenPublisher: AnyPublisher<Void, Never>!
+static var access = NSLock()
 
 extension ApiConfig {
-    
+        
     func refreshTokenPublisher() -> AnyPublisher<Void, Never> {
         Deferred { [unowned self] () -> AnyPublisher<Void, Never> in
+            
+            access.lock(); defer { access.unlock() }
+            
             if !isRefreshing {
                 isRefreshing = true
                 activeRefreshTokenPublisher = self.performTokenRefresh()
