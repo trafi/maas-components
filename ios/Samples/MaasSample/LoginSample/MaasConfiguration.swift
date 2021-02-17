@@ -29,7 +29,7 @@ class MaasConfiguration: ApiConfig {
     }
 }
 
-struct ExampleLogger: Logger {
+class ExampleLogger: Logger {
     
     private init() {}
     static let shared = ExampleLogger()
