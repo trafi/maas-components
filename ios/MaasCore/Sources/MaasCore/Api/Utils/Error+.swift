@@ -8,5 +8,4 @@ extension CoreBinary.Error {
             providerId: nil,
             ext: nil)
     }
-    
 }
