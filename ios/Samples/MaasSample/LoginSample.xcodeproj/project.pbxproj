@@ -15,7 +15,6 @@
 		C09FD9A725C310DD00FF87BA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FD9A625C310DD00FF87BA /* LoginView.swift */; };
 		C09FD9A925C310DF00FF87BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C09FD9A825C310DF00FF87BA /* Assets.xcassets */; };
 		C09FD9AC25C310DF00FF87BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C09FD9AB25C310DF00FF87BA /* Preview Assets.xcassets */; };
-		C09FD9AE25C310DF00FF87BA /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FD9AD25C310DF00FF87BA /* Persistence.swift */; };
 		C09FD9B125C310DF00FF87BA /* MaasSample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C09FD9AF25C310DF00FF87BA /* MaasSample.xcdatamodeld */; };
 		C09FD9BA25C3112100FF87BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FD9B925C3112100FF87BA /* AppDelegate.swift */; };
 		C09FD9C725C3132500FF87BA /* MaasConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FD9C625C3132500FF87BA /* MaasConfiguration.swift */; };
@@ -36,7 +35,6 @@
 		C09FD9A625C310DD00FF87BA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		C09FD9A825C310DF00FF87BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C09FD9AB25C310DF00FF87BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C09FD9AD25C310DF00FF87BA /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		C09FD9B025C310DF00FF87BA /* MaasSample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MaasSample.xcdatamodel; sourceTree = "<group>"; };
 		C09FD9B225C310DF00FF87BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C09FD9B925C3112100FF87BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -137,7 +135,6 @@
 		C09FD9D825C3FB4500FF87BA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C09FD9AD25C310DF00FF87BA /* Persistence.swift */,
 				C09FD9A825C310DF00FF87BA /* Assets.xcassets */,
 				C09FD9B225C310DF00FF87BA /* Info.plist */,
 				C0DDDFAE25C4401F00C750DA /* GoogleService-Info.plist */,
@@ -227,7 +224,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C09FD9C725C3132500FF87BA /* MaasConfiguration.swift in Sources */,
-				C09FD9AE25C310DF00FF87BA /* Persistence.swift in Sources */,
 				C06576AF25D4314A0084EB39 /* ProfileView.swift in Sources */,
 				3A37EFCE25D6CCD2003046DB /* Authentication.swift in Sources */,
 				C09FD9A725C310DD00FF87BA /* LoginView.swift in Sources */,

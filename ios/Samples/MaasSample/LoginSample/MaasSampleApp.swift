@@ -36,12 +36,9 @@ struct MaasSampleApp: App {
     // Helps to call app delegate. At the moment our base config setup goes there
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-    let persistenceController = PersistenceController.shared
-
     var body: some Scene {
         WindowGroup {
             LaunchView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
