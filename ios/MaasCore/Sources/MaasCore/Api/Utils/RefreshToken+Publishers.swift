@@ -21,7 +21,7 @@ extension ApiConfig {
     }
     
     private func performTokenRefresh() -> Future<Void, Never> {
-        Future<Void, Never> { promise in
+        Future { promise in
             self.logger?.log(message: "🔃 token")
             self.refreshIdToken() {
                 
