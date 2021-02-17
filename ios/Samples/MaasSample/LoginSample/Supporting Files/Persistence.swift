@@ -1,10 +1,3 @@
-//
-//  Persistence.swift
-//  MaasSample
-//
-//  Created by Ignas Jasiunas on 2021-01-28.
-//
-
 import CoreData
 
 struct PersistenceController {
