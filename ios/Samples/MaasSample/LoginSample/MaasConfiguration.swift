@@ -17,7 +17,7 @@ class MaasConfiguration: ApiConfig {
     var baseUrl: String { "https://api-trafi.bedrock.dev.trafi.com/" }
     var apiKey: String { "OwJwMJr8x11WfgqJlTmZJ3cpXHBPIdob3TNvTgmk" }
 
-    var logger: Logger? { nil }
+    var logger: Logger? { ExampleLogger.shared }
 
     func getIdToken() -> String? { MaasConfiguration.accessToken }
 
@@ -26,6 +26,16 @@ class MaasConfiguration: ApiConfig {
             MaasConfiguration.accessToken = MaasConfiguration.temporaryAccessToken
             completion(MaasConfiguration.accessToken)
         }
+    }
+}
+
+struct ExampleLogger: Logger {
+    
+    private init() {}
+    static let shared = ExampleLogger()
+    
+    func log(message: String) {
+        print("SDK example log: \(message)")
     }
 }
 
