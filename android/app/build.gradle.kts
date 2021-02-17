@@ -77,6 +77,7 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.1.0")
     implementation("junit:junit:4.13.1")
     implementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
+    implementation("androidx.test:rules:1.3.0")
     implementation("androidx.compose.ui:ui-test:${Versions.compose}")
     implementation("com.karumi:shot-android:${Versions.shot}")
 }
