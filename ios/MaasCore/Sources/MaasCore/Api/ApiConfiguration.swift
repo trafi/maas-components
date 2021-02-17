@@ -7,7 +7,7 @@ public protocol ApiConfig: class {
     ///  - Tag: ApiConfig.getIdToken
     func getIdToken() -> String?
     
-    /// - Tag: ApiConfig.getIdToken
+    /// - Tag: ApiConfig.refreshIdToken
     ///  must ensure that when completion is called, [getIdToken()](x-source-tag://ApiConfig.getIdToken) will return refreshed token
     func refreshIdToken(completion: @escaping (String?) -> ())
 
