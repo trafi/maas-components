@@ -22,6 +22,8 @@
 		C0A5FFDB25D2B43500EDFF48 /* Maas in Frameworks */ = {isa = PBXBuildFile; productRef = C0A5FFDA25D2B43500EDFF48 /* Maas */; };
 		C0CC6D1C25DD5A5200637F8D /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC6D1B25DD5A5200637F8D /* MenuView.swift */; };
 		C0DA9EFC25DD6542007E2E1C /* RequirementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DA9EFB25DD6542007E2E1C /* RequirementsView.swift */; };
+		C0DA9F1C25DEA94B007E2E1C /* MSPRequirementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DA9F1B25DEA94B007E2E1C /* MSPRequirementsView.swift */; };
+		C0DA9F1F25DEAA8F007E2E1C /* RequirementsListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DA9F1E25DEAA8F007E2E1C /* RequirementsListItem.swift */; };
 		C0DDDF8225C42E1400C750DA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C0DDDF8125C42E1400C750DA /* FirebaseAuth */; };
 		C0DDDF8D25C4309300C750DA /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = C0DDDF8C25C4309300C750DA /* FacebookCore */; };
 		C0DDDF8F25C4309300C750DA /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = C0DDDF8E25C4309300C750DA /* FacebookLogin */; };
@@ -46,6 +48,8 @@
 		C0CB4AC525D3E00D0047B93D /* maas-components */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "maas-components"; path = ../../..; sourceTree = "<group>"; };
 		C0CC6D1B25DD5A5200637F8D /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		C0DA9EFB25DD6542007E2E1C /* RequirementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequirementsView.swift; sourceTree = "<group>"; };
+		C0DA9F1B25DEA94B007E2E1C /* MSPRequirementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSPRequirementsView.swift; sourceTree = "<group>"; };
+		C0DA9F1E25DEAA8F007E2E1C /* RequirementsListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequirementsListItem.swift; sourceTree = "<group>"; };
 		C0DDDFAE25C4401F00C750DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,6 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				C0DA9EFB25DD6542007E2E1C /* RequirementsView.swift */,
+				C0DA9F1E25DEAA8F007E2E1C /* RequirementsListItem.swift */,
+				C0DA9F1B25DEA94B007E2E1C /* MSPRequirementsView.swift */,
 			);
 			path = Requirements;
 			sourceTree = "<group>";
@@ -260,8 +266,10 @@
 				C09FD9AE25C310DF00FF87BA /* Persistence.swift in Sources */,
 				C06576AF25D4314A0084EB39 /* ProfileView.swift in Sources */,
 				3A37EFCE25D6CCD2003046DB /* Authentication.swift in Sources */,
+				C0DA9F1F25DEAA8F007E2E1C /* RequirementsListItem.swift in Sources */,
 				C0DA9EFC25DD6542007E2E1C /* RequirementsView.swift in Sources */,
 				C09FD9A725C310DD00FF87BA /* LoginView.swift in Sources */,
+				C0DA9F1C25DEA94B007E2E1C /* MSPRequirementsView.swift in Sources */,
 				C0072C0325D42B9A00E80529 /* UserDefaults+PropertyWrapper.swift in Sources */,
 				C09FD9A525C310DD00FF87BA /* MaasSampleApp.swift in Sources */,
 				C0CC6D1C25DD5A5200637F8D /* MenuView.swift in Sources */,
