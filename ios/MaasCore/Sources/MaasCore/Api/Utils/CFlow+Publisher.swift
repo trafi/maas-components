@@ -32,12 +32,8 @@ public extension CFlow where T == ApiResult<RoutesResult> {
     var publisher: AnyPublisher<RoutesResult, ApiError> { cflowToPublisher(self) }
 }
 
-public extension CFlow where T == ApiResult<RequirementStatusResponse> {
-    var publisher: AnyPublisher<RequirementStatusResponse, ApiError> { cflowToPublisher(self) }
-}
-
-public extension CFlow where T == ApiResult<ProvidersRequirementStatusResponse> {
-    var publisher: AnyPublisher<ProvidersRequirementStatusResponse, ApiError> { cflowToPublisher(self) }
+public extension CFlow where T == ApiResult<VerifyProviderRequirementsResponse> {
+    var publisher: AnyPublisher<VerifyProviderRequirementsResponse, ApiError> { cflowToPublisher(self) }
 }
 
 /// For every Possible Response type:

@@ -35,15 +35,8 @@ class UsersApi internal constructor(
         ApiResult.ktorFailure(e)
     }
 
-    suspend fun requirements(): ApiResult<ProvidersRequirementStatusResponse> = try {
-        val result = httpClient.authorized.get<ProvidersRequirementStatusResponse>(baseApiUrl + "v1/users/me/accounts/requirements")
-        ApiResult.Success(result)
-    } catch (e: Throwable) {
-        ApiResult.ktorFailure(e)
-    }
-
-    suspend fun providersRequirements(providerId: String): ApiResult<RequirementStatusResponse> = try {
-        val result = httpClient.authorized.get<RequirementStatusResponse>(baseApiUrl + "v1/users/me/accounts/${providerId}/requirements")
+    suspend fun providerRequirements(): ApiResult<VerifyProviderRequirementsResponse> = try {
+        val result = httpClient.authorized.get<VerifyProviderRequirementsResponse>(baseApiUrl + "v2/users/me/accounts/requirements")
         ApiResult.Success(result)
     } catch (e: Throwable) {
         ApiResult.ktorFailure(e)

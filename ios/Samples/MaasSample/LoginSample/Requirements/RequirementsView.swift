@@ -3,10 +3,11 @@ import MaasCore
 
 class RequirementsState: ObservableObject {
 
-    @Published var requirementStatus: ProvidersRequirementStatusResponse
+    @Published var requirementStatus: VerifyProviderRequirementsResponse
 
-    init(requirementStatus: ProvidersRequirementStatusResponse) {
+    init(requirementStatus: VerifyProviderRequirementsResponse) {
         self.requirementStatus = requirementStatus
+        requirementStatus
     }
 }
 
@@ -28,8 +29,9 @@ private extension RequirementsView {
 
     func requirementsList() -> some View {
         List {
-            ForEach(requiremenetsState.requirementStatus.providers, id: \.self) {
-                providerSection($0)
+            ForEach(requiremenetsState.requirementStatus.requirements, id: \.self) { _ in
+                // providerSection($0)
+                EmptyView()
             }
         }
         .navigationTitle("Requirements")
@@ -42,20 +44,43 @@ private extension RequirementsView {
         .listStyle(InsetGroupedListStyle())
     }
 
-    func providerSection(_ provider: ProviderRequirementStatus) -> some View {
-        //Section(header: Text(provider.providerId)) {
-
-        ForEach(provider.requirementStatuses.map { $0.key }, id: \.self) {
-
-            if let status = provider.requirementStatuses[$0] {
-                Section {
-                    Text(status.details ?? "No Details")
-                    Text("\(status.fulfilled?.boolValue ?? false ? "true" : "false")")
-                    Text(status.keys?.compactMap { $0 }.joined(separator: "") ?? "No Keys")
-                    Text(status.unacceptedTerms?.compactMap { $0.key }.joined(separator: "") ?? "No Unaccepted Terms")
-                    Text(status.unacceptedTerms?.debugDescription ?? "")
-                }
-            }
-        }
-    }
+//    func providerSection(_ provider: ProviderRequirementStatus) -> some View {
+//        //Section(header: Text(provider.providerId)) {
+//
+//        ForEach(provider.requirementStatuses.map { $0.key }, id: \.self) { key in
+//
+//            if let status = provider.requirementStatuses[key] {
+//                Section(
+//                    header: VStack(alignment: .leading) {
+//                        Text(key)
+//                            .font(.headline)
+//                        Text(status.details ?? "")
+//                            .font(.caption)
+//                    }
+//                ) {
+//
+//                    if let keys = status.keys, let key = keys.compactMap { $0 }.joined(separator: "") {
+//                        NavigationLink(destination: Text(key), label: Text("Provide"))
+//                    }
+//
+//                    if let terms = status.unacceptedTerms {
+//                        ForEach(terms, id: \.self) { term in
+//                            VStack(alignment: .leading) {
+//                                Text(term.key ?? "")
+//                                    .font(.caption)
+//                                if let localizedTerms = term.localizedTerms {
+//                                    ForEach(localizedTerms, id: \.self) { localizedTerm in
+//                                        Button(
+//                                            action: {  },
+//                                            label: Text(localizedTerm.url)
+//                                        )
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 }

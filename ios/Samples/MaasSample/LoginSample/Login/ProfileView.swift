@@ -38,9 +38,6 @@ private extension ProfileView {
                 SwiftUI.Button(action: appState.requirements) {
                     Text("Check Provider Requirements")
                 }
-                SwiftUI.Button(action: appState.providersRequirements) {
-                    Text("Check Requirements")
-                }
             }
         }
         .listStyle(InsetGroupedListStyle())

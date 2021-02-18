@@ -2,15 +2,14 @@ import MaasCore
 import Combine
 import SwiftUI
 
-extension ProvidersRequirementStatusResponse: Identifiable { }
-extension RequirementStatusResponse: Identifiable { }
+extension VerifyProviderRequirementsResponse: Identifiable { }
 
 class AppState: ObservableObject {
 
     @Published var user: User? = nil
     @Published var error: AuthenticationError? = nil
-    @Published var providersRequirementStatus: ProvidersRequirementStatusResponse? = nil
-    @Published var requirementStatus: RequirementStatusResponse? = nil
+    @Published var providersRequirementStatus: VerifyProviderRequirementsResponse? = nil
+
 
     var cancelableStore = Set<AnyCancellable>()
 
@@ -66,14 +65,7 @@ class AppState: ObservableObject {
     }
 
     func requirements() {
-        UsersApi.shared.requirements()
-            .publisher
-            .sink(receiveCompletion: onError, receiveValue: onValue)
-            .store(in: &cancelableStore)
-    }
-
-    func providersRequirements() {
-        UsersApi.shared.providersRequirements(providerId: "tier")
+        UsersApi.shared.providerRequirements()
             .publisher
             .sink(receiveCompletion: onError, receiveValue: onValue)
             .store(in: &cancelableStore)
@@ -94,12 +86,8 @@ class AppState: ObservableObject {
         user = completion
     }
 
-    private func onValue(_ completion: ProvidersRequirementStatusResponse) {
+    private func onValue(_ completion: VerifyProviderRequirementsResponse) {
         providersRequirementStatus = completion
-    }
-
-    private func onValue(_ completion: RequirementStatusResponse) {
-        requirementStatus = completion
     }
 
     // MARK: - Bindings
