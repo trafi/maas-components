@@ -16,6 +16,8 @@ public protocol ApiConfig: class {
 
 public extension ApiConfig {
     
+    func refreshIdToken(completion: @escaping (String?) -> ()) { completion(nil) }
+    
     var config: CoreBinary.ApiConfiguration {
         .init(
             baseUrl: baseUrl,
