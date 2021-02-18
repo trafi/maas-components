@@ -1,30 +1,16 @@
-class ApiConfiguration: ApiConfig {
-    
-    private init() {}
-    
-    static let shared = ApiConfiguration()
-    static var config: CoreBinary.ApiConfiguration { shared.config }
-
-    var baseUrl: String { "" }
-    var apiKey: String { "" }
-    
-    func getIdToken() -> String? {
-        return ""
-    }
-    
-    var logger: Logger? { ApiLogger.default }
-}
-
-public protocol ApiConfig {
+public protocol ApiConfig: class {
     var baseUrl: String { get }
-    /**
-     - Tag: ApiConfig.apiKey
-     */
+    
+    ///  - Tag: ApiConfig.apiKey
     var apiKey: String { get }
-    /**
-     - Tag: ApiConfig.getIdToken
-     */
+    
+    ///  - Tag: ApiConfig.getIdToken
     func getIdToken() -> String?
+    
+    /// - Tag: ApiConfig.refreshIdToken
+    ///  must ensure that when completion is called, [getIdToken()](x-source-tag://ApiConfig.getIdToken) will return refreshed token
+    func refreshIdToken(completion: @escaping (String?) -> ())
+
     var logger: Logger? { get }
 }
 
