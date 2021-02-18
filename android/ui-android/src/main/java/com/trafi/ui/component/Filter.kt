@@ -2,7 +2,8 @@ package com.trafi.ui.component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.lazy.LazyRowFor
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,15 +16,14 @@ private fun <T> ScrollableTappableView(
     modifier: Modifier = Modifier,
     itemContent: @Composable (T) -> Unit,
 ) {
-    LazyRowFor(
-        items = items,
-        modifier = modifier.fillMaxWidth(),
-    ) { item ->
-        Surface(
-            color = Color.Transparent,
-            modifier = Modifier.clickable(onClick = { onItemClick(item) })
-        ) {
-            itemContent(item)
+    LazyRow(modifier = modifier.fillMaxWidth()) {
+        items(items) { item ->
+            Surface(
+                color = Color.Transparent,
+                modifier = Modifier.clickable(onClick = { onItemClick(item) })
+            ) {
+                itemContent(item)
+            }
         }
     }
 }

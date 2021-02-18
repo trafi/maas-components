@@ -25,9 +25,8 @@ import com.trafi.ui.theme.currentTheme
 import com.trafi.ui.theme.darkColors
 import com.trafi.ui.theme.isRound
 
-@Composable
 private val constants
-    get() = InfoButtonConstants(currentTheme)
+    @Composable get() = InfoButtonConstants(currentTheme)
 
 @Composable
 public fun InfoButton(
@@ -49,7 +48,7 @@ public fun InfoButton(
         } else {
             RoundedCornerShape(constants.cornerRadius)
         },
-        colors = androidx.compose.material.ButtonConstants.defaultTextButtonColors(
+        colors = androidx.compose.material.ButtonDefaults.textButtonColors(
             backgroundColor = backgroundColor,
             contentColor = contentColor,
             disabledContentColor = disabledContentColor,
@@ -65,6 +64,7 @@ public fun InfoButton(
     ) {
         Icon(
             imageVector = vectorResource(id = iconRes),
+            contentDescription = null,
             modifier = modifier
                 .padding(end = constants.spaceBetween)
                 .size(width = constants.iconWidth, height = constants.iconHeight),

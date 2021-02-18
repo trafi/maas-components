@@ -1,7 +1,8 @@
 package com.trafi.routes.ui
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -17,13 +18,19 @@ public fun RoutesResult(
     onRouteClick: (Route) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    LazyColumnFor(result.routes, modifier) { route ->
-        Route(route, onClick = { onRouteClick(route) }, modifier = Modifier.fillParentMaxWidth())
-        if (result.routes.indexOf(route) != result.routes.lastIndex) {
-            Divider(
-                modifier = Modifier
-                    .padding(horizontal = MaasTheme.spacing.globalMargin)
+    LazyColumn(modifier) {
+        items(result.routes) { route ->
+            Route(
+                route = route,
+                onClick = { onRouteClick(route) },
+                modifier = Modifier.fillParentMaxWidth()
             )
+            if (result.routes.indexOf(route) != result.routes.lastIndex) {
+                Divider(
+                    modifier = Modifier
+                        .padding(horizontal = MaasTheme.spacing.globalMargin)
+                )
+            }
         }
     }
 }

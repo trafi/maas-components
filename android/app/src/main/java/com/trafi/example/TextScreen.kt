@@ -1,8 +1,10 @@
 package com.trafi.example
 
-import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -23,7 +25,11 @@ fun TextScreen() {
             "textS" to textS
         )
     }
-    ScrollableColumn(modifier = Modifier.background(MaasTheme.colors.background)) {
+    Column(
+        modifier = Modifier
+            .background(MaasTheme.colors.background)
+            .verticalScroll(rememberScrollState())
+    ) {
         styles.forEach { (name, style) ->
             Text(
                 name.toUpperCase(Locale.US),

@@ -9,9 +9,8 @@ import com.trafi.ui.theme.internal.CurrentSpacingScale
 import com.trafi.ui.theme.internal.CurrentTheme
 import com.trafi.ui.theme.internal.CurrentTypographyScale
 
-@Composable
 public val currentTheme: CurrentTheme
-    get() = CurrentTheme(
+    @Composable get() = CurrentTheme(
         colorPalette = with(MaasTheme.colors) {
             CurrentColorPalette(
                 primary = primary,
