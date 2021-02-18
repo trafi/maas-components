@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Route search tab" href="design/route-search-tab.html" />
 
     <meta name="generator" content="sphinx-3.5.1, furo 2020.12.30.beta24"/>
-        <title>iOS - maas-components</title>
+        <title>Contributing - maas-components</title>
       <link rel="stylesheet" href="_static/styles/furo.css?digest=33d2fc4f3f180ec1ffc6524e273e21d7d58cbe49">
     <link rel="stylesheet" href="_static/pygments.css">
     <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="_static/pygments_dark.css">
@@ -119,9 +119,7 @@
 <li class="toctree-l2"><a class="reference internal" href="design/route-search-tab.html">Route search tab</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">iOS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#android-kotlin-multiplatform">Android &amp; Kotlin multiplatform</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#other-tools">Other tools</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Contributing</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/trafi/maas-components">GitHub repo</a></li>
 </ul>
 
@@ -137,26 +135,28 @@
         <label class="toc-overlay-icon toc-content-icon" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
-        <div class="section" id="ios">
-<h1>iOS<a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h1>
+        <div class="section" id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="ios">
+<h2>iOS<a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="build-xcframework">
-<h2>Build xcframework<a class="headerlink" href="#build-xcframework" title="Permalink to this headline">¶</a></h2>
+<h3>Build xcframework<a class="headerlink" href="#build-xcframework" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">./gradlew</span> <span class="pre">xcframework</span></code></p></li>
 </ol>
 </div>
 </div>
 <div class="section" id="android-kotlin-multiplatform">
-<h1>Android &amp; Kotlin multiplatform<a class="headerlink" href="#android-kotlin-multiplatform" title="Permalink to this headline">¶</a></h1>
+<h2>Android &amp; Kotlin multiplatform<a class="headerlink" href="#android-kotlin-multiplatform" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="set-up-android-studio">
-<h2>Set up Android Studio<a class="headerlink" href="#set-up-android-studio" title="Permalink to this headline">¶</a></h2>
+<h3>Set up Android Studio<a class="headerlink" href="#set-up-android-studio" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p><a class="reference external" href="https://developer.android.com/studio/preview">Install Android Studio</a> version Arctic Fox (2020.3.1) Canary 6</p></li>
 <li><p><a class="reference external" href="https://kotlinlang.org/docs/mobile/kmm-plugin-releases.html">Install the Kotlin Multiplatform Mobile plugin</a></p></li>
 </ol>
 </div>
 <div class="section" id="launch-sample-apps">
-<h2>Launch sample apps<a class="headerlink" href="#launch-sample-apps" title="Permalink to this headline">¶</a></h2>
+<h3>Launch sample apps<a class="headerlink" href="#launch-sample-apps" title="Permalink to this headline">¶</a></h3>
 <p>Add or edit the <code class="docutils literal notranslate"><span class="pre">local.properties</span></code> file to include the following properties:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">trafi</span><span class="o">.</span><span class="n">apiBaseUrl</span><span class="o">=</span><span class="n">https</span>\<span class="p">:</span><span class="o">//</span><span class="n">YOUR</span><span class="o">-</span><span class="n">BASE</span><span class="o">-</span><span class="n">URL</span><span class="o">-</span><span class="n">HERE</span><span class="o">.</span><span class="n">trafi</span><span class="o">.</span><span class="n">com</span><span class="o">/</span>
 <span class="n">trafi</span><span class="o">.</span><span class="n">apiKey</span><span class="o">=</span><span class="n">YOUR</span><span class="o">-</span><span class="n">API</span><span class="o">-</span><span class="n">KEY</span><span class="o">-</span><span class="n">HERE</span>
@@ -164,7 +164,7 @@
 </div>
 </div>
 <div class="section" id="update-android-screenshot-tests">
-<h2>Update Android screenshot tests<a class="headerlink" href="#update-android-screenshot-tests" title="Permalink to this headline">¶</a></h2>
+<h3>Update Android screenshot tests<a class="headerlink" href="#update-android-screenshot-tests" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/Karumi/Shot">Shot</a> is used to test and record new screenshots. To update screenshots, run the
 “Record Android screenshot tests” workflow, specifying the branch on which new / updated screenshots
 should be generated and committed on.</p>
@@ -182,9 +182,9 @@ The used device currently should be set as Nexus 6 and architecture should be x8
 </div>
 </div>
 <div class="section" id="other-tools">
-<h1>Other tools<a class="headerlink" href="#other-tools" title="Permalink to this headline">¶</a></h1>
+<h2>Other tools<a class="headerlink" href="#other-tools" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="run-embedmd">
-<h2>Run embedmd<a class="headerlink" href="#run-embedmd" title="Permalink to this headline">¶</a></h2>
+<h3>Run embedmd<a class="headerlink" href="#run-embedmd" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/campoy/embedmd">embedmd</a> runs automatically on every pull request and helps keep code snippets in
 documentation files up-to-date. You may want to run the tool locally.</p>
 <ol class="simple">
@@ -192,6 +192,7 @@ documentation files up-to-date. You may want to run the tool locally.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">get</span> <span class="pre">github.com/campoy/embedmd</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">embedmd</span> <span class="pre">-w</span> <span class="pre">**/*.md</span></code></p></li>
 </ol>
+</div>
 </div>
 </div>
 
@@ -241,7 +242,8 @@ documentation files up-to-date. You may want to run the tool locally.</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">iOS</a><ul>
+<li><a class="reference internal" href="#">Contributing</a><ul>
+<li><a class="reference internal" href="#ios">iOS</a><ul>
 <li><a class="reference internal" href="#build-xcframework">Build xcframework</a></li>
 </ul>
 </li>
@@ -253,6 +255,8 @@ documentation files up-to-date. You may want to run the tool locally.</p>
 </li>
 <li><a class="reference internal" href="#other-tools">Other tools</a><ul>
 <li><a class="reference internal" href="#run-embedmd">Run embedmd</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
