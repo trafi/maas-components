@@ -5,9 +5,11 @@ public protocol ApiConfig: class {
     var apiKey: String { get }
     
     ///  - Tag: ApiConfig.getIdToken
+    /// Will be called on every API call and whenever IdToken will be needed for SDK inner logic
     func getIdToken() -> String?
     
     /// - Tag: ApiConfig.refreshIdToken
+    ///  Will be used for automatic retry with token refresh whenever ApiError.unauthorized will be received
     ///  must ensure that when completion is called, [getIdToken()](x-source-tag://ApiConfig.getIdToken) will return refreshed token
     func refreshIdToken(completion: @escaping (String?) -> ())
 
