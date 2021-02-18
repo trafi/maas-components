@@ -87,7 +87,12 @@ class AppState: ObservableObject {
     }
 
     private func onValue(_ completion: VerifyProviderRequirementsResponse) {
-        providersRequirementStatus = completion
+
+        let hasUnfulfilledRequirements = completion.requirements
+            .compactMap { $0.requirementStatuses.flatMap { $0[""]?.fulfilled?.boolValue } }
+            .contains(false)
+
+        providersRequirementStatus = hasUnfulfilledRequirements ? completion : nil
     }
 
     // MARK: - Bindings
