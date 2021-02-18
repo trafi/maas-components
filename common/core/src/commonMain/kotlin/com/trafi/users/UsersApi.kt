@@ -5,10 +5,9 @@ import com.trafi.core.ApiResult
 import com.trafi.core.ConfiguredApi
 import com.trafi.core.api
 import com.trafi.core.defaultHttpClient
-import com.trafi.core.model.Profile
-import com.trafi.core.model.UpdateProfileParameters
-import com.trafi.core.model.User
+import com.trafi.core.model.*
 import io.ktor.client.HttpClient
+import io.ktor.client.request.*
 import io.ktor.client.request.put
 
 class UsersApi internal constructor(
@@ -31,6 +30,20 @@ class UsersApi internal constructor(
         val result = httpClient.authorized.put<User>(baseApiUrl + "v1/users/me/profile") {
             body = UpdateProfileParameters(profile)
         }
+        ApiResult.Success(result)
+    } catch (e: Throwable) {
+        ApiResult.ktorFailure(e)
+    }
+
+    suspend fun requirements(): ApiResult<ProvidersRequirementStatusResponse> = try {
+        val result = httpClient.authorized.get<ProvidersRequirementStatusResponse>(baseApiUrl + "v1/users/me/accounts/requirements")
+        ApiResult.Success(result)
+    } catch (e: Throwable) {
+        ApiResult.ktorFailure(e)
+    }
+
+    suspend fun providersRequirements(providerId: String): ApiResult<RequirementStatusResponse> = try {
+        val result = httpClient.authorized.get<RequirementStatusResponse>(baseApiUrl + "v1/users/me/accounts/${providerId}/requirements")
         ApiResult.Success(result)
     } catch (e: Throwable) {
         ApiResult.ktorFailure(e)

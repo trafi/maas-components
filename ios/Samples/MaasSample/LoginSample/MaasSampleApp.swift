@@ -17,9 +17,7 @@ struct LaunchView: View {
             if appState.user == nil {
                 LoginView()
             } else {
-                NavigationView {
-                    ProfileView()
-                }
+                NavigationView { MenuView() }
             }
         }
         .alert(item: $appState.error) {
@@ -27,6 +25,9 @@ struct LaunchView: View {
         }
         .animation(.default)
         .environmentObject(appState)
+        .sheet(item: $appState.providersRequirementStatus) {
+            RequirementsView(requiremenetsState: .init(requirementStatus: $0))
+        }
     }
 }
 

@@ -20,6 +20,8 @@
 		C09FD9BA25C3112100FF87BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FD9B925C3112100FF87BA /* AppDelegate.swift */; };
 		C09FD9C725C3132500FF87BA /* MaasConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FD9C625C3132500FF87BA /* MaasConfiguration.swift */; };
 		C0A5FFDB25D2B43500EDFF48 /* Maas in Frameworks */ = {isa = PBXBuildFile; productRef = C0A5FFDA25D2B43500EDFF48 /* Maas */; };
+		C0CC6D1C25DD5A5200637F8D /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC6D1B25DD5A5200637F8D /* MenuView.swift */; };
+		C0DA9EFC25DD6542007E2E1C /* RequirementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DA9EFB25DD6542007E2E1C /* RequirementsView.swift */; };
 		C0DDDF8225C42E1400C750DA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C0DDDF8125C42E1400C750DA /* FirebaseAuth */; };
 		C0DDDF8D25C4309300C750DA /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = C0DDDF8C25C4309300C750DA /* FacebookCore */; };
 		C0DDDF8F25C4309300C750DA /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = C0DDDF8E25C4309300C750DA /* FacebookLogin */; };
@@ -42,6 +44,8 @@
 		C09FD9B925C3112100FF87BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C09FD9C625C3132500FF87BA /* MaasConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaasConfiguration.swift; sourceTree = "<group>"; };
 		C0CB4AC525D3E00D0047B93D /* maas-components */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "maas-components"; path = ../../..; sourceTree = "<group>"; };
+		C0CC6D1B25DD5A5200637F8D /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		C0DA9EFB25DD6542007E2E1C /* RequirementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequirementsView.swift; sourceTree = "<group>"; };
 		C0DDDFAE25C4401F00C750DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +106,8 @@
 				C09FD9A425C310DD00FF87BA /* MaasSampleApp.swift */,
 				C09FD9C625C3132500FF87BA /* MaasConfiguration.swift */,
 				C09FD9D325C3FB3000FF87BA /* Login */,
+				C0DA9EFA25DD64E0007E2E1C /* Requirements */,
+				C0CC6D1A25DD5A2000637F8D /* Menu */,
 				C0CC6D1725DD59B100637F8D /* Ondemand */,
 				C09FD9D825C3FB4500FF87BA /* Supporting Files */,
 				C09FD9AA25C310DF00FF87BA /* Preview Content */,
@@ -152,6 +158,22 @@
 			children = (
 			);
 			path = Ondemand;
+			sourceTree = "<group>";
+		};
+		C0CC6D1A25DD5A2000637F8D /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				C0CC6D1B25DD5A5200637F8D /* MenuView.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		C0DA9EFA25DD64E0007E2E1C /* Requirements */ = {
+			isa = PBXGroup;
+			children = (
+				C0DA9EFB25DD6542007E2E1C /* RequirementsView.swift */,
+			);
+			path = Requirements;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,9 +260,11 @@
 				C09FD9AE25C310DF00FF87BA /* Persistence.swift in Sources */,
 				C06576AF25D4314A0084EB39 /* ProfileView.swift in Sources */,
 				3A37EFCE25D6CCD2003046DB /* Authentication.swift in Sources */,
+				C0DA9EFC25DD6542007E2E1C /* RequirementsView.swift in Sources */,
 				C09FD9A725C310DD00FF87BA /* LoginView.swift in Sources */,
 				C0072C0325D42B9A00E80529 /* UserDefaults+PropertyWrapper.swift in Sources */,
 				C09FD9A525C310DD00FF87BA /* MaasSampleApp.swift in Sources */,
+				C0CC6D1C25DD5A5200637F8D /* MenuView.swift in Sources */,
 				C09FD9BA25C3112100FF87BA /* AppDelegate.swift in Sources */,
 				C06576B725D538200084EB39 /* AppState.swift in Sources */,
 				C09FD9B125C310DF00FF87BA /* MaasSample.xcdatamodeld in Sources */,

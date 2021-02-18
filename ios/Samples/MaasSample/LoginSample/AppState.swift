@@ -2,10 +2,15 @@ import MaasCore
 import Combine
 import SwiftUI
 
+extension ProvidersRequirementStatusResponse: Identifiable { }
+extension RequirementStatusResponse: Identifiable { }
+
 class AppState: ObservableObject {
 
     @Published var user: User? = nil
     @Published var error: AuthenticationError? = nil
+    @Published var providersRequirementStatus: ProvidersRequirementStatusResponse? = nil
+    @Published var requirementStatus: RequirementStatusResponse? = nil
 
     var cancelableStore = Set<AnyCancellable>()
 
@@ -60,6 +65,20 @@ class AppState: ObservableObject {
             .store(in: &cancelableStore)
     }
 
+    func requirements() {
+        UsersApi.shared.requirements()
+            .publisher
+            .sink(receiveCompletion: onError, receiveValue: onValue)
+            .store(in: &cancelableStore)
+    }
+
+    func providersRequirements() {
+        UsersApi.shared.providersRequirements(providerId: "tier")
+            .publisher
+            .sink(receiveCompletion: onError, receiveValue: onValue)
+            .store(in: &cancelableStore)
+    }
+
     private func onError(_ completion: Subscribers.Completion<ApiError>) {
         switch completion {
         case .finished:
@@ -75,11 +94,24 @@ class AppState: ObservableObject {
         user = completion
     }
 
+    private func onValue(_ completion: ProvidersRequirementStatusResponse) {
+        providersRequirementStatus = completion
+    }
+
+    private func onValue(_ completion: RequirementStatusResponse) {
+        requirementStatus = completion
+    }
+
     // MARK: - Bindings
 
     var firstName: String {
         get { user?.profile.firstName ?? "" }
         set { user?.profile.firstName = newValue }
+    }
+
+    var lastName: String {
+        get { user?.profile.lastName ?? "" }
+        set { user?.profile.lastName = newValue }
     }
 
     // MARK: - Queries
