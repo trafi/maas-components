@@ -1,8 +1,9 @@
 package com.trafi.example
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.test.junit4.ComposeTestRule
+import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.test.rule.GrantPermissionRule
 import com.karumi.shot.ScreenshotTest
 import org.junit.Before
 import org.junit.Rule
@@ -23,11 +24,17 @@ class ComposablePreviewsTests(
     lateinit var previewTest: PreviewTest
 
     @get:Rule
-    val composeTestRule: ComposeTestRule = createComposeRule()
+    val composeTestRule: ComposeContentTestRule = createComposeRule()
+
+    @get:Rule
+    val grantPermissionRule = GrantPermissionRule.grant(
+        android.Manifest.permission.READ_EXTERNAL_STORAGE,
+        android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+    )
 
     @Before
     fun init() {
-        previewTest = PreviewTest(composeTestRule = composeTestRule)
+        previewTest = PreviewTest(composeTestRule)
     }
 
     @Test

@@ -6,7 +6,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSizeConstraints
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.Surface
@@ -28,22 +29,21 @@ import com.trafi.ui.theme.MaasTheme
 internal fun LocationsResult(
     result: List<AutoCompleteLocation>,
     onClick: (AutoCompleteLocation) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
-    LazyColumnFor(
-        modifier = modifier,
-        items = result
-    ) { location ->
-        LocationResult(
-            location,
-            onClick = { onClick(location) },
-            modifier = Modifier.fillParentMaxWidth()
-        )
-        if (result.indexOf(location) != result.lastIndex) {
-            Divider(
-                modifier = Modifier
-                    .padding(horizontal = MaasTheme.spacing.globalMargin)
+    LazyColumn(modifier = modifier) {
+        items(result) { location ->
+            LocationResult(
+                location,
+                onClick = { onClick(location) },
+                modifier = Modifier.fillParentMaxWidth()
             )
+            if (result.indexOf(location) != result.lastIndex) {
+                Divider(
+                    modifier = Modifier
+                        .padding(horizontal = MaasTheme.spacing.globalMargin)
+                )
+            }
         }
     }
 }
@@ -76,7 +76,11 @@ private fun LocationResult(
                 .defaultMinSizeConstraints(minHeight = 60.dp)
                 .padding(horizontal = MaasTheme.spacing.globalMargin, vertical = 12.dp)
         ) {
-            Icon(Icons.Outlined.LocationOn, modifier = Modifier.size(24.dp))
+            Icon(
+                Icons.Outlined.LocationOn,
+                contentDescription = null,
+                modifier = Modifier.size(24.dp),
+            )
             Column(modifier = Modifier.padding(start = 12.dp)) {
                 Text(
                     name,
