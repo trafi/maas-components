@@ -1,12 +1,14 @@
 package com.trafi.routes.ui
 
-import androidx.compose.foundation.ScrollableRow
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.AmbientContentColor
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
@@ -213,8 +215,10 @@ private fun RouteSearchTabsList(
     onRouteTabClick: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    ScrollableRow(
-        modifier = modifier.padding(horizontal = MaasTheme.spacing.globalMargin)
+    Row(
+        modifier = modifier
+            .horizontalScroll(rememberScrollState())
+            .padding(horizontal = MaasTheme.spacing.globalMargin)
     ) {
         items.forEach { tabItem ->
             RouteSearchTab(

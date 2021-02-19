@@ -64,12 +64,17 @@ internal fun RouteSearchHeader(
 
         IconButton(
             onClick = onBackClick,
-            modifier = Modifier.size(32.dp).constrainAs(back) {
-                centerHorizontallyTo(endIcon)
-                centerVerticallyTo(title)
-            }
+            modifier = Modifier
+                .size(32.dp)
+                .constrainAs(back) {
+                    centerHorizontallyTo(endIcon)
+                    centerVerticallyTo(title)
+                }
         ) {
-            Icon(Icons.Filled.ArrowBack)
+            Icon(
+                Icons.Filled.ArrowBack,
+                contentDescription = "Back", // TODO l10n
+            )
         }
 
         Box(
@@ -84,6 +89,8 @@ internal fun RouteSearchHeader(
         )
         Icon(
             Icons.Filled.Place,
+            // TODO l10n
+            contentDescription = "From",
             tint = MaasTheme.colors.primary,
             modifier = Modifier
                 .size(width = 32.dp, height = 16.dp)
@@ -160,7 +167,8 @@ internal fun RouteSearchHeader(
                     end.linkTo(parent.end, margin = Spacing.sm)
                 }
         ) {
-            Icon(switchVector)
+            // TODO contentDescription for switch action
+            Icon(switchVector, contentDescription = null)
         }
         TextButton(
             onClick = {},
@@ -170,7 +178,12 @@ internal fun RouteSearchHeader(
             }
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(timeVector, modifier = Modifier.padding(end = Spacing.xs))
+                Icon(
+                    timeVector,
+                    contentDescription = null,
+                    modifier = Modifier.padding(end = Spacing.xs),
+                )
+                // TODO l10n
                 Text("Leave now", style = MaasTheme.typography.textM)
             }
         }

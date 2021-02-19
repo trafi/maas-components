@@ -2,17 +2,16 @@ package com.trafi.ui.theme
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.font.font
-import androidx.compose.ui.text.font.fontFamily
 import com.trafi.ui.R
 import com.trafi.ui.theme.internal.TypographyScale
 
-internal val Inter = fontFamily(
-    font(R.font.inter_regular, FontWeight.Normal),
-    font(R.font.inter_bold, FontWeight.Bold),
-    font(R.font.inter_semi_bold, FontWeight.SemiBold),
+internal val Inter = FontFamily(
+    Font(R.font.inter_regular, FontWeight.Normal),
+    Font(R.font.inter_bold, FontWeight.Bold),
+    Font(R.font.inter_semi_bold, FontWeight.SemiBold),
 )
 
 @Immutable

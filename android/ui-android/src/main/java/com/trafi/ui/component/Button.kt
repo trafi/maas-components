@@ -17,9 +17,8 @@ import com.trafi.ui.theme.currentTheme
 import com.trafi.ui.theme.isRound
 import com.trafi.ui.theme.lightColors
 
-@Composable
 private val constants
-    get() = ButtonConstants(currentTheme)
+    @Composable get() = ButtonConstants(currentTheme)
 
 @Composable
 public fun Button(
@@ -41,7 +40,7 @@ public fun Button(
         } else {
             RoundedCornerShape(constants.cornerRadius)
         },
-        colors = androidx.compose.material.ButtonConstants.defaultButtonColors(
+        colors = androidx.compose.material.ButtonDefaults.buttonColors(
             backgroundColor = color,
             disabledBackgroundColor = disabledColor,
             contentColor = contentColor,

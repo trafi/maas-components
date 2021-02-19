@@ -35,9 +35,8 @@ import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.currentTheme
 import com.trafi.ui.theme.darkColors
 
-@Composable
 private val constants
-    get() = BadgeConstants(currentTheme)
+    @Composable get() = BadgeConstants(currentTheme)
 
 public data class BadgeInfo(
     val text: String?,
@@ -111,6 +110,7 @@ private fun SingleBadge(
         subbadgeIcon?.let {
             Image(
                 subbadgeIcon,
+                contentDescription = null,
                 modifier = Modifier
                     .width(constants.subBadgeIconWidth)
                     .height(constants.subBadgeIconHeight)
@@ -176,6 +176,7 @@ private fun StackedBadge(
         subbadgeIcon?.let {
             Image(
                 subbadgeIcon,
+                contentDescription = null,
                 modifier = Modifier
                     .width(constants.subBadgeIconWidth)
                     .height(constants.subBadgeIconHeight)
@@ -212,6 +213,7 @@ private fun BadgeFiller(
             icon?.let {
                 Image(
                     icon,
+                    contentDescription = null,
                     colorFilter = ColorFilter.tint(badge.contentColor
                         ?: constants.defaultContentColor),
                     modifier = Modifier.align(Alignment.CenterVertically)
@@ -233,16 +235,14 @@ private fun BadgeFiller(
     }
 }
 
-@Composable
 private val BadgeType.badgeHeight: Dp
-    get() = when (this) {
+    @Composable get() = when (this) {
         Small -> constants.minHeightSmall
         Medium -> constants.minHeightMedium
     }
 
-@Composable
 private val BadgeType.badgeRounding: Dp
-    get() = when (this) {
+    @Composable get() = when (this) {
         Small -> constants.cornerRadiusSmall
         Medium -> constants.cornerRadiusMedium
     }
@@ -257,16 +257,14 @@ private fun BadgeType.getHorizontalPadding(isStackedBadge: Boolean): Dp {
     }
 }
 
-@Composable
 private val BadgeType.verticalPadding: Dp
-    get() = when (this) {
+    @Composable get() = when (this) {
         Small -> constants.verticalPaddingSmall
         Medium -> constants.verticalPaddingMedium
     }
 
-@Composable
 private val BadgeType.textStyle: TextStyle
-    get() = when (this) {
+    @Composable get() = when (this) {
         Small -> constants.textStyleSmall
         Medium -> constants.textStyleMedium
     }
