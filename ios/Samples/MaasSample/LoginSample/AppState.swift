@@ -39,6 +39,8 @@ class AppState: ObservableObject {
                     } else {
                         self.error = nil
                     }
+
+                    self.authenticationProvider = nil
                 },
                 receiveValue: { [unowned self] in
                     MaasConfiguration.accessToken = $0
@@ -92,7 +94,8 @@ class AppState: ObservableObject {
             .compactMap { $0.requirementStatuses.flatMap { $0[""]?.fulfilled?.boolValue } }
             .contains(false)
 
-        providersRequirementStatus = hasUnfulfilledRequirements ? completion : nil
+        //providersRequirementStatus = hasUnfulfilledRequirements ? completion : nil
+        providersRequirementStatus = completion 
     }
 
     // MARK: - Bindings

@@ -88,6 +88,5 @@ struct RequirementsView_Previews: PreviewProvider {
     static var previews: some View {
         RequirementsView(requiremenetsState: .init(requirementStatus: .init(requirements: [], user: .init(id: "", identity: .init(verificationStatus: .failed, verificationMessageKey: nil, verificationFallbackMessage: nil), profile: .default, phoneNumber: .init(verificationStatus: .failed, number: nil, verificationMessageKey: nil, verificationFallbackMessage: nil), providerAccounts: [], drivingLicence: .init(categories: [], verificationStatus: .failed, licenceNumber: nil, issuedAt: nil, expiresAt: nil, verificationMessageKey: nil, verificationFallbackMessage: nil), terms: .init(platformTerms: [], providerTerms: [], declinedPlatformTerms: [], declinedProviderTerms: []), paymentMethods: nil, memberships: nil), requirementInterdependence: [:])))
             .preferredColorScheme(.dark)
-
     }
 }
