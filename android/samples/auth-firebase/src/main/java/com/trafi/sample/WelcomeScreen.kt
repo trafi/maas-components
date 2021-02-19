@@ -16,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.trafi.ui.component.Button
+import com.trafi.ui.component.SecondaryButton
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.Spacing
 
@@ -79,11 +80,9 @@ fun WelcomeScreen(
                 text = "Continue with Google",
                 onClick = onContinueWithGoogleClick,
             )
-            Button(
+            SecondaryButton(
                 text = "Other ways to sign up",
                 enabled = false,
-                disabledColor = MaasTheme.colors.grayScale.gray100,
-                disabledContentColor = MaasTheme.colors.grayScale.gray400,
                 onClick = { },
             )
         }

@@ -17,15 +17,15 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.trafi.core.model.Profile
-import com.trafi.ui.component.Button
+import com.trafi.ui.component.TertiaryButton
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.Spacing
 import com.trafi.ui.theme.internal.CornerRadiusScale
@@ -123,21 +123,6 @@ private fun Input(
             bottomLeft = ZeroCornerSize,
             bottomRight = ZeroCornerSize,
         ),
-        modifier = modifier,
-    )
-}
-
-@Composable
-private fun TertiaryButton(
-    text: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Button(
-        text = text,
-        onClick = onClick,
-        color = MaasTheme.colors.background,
-        contentColor = MaasTheme.colors.onBackground,
         modifier = modifier,
     )
 }
