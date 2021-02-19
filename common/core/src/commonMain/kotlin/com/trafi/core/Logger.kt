@@ -1,6 +1,5 @@
 package com.trafi.core
 
-import io.ktor.client.features.logging.*
 import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.LogLevel as KtorLogLevel
 
