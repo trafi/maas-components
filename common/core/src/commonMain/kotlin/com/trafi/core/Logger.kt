@@ -2,18 +2,26 @@ package com.trafi.core
 
 import io.ktor.client.features.logging.*
 import io.ktor.client.features.logging.Logger
+import io.ktor.client.features.logging.LogLevel as KtorLogLevel
 
 interface Logger : Logger {
     val apiLogLevel: ApiLogLevel
         get() = ApiLogLevel.All
+
+    val ktorLogLevel: KtorLogLevel
+        get() = when (apiLogLevel) {
+            ApiLogLevel.All -> KtorLogLevel.ALL
+            ApiLogLevel.Info -> KtorLogLevel.INFO
+            ApiLogLevel.Headers -> KtorLogLevel.HEADERS
+            ApiLogLevel.Body -> KtorLogLevel.BODY
+            ApiLogLevel.None -> KtorLogLevel.NONE
+        }
 }
 
 enum class ApiLogLevel {
-    All { override fun ktorLogLevel(): LogLevel = LogLevel.ALL },
-    Headers { override fun ktorLogLevel(): LogLevel = LogLevel.HEADERS },
-    Body { override fun ktorLogLevel(): LogLevel = LogLevel.BODY },
-    Info { override fun ktorLogLevel(): LogLevel = LogLevel.INFO },
-    None { override fun ktorLogLevel(): LogLevel = LogLevel.NONE };
-
-    abstract fun ktorLogLevel(): LogLevel
+    All,
+    Headers,
+    Body,
+    Info,
+    None;
 }

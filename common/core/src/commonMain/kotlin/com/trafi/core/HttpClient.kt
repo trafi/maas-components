@@ -24,7 +24,7 @@ internal val ApiConfiguration.defaultHttpClientConfig: HttpClientConfig<*>.() ->
     logger?.let { logger ->
         install(Logging) {
             this.logger = logger
-            level = logger.apiLogLevel.ktorLogLevel()
+            level = logger.ktorLogLevel
         }
     }
     defaultRequest {
