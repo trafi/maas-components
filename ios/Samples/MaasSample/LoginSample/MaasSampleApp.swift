@@ -1,10 +1,3 @@
-//
-//  MaasSampleApp.swift
-//  MaasSample
-//
-//  Created by Ignas Jasiunas on 2021-01-28.
-//
-
 import SwiftUI
 import MaasComponents
 
