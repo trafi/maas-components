@@ -93,7 +93,7 @@
       <a href="../index.html"><div class="brand">maas-components</div></a>
     </div>
     <div class="header-right">
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
     </div>
@@ -119,6 +119,8 @@
 <li class="toctree-l2"><a class="reference internal" href="route-search-tab.html">Route search tab</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/readme.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/readme.html#id1">Contributing</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/trafi/maas-components">GitHub repo</a></li>
 </ul>
 
@@ -131,7 +133,7 @@
   <main class="main">
     <div class="content">
       <article role="main">
-        <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
         <div class="section" id="maas-design-system">
@@ -143,6 +145,74 @@
 <li class="toctree-l1"><a class="reference internal" href="button.html">Button</a></li>
 <li class="toctree-l1"><a class="reference internal" href="route-search-tab.html">Route search tab</a></li>
 </ul>
+</div>
+<div class="section" id="maas-design-system-for-jetpack-compose">
+<h2>MaaS Design System for Jetpack Compose<a class="headerlink" href="#maas-design-system-for-jetpack-compose" title="Permalink to this headline">¶</a></h2>
+<p><em>Work in progress, not ready for use in production.</em></p>
+<p>A design system built for mobility-as-a-service (MaaS) data and services.</p>
+<div class="section" id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
+<p>The design system consists of several key parts:</p>
+<ol class="simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">@Composable</span> <span class="pre">fun</span> <span class="pre">MaasTheme()</span></code> that allows configuring design tokens - colors, typography, spacing &amp; corner radius.</p></li>
+<li><p>Foundational UI components such as <code class="docutils literal notranslate"><span class="pre">Button</span></code> that adhere to <code class="docutils literal notranslate"><span class="pre">MaasTheme</span></code> tokens.</p></li>
+</ol>
+<p>The API of <code class="docutils literal notranslate"><span class="pre">MaasTheme</span></code> closely matches that of <a class="reference external" href="https://developer.android.com/jetpack/compose/themes"><code class="docutils literal notranslate"><span class="pre">MaterialTheme</span></code> in Google’s Jetpack Compose theming guide</a>.</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="n">MaasTheme</span> <span class="p">{</span>
+  <span class="n">Button</span><span class="p">(</span><span class="s">"Hello!"</span><span class="p">,</span> <span class="n">onClick</span> <span class="p">=</span> <span class="p">{})</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="colors">
+<h4>Colors<a class="headerlink" href="#colors" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="n">MaasTheme</span><span class="p">(</span>
+  <span class="n">colors</span> <span class="p">=</span> <span class="n">MaasTheme</span><span class="p">.</span><span class="n">darkColors</span><span class="p">(</span><span class="n">primary</span> <span class="p">=</span> <span class="n">Color</span><span class="p">(</span><span class="m">0</span><span class="n">xffff1499</span><span class="p">))</span>
+<span class="p">)</span> <span class="p">{</span>
+  <span class="n">Button</span><span class="p">(</span><span class="s">"Hello color!"</span><span class="p">,</span> <span class="n">onClick</span> <span class="p">=</span> <span class="p">{})</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="typography">
+<h4>Typography<a class="headerlink" href="#typography" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="n">MaasTheme</span><span class="p">(</span>
+  <span class="n">typography</span> <span class="p">=</span> <span class="n">MaasTypography</span><span class="p">(</span><span class="n">defaultFontFamily</span> <span class="p">=</span> <span class="n">ComicNeue</span><span class="p">)</span>
+<span class="p">)</span> <span class="p">{</span>
+  <span class="n">Button</span><span class="p">(</span><span class="s">"Hello fonts!"</span><span class="p">,</span> <span class="n">onClick</span> <span class="p">=</span> <span class="p">{})</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">val</span> <span class="py">ComicNeue</span> <span class="p">=</span> <span class="n">fontFamily</span><span class="p">(</span>
+  <span class="n">font</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">font</span><span class="p">.</span><span class="n">comic_neue_regular</span><span class="p">,</span> <span class="n">FontWeight</span><span class="p">.</span><span class="n">Normal</span><span class="p">),</span>
+  <span class="n">font</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">font</span><span class="p">.</span><span class="n">comic_neue_bold</span><span class="p">,</span> <span class="n">FontWeight</span><span class="p">.</span><span class="n">Bold</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="spacing">
+<h4>Spacing<a class="headerlink" href="#spacing" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="n">MaasTheme</span><span class="p">(</span>
+  <span class="n">spacing</span> <span class="p">=</span> <span class="n">MaasSpacing</span><span class="p">(</span><span class="n">globalMargin</span> <span class="p">=</span> <span class="n">Spacing</span><span class="p">.</span><span class="n">md</span><span class="p">)</span>
+<span class="p">)</span> <span class="p">{</span>
+  <span class="n">Button</span><span class="p">(</span><span class="s">"Hello space!"</span><span class="p">,</span> <span class="n">onClick</span> <span class="p">=</span> <span class="p">{})</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="corner-radius">
+<h4>Corner radius<a class="headerlink" href="#corner-radius" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="n">MaasTheme</span><span class="p">(</span>
+  <span class="n">cornerRadius</span> <span class="p">=</span> <span class="n">MaasCornerRadius</span><span class="p">(</span><span class="n">buttonRadius</span> <span class="p">=</span> <span class="n">CornerRadius</span><span class="p">.</span><span class="n">none</span><span class="p">)</span>
+<span class="p">)</span> <span class="p">{</span>
+  <span class="n">Button</span><span class="p">(</span><span class="s">"Hello corners!"</span><span class="p">,</span> <span class="n">onClick</span> <span class="p">=</span> <span class="p">{})</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="attribution">
+<h3>Attribution<a class="headerlink" href="#attribution" title="Permalink to this headline">¶</a></h3>
+<p>The bundled font <a class="reference external" href="https://rsms.me/inter/">Inter</a> is licensed under the <a class="reference external" href="https://github.com/rsms/inter/blob/master/LICENSE.txt">SIL Open Font License</a>.</p>
+</div>
 </div>
 </div>
 
@@ -188,8 +258,37 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">MaaS Design System</a><ul>
+<li><a class="reference internal" href="#maas-design-system-for-jetpack-compose">MaaS Design System for Jetpack Compose</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#colors">Colors</a></li>
+<li><a class="reference internal" href="#typography">Typography</a></li>
+<li><a class="reference internal" href="#spacing">Spacing</a></li>
+<li><a class="reference internal" href="#corner-radius">Corner radius</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#attribution">Attribution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
