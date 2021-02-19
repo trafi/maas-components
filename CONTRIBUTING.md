@@ -1,5 +1,8 @@
 # Contributing
 
+The project is still in its early stages. We are not actively seeking external contributions
+at this time, but some small contributions are welcome.
+
 ## iOS
 
 ### Build xcframework

@@ -8,6 +8,6 @@ maxdepth: 2
 ---
 getting-started/readme
 design/readme
-contributing
+contributing/readme
 GitHub repo <https://github.com/trafi/maas-components>
 ```
