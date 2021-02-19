@@ -34,3 +34,17 @@ extension ApiConfig {
         }
     }
 }
+
+extension Publisher where Failure == ApiError {
+    
+    func retryWithTokenRefreshRecovery() -> AnyPublisher<Output, Failure> {
+        retryWithRecovery(
+            recoveryPublisher: Maas.apiConfig.refreshTokenPublisher(),
+            failureShouldRetry: {
+                if case .unauthorized = $0 { return true }
+                else { return false }
+            }
+        ).eraseToAnyPublisher()
+    }
+    
+}
