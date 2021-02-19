@@ -1,6 +1,13 @@
 plugins {
     id("android-sample-convention")
-    id("com.google.gms.google-services")
+}
+
+if (file("google-services.json").exists()) {
+    apply(plugin = "com.google.gms.google-services")
+} else {
+    android.defaultConfig {
+        resValue(type = "string", name = "default_web_client_id", value = "placeholder")
+    }
 }
 
 android.defaultConfig.applicationId = "com.trafi.sample.auth.firebase"
