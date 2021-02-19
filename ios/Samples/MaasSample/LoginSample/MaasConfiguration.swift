@@ -34,7 +34,7 @@ class ExampleLogger: CoreBinary.Logger {
     private init() {}
     static let shared = ExampleLogger()
     
-    var apiLogLevel: Ktor_client_loggingLogLevel { .info }
+    var apiLogLevel: ApiLogLevel { .all }
 
     func log(message: String) {
         print("SDK example log: \(message)")
