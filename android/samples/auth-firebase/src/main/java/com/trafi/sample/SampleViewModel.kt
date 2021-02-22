@@ -89,6 +89,10 @@ class SampleViewModel : ViewModel() {
         }
     }
 
+    fun onContinueWithGoogleClick() = viewModelScope.launch {
+        _signInWithGoogle.emit(true)
+    }
+
     fun onSignInSuccess(credential: AuthCredential) = viewModelScope.launch {
         val user = try {
             val result = firebaseAuth.signInWithCredential(credential).await()
@@ -130,10 +134,6 @@ class SampleViewModel : ViewModel() {
 
     fun corruptToken() {
         idToken = null
-    }
-
-    fun onContinueWithGoogleClick() = viewModelScope.launch {
-        _signInWithGoogle.emit(true)
     }
 }
 
