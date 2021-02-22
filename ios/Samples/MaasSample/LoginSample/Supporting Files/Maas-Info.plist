@@ -2,9 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>MAAS_API_KEY</key>
-	<string>OwJwMJr8x11WfgqJlTmZJ3cpXHBPIdob3TNvTgmk</string>
-	<key>MAAS_BASE_URL</key>
-	<string>https://api-trafi.bedrock.dev.trafi.com/</string>
+	<key>API_KEY</key>
+	<string>Provide your Maas apiKey.</string>
+	<key>BASE_URL</key>
+	<string>Provide your Maas baseUrl.</string>
 </dict>
 </plist>

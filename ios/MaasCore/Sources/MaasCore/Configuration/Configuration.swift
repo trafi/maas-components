@@ -13,9 +13,9 @@ public enum Maas {
         }
 
         if apiConfiguration.apiKey.isEmpty {
-            fatalError("Please provide valid MAAS_BASE_URL in Maas-Info.plist or ApiConfig.")
+            fatalError("Please provide valid API_KEY in Maas-Info.plist or ApiConfig.")
         } else if apiConfiguration.baseUrl.isEmpty {
-            fatalError("Please provide valid MAAS_API_KEY in Maas-Info.plist or ApiConfig.")
+            fatalError("Please provide valid BASE_URL in Maas-Info.plist or ApiConfig.")
         }
 
         return apiConfiguration
@@ -24,7 +24,7 @@ public enum Maas {
 
 // MARK: - Maas Environment
 
-private struct MaasEnvironment {
+struct MaasEnvironment {
 
     static let shared = MaasEnvironment()
 
@@ -45,19 +45,19 @@ private struct MaasEnvironment {
 
 extension MaasEnvironment {
 
-    var baseUrl: String {
-        guard let baseUrl = getValue(key: "MAAS_BASE_URL") else {
-            fatalError("Could not find `MAAS_BASE_URL` inside Maas-Info.plist")
+    static var baseUrl: String {
+        guard let baseUrl = getValue(key: "BASE_URL") else {
+            fatalError("Could not find `BASE_URL` inside Maas-Info.plist")
         }
         return baseUrl
     }
 
-    var apiKey: String {
-        guard let baseUrl = getValue(key: "MAAS_API_KEY") else {
-            fatalError("Could not find `MAAS_API_KEY` inside Maas-Info.plist")
+    static var apiKey: String {
+        guard let baseUrl = getValue(key: "API_KEY") else {
+            fatalError("Could not find `API_KEY` inside Maas-Info.plist")
         }
         return baseUrl
     }
 
-    func getValue(key: String) -> String? { config[key] as? String }
+    private static func getValue(key: String) -> String? { shared.config[key] as? String }
 }

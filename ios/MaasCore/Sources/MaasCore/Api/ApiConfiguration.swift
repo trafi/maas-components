@@ -29,7 +29,7 @@ public extension ApiConfig {
         )
     }
 
-    var apiKey: String { MaasEnvironment.shared.apiKey }
+    var apiKey: String { MaasEnvironment.apiKey }
 
-    var baseUrl: String { MaasEnvironment.shared.baseUrl }
+    var baseUrl: String { MaasEnvironment.baseUrl }
 }
