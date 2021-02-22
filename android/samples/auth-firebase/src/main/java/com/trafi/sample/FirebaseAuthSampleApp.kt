@@ -28,8 +28,6 @@ import kotlinx.coroutines.launch
 @Composable
 fun FirebaseAuthSampleApp(
     viewModel: SampleViewModel,
-    onContinueWithGoogleClick: () -> Unit,
-    onSignOutClick: () -> Unit,
 ) {
     val user by viewModel.user.collectAsState()
     val navController = rememberNavController()
@@ -67,17 +65,14 @@ fun FirebaseAuthSampleApp(
                 composable("welcome") {
                     WelcomeScreen(
                         onLaterClick = { showError(Error.Message()) },
-                        onContinueWithGoogleClick = onContinueWithGoogleClick,
+                        onContinueWithGoogleClick = { viewModel.onContinueWithGoogleClick() },
                     )
                 }
                 composable("profile") {
                     ProfileScreen(
                         profile = user?.profile,
                         onUpdateProfileClick = { viewModel.updateProfile(it) },
-                        onLogOutClick = {
-                            viewModel.signOut()
-                            onSignOutClick()
-                        },
+                        onLogOutClick = { viewModel.signOut() },
                         onCorruptTokenClick = { viewModel.corruptToken() },
                     )
                 }

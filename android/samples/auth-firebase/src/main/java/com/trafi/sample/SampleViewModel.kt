@@ -44,6 +44,9 @@ class SampleViewModel : ViewModel() {
         .distinctUntilChanged()
         .shareIn(viewModelScope, SharingStarted.Eagerly)
 
+    private val _signInWithGoogle: MutableSharedFlow<Boolean> = MutableSharedFlow()
+    val signInWithGoogle: SharedFlow<Boolean> get() = _signInWithGoogle
+
     private val config = ApiConfiguration(
         baseUrl = BuildConfig.API_BASE_URL,
         apiKey = BuildConfig.API_KEY,
@@ -119,13 +122,18 @@ class SampleViewModel : ViewModel() {
         }
     }
 
-    fun signOut() {
+    fun signOut() = viewModelScope.launch {
         firebaseAuth.signOut()
         _user.value = null
+        _signInWithGoogle.emit(false)
     }
 
     fun corruptToken() {
         idToken = null
+    }
+
+    fun onContinueWithGoogleClick() = viewModelScope.launch {
+        _signInWithGoogle.emit(true)
     }
 }
 
