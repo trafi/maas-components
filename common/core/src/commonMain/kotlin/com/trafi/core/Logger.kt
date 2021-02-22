@@ -7,7 +7,7 @@ interface Logger : Logger {
     val apiLogLevel: ApiLogLevel
         get() = ApiLogLevel.All
 
-    internal val ktorLogLevel: KtorLogLevel
+    val ktorLogLevel: KtorLogLevel
         get() = when (apiLogLevel) {
             ApiLogLevel.All -> KtorLogLevel.ALL
             ApiLogLevel.Info -> KtorLogLevel.INFO
