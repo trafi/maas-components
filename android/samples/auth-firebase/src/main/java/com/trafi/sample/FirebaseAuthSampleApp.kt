@@ -11,6 +11,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -19,7 +20,9 @@ import androidx.navigation.compose.rememberNavController
 import com.trafi.core.ApiResult
 import com.trafi.ui.theme.CornerRadius
 import com.trafi.ui.theme.MaasTheme
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -31,8 +34,18 @@ fun FirebaseAuthSampleApp(
     val user by viewModel.user.collectAsState()
     val navController = rememberNavController()
     val sheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
+    val scope = rememberCoroutineScope()
 
     var errorText by remember { mutableStateOf(defaultErrorMessage) }
+
+    // workaround for animation being interrupted by new anchors
+    // 1. errorText is updated
+    // 2. sheetState.show() starts animation
+    // 3. Swipeable.kt:535 updates anchors due to change in errorText and interrupts
+    fun showBottomSheetAfterRecomposition() = scope.launch {
+        delay(1)
+        sheetState.show()
+    }
 
     fun showError(failure: Error.Failure) {
         errorText = when (val result = failure.result) {
@@ -41,12 +54,12 @@ fun FirebaseAuthSampleApp(
             is ApiResult.Failure.Error -> result.error?.developerMessage
             is ApiResult.Failure.Generic -> result.throwable.message
         } ?: defaultErrorMessage
-        sheetState.show()
+        showBottomSheetAfterRecomposition()
     }
 
     fun showError(error: Error.Message) {
         errorText = error.message ?: defaultErrorMessage
-        sheetState.show()
+        showBottomSheetAfterRecomposition()
     }
 
     ModalBottomSheetLayout(
