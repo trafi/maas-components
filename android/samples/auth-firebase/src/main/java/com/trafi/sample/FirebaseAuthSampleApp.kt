@@ -20,11 +20,15 @@ import androidx.navigation.compose.rememberNavController
 import com.trafi.core.ApiResult
 import com.trafi.ui.theme.CornerRadius
 import com.trafi.ui.theme.MaasTheme
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(
+    ExperimentalMaterialApi::class,
+    ExperimentalCoroutinesApi::class,
+)
 @Composable
 fun FirebaseAuthSampleApp(
     viewModel: SampleViewModel,
