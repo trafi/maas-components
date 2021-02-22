@@ -23,7 +23,6 @@ struct LaunchView: View {
         .alert(item: $appState.error) {
             Alert(title: Text($0.message ?? ""))
         }
-        .animation(.default)
         .environmentObject(appState)
         .sheet(item: $appState.providersRequirementStatus) {
             RequirementsView(requiremenetsState: .init(requirementStatus: $0))

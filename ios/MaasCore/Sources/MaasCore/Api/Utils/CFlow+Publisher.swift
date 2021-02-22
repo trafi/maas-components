@@ -36,6 +36,15 @@ public extension CFlow where T == ApiResult<VerifyProviderRequirementsResponse> 
     var publisher: AnyPublisher<VerifyProviderRequirementsResponse, ApiError> { cflowToPublisher(self) }
 }
 
+public extension CFlow where T == ApiResult<SharedVehiclesResponse> {
+    var publisher: AnyPublisher<SharedVehiclesResponse, ApiError> { cflowToPublisher(self) }
+}
+
+
+public extension CFlow where T == ApiResult<SharingBooking> {
+    var publisher: AnyPublisher<SharingBooking, ApiError> { cflowToPublisher(self) }
+}
+
 /// For every Possible Response type:
 
 //public extension CFlow where T == ApiResult<<#Type#>> {

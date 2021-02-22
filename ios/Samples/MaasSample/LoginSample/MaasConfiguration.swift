@@ -42,3 +42,7 @@ class ExampleLogger: Logger {
 extension UsersApi {
     static var shared = UsersApi(config: MaasConfiguration.config)
 }
+
+extension OndemandApi {
+    static var shared = OndemandApi(config: MaasConfiguration.config)
+}

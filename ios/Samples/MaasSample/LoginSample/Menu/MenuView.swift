@@ -2,7 +2,7 @@ import SwiftUI
 
 enum MenuCase: String, CaseIterable {
     case profile = "My Profile"
-    case ondemand = "Micromoblity"
+    case micromobility = "Micromobility"
 }
 
 struct MenuView: View {
@@ -32,8 +32,8 @@ private extension MenuCase {
         case .profile:
             return ProfileView()
                 .erased
-        case .ondemand:
-            return Text("Ondemand")
+        case .micromobility:
+            return SharedVehiclesView()
                 .erased
         }
     }
