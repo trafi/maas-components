@@ -48,12 +48,7 @@ fun FirebaseAuthSampleApp(
     }
 
     fun showError(failure: Error.Failure) {
-        errorText = when (val result = failure.result) {
-            is ApiResult.Failure.Unauthorized -> result.error?.developerMessage
-            is ApiResult.Failure.Forbidden -> result.error?.developerMessage
-            is ApiResult.Failure.Error -> result.error?.developerMessage
-            is ApiResult.Failure.Generic -> result.throwable.message
-        } ?: defaultErrorMessage
+        errorText = failure.result.developerMessage ?: defaultErrorMessage
         showBottomSheetAfterRecomposition()
     }
 
@@ -110,3 +105,11 @@ fun FirebaseAuthSampleApp(
 }
 
 private const val defaultErrorMessage = "Oh, dear\nOops, something went wrong"
+
+private val <T : Any> ApiResult.Failure<T>.developerMessage: String?
+    get() = when (this) {
+        is ApiResult.Failure.Unauthorized -> error?.developerMessage
+        is ApiResult.Failure.Forbidden -> error?.developerMessage
+        is ApiResult.Failure.Error -> error?.developerMessage
+        is ApiResult.Failure.Generic -> throwable.message
+    }
