@@ -11,7 +11,7 @@ MaaS Design System
 
 ```
 
-```{include} ../../android/ui/README.md
+```{include} ../../android/ui-android/README.md
 :relative-docs: docs/
 :relative-images:
 ```

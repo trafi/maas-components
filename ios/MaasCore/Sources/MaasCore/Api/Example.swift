@@ -5,7 +5,7 @@ private class Example {
     // generated extension for each type of possible Response type CFlow<ApiResult<____>>
     
     func example() {
-        let usersApi = UsersApi(config: ApiConfiguration.config)
+        let usersApi = UsersApi(config: Maas.apiConfig.config)
         let requestPublisher = usersApi.createOrGetUser(profile: nil).publisher
         print(requestPublisher)
     }
@@ -26,5 +26,5 @@ private class Example {
 
 // idea to maintain configured api
 extension UsersApi {
-    static var shared = UsersApi(config: ApiConfiguration.config)
+    static var shared = UsersApi(config: Maas.apiConfig.config)
 }

@@ -1,7 +1,9 @@
 import Combine
 
 private func cflowToPublisher<T>(_ cflow: CFlow<ApiResult<T>>) -> AnyPublisher<T, ApiError> {
-    ApiKotlinFlowPublisher(cflow).eraseToAnyPublisher().eraseToAnyPublisher()
+    ApiKotlinFlowPublisher(cflow)
+        .retryWithTokenRefreshRecovery()
+        .eraseToAnyPublisher()
 }
 
 public extension CFlow where T == ApiResult<User> {
