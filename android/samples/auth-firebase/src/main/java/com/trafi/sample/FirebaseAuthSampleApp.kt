@@ -85,6 +85,8 @@ fun FirebaseAuthSampleApp(
                 navController.popBackStack()
             }
         }
+    }
+    LaunchedEffect(Unit) {
         viewModel.error.collect { result ->
             when (result) {
                 is Error.Failure -> showError(result)
