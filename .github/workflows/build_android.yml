@@ -24,10 +24,11 @@ jobs:
         with:
           arguments: lint
       - name: Retain lint artifacts
+        if: always()
         uses: actions/upload-artifact@v2
         with:
           name: lint
-          path: android/**/build/reports/lint-results.html
+          path: android/**/build/reports/*.html
       - name: Test
         if: always()
         uses: eskatos/gradle-command-action@v1
