@@ -28,4 +28,8 @@ public extension ApiConfig {
             logger: logger
         )
     }
+
+    var apiKey: String { MaasEnvironment.apiKey }
+
+    var baseUrl: String { MaasEnvironment.baseUrl }
 }

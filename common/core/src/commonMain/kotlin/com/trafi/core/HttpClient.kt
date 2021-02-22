@@ -25,7 +25,7 @@ internal val ApiConfiguration.defaultHttpClientConfig: HttpClientConfig<*>.() ->
     logger?.let { logger ->
         install(Logging) {
             this.logger = logger
-            level = LogLevel.ALL
+            level = logger.ktorLogLevel
         }
     }
     defaultRequest {
@@ -60,4 +60,12 @@ internal fun ApiConfiguration.api(): ConfiguredApi = object : ConfiguredApi {
                 }
             }
         }
+}
+
+private val Logger.ktorLogLevel get() = when (apiLogLevel) {
+    ApiLogLevel.All -> LogLevel.ALL
+    ApiLogLevel.Info -> LogLevel.INFO
+    ApiLogLevel.Headers -> LogLevel.HEADERS
+    ApiLogLevel.Body -> LogLevel.BODY
+    ApiLogLevel.None -> LogLevel.NONE
 }

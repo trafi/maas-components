@@ -1,5 +1,16 @@
 package com.trafi.core
 
-import io.ktor.client.features.logging.Logger
+import io.ktor.client.features.logging.Logger as KtorLogger
 
-interface Logger : Logger
+interface Logger : KtorLogger {
+    val apiLogLevel: ApiLogLevel
+        get() = ApiLogLevel.All
+}
+
+enum class ApiLogLevel {
+    All,
+    Headers,
+    Body,
+    Info,
+    None;
+}

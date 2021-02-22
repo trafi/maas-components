@@ -1,8 +1,9 @@
 import Combine
 
 // inspiration: https://www.wwt.com/article/creating-your-own-custom-combine-operator
+
 extension Publishers {
-    
+
     // A publisher that attempts to recreate its subscription to a failed upstream publisher.
     public struct RetryWithRecovery<Upstream: Publisher, RecoveryPublisher: Publisher>: Publisher {
         
@@ -24,7 +25,7 @@ extension Publishers {
             self.upstream
                 .catch { e -> AnyPublisher<Output, Failure> in
                     guard failureShouldRetry(e) else {
-                        return Fail<Output, Failure>(error: e)
+                        return Fail(error: e)
                             .eraseToAnyPublisher()
                     }
                     
@@ -58,7 +59,7 @@ extension Publishers {
             self.upstream
                 .catch { e -> AnyPublisher<Output, Failure> in
                     guard failureShouldRetry(e), retries > 0 else {
-                        return Fail<Output, Failure>(error: e)
+                        return Fail(error: e)
                             .eraseToAnyPublisher()
                     }
                     
