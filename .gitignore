@@ -15,3 +15,4 @@ local.properties
 build/
 /*/out
 .gradle
+google-services.json
