@@ -14,9 +14,6 @@ class MaasConfiguration: ApiConfig {
     @UserDefault(key: "temporaryAccessToken", defaultValue: nil)
     static var temporaryAccessToken: String?
 
-//    var baseUrl: String { "https://api-trafi.bedrock.dev.trafi.com/" }
-//    var apiKey: String { "OwJwMJr8x11WfgqJlTmZJ3cpXHBPIdob3TNvTgmk" }
-
     var logger: Logger? { ExampleLogger.shared }
 
     func getIdToken() -> String? { MaasConfiguration.accessToken }
