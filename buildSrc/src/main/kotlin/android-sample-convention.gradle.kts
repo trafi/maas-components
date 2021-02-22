@@ -49,6 +49,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
         useIR = true
+
+        // allow opting-in to experimental Compose APIs
+        freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
     }
     buildFeatures {
         compose = true
