@@ -17,7 +17,6 @@
 		C09FD9A725C310DD00FF87BA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FD9A625C310DD00FF87BA /* LoginView.swift */; };
 		C09FD9A925C310DF00FF87BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C09FD9A825C310DF00FF87BA /* Assets.xcassets */; };
 		C09FD9AC25C310DF00FF87BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C09FD9AB25C310DF00FF87BA /* Preview Assets.xcassets */; };
-		C09FD9B125C310DF00FF87BA /* MaasSample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C09FD9AF25C310DF00FF87BA /* MaasSample.xcdatamodeld */; };
 		C09FD9BA25C3112100FF87BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FD9B925C3112100FF87BA /* AppDelegate.swift */; };
 		C09FD9C725C3132500FF87BA /* MaasConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FD9C625C3132500FF87BA /* MaasConfiguration.swift */; };
 		C0A5FFDB25D2B43500EDFF48 /* Maas in Frameworks */ = {isa = PBXBuildFile; productRef = C0A5FFDA25D2B43500EDFF48 /* Maas */; };
@@ -38,7 +37,6 @@
 		C09FD9A625C310DD00FF87BA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		C09FD9A825C310DF00FF87BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C09FD9AB25C310DF00FF87BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C09FD9B025C310DF00FF87BA /* MaasSample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MaasSample.xcdatamodel; sourceTree = "<group>"; };
 		C09FD9B225C310DF00FF87BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C09FD9B925C3112100FF87BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C09FD9C625C3132500FF87BA /* MaasConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaasConfiguration.swift; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 				C09FD9B225C310DF00FF87BA /* Info.plist */,
 				C0693E1925E3AD30009DE8B1 /* Maas-Info.plist */,
 				C0693E1D25E3AD95009DE8B1 /* GoogleService-Info.plist */,
-				C09FD9AF25C310DF00FF87BA /* MaasSample.xcdatamodeld */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -235,7 +232,6 @@
 				C09FD9A525C310DD00FF87BA /* MaasSampleApp.swift in Sources */,
 				C09FD9BA25C3112100FF87BA /* AppDelegate.swift in Sources */,
 				C06576B725D538200084EB39 /* AppState.swift in Sources */,
-				C09FD9B125C310DF00FF87BA /* MaasSample.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,19 +472,6 @@
 			productName = FacebookLogin;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		C09FD9AF25C310DF00FF87BA /* MaasSample.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				C09FD9B025C310DF00FF87BA /* MaasSample.xcdatamodel */,
-			);
-			currentVersion = C09FD9B025C310DF00FF87BA /* MaasSample.xcdatamodel */;
-			path = MaasSample.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = C09FD99925C310DD00FF87BA /* Project object */;
 }
