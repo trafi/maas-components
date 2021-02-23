@@ -6,6 +6,7 @@ import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -13,6 +14,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.navigation.NavController
+import androidx.navigation.compose.KEY_ROUTE
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigate
@@ -83,6 +86,14 @@ fun FirebaseAuthSampleApp(
             }
         })
 
+    DisposableEffect(navController) {
+        val listener = NavController.OnDestinationChangedListener { controller, _, _ ->
+            if (controller.currentRoute == "welcome") viewModel.onWelcomeScreenOpen()
+        }
+        navController.addOnDestinationChangedListener(listener)
+        onDispose { navController.removeOnDestinationChangedListener(listener) }
+    }
+
     LaunchedEffect(Unit) {
         viewModel.userSignedIn.collect { signedIn ->
             if (signedIn) {
@@ -112,3 +123,6 @@ private val <T : Any> ApiResult.Failure<T>.developerMessage: String?
         is ApiResult.Failure.Error -> error?.developerMessage
         is ApiResult.Failure.Generic -> throwable.message
     }
+
+private val NavController.currentRoute: String?
+    get() = currentBackStackEntry?.arguments?.getString(KEY_ROUTE)
