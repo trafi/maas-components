@@ -5,6 +5,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.platform.setContent
 import androidx.lifecycle.lifecycleScope
+import com.trafi.sample.GoogleSignInAction.OneTapSignIn
+import com.trafi.sample.GoogleSignInAction.SignIn
+import com.trafi.sample.GoogleSignInAction.SignOut
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -20,11 +23,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
-            viewModel.signInWithGoogle.collect { signIn ->
-                if (signIn) {
-                    googleIdp.signIn()
-                } else {
-                    googleIdp.signOut()
+            viewModel.googleSignInAction.collect { action ->
+                when (action) {
+                    OneTapSignIn -> googleIdp.oneTapSignIn()
+                    SignIn -> googleIdp.signIn()
+                    SignOut -> googleIdp.signOut()
                 }
             }
         }

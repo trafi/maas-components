@@ -3,6 +3,7 @@ package com.trafi.sample
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.AuthCredential
@@ -33,7 +34,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.tasks.await
 
-class SampleViewModel : ViewModel() {
+class SampleViewModel(savedState: SavedStateHandle) : ViewModel() {
 
     private var idToken: String? = null
     private val _user: MutableStateFlow<User?> = MutableStateFlow(null)
@@ -47,8 +48,10 @@ class SampleViewModel : ViewModel() {
         .distinctUntilChanged()
         .shareIn(viewModelScope, SharingStarted.Eagerly)
 
-    private val _signInWithGoogle: MutableSharedFlow<Boolean> = MutableSharedFlow()
-    val signInWithGoogle: SharedFlow<Boolean> get() = _signInWithGoogle
+    private var oneTapPrompted: Boolean by savedState.delegate(default = false)
+
+    private val _googleSignInAction: MutableSharedFlow<GoogleSignInAction> = MutableSharedFlow()
+    val googleSignInAction: SharedFlow<GoogleSignInAction> get() = _googleSignInAction
 
     var inProgress by mutableStateOf(false)
         private set
@@ -92,10 +95,19 @@ class SampleViewModel : ViewModel() {
         }
     }
 
+    fun onWelcomeScreenOpen() {
+        if (oneTapPrompted) return
+        oneTapPrompted = true
+        inProgress = true
+        viewModelScope.launch {
+            _googleSignInAction.emit(GoogleSignInAction.OneTapSignIn)
+        }
+    }
+
     fun onContinueWithGoogleClick() {
         inProgress = true
         viewModelScope.launch {
-            _signInWithGoogle.emit(true)
+            _googleSignInAction.emit(GoogleSignInAction.SignIn)
         }
     }
 
@@ -138,7 +150,7 @@ class SampleViewModel : ViewModel() {
     fun signOut() = viewModelScope.launch {
         firebaseAuth.signOut()
         _user.value = null
-        _signInWithGoogle.emit(false)
+        _googleSignInAction.emit(GoogleSignInAction.SignOut)
     }
 
     fun corruptToken() {
@@ -149,4 +161,10 @@ class SampleViewModel : ViewModel() {
 sealed class Error {
     class Failure(val result: ApiResult.Failure<User>) : Error()
     class Message(val message: String? = null) : Error()
+}
+
+enum class GoogleSignInAction {
+    OneTapSignIn,
+    SignIn,
+    SignOut,
 }
