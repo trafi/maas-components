@@ -94,6 +94,7 @@ private fun Input(
     onTextChange: (String) -> Unit,
     label: String,
     modifier: Modifier = Modifier,
+    readOnly: Boolean = false,
 ) {
     val interactionState = remember { InteractionState() }
     val isFocused = interactionState.contains(Interaction.Focused)
@@ -101,6 +102,7 @@ private fun Input(
         value = text,
         onValueChange = onTextChange,
         label = { Text(label) },
+        readOnly = readOnly,
         singleLine = true,
         interactionState = interactionState,
         trailingIcon = if (text.isNotEmpty() && isFocused) {
