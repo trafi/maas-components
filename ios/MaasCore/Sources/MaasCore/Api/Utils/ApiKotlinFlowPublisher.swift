@@ -62,6 +62,10 @@ extension ApiError {
             self = .error(error: errorFailure.error)
         case let genericFailure as ApiResultFailureGeneric<T>:
             self = .failure(developerMessage: genericFailure.throwable.message)
+        case let userError as ApiResultFailureUserError<T>:
+            self = .errorCode(code: .user(userError.code), error: userError.error)
+        case let mspError as ApiResultFailureMspError<T>:
+            self = .errorCode(code: .msp(mspError.code), error: mspError.error)
         case let failure as ApiResultFailure<T>:
             let message = "ApiResult: could not parse \(failure) as sub-type of ApiResultFailure. Failure message: \(failure.throwable.message ?? "nil")"
             self = .failure(developerMessage: message)
