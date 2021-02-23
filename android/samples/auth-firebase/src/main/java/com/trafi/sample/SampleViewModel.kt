@@ -1,5 +1,8 @@
 package com.trafi.sample
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.AuthCredential
@@ -47,6 +50,9 @@ class SampleViewModel : ViewModel() {
     private val _signInWithGoogle: MutableSharedFlow<Boolean> = MutableSharedFlow()
     val signInWithGoogle: SharedFlow<Boolean> get() = _signInWithGoogle
 
+    var inProgress by mutableStateOf(false)
+        private set
+
     private val config = ApiConfiguration(
         baseUrl = BuildConfig.API_BASE_URL,
         apiKey = BuildConfig.API_KEY,
@@ -74,16 +80,6 @@ class SampleViewModel : ViewModel() {
         null
     }
 
-    private suspend fun signInWithFirebaseUser(user: FirebaseUser) {
-        val result = try {
-            user.getIdToken(false).await()
-        } catch (e: FirebaseAuthInvalidUserException) {
-            _error.emit(Error.Message(e.message))
-            null
-        }
-        result?.token?.let { idToken -> createOrGetUser(idToken) }
-    }
-
     private suspend fun createOrGetUser(idToken: String) {
         this.idToken = idToken
         when (val result = usersApi.createOrGetUser()) {
@@ -96,8 +92,11 @@ class SampleViewModel : ViewModel() {
         }
     }
 
-    fun onContinueWithGoogleClick() = viewModelScope.launch {
-        _signInWithGoogle.emit(true)
+    fun onContinueWithGoogleClick() {
+        inProgress = true
+        viewModelScope.launch {
+            _signInWithGoogle.emit(true)
+        }
     }
 
     fun onSignInSuccess(credential: AuthCredential) = viewModelScope.launch {
@@ -114,12 +113,15 @@ class SampleViewModel : ViewModel() {
             _error.emit(Error.Message(e.message))
             null
         }
-
-        user?.let { signInWithFirebaseUser(it) }
+        user?.awaitIdToken()?.let { createOrGetUser(it) }
+        inProgress = false
     }
 
-    fun onSignInError(throwable: Throwable) = viewModelScope.launch {
-        _error.emit(Error.Message(throwable.message))
+    fun onSignInError(throwable: Throwable) {
+        inProgress = false
+        viewModelScope.launch {
+            _error.emit(Error.Message(throwable.message))
+        }
     }
 
     fun updateProfile(profile: Profile) = viewModelScope.launch {
