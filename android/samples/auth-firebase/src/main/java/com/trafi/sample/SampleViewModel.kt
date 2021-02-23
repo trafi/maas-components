@@ -62,9 +62,16 @@ class SampleViewModel : ViewModel() {
         mutex.withLock {
             if (idToken == token) {
                 delay(3000)
-                firebaseAuth.currentUser?.let { signInWithFirebaseUser(it) }
+                idToken = firebaseAuth.currentUser?.awaitIdToken(forceRefresh = true)
             } // else, the id token was already refreshed before us
         }
+    }
+
+    private suspend fun FirebaseUser.awaitIdToken(forceRefresh: Boolean = false): String? = try {
+        getIdToken(forceRefresh).await()?.token
+    } catch (e: FirebaseAuthInvalidUserException) {
+        _error.emit(Error.Message(e.message))
+        null
     }
 
     private suspend fun signInWithFirebaseUser(user: FirebaseUser) {
