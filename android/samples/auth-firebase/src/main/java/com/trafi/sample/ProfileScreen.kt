@@ -33,6 +33,7 @@ import com.trafi.ui.theme.internal.CornerRadiusScale
 @Composable
 fun ProfileScreen(
     profile: Profile?,
+    updateInProgress: Boolean,
     onUpdateProfileClick: (Profile) -> Unit,
     onLogOutClick: () -> Unit,
     onCorruptTokenClick: () -> Unit,
@@ -61,30 +62,43 @@ fun ProfileScreen(
             onTextChange = { name = it },
             label = "Name",
             modifier = Modifier.fillMaxWidth(),
+            readOnly = updateInProgress,
         )
         Input(
             text = surname,
             onTextChange = { surname = it },
             label = "Surname",
             modifier = Modifier.fillMaxWidth(),
+            readOnly = updateInProgress,
         )
 
         Spacer(modifier = Modifier.weight(1f))
 
-        TertiaryButton(text = "Update", onClick = {
-            onUpdateProfileClick(Profile(
-                gender = profile?.gender ?: Profile.Gender.NOT_SPECIFIED,
-                ext = profile?.ext.orEmpty(),
-                firstName = name,
-                lastName = surname,
-                displayName = profile?.displayName,
-                email = profile?.email,
-                address = profile?.address,
-                birthDate = profile?.birthDate,
-            ))
-        })
-        TertiaryButton(text = "Log out", onClick = onLogOutClick)
-        TertiaryButton(text = "Corrupt token", onClick = onCorruptTokenClick)
+        TertiaryButton(
+            text = if (updateInProgress) "Updating.." else "Update",
+            onClick = {
+                onUpdateProfileClick(Profile(
+                    gender = profile?.gender ?: Profile.Gender.NOT_SPECIFIED,
+                    ext = profile?.ext.orEmpty(),
+                    firstName = name,
+                    lastName = surname,
+                    displayName = profile?.displayName,
+                    email = profile?.email,
+                    address = profile?.address,
+                    birthDate = profile?.birthDate,
+                ))
+            },
+            loading = updateInProgress,
+            enabled = !updateInProgress,
+        )
+        TertiaryButton(
+            text = "Log out",
+            onClick = onLogOutClick,
+        )
+        TertiaryButton(
+            text = "Corrupt token",
+            onClick = onCorruptTokenClick,
+        )
     }
 }
 
@@ -134,6 +148,7 @@ private fun Input(
 private fun ProfileScreenPreview() {
     ProfileScreen(
         profile = null,
+        updateInProgress = false,
         onUpdateProfileClick = {},
         onLogOutClick = {},
         onCorruptTokenClick = {},
