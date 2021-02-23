@@ -15,6 +15,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 class GoogleIdentityProvider(
     private val activity: ComponentActivity,
     private val onSignInSuccess: (AuthCredential) -> Unit,
+    private val onSignInCanceled: () -> Unit,
     private val onSignInError: (Throwable) -> Unit,
 ) {
     private val signInForResult =
@@ -26,12 +27,11 @@ class GoogleIdentityProvider(
                     Identity.getSignInClient(activity).getSignInCredentialFromIntent(result.data)
                 onSignInSuccess(GoogleAuthProvider.getCredential(credential.googleIdToken, null))
             } catch (e: ApiException) {
-                when (e.statusCode) {
-                    CommonStatusCodes.CANCELED -> {
-                    }
-                }
                 Log.w(TAG, "Google sign in failed", e)
-                onSignInError(e)
+                when (e.statusCode) {
+                    CommonStatusCodes.CANCELED -> onSignInCanceled()
+                    else -> onSignInError(e)
+                }
             }
         }
 

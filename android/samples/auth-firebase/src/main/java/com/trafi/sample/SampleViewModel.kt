@@ -129,6 +129,10 @@ class SampleViewModel(savedState: SavedStateHandle) : ViewModel() {
         actionInProgress = null
     }
 
+    fun onSignInCanceled() {
+        actionInProgress = null
+    }
+
     fun onSignInError(throwable: Throwable) {
         actionInProgress = null
         viewModelScope.launch {

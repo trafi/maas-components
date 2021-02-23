@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private val googleIdp = GoogleIdentityProvider(
         activity = this,
         onSignInSuccess = { viewModel.onSignInSuccess(it) },
+        onSignInCanceled = { viewModel.onSignInCanceled() },
         onSignInError = { viewModel.onSignInError(it) },
     )
 
