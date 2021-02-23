@@ -71,7 +71,7 @@ fun FirebaseAuthSampleApp(
             NavHost(navController, startDestination = "welcome") {
                 composable("welcome") {
                     WelcomeScreen(
-                        inProgress = viewModel.signInInProgress,
+                        inProgress = viewModel.actionInProgress == ActionInProgress.SignIn,
                         onLaterClick = { showError(Error.Message()) },
                         onContinueWithGoogleClick = { viewModel.onContinueWithGoogleClick() },
                     )

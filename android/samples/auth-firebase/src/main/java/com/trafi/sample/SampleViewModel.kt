@@ -53,7 +53,7 @@ class SampleViewModel(savedState: SavedStateHandle) : ViewModel() {
     private val _googleSignInAction: MutableSharedFlow<GoogleSignInAction> = MutableSharedFlow()
     val googleSignInAction: SharedFlow<GoogleSignInAction> get() = _googleSignInAction
 
-    var signInInProgress by mutableStateOf(false)
+    var actionInProgress: ActionInProgress? by mutableStateOf(null)
         private set
 
     private val config = ApiConfiguration(
@@ -98,14 +98,14 @@ class SampleViewModel(savedState: SavedStateHandle) : ViewModel() {
     fun onWelcomeScreenOpen() {
         if (oneTapPrompted) return
         oneTapPrompted = true
-        signInInProgress = true
+        actionInProgress = ActionInProgress.SignIn
         viewModelScope.launch {
             _googleSignInAction.emit(GoogleSignInAction.OneTapSignIn)
         }
     }
 
     fun onContinueWithGoogleClick() {
-        signInInProgress = true
+        actionInProgress = ActionInProgress.SignIn
         viewModelScope.launch {
             _googleSignInAction.emit(GoogleSignInAction.SignIn)
         }
@@ -126,24 +126,28 @@ class SampleViewModel(savedState: SavedStateHandle) : ViewModel() {
             null
         }
         user?.awaitIdToken()?.let { createOrGetUser(it) }
-        signInInProgress = false
+        actionInProgress = null
     }
 
     fun onSignInError(throwable: Throwable) {
-        signInInProgress = false
+        actionInProgress = null
         viewModelScope.launch {
             _error.emit(Error.Message(throwable.message))
         }
     }
 
-    fun updateProfile(profile: Profile) = viewModelScope.launch {
-        when (val result = retry(::refresh) { usersApi.updateProfile(profile) }) {
-            is ApiResult.Success -> {
-                _user.value = result.value
+    fun updateProfile(profile: Profile) {
+        actionInProgress = ActionInProgress.UpdateProfile
+        viewModelScope.launch {
+            when (val result = retry(::refresh) { usersApi.updateProfile(profile) }) {
+                is ApiResult.Success -> {
+                    _user.value = result.value
+                }
+                is ApiResult.Failure -> {
+                    _error.emit(Error.Failure(result))
+                }
             }
-            is ApiResult.Failure -> {
-                _error.emit(Error.Failure(result))
-            }
+            actionInProgress = null
         }
     }
 
@@ -167,4 +171,9 @@ enum class GoogleSignInAction {
     OneTapSignIn,
     SignIn,
     SignOut,
+}
+
+enum class ActionInProgress {
+    SignIn,
+    UpdateProfile,
 }
