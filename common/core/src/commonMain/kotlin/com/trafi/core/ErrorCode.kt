@@ -2,7 +2,7 @@
 
 package com.trafi.core
 
-sealed class ErrorCode {
+object ErrorCode {
     enum class Msp(val value: String) {
         PhoneNumberAlreadyRegisteredWithProvider("msp:phone_number_already_registered_with_provider"),
         UserDoesNotHaveProviderAccount("msp:user_does_not_have_provider_account"),
