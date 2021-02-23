@@ -85,10 +85,10 @@ private extension Environment {
                     targets: ["CoreBinary", "MaasCore"]),
                 .library(
                     name: "MaasTheme",
-                    targets: ["CoreBinary", "MaasCore", "MaasTheme"]),
+                    targets: ["MaasTheme"]),
                 .library(
                     name: "MaasComponents",
-                    targets: ["CoreBinary", "MaasCore", "MaasComponents"]),
+                    targets: ["MaasComponents"]),
                 .library(
                     name: "MaasRouteSearch",
                     targets: ["MaasRouteSearch"]),
@@ -113,7 +113,7 @@ private extension Environment {
                     checksum: "419f3c06d6dc73f042794b81eb7c92e922077f11a0253aa04817fa20938dc118"),
                 .maasCoreTarget(name: "MaasCore", dependencies: [.product(name: "ComposableArchitecture", package: "swift-composable-architecture")]),
                 .maasCoreTarget(name: "MaasTheme"),
-                .maasCoreTarget(name: "MaasComponents", dependencies: ["MaasTheme", "Swappable"]),
+                .maasCoreTarget(name: "MaasComponents", dependencies: ["MaasTheme", "MaasCore", "Swappable"]),
                 .maasTarget(name: "MaasRouteSearch"),
                 .maasTarget(name: "MaasNearbyTransit"),
             ]
