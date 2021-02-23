@@ -1,4 +1,4 @@
-package com.trafi.sample
+package com.trafi.sample.idp
 
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -11,6 +11,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.CommonStatusCodes
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.GoogleAuthProvider
+import com.trafi.sample.R
 
 class GoogleIdentityProvider(
     private val activity: ComponentActivity,
@@ -27,7 +28,7 @@ class GoogleIdentityProvider(
                     Identity.getSignInClient(activity).getSignInCredentialFromIntent(result.data)
                 onSignInSuccess(GoogleAuthProvider.getCredential(credential.googleIdToken, null))
             } catch (e: ApiException) {
-                Log.w(TAG, "Google sign in failed", e)
+                Log.d(TAG, "Google sign in failed", e)
                 when (e.statusCode) {
                     CommonStatusCodes.CANCELED -> onSignInCanceled()
                     else -> onSignInError(e)
@@ -56,7 +57,7 @@ class GoogleIdentityProvider(
                 )
             }
             .addOnFailureListener { e ->
-                Log.w(TAG, "Google sign in failed", e)
+                Log.d(TAG, "Google sign in failed", e)
                 onSignInError(e)
             }
     }
@@ -72,7 +73,7 @@ class GoogleIdentityProvider(
                 signInForResult.launch(IntentSenderRequest.Builder(result.intentSender).build())
             }
             .addOnFailureListener { e ->
-                Log.w(TAG, "Google sign in failed", e)
+                Log.d(TAG, "Google sign in failed", e)
                 onSignInError(e)
             }
     }

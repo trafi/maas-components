@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import com.trafi.sample.GoogleSignInAction.OneTapSignIn
 import com.trafi.sample.GoogleSignInAction.SignIn
 import com.trafi.sample.GoogleSignInAction.SignOut
+import com.trafi.sample.idp.GoogleIdentityProvider
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
