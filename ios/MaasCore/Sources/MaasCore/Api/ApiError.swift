@@ -18,9 +18,7 @@ public enum ApiError: Swift.Error, Equatable, Hashable {
      The server returned an error not covered by the more specific [ApiError](x-source-tag://ApiError) types..
      - Parameter error: optional error message.
      */
-    case error(error: CoreBinary.Error?)
-    
-    case errorCode(code: Code, error: CoreBinary.Error?)
+    case error(code: Code?, error: CoreBinary.Error?)
     
     /**
      A generic failure not covered by the more specific [ApiError](x-source-tag://ApiError) types.
@@ -37,8 +35,7 @@ public enum ApiError: Swift.Error, Equatable, Hashable {
         switch self {
         case .unauthorized(let error): return error?.developerMessage
         case .forbidden(error: let error): return error?.developerMessage
-        case .error(let error): return error?.developerMessage
-        case .errorCode(_, let error): return error?.developerMessage
+        case .error(_, let error): return error?.developerMessage
         case .failure(let error): return error
         }
     }

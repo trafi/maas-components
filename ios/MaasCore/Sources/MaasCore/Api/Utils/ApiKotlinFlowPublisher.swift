@@ -58,14 +58,14 @@ extension ApiError {
             self = .unauthorized(error: unauthorizedFailure.error)
         case let forbiddenFailure as ApiResultFailureForbidden<T>:
             self = .forbidden(error: forbiddenFailure.error)
-        case let errorFailure as ApiResultFailureError<T>:
-            self = .error(error: errorFailure.error)
         case let genericFailure as ApiResultFailureGeneric<T>:
             self = .failure(developerMessage: genericFailure.throwable.message)
+        case let errorFailure as ApiResultFailureError<T>:
+            self = .error(code: nil, error: errorFailure.error)
         case let userError as ApiResultFailureUserError<T>:
-            self = .errorCode(code: .user(userError.code), error: userError.error)
+            self = .error(code: .user(userError.code), error: userError.error)
         case let mspError as ApiResultFailureMspError<T>:
-            self = .errorCode(code: .msp(mspError.code), error: mspError.error)
+            self = .error(code: .msp(mspError.code), error: mspError.error)
         case let failure as ApiResultFailure<T>:
             let message = "ApiResult: could not parse \(failure) as sub-type of ApiResultFailure. Failure message: \(failure.throwable.message ?? "nil")"
             self = .failure(developerMessage: message)
