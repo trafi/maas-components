@@ -22,6 +22,7 @@ import com.trafi.ui.theme.Spacing
 
 @Composable
 fun WelcomeScreen(
+    inProgress: Boolean,
     onLaterClick: () -> Unit,
     onContinueWithGoogleClick: () -> Unit,
 ) {
@@ -79,6 +80,8 @@ fun WelcomeScreen(
             Button(
                 text = "Continue with Google",
                 onClick = onContinueWithGoogleClick,
+                loading = inProgress,
+                enabled = !inProgress,
             )
             SecondaryButton(
                 text = "Other ways to sign up",
@@ -93,6 +96,7 @@ fun WelcomeScreen(
 @Composable
 private fun WelcomeScreenPreview() {
     WelcomeScreen(
+        inProgress = false,
         onLaterClick = {},
         onContinueWithGoogleClick = {},
     )
