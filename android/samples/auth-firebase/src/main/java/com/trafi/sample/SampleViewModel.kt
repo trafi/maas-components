@@ -53,7 +53,7 @@ class SampleViewModel(savedState: SavedStateHandle) : ViewModel() {
     private val _googleSignInAction: MutableSharedFlow<GoogleSignInAction> = MutableSharedFlow()
     val googleSignInAction: SharedFlow<GoogleSignInAction> get() = _googleSignInAction
 
-    var inProgress by mutableStateOf(false)
+    var signInInProgress by mutableStateOf(false)
         private set
 
     private val config = ApiConfiguration(
@@ -98,14 +98,14 @@ class SampleViewModel(savedState: SavedStateHandle) : ViewModel() {
     fun onWelcomeScreenOpen() {
         if (oneTapPrompted) return
         oneTapPrompted = true
-        inProgress = true
+        signInInProgress = true
         viewModelScope.launch {
             _googleSignInAction.emit(GoogleSignInAction.OneTapSignIn)
         }
     }
 
     fun onContinueWithGoogleClick() {
-        inProgress = true
+        signInInProgress = true
         viewModelScope.launch {
             _googleSignInAction.emit(GoogleSignInAction.SignIn)
         }
@@ -126,11 +126,11 @@ class SampleViewModel(savedState: SavedStateHandle) : ViewModel() {
             null
         }
         user?.awaitIdToken()?.let { createOrGetUser(it) }
-        inProgress = false
+        signInInProgress = false
     }
 
     fun onSignInError(throwable: Throwable) {
-        inProgress = false
+        signInInProgress = false
         viewModelScope.launch {
             _error.emit(Error.Message(throwable.message))
         }
