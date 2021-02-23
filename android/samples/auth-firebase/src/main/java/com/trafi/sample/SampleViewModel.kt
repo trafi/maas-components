@@ -18,6 +18,8 @@ import com.trafi.core.ApiConfiguration
 import com.trafi.core.ApiResult
 import com.trafi.core.model.Profile
 import com.trafi.core.model.User
+import com.trafi.sample.util.delegate
+import com.trafi.sample.util.retry
 import com.trafi.users.UsersApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow

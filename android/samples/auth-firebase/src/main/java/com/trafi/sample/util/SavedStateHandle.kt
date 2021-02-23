@@ -1,4 +1,4 @@
-package com.trafi.sample
+package com.trafi.sample.util
 
 import androidx.lifecycle.SavedStateHandle
 import kotlin.properties.ReadWriteProperty

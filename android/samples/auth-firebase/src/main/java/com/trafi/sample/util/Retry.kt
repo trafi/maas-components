@@ -1,4 +1,4 @@
-package com.trafi.sample
+package com.trafi.sample.util
 
 import com.trafi.core.ApiResult
 
