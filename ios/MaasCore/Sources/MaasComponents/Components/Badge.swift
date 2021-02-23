@@ -1,3 +1,7 @@
+import CoreBinary
+import MaasCore
+import MaasTheme
+
 ///  A swappable Badge component
 /// - Parameters:
 /// <-->
