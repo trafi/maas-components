@@ -5,7 +5,7 @@ import PackageDescription
 
 // MARK: - Setup
 
-private let environment: Environment = .development
+private let environment: Environment = .production
 
 let package = Package(
     name: "Maas",
@@ -82,7 +82,13 @@ private extension Environment {
             return [
                 .library(
                     name: "MaasCore",
-                    targets: ["CoreBinary", "MaasCore", "MaasComponents", "MaasTheme"]),
+                    targets: ["CoreBinary", "MaasCore"]),
+                .library(
+                    name: "MaasTheme",
+                    targets: ["MaasTheme"]),
+                .library(
+                    name: "MaasComponents",
+                    targets: ["MaasComponents"]),
                 .library(
                     name: "MaasRouteSearch",
                     targets: ["MaasRouteSearch"]),
@@ -104,10 +110,10 @@ private extension Environment {
                 .binaryTarget(
                     name: "CoreBinary",
                     url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev03/CoreBinary.xcframework.zip",
-                    checksum: "08d2bc473fe1ea73d9d389b8b491ecd378fde82c49d24bc1579804f0e8ed978b"),
+                    checksum: "419f3c06d6dc73f042794b81eb7c92e922077f11a0253aa04817fa20938dc118"),
                 .maasCoreTarget(name: "MaasCore", dependencies: [.product(name: "ComposableArchitecture", package: "swift-composable-architecture")]),
                 .maasCoreTarget(name: "MaasTheme"),
-                .maasCoreTarget(name: "MaasComponents", dependencies: ["MaasTheme", "Swappable"]),
+                .maasCoreTarget(name: "MaasComponents", dependencies: ["MaasTheme", "MaasCore", "Swappable"]),
                 .maasTarget(name: "MaasRouteSearch"),
                 .maasTarget(name: "MaasNearbyTransit"),
             ]
