@@ -58,8 +58,12 @@ extension ApiError {
             self = .forbidden(error: forbiddenFailure.error)
         case let genericFailure as ApiResultFailureGeneric<T>:
             self = .failure(developerMessage: genericFailure.throwable.message)
+        case let unauthorizedFailure as ApiResultFailureUnauthorized<T>:
+            self = .error(code: .httpStatus(Int(unauthorizedFailure.httpStatusCode)),
+                          error: unauthorizedFailure.error)
         case let errorFailure as ApiResultFailureError<T>:
-            self = .error(code: nil, error: errorFailure.error)
+            self = .error(code: .httpStatus(Int(errorFailure.httpStatusCode)),
+                          error: errorFailure.error)
         case let userError as ApiResultFailureUserError<T>:
             self = .error(code: .user(userError.code), error: userError.error)
         case let mspError as ApiResultFailureMspError<T>:

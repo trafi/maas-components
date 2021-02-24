@@ -23,11 +23,12 @@ public enum ApiError: Swift.Error, Equatable, Hashable {
     public enum Code: Equatable, Hashable {
         case user(CoreBinary.ErrorCode.Users)
         case msp(CoreBinary.ErrorCode.Msp)
+        case httpStatus(Int)
     }
 
     public var developerMessage: String? {
         switch self {
-        case .forbidden(error: let error): return error?.developerMessage
+        case .forbidden(let error): return error?.developerMessage
         case .error(_, let error): return error?.developerMessage
         case .failure(let error): return error
         }
