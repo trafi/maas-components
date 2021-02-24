@@ -40,16 +40,14 @@ public struct RequirementsListView: View, Swappable {
         VStack(alignment: .leading, spacing: 16) {
             [
                 Text("You can’t use particular")
-                    .fontWeight(.bold)
-                ,
+                    .fontWeight(.bold),
                 Text("mobility service provider (MSP) without agreeing to their prodvider terms and conditions.")
             ]
             .joined(with: .space())
 
             [
                 Text("You will still be able to see")
-                    .fontWeight(.bold)
-                ,
+                    .fontWeight(.bold),
                 Text("all the MSPs on the map or in route serach results, even withoug agreeing to the terrms.")
             ]
             .joined(with: .space())
