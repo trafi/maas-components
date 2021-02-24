@@ -59,18 +59,24 @@ public struct RequirementListItem: View, Swappable {
 
 #if DEBUG
 
-struct RequirementListItem_Previews: PreviewProvider {
+public struct RequirementListItem_Previews: PreviewProvider, Snapped {
 
-    static var previews: some View {
-        RequirementListItem(
-            checked: .constant(true),
-            title: "I agree to all App mobility service provider’s Terms of service",
-            hyperlink: .init(
-                title: "Terms of service",
-                action: { /* empty */ }
+    public static var snapped: [String : AnyView] {
+        [
+            "Requirement List Item": RequirementListItem(
+                checked: .constant(true),
+                title: "I agree to all App mobility service provider’s Terms of service",
+                hyperlink: .init(
+                    title: "Terms of service",
+                    action: { /* empty */ }
+                )
             )
-        )
+            .erased
+        ]
     }
+
+    public static var elementWidth: CGFloat? { 375 }
+    public static var detailed: Bool { true }
 }
 
 #endif

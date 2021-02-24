@@ -41,11 +41,11 @@ public struct Checkbox: View, Swappable {
     let height: CGFloat = 24
     @Environment(\.colorPrimary) var primaryColor
 
-    init(isOn: Binding<Bool>) {
+    public init(isOn: Binding<Bool>) {
         self.input = .init(isOn: isOn, toggledContent: nil, untoggledContent: nil)
     }
 
-    init(input: InputType) {
+    public init(input: InputType) {
         self.input = input
     }
 

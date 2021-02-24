@@ -73,12 +73,17 @@ public struct RequirementsListView: View, Swappable {
 
 #if DEBUG
 
-struct RequirementListView_Previews: PreviewProvider {
+struct RequirementListView_Previews: PreviewProvider, Snapped {
 
-    static var previews: some View {
-        RequirementsListView(input: .init(navigationTitle: ""))
-            .environmentObject(RequirementsState(providerRequirements: .empty))
+    static var snapped: [String : AnyView] {
+        [
+            "Requirements List View": RequirementsListView(input: .init(navigationTitle: ""))
+                .environmentObject(RequirementsState(providerRequirements: .empty))
+                .erased
+        ] 
     }
+
+    public static var elementWidth: CGFloat? { 375 }
 }
 
 #endif

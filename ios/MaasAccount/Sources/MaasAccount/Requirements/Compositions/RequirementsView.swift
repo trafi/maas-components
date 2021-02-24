@@ -115,11 +115,18 @@ public struct RequirementsView: View, Swappable {
 
 #if DEBUG
 
-struct RequirementsView_Previews: PreviewProvider {
+struct RequirementsView_Previews: PreviewProvider, Snapped {
 
-    static var previews: some View {
-        RequirementsView(providerRequirements: .empty)
+    static var snapped: [String : AnyView] {
+        [
+            "RequirementsView": RequirementsView(providerRequirements: .empty)
+                .frame(width: 375, height: 700)
+                .erased
+
+        ]
     }
+
+    public static var elementWidth: CGFloat? { 375 }
 }
 
 public extension VerifyProviderRequirementsResponse {
@@ -142,7 +149,7 @@ public extension VerifyProviderRequirementsResponse {
                                 localizedTerms: [
                                     .init(languageCode: "en", url: "http://www.google.lt")], validFrom: nil)
                         ]
-                    )
+                    ),
                 ]
             )
         ]
@@ -176,7 +183,7 @@ public extension VerifyProviderRequirementsResponse {
             memberships: nil)
 
         return VerifyProviderRequirementsResponse(
-            requirements: requirements,
+            requirements: requirements + requirements,
             user: user,
             requirementInterdependence: [:]
         )
