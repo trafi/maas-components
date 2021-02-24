@@ -67,7 +67,25 @@ class AppState: ObservableObject {
     }
 
     func requirements() {
-        UsersApi.shared.providerRequirements()
+
+        // https://api-trafi.bedrock.dev.trafi.com/v2/users/me/accounts/requirements?resourceSpecifiers[0].Msp=tier&resourceSpecifiers[0].VehicleType=kickscooter
+
+        let resourceSpecifiers: [ResourceSpecifier] = [
+            .init(
+                realm: nil,
+                msp: "tier",
+                vehicleType: nil,
+                providerAccountType: nil
+            ),
+            .init(
+                realm: nil,
+                msp: nil,
+                vehicleType: "kickscooter",
+                providerAccountType: nil
+            ),
+        ]
+
+        UsersApi.shared.providerRequirements(resourceSpecifier: resourceSpecifiers)
             .publisher
             .sink(receiveCompletion: onError, receiveValue: onValue)
             .store(in: &cancelableStore)

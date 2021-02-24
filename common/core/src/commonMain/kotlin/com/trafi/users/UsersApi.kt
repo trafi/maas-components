@@ -35,8 +35,8 @@ class UsersApi internal constructor(
         ApiResult.ktorFailure(e)
     }
 
-    suspend fun providerRequirements(): ApiResult<VerifyProviderRequirementsResponse> = try {
-        val result = httpClient.authorized.get<VerifyProviderRequirementsResponse>(baseApiUrl + "v2/users/me/accounts/requirements")
+    suspend fun providerRequirements(resourceSpecifier: List<ResourceSpecifier>): ApiResult<VerifyProviderRequirementsResponse> = try {
+        val result = httpClient.authorized.get<VerifyProviderRequirementsResponse>(baseApiUrl + "v2/users/me/accounts/requirements?resourceSpecifiers[0].Msp=tier&resourceSpecifiers[0].VehicleType=kickscooter")
         ApiResult.Success(result)
     } catch (e: Throwable) {
         ApiResult.ktorFailure(e)
