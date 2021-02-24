@@ -54,8 +54,6 @@ extension ApiError {
     
     init<T>(_ result: ApiResult<T>) {
         switch result {
-        case let unauthorizedFailure as ApiResultFailureUnauthorized<T>:
-            self = .unauthorized(error: unauthorizedFailure.error)
         case let forbiddenFailure as ApiResultFailureForbidden<T>:
             self = .forbidden(error: forbiddenFailure.error)
         case let genericFailure as ApiResultFailureGeneric<T>:
