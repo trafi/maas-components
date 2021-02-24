@@ -1,8 +1,18 @@
-//
-//  File.swift
-//  
-//
-//  Created by Ignas Jasiunas on 2021-02-23.
-//
+import SwiftUI
+import MaasCore
 
-import Foundation
+public extension View {
+
+    /**
+     Displays Requirements flow in sheet when **Binding<VerifyProviderRequirementsResponse?>** is not nil.
+     - parameters:
+        - providerRequirements: **VerifyProviderRequirementsResponse** contains requirements which will be displayed in flow.
+     */
+    func requirementsSheet(providerRequirements: Binding<VerifyProviderRequirementsResponse?>) -> some View {
+        sheet(item: providerRequirements) {
+            RequirementsView(providerRequirements: $0)
+        }
+    }
+}
+
+extension VerifyProviderRequirementsResponse: Identifiable { }
