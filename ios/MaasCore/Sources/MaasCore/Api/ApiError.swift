@@ -8,6 +8,7 @@ public enum ApiError: Swift.Error, Equatable, Hashable {
      - Parameter error: optional error message.
      */
     case forbidden(error: CoreBinary.Error?)
+    
     /**
      The server returned an error not covered by the more specific [ApiError](x-source-tag://ApiError) types..
      - Parameter error: optional error message.
