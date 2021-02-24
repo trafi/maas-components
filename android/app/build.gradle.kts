@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("shot")
 }
 
 android {
@@ -15,7 +14,6 @@ android {
         targetSdkVersion(Versions.androidTargetSdk)
         versionCode = 1
         versionName = "1.0"
-        testInstrumentationRunner = "com.karumi.shot.ShotTestRunner"
         buildConfigField(
             type = "String",
             name = "API_BASE_URL",
@@ -50,13 +48,6 @@ android {
         kotlinCompilerVersion = Versions.kotlin
         kotlinCompilerExtensionVersion = Versions.compose
     }
-    // Workaround for https://github.com/Kotlin/kotlinx.coroutines/issues/2023
-    packagingOptions {
-        resources {
-            excludes += "META-INF/AL2.0"
-            excludes += "META-INF/LGPL2.1"
-        }
-    }
 }
 
 dependencies {
@@ -75,9 +66,4 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.activity:activity-ktx:1.1.0")
-    implementation("junit:junit:4.13.1")
-    implementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
-    implementation("androidx.test:rules:1.3.0")
-    implementation("androidx.compose.ui:ui-test:${Versions.compose}")
-    implementation("com.karumi:shot-android:${Versions.shot}")
 }
