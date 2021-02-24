@@ -126,6 +126,7 @@ public fun SecondaryButton(
     modifier: Modifier = Modifier,
     icon: Painter? = null,
     wrapped: Boolean = false,
+    loading: Boolean = false,
     enabled: Boolean = true,
 ) {
     Button(
@@ -141,6 +142,7 @@ public fun SecondaryButton(
         },
         elevation = 0.dp,
         wrapped = wrapped,
+        loading = loading,
         enabled = enabled,
     )
 }
@@ -153,6 +155,7 @@ public fun TertiaryButton(
     contentColor: Color = Color.Unspecified,
     icon: Painter? = null,
     wrapped: Boolean = false,
+    loading: Boolean = false,
     enabled: Boolean = true,
 ) {
     Button(
@@ -170,6 +173,7 @@ public fun TertiaryButton(
         },
         elevation = 0.dp,
         wrapped = wrapped,
+        loading = loading,
         enabled = enabled,
     )
 }
