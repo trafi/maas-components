@@ -1,5 +1,4 @@
 import SwiftUI
-import MaasCore
 import MaasComponents
 
 public struct RequirementsListView: View, Swappable {
