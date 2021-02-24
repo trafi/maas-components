@@ -53,7 +53,7 @@ sealed class ApiResult<out T : Any> {
         ) : Failure<T>(throwable)
 
         /**
-         * TODO:
+         * The server returned an error covered by [ErrorCode.Users] types.
          */
         class UserError<T : Any>(
             throwable: Throwable,
@@ -63,7 +63,7 @@ sealed class ApiResult<out T : Any> {
         ) : Failure<T>(throwable)
 
         /**
-         * TODO:
+         * The server returned an error covered by [ErrorCode.Msp] types.
          */
         class MspError<T : Any>(
             throwable: Throwable,
