@@ -1,4 +1,6 @@
-package com.trafi.example
+@file:Suppress("TestFunctionName")
+
+package com.trafi.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -13,7 +15,7 @@ import com.trafi.ui.theme.MaasTheme
 import java.util.Locale
 
 @Composable
-fun TextScreen() {
+private fun TextScreen() {
     val styles = MaasTheme.typography.run {
         listOf(
             "headingXXL" to headingXXL,
@@ -60,7 +62,7 @@ fun TextScreen() {
 
 @Preview
 @Composable
-fun TextScreenPreview() {
+private fun TextScreenPreview() {
     MaasTheme {
         TextScreen()
     }

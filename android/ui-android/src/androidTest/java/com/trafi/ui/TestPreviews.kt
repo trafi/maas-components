@@ -1,4 +1,4 @@
-package com.trafi.example
+package com.trafi.ui
 
 import androidx.compose.runtime.Composable
 import com.trafi.ui.component.BadgePreview
@@ -17,8 +17,7 @@ import com.trafi.ui.component.StackedBadgeDarkPreview
 import com.trafi.ui.component.StackedBadgePreview
 import com.trafi.ui.component.StackedBadgePreviewWithSubbadge
 
-@Suppress("RemoveExplicitTypeArguments")
-val testPreviews = listOf<Pair<@Composable () -> Unit, String>>(
+internal val testPreviews: List<Pair<@Composable () -> Unit, String>> = listOf(
     Pair({ ButtonPreview() }, "Button"),
     Pair({ ButtonStyledCornerRadiusPreview() }, "ButtonStyledCornerRadius"),
     Pair({ BadgePreview() }, "Badge"),
