@@ -1,4 +1,4 @@
-package com.trafi.example.ui
+package com.trafi.sample.ui
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
@@ -10,7 +10,7 @@ import com.trafi.ui.theme.darkColors
 import com.trafi.ui.theme.lightColors
 
 @Composable
-fun DemoMaasTheme(
+fun SampleMaasTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     narrowScreen: Boolean = isScreenWidthNarrow(),
     content: @Composable () -> Unit
