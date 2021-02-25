@@ -59,7 +59,7 @@ sealed class ApiResult<out T : Any> {
             throwable: Throwable,
             val httpStatusCode: Int,
             val code: ErrorCode.Users,
-            val error: com.trafi.core.model.Error? = null,
+            val error: com.trafi.core.model.Error,
         ) : Failure<T>(throwable)
 
         /**
@@ -69,7 +69,7 @@ sealed class ApiResult<out T : Any> {
             throwable: Throwable,
             val httpStatusCode: Int,
             val code: ErrorCode.Msp,
-            val error: com.trafi.core.model.Error? = null,
+            val error: com.trafi.core.model.Error,
         ) : Failure<T>(throwable)
 
         /**
@@ -92,22 +92,24 @@ sealed class ApiResult<out T : Any> {
                 null
             }
 
-            ErrorCode.Msp.parse(error?.errorCode)?.let {
-                return Failure.MspError(
-                    throwable = throwable,
-                    httpStatusCode = throwable.response.status.value,
-                    code = it,
-                    error = error,
-                )
-            }
+            error?.let { error
+                ErrorCode.Msp.parse(error?.errorCode)?.let {
+                    return Failure.MspError(
+                        throwable = throwable,
+                        httpStatusCode = throwable.response.status.value,
+                        code = it,
+                        error = error,
+                    )
+                }
 
-            ErrorCode.Users.parse(error?.errorCode)?.let {
-                return Failure.UserError(
-                    throwable = throwable,
-                    httpStatusCode = throwable.response.status.value,
-                    code = it,
-                    error = error,
-                )
+                ErrorCode.Users.parse(error?.errorCode)?.let {
+                    return Failure.UserError(
+                        throwable = throwable,
+                        httpStatusCode = throwable.response.status.value,
+                        code = it,
+                        error = error,
+                    )
+                }
             }
 
             return when (throwable.response.status) {
