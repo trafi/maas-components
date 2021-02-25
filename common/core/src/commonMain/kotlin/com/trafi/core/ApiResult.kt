@@ -92,7 +92,7 @@ sealed class ApiResult<out T : Any> {
                 null
             }
 
-            error?.let { error
+            error?.let {
                 ErrorCode.Msp.parse(error?.errorCode)?.let {
                     return Failure.MspError(
                         throwable = throwable,
