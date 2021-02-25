@@ -76,5 +76,5 @@ setContent {
 
 Or try out the [included sample][sample].
 
-[sample]: https://github.com/trafi/maas-components-android/tree/main/android/app
+[sample]: https://github.com/trafi/maas-components-android/tree/main/android/samples/routes
 [compose]: https://developer.android.com/jetpack/compose
