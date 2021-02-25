@@ -93,7 +93,7 @@ sealed class ApiResult<out T : Any> {
             }
 
             error?.let {
-                ErrorCode.Msp.parse(error?.errorCode)?.let {
+                ErrorCode.Msp.parse(error.errorCode)?.let {
                     return Failure.MspError(
                         throwable = throwable,
                         httpStatusCode = throwable.response.status.value,
@@ -102,7 +102,7 @@ sealed class ApiResult<out T : Any> {
                     )
                 }
 
-                ErrorCode.Users.parse(error?.errorCode)?.let {
+                ErrorCode.Users.parse(error.errorCode)?.let {
                     return Failure.UserError(
                         throwable = throwable,
                         httpStatusCode = throwable.response.status.value,
