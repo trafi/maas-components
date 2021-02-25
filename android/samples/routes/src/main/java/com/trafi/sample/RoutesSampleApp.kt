@@ -1,4 +1,4 @@
-package com.trafi.example
+package com.trafi.sample
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
@@ -7,12 +7,11 @@ import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
 import com.trafi.core.AndroidLogger
 import com.trafi.core.ApiConfiguration
-import com.trafi.example.ui.DemoMaasTheme
 import com.trafi.routes.ui.RoutesScreen
 
 @Composable
-fun DemoApp() {
-    DemoMaasTheme {
+fun RoutesSampleApp() {
+    SampleTheme {
         AppContent()
     }
 }

@@ -1,4 +1,4 @@
-package com.trafi.example
+package com.trafi.sample
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -14,7 +14,6 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.trafi.example.ui.DemoMaasTheme
 import com.trafi.ui.component.Button
 import com.trafi.ui.theme.MaasTheme
 
@@ -47,7 +46,7 @@ fun OnboardingScreen(onComplete: () -> Unit = {}) {
 @Preview(widthDp = 375)
 @Composable
 fun OnboardingScreenPreview() {
-    DemoMaasTheme {
+    SampleTheme {
         OnboardingScreen()
     }
 }
@@ -55,7 +54,7 @@ fun OnboardingScreenPreview() {
 @Preview(widthDp = 375)
 @Composable
 fun DarkOnboardingScreenPreview() {
-    DemoMaasTheme(darkTheme = true) {
+    SampleTheme(darkTheme = true) {
         OnboardingScreen()
     }
 }
@@ -63,7 +62,7 @@ fun DarkOnboardingScreenPreview() {
 @Preview(widthDp = 280)
 @Composable
 fun NarrowOnboardingScreenPreview() {
-    DemoMaasTheme(narrowScreen = true) {
+    SampleTheme(narrowScreen = true) {
         OnboardingScreen()
     }
 }
