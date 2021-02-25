@@ -139,7 +139,7 @@ public extension View {
             AlertBottomSheet.ViewModel(
                 image: image,
                 title: title ?? "Something went wrong",
-                subtitle: error.wrappedValue?.message ?? subtitle,
+                subtitle: error.wrappedValue?.developerMessage ?? subtitle,
                 buttons: buttons
             )
         )
@@ -160,22 +160,6 @@ public extension View {
         .environmentObject(
             AlertBottomSheet.ViewModel(image: image, title: title, subtitle: subtitle, buttons: buttons)
         )
-    }
-}
-
-private extension ApiError {
-
-    var message: String? {
-        switch self {
-        case let .error(error):
-            return error?.developerMessage
-        case let .unauthorized(error):
-            return error?.developerMessage
-        case let .failure(developerMessage):
-            return developerMessage
-        case let .forbidden(error):
-            return error?.developerMessage
-        }
     }
 }
 

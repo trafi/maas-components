@@ -41,8 +41,12 @@ extension Publisher where Failure == ApiError {
         retryWithRecovery(
             recoveryPublisher: Maas.apiConfig.refreshTokenPublisher(),
             failureShouldRetry: {
-                if case .unauthorized = $0 { return true }
-                else { return false }
+                if case .error(let code, _) = $0 {
+                    return code == .user(.tokeninvalidorexpired) ||
+                        code == .user(.refreshtokeninvalidorexpired)
+                } else {
+                    return false
+                }
             }
         ).eraseToAnyPublisher()
     }

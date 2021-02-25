@@ -53,6 +53,26 @@ sealed class ApiResult<out T : Any> {
         ) : Failure<T>(throwable)
 
         /**
+         * The server returned an error covered by [ErrorCode.Users] types.
+         */
+        class UserError<T : Any>(
+            throwable: Throwable,
+            val httpStatusCode: Int,
+            val code: ErrorCode.Users,
+            val error: com.trafi.core.model.Error,
+        ) : Failure<T>(throwable)
+
+        /**
+         * The server returned an error covered by [ErrorCode.Msp] types.
+         */
+        class MspError<T : Any>(
+            throwable: Throwable,
+            val httpStatusCode: Int,
+            val code: ErrorCode.Msp,
+            val error: com.trafi.core.model.Error,
+        ) : Failure<T>(throwable)
+
+        /**
          * A generic failure not covered by the more specific [Failure] types.
          */
         class Generic<T : Any>(
@@ -61,34 +81,54 @@ sealed class ApiResult<out T : Any> {
     }
 
     internal companion object {
-        internal suspend fun <T : Any> ktorFailure(throwable: Throwable): Failure<T> =
-            when (throwable) {
-                is ResponseException -> {
-                    val error: Error? = try {
-                        Json.decodeFromString(throwable.response.readText())
-                    } catch (e: SerializationException) {
-                        null
-                    }
-
-                    when (throwable.response.status) {
-                        HttpStatusCode.Unauthorized -> Failure.Unauthorized(
-                            throwable = throwable,
-                            httpStatusCode = throwable.response.status.value,
-                            error = error,
-                        )
-                        HttpStatusCode.Forbidden -> Failure.Forbidden(
-                            throwable = throwable,
-                            httpStatusCode = throwable.response.status.value,
-                            error = error,
-                        )
-                        else -> Failure.Error(
-                            throwable = throwable,
-                            httpStatusCode = throwable.response.status.value,
-                            error = error,
-                        )
-                    }
-                }
-                else -> Failure.Generic(throwable)
+        internal suspend fun <T : Any> ktorFailure(throwable: Throwable): Failure<T> {
+            if (throwable !is ResponseException) {
+                return Failure.Generic(throwable)
             }
+
+            val error: Error? = try {
+                Json.decodeFromString(throwable.response.readText())
+            } catch (e: SerializationException) {
+                null
+            }
+
+            error?.let {
+                ErrorCode.Msp.parse(error.errorCode)?.let {
+                    return Failure.MspError(
+                        throwable = throwable,
+                        httpStatusCode = throwable.response.status.value,
+                        code = it,
+                        error = error,
+                    )
+                }
+
+                ErrorCode.Users.parse(error.errorCode)?.let {
+                    return Failure.UserError(
+                        throwable = throwable,
+                        httpStatusCode = throwable.response.status.value,
+                        code = it,
+                        error = error,
+                    )
+                }
+            }
+
+            return when (throwable.response.status) {
+                HttpStatusCode.Unauthorized -> Failure.Unauthorized(
+                    throwable = throwable,
+                    httpStatusCode = throwable.response.status.value,
+                    error = error,
+                )
+                HttpStatusCode.Forbidden -> Failure.Forbidden(
+                    throwable = throwable,
+                    httpStatusCode = throwable.response.status.value,
+                    error = error,
+                )
+                else -> Failure.Error(
+                    throwable = throwable,
+                    httpStatusCode = throwable.response.status.value,
+                    error = error,
+                )
+            }
+        }
     }
 }

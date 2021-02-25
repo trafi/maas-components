@@ -123,6 +123,8 @@ private val <T : Any> ApiResult.Failure<T>.developerMessage: String?
         is ApiResult.Failure.Unauthorized -> error?.developerMessage
         is ApiResult.Failure.Forbidden -> error?.developerMessage
         is ApiResult.Failure.Error -> error?.developerMessage
+        is ApiResult.Failure.UserError -> error.developerMessage
+        is ApiResult.Failure.MspError -> error.developerMessage
         is ApiResult.Failure.Generic -> throwable.message
     }
 
