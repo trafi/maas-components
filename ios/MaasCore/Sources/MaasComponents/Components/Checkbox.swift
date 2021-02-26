@@ -1,21 +1,21 @@
 import SwiftUI
 import Swappable
+import MaasCore
+import MaasTheme
 
-public struct Checkbox: View, Swappable {
+public struct Checkbox: View, Swappable  {
 
     public struct InputType {
         public let isOn: Binding<Bool>
-        public let toggledContent: AnyView?
-        public let untoggledContent: AnyView?
+        public let content: ((Bool) -> AnyView)?
     }
     public var input: InputType
 
-    // TODO: - Constants
-    let width: CGFloat = 24
-    let height: CGFloat = 24
+    @Environment(\.isEnabled) var isEnabled
+    @Themeable(CheckboxConstants.init) var constants
 
     public init(isOn: Binding<Bool>) {
-        self.input = .init(isOn: isOn, toggledContent: nil, untoggledContent: nil)
+        self.input = .init(isOn: isOn, content: nil)
     }
 
     public init(input: InputType) {
@@ -23,25 +23,33 @@ public struct Checkbox: View, Swappable {
     }
 
     public var defaultBody: some View {
-        ToggleView(
-            isOn: input.isOn,
-            toggledContent: { input.toggledContent ?? toggledContent },
-            untoggledContent: { input.untoggledContent ?? untoggledContent }
-        )
-        .frame(width: width, height: height)
-        .onTapGesture { input.isOn.wrappedValue.toggle() }
+        defaultContent(input.isOn.wrappedValue)
+            .frame(width: constants.width, height: constants.height)
+            .onTapGesture {
+                if !isEnabled {
+                    input.isOn.wrappedValue.toggle()
+                }
+            }
     }
 
     // TODO: Replace when normal assets appears
-    private var toggledContent: AnyView {
-        Image(systemName: "checkmark.circle")
-            .erased
-    }
+    func defaultContent(_ isOn: Bool) -> some View {
+        guard let content = input.content else {
 
-    // TODO: Replace when normal assets appears
-    private var untoggledContent: AnyView {
-        Image(systemName: "circle")
-            .erased
+            let content = isOn
+                ? Image(systemName: "checkmark.circle")
+                : Image(systemName: "circle")
+
+            let foregroundColor = isEnabled
+                ? constants.enabledColor
+                : constants.disabledColor
+
+            return content
+                .foregroundColor(foregroundColor)
+                .erased
+        }
+
+        return content(isOn)
     }
 }
 

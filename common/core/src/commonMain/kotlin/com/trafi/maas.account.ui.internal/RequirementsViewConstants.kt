@@ -9,6 +9,8 @@ class RequirementsViewConstants(theme: CurrentTheme) {
     val iconHeight = 150.dp
     val iconWidth = 150.dp
 
-    val buttonsSpacing = SpacingScale.md
+    val buttonsSpacing = SpacingScale.lg
     val contentSpacing = SpacingScale.xxxl
+
+    val titleTextStyle = theme.typographyScale.headingXXL
 }

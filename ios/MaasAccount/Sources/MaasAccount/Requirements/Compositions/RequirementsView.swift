@@ -45,28 +45,23 @@ public struct RequirementsView: View, Swappable {
     // TODO: L10n
     // TODO: Link to RequirementsListView
     public var defaultBody: some View {
-        NavigationView {
-            VStack(spacing: constants.contentSpacing) {
-                requirementImage()
-                requirementOptions()
-                requirementButtons()
-            }
-            .navigationBarTitle(input.navigationTitle)
-            .background(
-                NavigationLink(
-                    destination: RequirementsListView(),
-                    isActive: $requirementsState.displayRequirementsList,
-                    label: { EmptyView() }
-                )
-            )
+        VStack(spacing: constants.contentSpacing) {
+            Text("Terms of service")
+                // textStyle H1
+                // leading
+            requirementImage()
+            requirementOptions()
+            requirementButtons()
         }
+        .navigationBarTitle(input.navigationTitle)
+        .sheet(isPresented: $requirementsState.displayRequirementsList, content: { RequirementsListView() }
+        )
         .environmentObject(requirementsState)
     }
 
     // TODO: Valid assets
     private func requirementImage() -> some View {
         VStack {
-            Spacer()
             Image.from(image: input.image)
                 .frame(maxWidth: constants.iconWidth, maxHeight: constants.iconHeight)
         }
@@ -80,7 +75,7 @@ public struct RequirementsView: View, Swappable {
             action: { requirementsState.displayRequirementsList.toggle() }
         )
 
-        return VStack {
+        return VStack(spacing: 0) {
             RequirementListItem(
                 checked: .constant(true),
                 title: "I agree to \(input.applicationName)’s general",
@@ -96,8 +91,9 @@ public struct RequirementsView: View, Swappable {
 
     // TODO: L10n
     // TODO: Button Styling
+    // TODO: Implement View footer
     private func requirementButtons() -> some View {
-        VStack(spacing: constants.buttonsSpacing) {
+        VStack(spacing: 20) {
             Button("Let's go!") { presentationMode.wrappedValue.dismiss() }
             Button("Cancel") { presentationMode.wrappedValue.dismiss() }
                 .environment(\.uiColorPrimary, .systemGray5)
@@ -121,6 +117,10 @@ struct RequirementsView_Previews: PreviewProvider, Snapped {
                 .erased
 
         ]
+    }
+
+    static var previews: some View {
+        RequirementsView(providerRequirements: .empty)
     }
 
     public static var elementWidth: CGFloat? { 375 }
