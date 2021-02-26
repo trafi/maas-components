@@ -1,13 +1,12 @@
 import SwiftUI
+import MaasTheme
 import MaasComponents
 
 public struct RequirementsListView: View, Swappable {
 
     // NOTE: Should we use environment or just pass values via inits
     @EnvironmentObject var requiremenetsState: RequirementsState
-
-    @Environment(\.textStyleTextM) var textStyle
-    @Environment(\.grayScale) var grayScale
+    @Themeable(RequirementsListViewConstants.init) var constants
 
     public struct InputType {
         public let navigationTitle: String
@@ -32,6 +31,7 @@ public struct RequirementsListView: View, Swappable {
             requirementsList()
         }
         // .navigationBarTitle(input.navigationTitle, displayMode: .inline)
+        // TODO: iOS 13 dont have inline navigation bar appearance.
     }
 
     // TODO: L10n
@@ -51,8 +51,8 @@ public struct RequirementsListView: View, Swappable {
             ]
             .joined(with: .space())
         }
-        .textStyle(textStyle)
-        .foregroundColor(grayScale.gray600.color)
+        .textStyle(constants.textStyle)
+        .foregroundColor(constants.textColor)
         .padding()
     }
 

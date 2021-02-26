@@ -1,11 +1,10 @@
 import SwiftUI
+import MaasTheme
 import MaasComponents
 
 public struct RequirementListItem: View, Swappable {
 
-    // TODO: Constants
-    @Environment(\.colorPrimary) var primaryColor
-    @Environment(\.textStyleTextM) var textStyle
+    @Themeable(RequirementsListViewConstants.init) var constants
 
     public struct InputType {
         public let checked: Binding<Bool>
@@ -46,11 +45,11 @@ public struct RequirementListItem: View, Swappable {
         [
             Text(input.title),
             Text(input.hyperlink.title)
-                .foregroundColor(primaryColor)
+                .foregroundColor(constants.textColor)
                 .underline()
         ]
         .joined(with: .space())
-        .textStyle(textStyle)
+        .textStyle(constants.textStyle)
         .onTapGesture { input.hyperlink.action() }
     }
 

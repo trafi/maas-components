@@ -8,11 +8,7 @@ public struct RequirementsView: View, Swappable {
     @ObservedObject private var requirementsState: RequirementsState
     @Environment(\.presentationMode) private var presentationMode
 
-    // TODO: Constants:
-    let iconWidth: CGFloat = 150
-    let iconHeight: CGFloat =  150
-    let contentSpacing = Spacing.xxxl.value
-    let buttonsSpacing = Spacing.md.value
+    @Themeable(RequirementsViewConstants.init) var constants
 
     public struct InputType {
         public let applicationName: String
@@ -50,7 +46,7 @@ public struct RequirementsView: View, Swappable {
     // TODO: Link to RequirementsListView
     public var defaultBody: some View {
         NavigationView {
-            VStack(spacing: contentSpacing) {
+            VStack(spacing: constants.contentSpacing) {
                 requirementImage()
                 requirementOptions()
                 requirementButtons()
@@ -72,7 +68,7 @@ public struct RequirementsView: View, Swappable {
         VStack {
             Spacer()
             Image.from(image: input.image)
-                .frame(maxWidth: iconWidth, maxHeight: iconHeight)
+                .frame(maxWidth: constants.iconWidth, maxHeight: constants.iconHeight)
         }
     }
 
@@ -101,7 +97,7 @@ public struct RequirementsView: View, Swappable {
     // TODO: L10n
     // TODO: Button Styling
     private func requirementButtons() -> some View {
-        VStack(spacing: buttonsSpacing) {
+        VStack(spacing: constants.buttonsSpacing) {
             Button("Let's go!") { presentationMode.wrappedValue.dismiss() }
             Button("Cancel") { presentationMode.wrappedValue.dismiss() }
                 .environment(\.uiColorPrimary, .systemGray5)
