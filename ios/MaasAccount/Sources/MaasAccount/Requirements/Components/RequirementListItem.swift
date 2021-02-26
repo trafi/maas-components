@@ -10,12 +10,12 @@ public struct RequirementListItem: View, Swappable {
     public struct InputType {
         public let checked: Binding<Bool>
         public let title: String
+        public let hyperlink: Hyperlink
 
         public struct Hyperlink {
             public let title: String
             public let action: () -> ()
         }
-        public let hyperlink: Hyperlink
     }
     public var input: InputType
 
