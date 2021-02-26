@@ -13,7 +13,6 @@ public struct Checkbox: View, Swappable {
     // TODO: - Constants
     let width: CGFloat = 24
     let height: CGFloat = 24
-    @Environment(\.colorPrimary) var primaryColor
 
     public init(isOn: Binding<Bool>) {
         self.input = .init(isOn: isOn, toggledContent: nil, untoggledContent: nil)
@@ -36,14 +35,12 @@ public struct Checkbox: View, Swappable {
     // TODO: Replace when normal assets appears
     private var toggledContent: AnyView {
         Image(systemName: "checkmark.circle")
-            .foregroundColor(primaryColor)
             .erased
     }
 
     // TODO: Replace when normal assets appears
     private var untoggledContent: AnyView {
         Image(systemName: "circle")
-            .foregroundColor(primaryColor)
             .erased
     }
 }
