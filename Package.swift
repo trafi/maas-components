@@ -46,6 +46,7 @@ let package = Package(
                 "MaasCore",
                 "MaasRouteSearch",
                 "MaasNearbyTransit",
+                "MaasAccount",
             ],
             path: "ios/Sources/Examples"
         ),
@@ -55,6 +56,7 @@ let package = Package(
                 "Maas",
                 "MaasRouteSearch",
                 "MaasNearbyTransit",
+                "MaasAccount",
                 "SnapshotTesting",
                 "Quick",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
@@ -95,6 +97,9 @@ private extension Environment {
                 .library(
                     name: "MaasNearbyTransit",
                     targets: ["MaasNearbyTransit"]),
+                .library(
+                    name: "MaasAccount",
+                    targets: ["MaasAccount"]),
            ]
         }
     }
@@ -116,6 +121,7 @@ private extension Environment {
                 .maasCoreTarget(name: "MaasComponents", dependencies: ["MaasTheme", "MaasCore", "Swappable"]),
                 .maasTarget(name: "MaasRouteSearch"),
                 .maasTarget(name: "MaasNearbyTransit"),
+                .maasTarget(name: "MaasAccount"),
             ]
         }
     }
@@ -127,6 +133,7 @@ private extension Environment {
                 .package(path: "ios/MaasCore"),
                 .package(path: "ios/MaasRouteSearch"),
                 .package(path: "ios/MaasNearbyTransit"),
+                .package(path: "ios/MaasAccount"),
             ] 
         case .production:
             return [
