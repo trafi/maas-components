@@ -115,7 +115,7 @@ private extension Environment {
                 .binaryTarget(
                     name: "CoreBinary",
                     url: "https://github.com/trafi/maas-components/releases/download/0.1.0-dev03/CoreBinary.xcframework.zip",
-                    checksum: "419f3c06d6dc73f042794b81eb7c92e922077f11a0253aa04817fa20938dc118"),
+                    checksum: "c8b376464436b341bd70847d70f7c4605b381006da33db495d40716323673b55"),
                 .maasCoreTarget(name: "MaasCore", dependencies: [.product(name: "ComposableArchitecture", package: "swift-composable-architecture")]),
                 .maasCoreTarget(name: "MaasTheme"),
                 .maasCoreTarget(name: "MaasComponents", dependencies: ["MaasTheme", "MaasCore", "Swappable"]),
