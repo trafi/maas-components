@@ -2,9 +2,9 @@ package com.trafi.ui.theme
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Providers
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.staticAmbientOf
+import androidx.compose.runtime.staticCompositionLocalOf
 
 @Composable
 public fun MaasTheme(
@@ -15,7 +15,7 @@ public fun MaasTheme(
     content: @Composable () -> Unit
 ) {
     val colorPalette = remember { colors }.apply { updateColorsFrom(colors) }
-    Providers(
+    CompositionLocalProvider(
         AmbientColor provides colorPalette,
         AmbientTypography provides typography,
         AmbientSpacing provides spacing,
@@ -44,10 +44,10 @@ public object MaasTheme {
         @Composable get() = AmbientCornerRadius.current
 }
 
-private val AmbientColor = staticAmbientOf { MaasTheme.lightColors() }
+private val AmbientColor = staticCompositionLocalOf { MaasTheme.lightColors() }
 
-private val AmbientTypography = staticAmbientOf { MaasTypography() }
+private val AmbientTypography = staticCompositionLocalOf { MaasTypography() }
 
-private val AmbientSpacing = staticAmbientOf { MaasSpacing() }
+private val AmbientSpacing = staticCompositionLocalOf { MaasSpacing() }
 
-private val AmbientCornerRadius = staticAmbientOf { MaasCornerRadius() }
+private val AmbientCornerRadius = staticCompositionLocalOf { MaasCornerRadius() }

@@ -2,18 +2,15 @@ package com.trafi.routes.ui.internal
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.ConstrainedLayoutReference
-import androidx.compose.foundation.layout.ConstraintLayout
-import androidx.compose.foundation.layout.Dimension
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.AmbientContentColor
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.LocalContentColor
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
@@ -22,10 +19,12 @@ import androidx.compose.material.icons.filled.Place
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.SoftwareKeyboardController
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstrainedLayoutReference
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import com.trafi.routes.ui.R
 import com.trafi.routes.ui.mock.vilniusAirport
 import com.trafi.routes.ui.mock.vilniusCathedral
@@ -39,13 +38,12 @@ internal fun RouteSearchHeader(
     endText: String,
     onStartTextChange: (String) -> Unit,
     onEndTextChange: (String) -> Unit,
-    onTextInputStarted: (SoftwareKeyboardController) -> Unit,
     onSwitchClick: () -> Unit,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val timeVector = vectorResource(R.drawable.ic_route_search_trip_time_s)
-    val switchVector = vectorResource(R.drawable.ic_route_search_switch_20)
+    val timeVector = painterResource(R.drawable.ic_route_search_trip_time_s)
+    val switchVector = painterResource(R.drawable.ic_route_search_switch_20)
 
     ConstraintLayout(modifier) {
         val (back, title, startField, endField, switch) = createRefs()
@@ -79,7 +77,7 @@ internal fun RouteSearchHeader(
 
         Box(
             modifier = Modifier
-                .background(AmbientContentColor.current, CircleShape)
+                .background(LocalContentColor.current, CircleShape)
                 .size(8.dp)
                 .constrainAs(startIcon) {
                     start.linkTo(parent.start)
@@ -109,7 +107,7 @@ internal fun RouteSearchHeader(
         ) {
             Box(
                 modifier = Modifier
-                    .background(AmbientContentColor.current, CircleShape)
+                    .background(LocalContentColor.current, CircleShape)
                     .size(2.dp)
                     .constrainAs(ref) {
                         centerHorizontallyTo(startIcon)
@@ -129,30 +127,30 @@ internal fun RouteSearchHeader(
             prevRef = ref
         }
 
-        val barrier = createEndBarrier(startIcon, endIcon)
+        // https://issuetracker.google.com/issues/181717954
+        // will be fixed in constraintlayout-compose:1.0.0-alpha06
+        // val barrier = createEndBarrier(startIcon, endIcon)
 
         OutlinedTextField(
             startText,
             modifier = Modifier.constrainAs(startField) {
-                start.linkTo(barrier)
+                // start.linkTo(barrier)
                 end.linkTo(parent.end)
                 width = Dimension.fillToConstraints
                 top.linkTo(title.bottom)
             },
             onValueChange = onStartTextChange,
-            onTextInputStarted = onTextInputStarted,
             textStyle = MaasTheme.typography.textL,
         )
         OutlinedTextField(
             endText,
             modifier = Modifier.constrainAs(endField) {
-                start.linkTo(barrier)
+                // start.linkTo(barrier)
                 end.linkTo(parent.end)
                 width = Dimension.fillToConstraints
                 top.linkTo(startField.bottom, margin = Spacing.xs)
             },
             onValueChange = onEndTextChange,
-            onTextInputStarted = onTextInputStarted,
             textStyle = MaasTheme.typography.textL,
         )
         FloatingActionButton(
@@ -199,7 +197,6 @@ private fun RouteSearchHeaderPreview() {
             endText = vilniusCathedral.displayText,
             onStartTextChange = {},
             onEndTextChange = {},
-            onTextInputStarted = {},
             onSwitchClick = {},
             onBackClick = {},
             modifier = Modifier

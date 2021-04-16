@@ -12,8 +12,9 @@ object Versions {
     const val androidTargetSdk = 30
     const val androidMinSdk = 23
 
-    const val compose = "1.0.0-alpha11"
-    const val composeNavigation = "1.0.0-alpha06"
+    const val compose = "1.0.0-beta04"
+    const val composeNavigation = "1.0.0-alpha10"
+    const val composeConstraintLayout = "1.0.0-alpha05"
 
     const val ktor = "1.5.1"
     const val coroutines = "1.4.2-native-mt"

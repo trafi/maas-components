@@ -1,7 +1,7 @@
 package com.trafi.ui.theme
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.AmbientContext
+import androidx.compose.ui.platform.LocalContext
 import com.trafi.ui.theme.internal.CurrentAccessibility
 import com.trafi.ui.theme.internal.CurrentColorPalette
 import com.trafi.ui.theme.internal.CurrentCornerRadiusScale
@@ -51,6 +51,6 @@ public val currentTheme: CurrentTheme
             )
         },
         accessibility = CurrentAccessibility(
-            fontScale = AmbientContext.current.resources.configuration.fontScale,
+            fontScale = LocalContext.current.resources.configuration.fontScale,
         ),
     )

@@ -65,8 +65,11 @@ fun FirebaseAuthSampleApp(
     ModalBottomSheetLayout(
         sheetState = sheetState,
         sheetBackgroundColor = MaasTheme.colors.surface,
-        sheetShape = RoundedCornerShape(topLeft = CornerRadius.xl, topRight = CornerRadius.xl),
-        sheetContent = { AlertBottomSheet(errorText, onClick = { sheetState.hide() }) },
+        sheetShape = RoundedCornerShape(topStart = CornerRadius.xl, topEnd = CornerRadius.xl),
+        sheetContent = {
+            AlertBottomSheet(errorText,
+                onClick = { scope.launch { sheetState.hide() } })
+        },
         content = {
             NavHost(navController, startDestination = "welcome") {
                 composable("welcome") {

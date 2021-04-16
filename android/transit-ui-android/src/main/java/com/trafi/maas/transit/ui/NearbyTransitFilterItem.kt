@@ -14,7 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.trafi.core.model.ext.FilterItem
@@ -56,7 +56,7 @@ internal fun NearbyTransitFilterItem(
                     minHeight = constants.contentMinHeight
                 )
         ) {
-            val vector = vectorResource(when (item.icon) {
+            val painter = painterResource(when (item.icon) {
                 "ubahn" -> R.drawable.providers_ubahn_xs
                 "sbahn" -> R.drawable.providers_sbahn_xs
                 "bus" -> R.drawable.providers_bus_xs
@@ -66,7 +66,7 @@ internal fun NearbyTransitFilterItem(
                 else -> R.drawable.providers_bus_xs
             })
             Image(
-                imageVector = vector,
+                painter = painter,
                 contentDescription = null,
                 modifier = Modifier
                     .width(constants.imageWidth)

@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.defaultMinSizeConstraints
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Surface
@@ -14,7 +14,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -43,7 +43,7 @@ public fun Route(route: Route, onClick: () -> Unit, modifier: Modifier = Modifie
     ) {
         Cell(
             modifier = Modifier
-                .defaultMinSizeConstraints(minHeight = 64.dp)
+                .defaultMinSize(minHeight = 64.dp)
                 .padding(horizontal = MaasTheme.spacing.globalMargin, vertical = 12.dp),
             content = {
                 Row {
@@ -59,7 +59,7 @@ public fun Route(route: Route, onClick: () -> Unit, modifier: Modifier = Modifie
                 }
                 route.disruption?.let { disruption ->
                     disruption.title?.let { disruptionTitle ->
-                        val vector = vectorResource(
+                        val vector = painterResource(
                             when (disruption.severity) {
                                 RouteDisruption.Severity.NOT_AFFECTED,
                                 RouteDisruption.Severity.INFORMATION -> R.drawable.warning_info_s

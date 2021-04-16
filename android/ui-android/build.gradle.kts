@@ -25,6 +25,7 @@ dependencies {
     implementation("androidx.compose.runtime:runtime:${Versions.compose}")
     implementation("androidx.compose.material:material:${Versions.compose}")
     implementation("androidx.compose.ui:ui-tooling:${Versions.compose}")
+    implementation("androidx.constraintlayout:constraintlayout-compose:${Versions.composeConstraintLayout}")
 
     androidTestImplementation("androidx.test:rules:1.3.0")
 }

@@ -9,23 +9,24 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.material.AmbientContentColor
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
+import androidx.compose.material.LocalContentColor
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Providers
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.SoftwareKeyboardController
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.viewinterop.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.trafi.core.ApiConfiguration
 import com.trafi.core.model.AutoCompleteLocation
 import com.trafi.core.model.Location
@@ -43,6 +44,7 @@ import com.trafi.routes.ui.mock.mockTabItems
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.Spacing
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 public fun RoutesScreen(
     apiConfig: ApiConfiguration,
@@ -66,7 +68,7 @@ public fun RoutesScreen(
     var startText by remember { mutableStateOf(initialStart.displayText) }
     var endText by remember { mutableStateOf(initialEnd.displayText) }
 
-    var softwareKeyboardController by remember { mutableStateOf<SoftwareKeyboardController?>(null) }
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     fun tryRouteSearch() {
         start?.let { start -> end?.let { end -> routesViewModel.search(start, end) } }
@@ -77,7 +79,7 @@ public fun RoutesScreen(
             .background(MaasTheme.colors.background)
             .fillMaxHeight()
     ) {
-        Providers(AmbientContentColor provides MaasTheme.colors.onBackground) {
+        CompositionLocalProvider(LocalContentColor provides MaasTheme.colors.onBackground) {
             RouteSearchHeader(
                 startText = startText,
                 endText = endText,
@@ -96,9 +98,6 @@ public fun RoutesScreen(
                     endText = it
                     searchingForEnd = true
                     locationViewModel.search(it)
-                },
-                onTextInputStarted = { keyboardController ->
-                    softwareKeyboardController = keyboardController
                 },
                 onSwitchClick = {
                     searchingForEnd = false
@@ -123,7 +122,7 @@ public fun RoutesScreen(
                     modifier = Modifier
                         .padding(top = Spacing.md),
                     onClick = { location ->
-                        softwareKeyboardController?.hideSoftwareKeyboard()
+                        keyboardController?.hide()
                         locationViewModel.resolveLocation(location)
                     }
                 )

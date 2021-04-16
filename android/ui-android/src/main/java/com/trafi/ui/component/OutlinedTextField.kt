@@ -1,15 +1,15 @@
 package com.trafi.ui.component
 
-import androidx.compose.foundation.InteractionState
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.preferredSizeIn
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.AmbientContentAlpha
-import androidx.compose.material.AmbientContentColor
-import androidx.compose.material.AmbientTextStyle
+import androidx.compose.material.LocalContentAlpha
+import androidx.compose.material.LocalContentColor
+import androidx.compose.material.LocalTextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
@@ -19,18 +19,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.focus.isFocused
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.takeOrElse
-import androidx.compose.ui.node.Ref
-import androidx.compose.ui.text.SoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,34 +37,19 @@ public fun OutlinedTextField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    textStyle: TextStyle = AmbientTextStyle.current,
+    textStyle: TextStyle = LocalTextStyle.current,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    onImeActionPerformed: (ImeAction, SoftwareKeyboardController?) -> Unit = { _, _ -> },
-    onTextInputStarted: (SoftwareKeyboardController) -> Unit = {},
     activeColor: Color = MaasTheme.colors.primary,
     inactiveColor: Color = MaasTheme.colors.grayScale.gray300,
 ) {
-    val keyboardController: Ref<SoftwareKeyboardController> = remember { Ref() }
-
     var textFieldValueState by remember { mutableStateOf(TextFieldValue(text = value)) }
     val textFieldValue = textFieldValueState.copy(text = value)
 
-    var isFocused by remember { mutableStateOf(false) }
-    val focusRequester = FocusRequester()
-    val textFieldModifier = Modifier
-        .padding(horizontal = 12.dp, vertical = 8.dp)
-        .focusRequester(focusRequester)
-        .onFocusChanged { isFocused = it.isFocused }
-        .clickable(interactionState = remember { InteractionState() }, indication = null) {
-            focusRequester.requestFocus()
-            // TODO(b/163109449): Showing and hiding keyboard should be handled by BaseTextField.
-            //  The requestFocus() call here should be enough to trigger the software keyboard.
-            //  Investiate why this is needed here. If it is really needed, instead of doing
-            //  this in the onClick callback, we should move this logic to the focusObserver
-            //  so that it can show or hide the keyboard based on the focus state.
-            keyboardController.value?.showSoftwareKeyboard()
-        }
+    val interactionSource = remember { MutableInteractionSource() }
+    val isFocused = interactionSource.collectIsFocusedAsState().value
+
+    val textFieldModifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
 
     val borderColor = if (isFocused) activeColor else inactiveColor
     val borderWidth = 1.dp
@@ -92,12 +71,12 @@ public fun OutlinedTextField(
     }
 
     val textColor = textStyle.color.takeOrElse {
-        AmbientContentColor.current.copy(alpha = AmbientContentAlpha.current)
+        LocalContentColor.current.copy(alpha = LocalContentAlpha.current)
     }
 
     Row(
         modifier = modifier
-            .preferredSizeIn(
+            .sizeIn(
                 minWidth = TextFieldMinWidth,
                 minHeight = TextFieldMinHeight
             )
@@ -115,15 +94,9 @@ public fun OutlinedTextField(
             modifier = textFieldModifier,
             textStyle = textStyle.copy(color = textColor),
             keyboardOptions = keyboardOptions,
-            onImeActionPerformed = {
-                onImeActionPerformed(it, keyboardController.value)
-            },
             visualTransformation = visualTransformation,
-            onTextInputStarted = {
-                keyboardController.value = it
-                onTextInputStarted(it)
-            },
-            cursorColor = activeColor,
+            interactionSource = interactionSource,
+            cursorBrush = SolidColor(activeColor),
         )
     }
 }
