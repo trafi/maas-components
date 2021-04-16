@@ -19,8 +19,8 @@ object Versions {
     const val coroutines = "1.4.2-native-mt"
     const val kotlinxSerialization = "1.0.1"
 
-    const val ktlintGradlePlugin = "9.4.1"
-    const val ktlint = "0.40.0"
+    const val ktlintGradlePlugin = "10.0.0"
+    const val ktlint = "0.41.0"
     val shot: String = versions.getProperty("version.shot")
 }
 
