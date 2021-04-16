@@ -16,9 +16,9 @@ object Versions {
     const val composeNavigation = "1.0.0-alpha10"
     const val composeConstraintLayout = "1.0.0-alpha05"
 
-    const val ktor = "1.5.1"
-    const val coroutines = "1.4.2-native-mt"
-    const val kotlinxSerialization = "1.0.1"
+    const val ktor = "1.5.3"
+    const val coroutines = "1.4.3"
+    const val kotlinxSerialization = "1.1.0"
 
     const val ktlintGradlePlugin = "10.0.0"
     const val ktlint = "0.41.0"
