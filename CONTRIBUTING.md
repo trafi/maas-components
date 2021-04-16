@@ -1,12 +1,15 @@
 # Contributing
 
 The project is still in its early stages. We are not actively seeking external contributions
-at this time, but some small contributions are welcome.
+at this time. Small contributions are welcome.
 
 ## iOS
 
 ### Build xcframework
 1. `./gradlew xcframework`
+
+Note that Java 11+ is required.
+One simple option to get it is [Amazon's Corretto distribution][install-corretto-11].
 
 ## Android & Kotlin multiplatform
 
@@ -54,3 +57,4 @@ documentation files up-to-date. You may want to run the tool locally.
 [install-go]: https://golang.org/doc/install
 [install-as]: https://developer.android.com/studio/preview
 [install-kmm-plugin]: https://kotlinlang.org/docs/mobile/kmm-plugin-releases.html
+[install-corretto-11]:https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/macos-install.html
