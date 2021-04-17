@@ -2,4 +2,4 @@
 
 package com.trafi.ui.theme.internal.type
 
-actual inline class Color(val value: ULong)
+actual value class Color(val value: ULong)

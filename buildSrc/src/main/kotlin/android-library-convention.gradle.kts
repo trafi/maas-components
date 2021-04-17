@@ -20,6 +20,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
         useIR = true
+        languageVersion = "1.5"
 
         // avoid kotlin_module clash for projects with the same name, e.g. 'ui' & 'routes:ui"
         // https://discuss.kotlinlang.org/t/dealing-with-kotlin-module-conflict-when-building-apk-for-project-with-non-unique-project-names/11247
