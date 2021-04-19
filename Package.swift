@@ -87,7 +87,6 @@ private extension Environment {
             return [
                 .library(
                     name: "MaasCore",
-                    type: .dynamic,
                     targets: ["MaasCore"]),
                 .library(
                     name: "MaasTheme",
