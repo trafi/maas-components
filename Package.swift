@@ -16,6 +16,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "Maas",
+            type: .dynamic,
             targets: ["Maas", "Examples"]),
     ] + environment.products,
     dependencies: [
@@ -84,21 +85,27 @@ private extension Environment {
             return [
                 .library(
                     name: "MaasCore",
+                    type: .dynamic,
                     targets: ["CoreBinary", "MaasCore"]),
                 .library(
                     name: "MaasTheme",
+                    type: .dynamic,
                     targets: ["MaasTheme"]),
                 .library(
                     name: "MaasComponents",
+                    type: .dynamic,
                     targets: ["MaasComponents"]),
                 .library(
                     name: "MaasRouteSearch",
+                    type: .dynamic,
                     targets: ["MaasRouteSearch"]),
                 .library(
                     name: "MaasNearbyTransit",
+                    type: .dynamic,
                     targets: ["MaasNearbyTransit"]),
                 .library(
                     name: "MaasAccount",
+                    type: .dynamic,
                     targets: ["MaasAccount"]),
            ]
         }
