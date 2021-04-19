@@ -16,7 +16,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "Maas",
-            targets: ["Maas", "Examples"]),
+            targets: ["Maas", "Examples", "CoreBinary"]),
     ] + environment.products,
     dependencies: [
         // Dependencies declare other packages that this package depends on.
