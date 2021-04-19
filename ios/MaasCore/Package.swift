@@ -30,6 +30,7 @@ let package = Package(
         .package(
             name: "swift-composable-architecture",
             url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.10.0"),
+        .package(path: "Sources/CoreBinary/CoreBinary.xcframework"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
