@@ -87,7 +87,7 @@ private extension Environment {
             return [
                 .library(
                     name: "MaasCore",
-                    targets: ["CoreBinary", "MaasCore"]),
+                    targets: ["MaasCore"]),
                 .library(
                     name: "MaasTheme",
                     targets: ["MaasTheme"]),
