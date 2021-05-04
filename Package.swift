@@ -39,7 +39,9 @@ let package = Package(
         .target(
             name: "Maas",
             dependencies: ["Swappable"],
-            path: "ios/Sources/Maas"),
+            path: "ios/Sources/Maas",
+            exclude: ["ios/Sources/Maas/README.md"]
+        ),
         .target(
             name: "Examples",
             dependencies: [
