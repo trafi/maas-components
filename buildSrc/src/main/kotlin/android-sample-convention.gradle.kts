@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Versions.androidCompileSdk)
-    buildToolsVersion(Versions.androidBuildToolsVersion)
+    compileSdk = Versions.androidCompileSdk
+    buildToolsVersion = Versions.androidBuildToolsVersion
 
     defaultConfig {
-        minSdkVersion(Versions.androidMinSdk)
-        targetSdkVersion(Versions.androidTargetSdk)
+        minSdk = Versions.androidMinSdk
+        targetSdk = Versions.androidTargetSdk
 
         versionCode = 1
         versionName = "1.0"
