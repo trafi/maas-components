@@ -57,13 +57,13 @@ internal fun NearbyTransitFilterItem(
                 )
         ) {
             val painter = painterResource(when (item.icon) {
-                "ubahn" -> R.drawable.providers_ubahn_xs
-                "sbahn" -> R.drawable.providers_sbahn_xs
-                "bus" -> R.drawable.providers_bus_xs
-                "tram" -> R.drawable.providers_trams_xs
-                "train" -> R.drawable.providers_train_xs
-                "ferry" -> R.drawable.providers_ferry_xs
-                else -> R.drawable.providers_bus_xs
+                "ubahn" -> com.trafi.ui.R.drawable.providers_ubahn_xs
+                "sbahn" -> com.trafi.ui.R.drawable.providers_sbahn_xs
+                "bus" -> com.trafi.ui.R.drawable.providers_bus_xs
+                "tram" -> com.trafi.ui.R.drawable.providers_trams_xs
+                "train" -> com.trafi.ui.R.drawable.providers_train_xs
+                "ferry" -> com.trafi.ui.R.drawable.providers_ferry_xs
+                else -> com.trafi.ui.R.drawable.providers_bus_xs
             })
             Image(
                 painter = painter,

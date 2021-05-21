@@ -41,13 +41,13 @@ public fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
             val alternativeBadges = transit.alternatives.map { it.schedule.toBadgeInfo() }
             val vector = painterResource(
                 when (transit.schedule.transportType) {
-                    "ubahn" -> R.drawable.providers_ubahn_xs
-                    "sbahn" -> R.drawable.providers_sbahn_xs
-                    "bus" -> R.drawable.providers_bus_xs
-                    "tram" -> R.drawable.providers_trams_xs
-                    "train" -> R.drawable.providers_train_xs
-                    "ferry" -> R.drawable.providers_ferry_xs
-                    else -> R.drawable.providers_bus_xs
+                    "ubahn" -> com.trafi.ui.R.drawable.providers_ubahn_xs
+                    "sbahn" -> com.trafi.ui.R.drawable.providers_sbahn_xs
+                    "bus" -> com.trafi.ui.R.drawable.providers_bus_xs
+                    "tram" -> com.trafi.ui.R.drawable.providers_trams_xs
+                    "train" -> com.trafi.ui.R.drawable.providers_train_xs
+                    "ferry" -> com.trafi.ui.R.drawable.providers_ferry_xs
+                    else -> com.trafi.ui.R.drawable.providers_bus_xs
                 }
             )
             Badge(
@@ -63,8 +63,8 @@ public fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
             val badge = hailing.provider?.toBadgeInfo()
             val vector = painterResource(
                 when (hailing.provider?.icon) {
-                    "berlkonig" -> R.drawable.providers_berlkonig_xs
-                    else -> R.drawable.transport_taxi_xs
+                    "berlkonig" -> com.trafi.ui.R.drawable.providers_berlkonig_xs
+                    else -> com.trafi.ui.R.drawable.transport_taxi_xs
                 }
             )
             badge?.let {
@@ -80,19 +80,19 @@ public fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
             val sharing = segment.sharing ?: return
             val badge = sharing.provider?.toBadgeInfo()
             val providerIconRes = when (sharing.provider?.icon) {
-                "tier" -> R.drawable.providers_tier_xs
-                "voi" -> R.drawable.providers_voi_xs
-                "emmy" -> R.drawable.providers_emmy_xs
-                "nextbike" -> R.drawable.providers_nextbike_xs
-                "driveby" -> R.drawable.providers_driveby_xs
+                "tier" -> com.trafi.ui.R.drawable.providers_tier_xs
+                "voi" -> com.trafi.ui.R.drawable.providers_voi_xs
+                "emmy" -> com.trafi.ui.R.drawable.providers_emmy_xs
+                "nextbike" -> com.trafi.ui.R.drawable.providers_nextbike_xs
+                "driveby" -> com.trafi.ui.R.drawable.providers_driveby_xs
                 else -> null
             }
             val transportIconRes = sharing.vehicle?.vehicleType?.let { vehicleType ->
                 when (vehicleType) {
-                    SharedVehicle.VehicleType.CAR -> R.drawable.transport_car_xs
-                    SharedVehicle.VehicleType.BICYCLE -> R.drawable.transport_bike_xs
-                    SharedVehicle.VehicleType.SCOOTER -> R.drawable.transport_scooter_xs
-                    SharedVehicle.VehicleType.KICK_SCOOTER -> R.drawable.transport_kickscooter_xs
+                    SharedVehicle.VehicleType.CAR -> com.trafi.ui.R.drawable.transport_car_xs
+                    SharedVehicle.VehicleType.BICYCLE -> com.trafi.ui.R.drawable.transport_bike_xs
+                    SharedVehicle.VehicleType.SCOOTER -> com.trafi.ui.R.drawable.transport_scooter_xs
+                    SharedVehicle.VehicleType.KICK_SCOOTER -> com.trafi.ui.R.drawable.transport_kickscooter_xs
                 }
             }
             val vector = (providerIconRes ?: transportIconRes)?.let { painterResource(it) }
@@ -106,7 +106,7 @@ public fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
             }
         }
         RouteSegment.Mode.WALKING -> {
-            val vector = painterResource(R.drawable.ic_route_search_walking_s)
+            val vector = painterResource(com.trafi.ui.R.drawable.ic_route_search_walking_s)
             val durationMillis = segment.endTimeMillis - segment.startTimeMillis
             Row(modifier = modifier.defaultMinSize(minHeight = 24.dp)) {
                 Image(
@@ -127,8 +127,8 @@ public fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
             val personalVehicle = segment.personalVehicle ?: return
             val vector = painterResource(
                 when (personalVehicle.vehicle) {
-                    PersonalVehicleType.BICYCLE -> R.drawable.ic_route_search_bike_s
-                    PersonalVehicleType.KICK_SCOOTER -> R.drawable.ic_route_search_scooter_s
+                    PersonalVehicleType.BICYCLE -> com.trafi.ui.R.drawable.ic_route_search_bike_s
+                    PersonalVehicleType.KICK_SCOOTER -> com.trafi.ui.R.drawable.ic_route_search_scooter_s
                 }
             )
             val durationMillis = segment.endTimeMillis - segment.startTimeMillis

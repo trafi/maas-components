@@ -42,8 +42,8 @@ internal fun RouteSearchHeader(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val timeVector = painterResource(R.drawable.ic_route_search_trip_time_s)
-    val switchVector = painterResource(R.drawable.ic_route_search_switch_20)
+    val timeVector = painterResource(com.trafi.ui.R.drawable.ic_route_search_trip_time_s)
+    val switchVector = painterResource(com.trafi.ui.R.drawable.ic_route_search_switch_20)
 
     ConstraintLayout(modifier) {
         val (back, title, startField, endField, switch) = createRefs()

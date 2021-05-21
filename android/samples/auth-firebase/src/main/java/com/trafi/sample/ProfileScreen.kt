@@ -123,7 +123,7 @@ private fun Input(
         trailingIcon = if (text.isNotEmpty() && isFocused) {
             {
                 Icon(
-                    painterResource(id = R.drawable.input_fields_remove),
+                    painterResource(id = com.trafi.ui.R.drawable.input_fields_remove),
                     contentDescription = "Clear",
                     modifier = Modifier.clickable { onTextChange("") }
                 )

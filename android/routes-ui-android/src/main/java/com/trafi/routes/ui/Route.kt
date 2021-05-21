@@ -62,9 +62,9 @@ public fun Route(route: Route, onClick: () -> Unit, modifier: Modifier = Modifie
                         val vector = painterResource(
                             when (disruption.severity) {
                                 RouteDisruption.Severity.NOT_AFFECTED,
-                                RouteDisruption.Severity.INFORMATION -> R.drawable.warning_info_s
-                                RouteDisruption.Severity.WARNING -> R.drawable.warning_warning_s
-                                RouteDisruption.Severity.ALERT -> R.drawable.warning_alert_s
+                                RouteDisruption.Severity.INFORMATION -> com.trafi.ui.R.drawable.warning_info_s
+                                RouteDisruption.Severity.WARNING -> com.trafi.ui.R.drawable.warning_warning_s
+                                RouteDisruption.Severity.ALERT -> com.trafi.ui.R.drawable.warning_alert_s
                             }
                         )
                         Row(modifier = Modifier.padding(top = 8.dp)) {
