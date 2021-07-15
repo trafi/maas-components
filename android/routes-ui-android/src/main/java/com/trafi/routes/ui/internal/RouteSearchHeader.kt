@@ -127,14 +127,12 @@ internal fun RouteSearchHeader(
             prevRef = ref
         }
 
-        // https://issuetracker.google.com/issues/181717954
-        // will be fixed in constraintlayout-compose:1.0.0-alpha06
-        // val barrier = createEndBarrier(startIcon, endIcon)
+        val barrier = createEndBarrier(startIcon, endIcon)
 
         OutlinedTextField(
             startText,
             modifier = Modifier.constrainAs(startField) {
-                // start.linkTo(barrier)
+                start.linkTo(barrier)
                 end.linkTo(parent.end)
                 width = Dimension.fillToConstraints
                 top.linkTo(title.bottom)
@@ -145,7 +143,7 @@ internal fun RouteSearchHeader(
         OutlinedTextField(
             endText,
             modifier = Modifier.constrainAs(endField) {
-                // start.linkTo(barrier)
+                start.linkTo(barrier)
                 end.linkTo(parent.end)
                 width = Dimension.fillToConstraints
                 top.linkTo(startField.bottom, margin = Spacing.xs)
