@@ -25,7 +25,7 @@ object Versions {
     const val composeActivity = activity
     const val composeLifecycleViewmodel = "1.0.0-alpha07"
 
-    const val ktor = "1.6.0"
+    const val ktor = "1.6.1"
     const val coroutines = "1.5.0"
     const val kotlinxSerialization = "1.2.1"
 
