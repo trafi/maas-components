@@ -22,5 +22,5 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
     implementation("androidx.activity:activity-ktx:${Versions.activity}")
     implementation("androidx.activity:activity-compose:${Versions.composeActivity}")
-    implementation("androidx.fragment:fragment-ktx:1.3.4")
+    implementation("androidx.fragment:fragment-ktx:${Versions.fragment}")
 }

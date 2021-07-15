@@ -14,6 +14,7 @@ object Versions {
 
     const val core = "1.6.0"
     const val activity = "1.3.0-rc02"
+    const val fragment = "1.3.5"
 
     const val compose = "1.0.0-rc02"
     const val composeNavigation = "2.4.0-alpha04"
