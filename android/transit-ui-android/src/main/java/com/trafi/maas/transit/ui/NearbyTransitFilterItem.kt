@@ -1,6 +1,7 @@
 package com.trafi.maas.transit.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
@@ -8,11 +9,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,18 +44,21 @@ internal fun NearbyTransitFilterItem(
             minHeight = constants.itemMinHeight
         )
     ) {
-        Surface(
-            shape = if (constants.cornerRadius.isRound) {
-                RoundedCornerShape(percent = 50)
-            } else {
-                RoundedCornerShape(constants.cornerRadius)
-            },
-            color = if (enabled) item.color.toColor() else constants.disabledColor,
+        val shape = if (constants.cornerRadius.isRound) {
+            RoundedCornerShape(percent = 50)
+        } else {
+            RoundedCornerShape(constants.cornerRadius)
+        }
+        val color = if (enabled) item.color.toColor() else constants.disabledColor
+        Box(
             modifier = Modifier
                 .sizeIn(
                     minWidth = constants.contentMinWidth,
                     minHeight = constants.contentMinHeight
                 )
+                .background(color = color, shape = shape)
+                .clip(shape),
+            propagateMinConstraints = true
         ) {
             val painter = painterResource(when (item.icon) {
                 "ubahn" -> com.trafi.ui.R.drawable.providers_ubahn_xs

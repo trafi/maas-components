@@ -55,8 +55,6 @@ kotlin {
             with(languageSettings) {
                 useExperimentalAnnotation("kotlin.RequiresOptIn")
                 useExperimentalAnnotation("kotlin.ExperimentalUnsignedTypes")
-                languageVersion = "1.5"
-                apiVersion = "1.5"
             }
         }
         val commonMain by getting {

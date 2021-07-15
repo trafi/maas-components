@@ -1,7 +1,6 @@
 package com.trafi.routes.ui
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -9,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -32,14 +32,15 @@ import java.text.DateFormat
 import java.util.Date
 import java.util.TimeZone
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 public fun Route(route: Route, onClick: () -> Unit, modifier: Modifier = Modifier) {
     Surface(
+        onClick = onClick,
         modifier = modifier
             .semantics(mergeDescendants = true) {
                 contentDescription = route.accessibilityLabel
             }
-            .clickable(onClick = onClick)
     ) {
         Cell(
             modifier = Modifier

@@ -12,15 +12,19 @@ object Versions {
     const val androidTargetSdk = 30
     const val androidMinSdk = 23
 
-    const val compose = "1.0.0-beta04"
-    const val composeNavigation = "1.0.0-alpha10"
-    const val composeConstraintLayout = "1.0.0-alpha05"
+    const val activity = "1.3.0-beta01"
 
-    const val ktor = "1.5.3"
-    const val coroutines = "1.4.3"
-    const val kotlinxSerialization = "1.1.0"
+    const val compose = "1.0.0-beta08"
+    const val composeNavigation = "2.4.0-alpha02"
+    const val composeConstraintLayout = "1.0.0-alpha07"
+    const val composeActivity = activity
+    const val composeLifecycleViewmodel = "1.0.0-alpha06"
 
-    const val ktlintGradlePlugin = "10.0.0"
+    const val ktor = "1.6.0"
+    const val coroutines = "1.5.0"
+    const val kotlinxSerialization = "1.2.1"
+
+    const val ktlintGradlePlugin = "10.1.0"
     const val ktlint = "0.41.0"
     val shot: String = versions.getProperty("version.shot")
 }

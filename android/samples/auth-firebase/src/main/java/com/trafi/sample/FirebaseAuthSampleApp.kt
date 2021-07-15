@@ -15,10 +15,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.navigation.NavController
-import androidx.navigation.compose.KEY_ROUTE
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
 import com.trafi.core.ApiResult
 import com.trafi.ui.theme.CornerRadius
@@ -132,4 +130,4 @@ private val <T : Any> ApiResult.Failure<T>.developerMessage: String?
     }
 
 private val NavController.currentRoute: String?
-    get() = currentBackStackEntry?.arguments?.getString(KEY_ROUTE)
+    get() = currentBackStackEntry?.destination?.route

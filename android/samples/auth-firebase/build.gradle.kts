@@ -25,8 +25,8 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:19.0.0")
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}")
-    implementation("androidx.core:core-ktx:1.3.2")
-    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("androidx.core:core-ktx:1.5.0")
+    implementation("androidx.appcompat:appcompat:1.3.0")
     implementation("com.google.android.material:material:1.3.0")
     implementation("androidx.compose.foundation:foundation-layout:${Versions.compose}")
     implementation("androidx.compose.material:material:${Versions.compose}")
@@ -36,7 +36,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
-    implementation("androidx.activity:activity-ktx:1.3.0-alpha06")
-    implementation("androidx.activity:activity-compose:1.3.0-alpha06")
-    implementation("androidx.fragment:fragment-ktx:1.3.2")
+    implementation("androidx.activity:activity-ktx:${Versions.activity}")
+    implementation("androidx.activity:activity-compose:${Versions.composeActivity}")
+    implementation("androidx.fragment:fragment-ktx:1.3.4")
 }

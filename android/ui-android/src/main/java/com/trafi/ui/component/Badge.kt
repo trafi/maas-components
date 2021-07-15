@@ -3,6 +3,8 @@ package com.trafi.ui.component
 import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -12,13 +14,16 @@ import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Surface
+import androidx.compose.material.LocalContentColor
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -88,10 +93,10 @@ private fun SingleBadge(
     isEnabled: Boolean = true,
 ) {
     ConstraintLayout {
-        Surface(
+        BadgeSurface(
             color = if (isEnabled) badge.backgroundColor else constants.disabledColor,
             contentColor = badge.contentColor ?: constants.defaultContentColor,
-            shape = RoundedCornerShape(badgeType.badgeRounding),
+            shape = RoundedCornerShape(badgeType.badgeCornerRadius),
             modifier = modifier.sizeIn(minHeight = badgeType.badgeHeight)
                 .constrainAs(createRef()) {
                     bottom.linkTo(parent.bottom)
@@ -134,12 +139,13 @@ private fun StackedBadge(
     ConstraintLayout {
         val altBadgesSublist = alternativeBadges.take(constants.maxStackedBadgesNumber)
         altBadgesSublist.forEachIndexed { index, smallScheduleBadge ->
-            Surface(
+            BadgeSurface(
                 color = smallScheduleBadge.backgroundColor,
                 contentColor = smallScheduleBadge.contentColor ?: constants.defaultContentColor,
                 border = BorderStroke(constants.borderWidth, color = constants.borderColor),
-                shape = RoundedCornerShape(badgeType.badgeRounding),
-                modifier = modifier.height(badgeType.badgeHeight + (index * 4).dp)
+                shape = RoundedCornerShape(badgeType.badgeCornerRadius),
+                modifier = modifier
+                    .height(badgeType.badgeHeight + (index * 4).dp)
                     .padding(top = (index * 4).dp)
             ) {
                 BadgeFiller(
@@ -152,11 +158,11 @@ private fun StackedBadge(
                 )
             }
         }
-        Surface(
+        BadgeSurface(
             color = badge.backgroundColor,
             contentColor = badge.contentColor ?: constants.defaultContentColor,
             border = BorderStroke(constants.borderWidth, color = constants.borderColor),
-            shape = RoundedCornerShape(badgeType.badgeRounding),
+            shape = RoundedCornerShape(badgeType.badgeCornerRadius),
             modifier = modifier
                 .sizeIn(minHeight = badgeType.badgeHeight + (altBadgesSublist.size * 4).dp + (constants.borderWidth * 2))
                 .padding(top = (altBadgesSublist.size * 4).dp)
@@ -204,7 +210,9 @@ private fun BadgeFiller(
         horizontalArrangement = Arrangement.spacedBy(constants.spacer)
     ) {
         if (isHiddenLayoutFiller) {
-            Box(modifier = Modifier.align(Alignment.CenterVertically).width(constants.iconWidth)) {}
+            Box(modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .width(constants.iconWidth)) {}
         } else {
             icon?.let {
                 Image(
@@ -212,7 +220,8 @@ private fun BadgeFiller(
                     contentDescription = null,
                     colorFilter = ColorFilter.tint(badge.contentColor
                         ?: constants.defaultContentColor),
-                    modifier = Modifier.align(Alignment.CenterVertically)
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
                         .width(constants.iconWidth)
                         .height(constants.iconHeight)
                 )
@@ -223,7 +232,8 @@ private fun BadgeFiller(
                 text = badge.text,
                 color = badge.contentColor ?: constants.defaultContentColor,
                 style = badgeType.textStyle,
-                modifier = Modifier.align(Alignment.CenterVertically)
+                modifier = Modifier
+                    .align(Alignment.CenterVertically)
                     .padding(bottom = 1.dp)
                     .wrapContentHeight(unbounded = true)
             )
@@ -237,7 +247,7 @@ private val BadgeType.badgeHeight: Dp
         Medium -> constants.minHeightMedium
     }
 
-private val BadgeType.badgeRounding: Dp
+private val BadgeType.badgeCornerRadius: Dp
     @Composable get() = when (this) {
         Small -> constants.cornerRadiusSmall
         Medium -> constants.cornerRadiusMedium
@@ -266,6 +276,30 @@ private val BadgeType.textStyle: TextStyle
     }
 
 private fun Dp.plusIf(shouldInclude: Boolean, other: Dp) = if (shouldInclude) this + other else this
+
+@Composable
+private fun BadgeSurface(
+    modifier: Modifier,
+    shape: Shape,
+    color: Color,
+    contentColor: Color,
+    border: BorderStroke? = null,
+    content: @Composable () -> Unit,
+) {
+    CompositionLocalProvider(
+        LocalContentColor provides contentColor,
+    ) {
+        Box(
+            modifier = modifier
+                .then(if (border != null) Modifier.border(border, shape) else Modifier)
+                .background(color = color, shape = shape)
+                .clip(shape),
+            propagateMinConstraints = true
+        ) {
+            content()
+        }
+    }
+}
 
 @Preview
 @Composable

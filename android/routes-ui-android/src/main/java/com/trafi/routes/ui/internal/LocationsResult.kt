@@ -1,6 +1,5 @@
 package com.trafi.routes.ui.internal
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
@@ -9,6 +8,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -62,6 +62,7 @@ private fun LocationResult(
     modifier: Modifier = Modifier
 ) = LocationResult(location.name ?: location.coordinate.toString(), null, onClick, modifier)
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun LocationResult(
     name: String,
@@ -69,7 +70,7 @@ private fun LocationResult(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Surface(modifier = modifier.clickable(onClick = onClick)) {
+    Surface(onClick = onClick, modifier = modifier) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
@@ -86,9 +87,9 @@ private fun LocationResult(
                     name,
                     style = MaasTheme.typography.textL.copy(fontWeight = FontWeight.SemiBold),
                 )
-                address?.let {
+                if (!address.isNullOrBlank()) {
                     Text(
-                        it,
+                        address,
                         style = MaasTheme.typography.textM.copy(color = MaasTheme.colors.grayScale.gray500),
                     )
                 }

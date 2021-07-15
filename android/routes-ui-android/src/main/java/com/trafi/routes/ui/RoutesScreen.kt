@@ -116,6 +116,11 @@ public fun RoutesScreen(
                     .padding(horizontal = MaasTheme.spacing.globalMargin)
             )
 
+            Divider(
+                modifier = Modifier
+                    .padding(horizontal = MaasTheme.spacing.globalMargin)
+            )
+
             if (searchingForStart || searchingForEnd) {
                 LocationSearchBody(
                     state = locationViewModel.state,
@@ -161,10 +166,6 @@ private fun ColumnScope.RouteSearchBody(
     onRouteClick: (Route) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Divider(
-        modifier = Modifier
-            .padding(horizontal = MaasTheme.spacing.globalMargin)
-    )
     when (state) {
         RoutesResultState.NoResults -> {
             Text(
