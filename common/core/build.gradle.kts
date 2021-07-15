@@ -9,30 +9,6 @@ plugins {
     id("maven-meta")
 }
 
-android {
-    compileSdk = Versions.androidCompileSdk
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdk = Versions.androidMinSdk
-        consumerProguardFiles("consumer-rules.pro")
-    }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-    }
-    // workaround for https://youtrack.jetbrains.com/issue/KT-43944
-    // the android { } block had to be moved before kotlin { } due to this, too
-    configurations {
-        create("androidTestApi")
-        create("androidTestDebugApi")
-        create("androidTestReleaseApi")
-        create("testApi")
-        create("testDebugApi")
-        create("testReleaseApi")
-    }
-}
-
 kotlin {
     android {
         publishAllLibraryVariants()
@@ -96,6 +72,20 @@ kotlin {
             }
         }
         val iosTest by getting
+    }
+}
+
+android {
+    compileSdk = Versions.androidCompileSdk
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    defaultConfig {
+        minSdk = Versions.androidMinSdk
+        consumerProguardFiles("consumer-rules.pro")
+    }
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+        }
     }
 }
 
