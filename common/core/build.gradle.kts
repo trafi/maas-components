@@ -10,10 +10,10 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Versions.androidCompileSdk)
+    compileSdk = Versions.androidCompileSdk
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(Versions.androidMinSdk)
+        minSdk = Versions.androidMinSdk
         consumerProguardFiles("consumer-rules.pro")
     }
     buildTypes {
@@ -39,7 +39,6 @@ kotlin {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "1.8"
-                useIR = true
             }
         }
     }
