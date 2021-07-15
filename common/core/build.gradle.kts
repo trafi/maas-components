@@ -81,7 +81,10 @@ kotlin {
                 implementation("androidx.compose.ui:ui:${Versions.compose}")
             }
         }
+        val androidAndroidTestRelease by getting
         val androidTest by getting {
+            // https://discuss.kotlinlang.org/t/disabling-androidandroidtestrelease-source-set-in-gradle-kotlin-dsl-script/21448
+            dependsOn(androidAndroidTestRelease)
             dependencies {
                 implementation(kotlin("test-junit"))
                 implementation("junit:junit:4.13.1")
