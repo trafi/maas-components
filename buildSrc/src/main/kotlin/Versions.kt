@@ -27,7 +27,7 @@ object Versions {
 
     const val ktor = "1.6.1"
     const val coroutines = "1.5.1"
-    const val kotlinxSerialization = "1.2.1"
+    const val kotlinxSerialization = "1.2.2"
 
     const val ktlintGradlePlugin = "10.1.0"
     const val ktlint = "0.41.0"
