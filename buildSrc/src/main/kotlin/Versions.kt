@@ -12,6 +12,7 @@ object Versions {
     const val androidTargetSdk = 30
     const val androidMinSdk = 23
 
+    const val core = "1.6.0"
     const val activity = "1.3.0-rc02"
 
     const val compose = "1.0.0-rc02"
