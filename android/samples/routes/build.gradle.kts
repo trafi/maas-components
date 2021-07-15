@@ -11,7 +11,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}")
     implementation("androidx.core:core-ktx:${Versions.core}")
     implementation("androidx.appcompat:appcompat:${Versions.appcompat}")
-    implementation("com.google.android.material:material:1.3.0")
+    implementation("com.google.android.material:material:${Versions.material}")
     implementation("androidx.compose.foundation:foundation-layout:${Versions.compose}")
     implementation("androidx.compose.material:material:${Versions.compose}")
     implementation("androidx.compose.ui:ui-tooling-preview:${Versions.compose}")
