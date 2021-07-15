@@ -28,5 +28,5 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling:${Versions.compose}")
     implementation("androidx.constraintlayout:constraintlayout-compose:${Versions.composeConstraintLayout}")
 
-    androidTestImplementation("androidx.test:rules:1.3.0")
+    androidTestImplementation("androidx.test:rules:1.4.0")
 }
