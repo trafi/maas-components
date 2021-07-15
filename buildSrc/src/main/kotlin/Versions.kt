@@ -12,13 +12,13 @@ object Versions {
     const val androidTargetSdk = 30
     const val androidMinSdk = 23
 
-    const val activity = "1.3.0-beta01"
+    const val activity = "1.3.0-rc02"
 
-    const val compose = "1.0.0-beta08"
-    const val composeNavigation = "2.4.0-alpha02"
+    const val compose = "1.0.0-rc02"
+    const val composeNavigation = "2.4.0-alpha04"
     const val composeConstraintLayout = "1.0.0-alpha07"
     const val composeActivity = activity
-    const val composeLifecycleViewmodel = "1.0.0-alpha06"
+    const val composeLifecycleViewmodel = "1.0.0-alpha07"
 
     const val ktor = "1.6.0"
     const val coroutines = "1.5.0"
