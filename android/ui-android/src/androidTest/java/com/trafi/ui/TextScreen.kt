@@ -34,7 +34,7 @@ private fun TextScreen() {
     ) {
         styles.forEach { (name, style) ->
             Text(
-                name.toUpperCase(Locale.US),
+                name.uppercase(Locale.US),
                 style = MaasTheme.typography.label,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -45,7 +45,7 @@ private fun TextScreen() {
                 style = style
             )
             Text(
-                "$name multiline".toUpperCase(Locale.US),
+                "$name multiline".uppercase(Locale.US),
                 style = MaasTheme.typography.label,
                 modifier = Modifier
                     .fillMaxWidth()
