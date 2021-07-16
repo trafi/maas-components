@@ -90,7 +90,6 @@ android {
 }
 
 ktlint {
-    disabledRules.set(setOf("no-wildcard-imports"))
     filter {
         exclude("**/com/trafi/core/model/**")
         exclude("**/kotlinx/serialization/internal/**")
