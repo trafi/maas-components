@@ -21,7 +21,7 @@ object Versions {
 
     const val compose = "1.0.0-rc02"
     const val composeNavigation = "2.4.0-alpha04"
-    const val composeConstraintLayout = "1.0.0-alpha07"
+    const val composeConstraintLayout = "1.0.0-alpha08"
     const val composeActivity = activity
     const val composeLifecycleViewmodel = "1.0.0-alpha07"
 
