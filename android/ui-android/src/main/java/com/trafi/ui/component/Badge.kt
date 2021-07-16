@@ -97,7 +97,8 @@ private fun SingleBadge(
             color = if (isEnabled) badge.backgroundColor else constants.disabledColor,
             contentColor = badge.contentColor ?: constants.defaultContentColor,
             shape = RoundedCornerShape(badgeType.badgeCornerRadius),
-            modifier = modifier.sizeIn(minHeight = badgeType.badgeHeight)
+            modifier = modifier
+                .sizeIn(minHeight = badgeType.badgeHeight)
                 .constrainAs(createRef()) {
                     bottom.linkTo(parent.bottom)
                 }
@@ -138,10 +139,10 @@ private fun StackedBadge(
 ) {
     ConstraintLayout {
         val altBadgesSublist = alternativeBadges.take(constants.maxStackedBadgesNumber)
-        altBadgesSublist.forEachIndexed { index, smallScheduleBadge ->
+        altBadgesSublist.forEachIndexed { index, altBadge ->
             BadgeSurface(
-                color = smallScheduleBadge.backgroundColor,
-                contentColor = smallScheduleBadge.contentColor ?: constants.defaultContentColor,
+                color = altBadge.backgroundColor,
+                contentColor = altBadge.contentColor ?: constants.defaultContentColor,
                 border = BorderStroke(constants.borderWidth, color = constants.borderColor),
                 shape = RoundedCornerShape(badgeType.badgeCornerRadius),
                 modifier = modifier
@@ -291,7 +292,11 @@ private fun BadgeSurface(
     ) {
         Box(
             modifier = modifier
-                .then(if (border != null) Modifier.border(border, shape) else Modifier)
+                .then(if (border != null) {
+                    Modifier
+                        .border(border, shape)
+                        .padding(1.dp)
+                } else Modifier)
                 .background(color = color, shape = shape)
                 .clip(shape),
             propagateMinConstraints = true
