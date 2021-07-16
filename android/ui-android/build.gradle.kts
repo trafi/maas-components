@@ -29,4 +29,6 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout-compose:${Versions.composeConstraintLayout}")
 
     androidTestImplementation("androidx.test:rules:1.4.0")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
+    androidTestImplementation("androidx.compose.ui:ui-test-manifest:${Versions.compose}")
 }
