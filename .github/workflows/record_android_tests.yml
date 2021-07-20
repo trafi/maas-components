@@ -19,7 +19,7 @@ jobs:
           java-version: 11
 
       -  name: Record screenshots on Android emulator
-         uses: ReactiveCircus/android-emulator-runner@v2.14.2
+         uses: ReactiveCircus/android-emulator-runner@v2.19.1
          with:
            api-level: 28
            target: default
