@@ -7,10 +7,10 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Versions.androidCompileSdk)
+    compileSdk = Versions.androidCompileSdk
 
     defaultConfig {
-        minSdkVersion(Versions.androidMinSdk)
+        minSdk = Versions.androidMinSdk
     }
 
     compileOptions {
@@ -19,7 +19,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
-        useIR = true
 
         // avoid kotlin_module clash for projects with the same name, e.g. 'ui' & 'routes:ui"
         // https://discuss.kotlinlang.org/t/dealing-with-kotlin-module-conflict-when-building-apk-for-project-with-non-unique-project-names/11247
@@ -33,7 +32,6 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerVersion = Versions.kotlin
         kotlinCompilerExtensionVersion = Versions.compose
     }
 }

@@ -1,6 +1,7 @@
 package com.trafi.maas.transit.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
@@ -8,13 +9,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.trafi.core.model.ext.FilterItem
@@ -43,30 +44,33 @@ internal fun NearbyTransitFilterItem(
             minHeight = constants.itemMinHeight
         )
     ) {
-        Surface(
-            shape = if (constants.cornerRadius.isRound) {
-                RoundedCornerShape(percent = 50)
-            } else {
-                RoundedCornerShape(constants.cornerRadius)
-            },
-            color = if (enabled) item.color.toColor() else constants.disabledColor,
+        val shape = if (constants.cornerRadius.isRound) {
+            RoundedCornerShape(percent = 50)
+        } else {
+            RoundedCornerShape(constants.cornerRadius)
+        }
+        val color = if (enabled) item.color.toColor() else constants.disabledColor
+        Box(
             modifier = Modifier
                 .sizeIn(
                     minWidth = constants.contentMinWidth,
                     minHeight = constants.contentMinHeight
                 )
+                .background(color = color, shape = shape)
+                .clip(shape),
+            propagateMinConstraints = true
         ) {
-            val vector = vectorResource(when (item.icon) {
-                "ubahn" -> R.drawable.providers_ubahn_xs
-                "sbahn" -> R.drawable.providers_sbahn_xs
-                "bus" -> R.drawable.providers_bus_xs
-                "tram" -> R.drawable.providers_trams_xs
-                "train" -> R.drawable.providers_train_xs
-                "ferry" -> R.drawable.providers_ferry_xs
-                else -> R.drawable.providers_bus_xs
+            val painter = painterResource(when (item.icon) {
+                "ubahn" -> com.trafi.ui.R.drawable.providers_ubahn_xs
+                "sbahn" -> com.trafi.ui.R.drawable.providers_sbahn_xs
+                "bus" -> com.trafi.ui.R.drawable.providers_bus_xs
+                "tram" -> com.trafi.ui.R.drawable.providers_trams_xs
+                "train" -> com.trafi.ui.R.drawable.providers_train_xs
+                "ferry" -> com.trafi.ui.R.drawable.providers_ferry_xs
+                else -> com.trafi.ui.R.drawable.providers_bus_xs
             })
             Image(
-                imageVector = vector,
+                painter = painter,
                 contentDescription = null,
                 modifier = Modifier
                     .width(constants.imageWidth)

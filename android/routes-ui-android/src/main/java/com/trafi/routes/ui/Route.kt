@@ -1,20 +1,20 @@
 package com.trafi.routes.ui
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.defaultMinSizeConstraints
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -32,18 +32,19 @@ import java.text.DateFormat
 import java.util.Date
 import java.util.TimeZone
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 public fun Route(route: Route, onClick: () -> Unit, modifier: Modifier = Modifier) {
     Surface(
+        onClick = onClick,
         modifier = modifier
             .semantics(mergeDescendants = true) {
                 contentDescription = route.accessibilityLabel
             }
-            .clickable(onClick = onClick)
     ) {
         Cell(
             modifier = Modifier
-                .defaultMinSizeConstraints(minHeight = 64.dp)
+                .defaultMinSize(minHeight = 64.dp)
                 .padding(horizontal = MaasTheme.spacing.globalMargin, vertical = 12.dp),
             content = {
                 Row {
@@ -59,12 +60,12 @@ public fun Route(route: Route, onClick: () -> Unit, modifier: Modifier = Modifie
                 }
                 route.disruption?.let { disruption ->
                     disruption.title?.let { disruptionTitle ->
-                        val vector = vectorResource(
+                        val vector = painterResource(
                             when (disruption.severity) {
                                 RouteDisruption.Severity.NOT_AFFECTED,
-                                RouteDisruption.Severity.INFORMATION -> R.drawable.warning_info_s
-                                RouteDisruption.Severity.WARNING -> R.drawable.warning_warning_s
-                                RouteDisruption.Severity.ALERT -> R.drawable.warning_alert_s
+                                RouteDisruption.Severity.INFORMATION -> com.trafi.ui.R.drawable.warning_info_s
+                                RouteDisruption.Severity.WARNING -> com.trafi.ui.R.drawable.warning_warning_s
+                                RouteDisruption.Severity.ALERT -> com.trafi.ui.R.drawable.warning_alert_s
                             }
                         )
                         Row(modifier = Modifier.padding(top = 8.dp)) {

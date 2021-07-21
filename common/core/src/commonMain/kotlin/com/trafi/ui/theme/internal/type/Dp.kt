@@ -3,9 +3,11 @@
 
 package com.trafi.ui.theme.internal.type
 
+import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-expect inline class Dp(val value: Float)
+@JvmInline
+expect value class Dp(val value: Float)
 
 internal val Int.dp get() = Dp(toFloat())
 internal val Float.dp get() = Dp(this)

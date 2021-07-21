@@ -1,17 +1,20 @@
 @file:Suppress("UnstableApiUsage")
 
+import com.android.build.api.dsl.ApkSigningConfig
+import com.android.build.api.dsl.ApplicationBuildType
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
 }
 
 android {
-    compileSdkVersion(Versions.androidCompileSdk)
-    buildToolsVersion(Versions.androidBuildToolsVersion)
+    compileSdk = Versions.androidCompileSdk
+    buildToolsVersion = Versions.androidBuildToolsVersion
 
     defaultConfig {
-        minSdkVersion(Versions.androidMinSdk)
-        targetSdkVersion(Versions.androidTargetSdk)
+        minSdk = Versions.androidMinSdk
+        targetSdk = Versions.androidTargetSdk
 
         versionCode = 1
         versionName = "1.0"
@@ -29,7 +32,7 @@ android {
             value = "\"${resolveProperty("trafi.regionId", "TRAFI_REGION_ID") ?: ""}\"")
     }
     signingConfigs {
-        getByName("debug") {
+        getByName<ApkSigningConfig>("debug") {
             keyAlias = "androiddebugkey"
             keyPassword = "android"
             storeFile = rootProject.file("android/keystores/debug.keystore")
@@ -37,7 +40,7 @@ android {
         }
     }
     buildTypes {
-        getByName("debug") {
+        getByName<ApplicationBuildType>("debug") {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
@@ -48,7 +51,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
-        useIR = true
 
         // allow opting-in to experimental Compose APIs
         freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
@@ -57,7 +59,6 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerVersion = Versions.kotlin
         kotlinCompilerExtensionVersion = Versions.compose
     }
 }

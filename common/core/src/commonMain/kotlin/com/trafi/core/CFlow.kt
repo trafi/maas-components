@@ -51,7 +51,7 @@ class CFlow<out T : Any>(private val origin: Flow<T>) : Flow<T> by origin {
     constructor(producer: ((T) -> Unit) -> () -> Unit, onCompleted: (() -> Unit) -> Unit) : this(
         callbackFlow {
             onCompleted { close() }
-            val cancellation = producer { offer(it) }
+            val cancellation = producer { trySend(it) }
             awaitClose { cancellation() }
         }
     )

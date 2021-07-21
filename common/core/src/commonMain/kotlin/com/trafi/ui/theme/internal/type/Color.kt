@@ -7,9 +7,11 @@
 
 package com.trafi.ui.theme.internal.type
 
+import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-expect inline class Color(val value: ULong)
+@JvmInline
+expect value class Color(val value: ULong)
 
 internal fun Color.alpha(value: Float): Color {
     require(
