@@ -3,6 +3,7 @@ package com.trafi.ui.component
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.text.BasicTextField
@@ -49,7 +50,7 @@ public fun OutlinedTextField(
     val interactionSource = remember { MutableInteractionSource() }
     val isFocused = interactionSource.collectIsFocusedAsState().value
 
-    val textFieldModifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
+    val textFieldModifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp).fillMaxWidth()
 
     val borderColor = if (isFocused) activeColor else inactiveColor
     val borderWidth = 1.dp
