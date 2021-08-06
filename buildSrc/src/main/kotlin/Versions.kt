@@ -24,6 +24,7 @@ object Versions {
     const val composeConstraintLayout = "1.0.0-beta02"
     const val composeActivity = activity
     const val composeLifecycleViewmodel = "1.0.0-alpha07"
+    const val accompanist = "0.16.0"
 
     const val ktor = "1.6.2"
     const val coroutines = "1.5.1"
