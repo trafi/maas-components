@@ -17,6 +17,11 @@ android {
     }
 }
 
+shot {
+    // https://github.com/Karumi/Shot/issues/247
+    applicationId = "con.trafi.ui"
+}
+
 dependencies {
     implementation(project(":common:core"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}")

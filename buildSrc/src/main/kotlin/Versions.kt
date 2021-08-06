@@ -13,21 +13,21 @@ object Versions {
     const val androidMinSdk = 23
 
     const val core = "1.6.0"
-    const val activity = "1.3.0-rc02"
-    const val fragment = "1.3.5"
-    const val lifecycle = "2.4.0-alpha02"
-    const val appcompat = "1.3.0"
+    const val activity = "1.3.1"
+    const val fragment = "1.3.6"
+    const val lifecycle = "2.4.0-alpha03"
+    const val appcompat = "1.3.1"
     const val material = "1.4.0"
 
-    const val compose = "1.0.0-rc02"
-    const val composeNavigation = "2.4.0-alpha04"
-    const val composeConstraintLayout = "1.0.0-alpha08"
+    const val compose = "1.0.1"
+    const val composeNavigation = "2.4.0-alpha06"
+    const val composeConstraintLayout = "1.0.0-beta02"
     const val composeActivity = activity
     const val composeLifecycleViewmodel = "1.0.0-alpha07"
 
-    const val ktor = "1.6.1"
-    const val coroutines = "1.5.0"
-    const val kotlinxSerialization = "1.2.1"
+    const val ktor = "1.6.2"
+    const val coroutines = "1.5.1"
+    const val kotlinxSerialization = "1.2.2"
 
     const val ktlintGradlePlugin = "10.1.0"
     const val ktlint = "0.41.0"
