@@ -17,8 +17,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -36,6 +39,8 @@ import com.trafi.ui.theme.Spacing
 internal fun RouteSearchHeader(
     startText: String,
     endText: String,
+    startFocusRequester: FocusRequester,
+    endFocusRequester: FocusRequester,
     onStartTextChange: (String) -> Unit,
     onEndTextChange: (String) -> Unit,
     onSwitchClick: () -> Unit,
@@ -136,7 +141,7 @@ internal fun RouteSearchHeader(
                 end.linkTo(parent.end)
                 width = Dimension.fillToConstraints
                 top.linkTo(title.bottom)
-            },
+            }.focusRequester(startFocusRequester),
             onValueChange = onStartTextChange,
             textStyle = MaasTheme.typography.textL,
         )
@@ -147,7 +152,7 @@ internal fun RouteSearchHeader(
                 end.linkTo(parent.end)
                 width = Dimension.fillToConstraints
                 top.linkTo(startField.bottom, margin = Spacing.xs)
-            },
+            }.focusRequester(endFocusRequester),
             onValueChange = onEndTextChange,
             textStyle = MaasTheme.typography.textL,
         )
@@ -193,6 +198,8 @@ private fun RouteSearchHeaderPreview() {
         RouteSearchHeader(
             startText = vilniusAirport.displayText,
             endText = vilniusCathedral.displayText,
+            startFocusRequester = remember { FocusRequester() },
+            endFocusRequester = remember { FocusRequester() },
             onStartTextChange = {},
             onEndTextChange = {},
             onSwitchClick = {},

@@ -15,6 +15,7 @@ import androidx.compose.material.LocalContentColor
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -22,7 +23,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -68,7 +70,16 @@ public fun RoutesScreen(
     var startText by remember { mutableStateOf(initialStart.displayText) }
     var endText by remember { mutableStateOf(initialEnd.displayText) }
 
-    val keyboardController = LocalSoftwareKeyboardController.current
+    val focusManager = LocalFocusManager.current
+    val startFocusRequester = remember { FocusRequester() }
+    val endFocusRequester = remember { FocusRequester() }
+
+    LaunchedEffect(initialStart, initialEnd) {
+        when {
+            initialStart == null -> startFocusRequester.requestFocus()
+            initialEnd == null -> endFocusRequester.requestFocus()
+        }
+    }
 
     fun tryRouteSearch() {
         start?.let { start -> end?.let { end -> routesViewModel.search(start, end) } }
@@ -83,6 +94,8 @@ public fun RoutesScreen(
             RouteSearchHeader(
                 startText = startText,
                 endText = endText,
+                startFocusRequester = startFocusRequester,
+                endFocusRequester = endFocusRequester,
                 onStartTextChange = {
                     searchingForEnd = false
                     endText = end.displayText
@@ -100,6 +113,7 @@ public fun RoutesScreen(
                     locationViewModel.search(it)
                 },
                 onSwitchClick = {
+                    focusManager.clearFocus()
                     searchingForEnd = false
                     searchingForStart = false
                     val prevStart = start
@@ -127,7 +141,21 @@ public fun RoutesScreen(
                     modifier = Modifier
                         .padding(top = Spacing.md),
                     onClick = { location ->
-                        keyboardController?.hide()
+                        when {
+                            searchingForStart -> {
+                                startText = location.name
+                            }
+                            searchingForEnd -> {
+                                endText = location.name
+                            }
+                        }
+
+                        if (searchingForStart && end == null) {
+                            endFocusRequester.requestFocus()
+                        } else {
+                            focusManager.clearFocus()
+                        }
+
                         locationViewModel.resolveLocation(location)
                     }
                 )
