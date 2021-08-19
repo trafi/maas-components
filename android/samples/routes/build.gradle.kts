@@ -23,4 +23,5 @@ dependencies {
     implementation("androidx.activity:activity-ktx:${Versions.activity}")
     implementation("androidx.activity:activity-compose:${Versions.composeActivity}")
     implementation("androidx.fragment:fragment-ktx:${Versions.fragment}")
+    implementation("com.google.accompanist:accompanist-navigation-animation:${Versions.accompanist}")
 }
