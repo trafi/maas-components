@@ -1,5 +1,7 @@
 rootProject.name = "maas-components"
 
+enableFeaturePreview("VERSION_CATALOGS")
+
 include(
     ":common:core",
     ":android:ui-android",

@@ -1,5 +1,7 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
-    id("org.jlleitschuh.gradle.ktlint") version Versions.ktlintGradlePlugin apply false
+    alias(libs.plugins.ktlint) apply false
 }
 
 allprojects {
@@ -15,9 +17,9 @@ allprojects {
 subprojects {
     afterEvaluate {
         if (project.hasProperty("android")) {
-            apply(plugin = "org.jlleitschuh.gradle.ktlint")
+            apply(plugin = libs.plugins.ktlint.get().pluginId)
             extensions.getByType<org.jlleitschuh.gradle.ktlint.KtlintExtension>().apply {
-                version.set(Versions.ktlint)
+                version.set(libs.versions.ktlint.asProvider())
                 android.set(true)
             }
         }
