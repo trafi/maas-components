@@ -1,6 +1,7 @@
 rootProject.name = "maas-components"
 
 enableFeaturePreview("VERSION_CATALOGS")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(
     ":common:core",

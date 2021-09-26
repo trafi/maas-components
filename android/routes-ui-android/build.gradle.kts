@@ -3,8 +3,8 @@ plugins {
 }
 
 dependencies {
-    api(project(":common:core"))
-    api(project(":android:ui-android"))
+    api(projects.common.core)
+    api(projects.android.uiAndroid)
     implementation(libs.kotlin.stdlib)
     implementation(libs.androidx.core)
     implementation(libs.androidx.lifecycle.viewmodel)

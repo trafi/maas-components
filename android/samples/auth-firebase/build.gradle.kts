@@ -13,8 +13,8 @@ if (file("google-services.json").exists()) {
 android.defaultConfig.applicationId = "com.trafi.sample.auth.firebase"
 
 dependencies {
-    implementation(project(":common:core"))
-    implementation(project(":android:ui-android"))
+    implementation(projects.common.core)
+    implementation(projects.android.uiAndroid)
 
     // Firebase Auth
     implementation(platform("com.google.firebase:firebase-bom:26.4.0"))

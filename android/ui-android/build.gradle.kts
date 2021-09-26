@@ -23,7 +23,7 @@ shot {
 }
 
 dependencies {
-    implementation(project(":common:core"))
+    implementation(projects.common.core)
     implementation(libs.kotlin.stdlib)
     implementation(libs.androidx.core)
     implementation(libs.compose.foundation.layout)

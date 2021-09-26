@@ -5,8 +5,8 @@ plugins {
 android.defaultConfig.applicationId = "com.trafi.sample.routes"
 
 dependencies {
-    implementation(project(":android:ui-android"))
-    implementation(project(":android:routes-ui-android"))
+    implementation(projects.android.uiAndroid)
+    implementation(projects.android.routesUiAndroid)
     implementation(libs.kotlin.stdlib)
     implementation(libs.androidx.core)
     implementation(libs.androidx.appcompat)
