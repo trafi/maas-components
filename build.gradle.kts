@@ -4,6 +4,15 @@ plugins {
     alias(libs.plugins.ktlint) apply false
 }
 
+buildscript {
+    dependencies {
+        classpath(libs.android.gradle)
+        classpath(libs.kotlin.gradle)
+        classpath(libs.karumi.shot.gradle)
+        classpath(libs.google.services.gradle)
+    }
+}
+
 allprojects {
     group = "com.trafi.maas"
     version = "0.1.0-dev07-SNAPSHOT"

@@ -6,7 +6,7 @@ plugins {
     id("maven-publish-android")
 }
 
-val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+val libs: VersionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
 android {
     compileSdk = libs.findVersion("android.compileSdk").get().requiredVersion.toInt()
