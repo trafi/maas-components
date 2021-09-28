@@ -8,13 +8,15 @@ plugins {
     id("kotlin-android")
 }
 
+val libs: VersionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
+
 android {
-    compileSdk = Versions.androidCompileSdk
-    buildToolsVersion = Versions.androidBuildToolsVersion
+    compileSdk = libs.findVersion("android.compileSdk").get().requiredVersion.toInt()
+    buildToolsVersion = libs.findVersion("android.buildTools").get().requiredVersion
 
     defaultConfig {
-        minSdk = Versions.androidMinSdk
-        targetSdk = Versions.androidTargetSdk
+        minSdk = libs.findVersion("android.minSdk").get().requiredVersion.toInt()
+        targetSdk = libs.findVersion("android.targetSdk").get().requiredVersion.toInt()
 
         versionCode = 1
         versionName = "1.0"
@@ -59,6 +61,6 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = libs.findVersion("compose").get().requiredVersion
     }
 }

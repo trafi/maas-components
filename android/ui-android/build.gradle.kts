@@ -23,18 +23,18 @@ shot {
 }
 
 dependencies {
-    implementation(project(":common:core"))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}")
-    implementation("androidx.core:core-ktx:${Versions.core}")
-    implementation("androidx.compose.foundation:foundation-layout:${Versions.compose}")
-    implementation("androidx.compose.runtime:runtime:${Versions.compose}")
-    implementation("androidx.compose.material:material:${Versions.compose}")
-    implementation("androidx.compose.ui:ui-tooling-preview:${Versions.compose}")
-    debugImplementation("androidx.compose.ui:ui-tooling:${Versions.compose}")
-    implementation("androidx.constraintlayout:constraintlayout-compose:${Versions.composeConstraintLayout}")
+    implementation(projects.common.core)
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.androidx.core)
+    implementation(libs.compose.foundation.layout)
+    implementation(libs.compose.runtime)
+    implementation(libs.compose.material)
+    implementation(libs.compose.ui.tooling.preview)
+    debugImplementation(libs.compose.ui.tooling)
+    implementation(libs.compose.constraintlayout)
 
-    androidTestImplementation("androidx.test:rules:1.4.0")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
-    debugImplementation("androidx.compose.ui:ui-test-manifest:${Versions.compose}")
-    debugImplementation("androidx.appcompat:appcompat:${Versions.appcompat}")
+    androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.compose.ui.test.junit4)
+    debugImplementation(libs.compose.ui.test.manifest)
+    debugImplementation(libs.androidx.appcompat)
 }

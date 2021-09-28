@@ -1,9 +1,11 @@
+@file:Suppress("UnstableApiUsage")
+
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
-    kotlin("plugin.serialization") version Versions.kotlin
+    kotlin("plugin.serialization") version libs.versions.kotlin
     id("org.jlleitschuh.gradle.ktlint")
     id("maven-publish")
     id("maven-meta")
@@ -34,27 +36,24 @@ kotlin {
         }
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core") {
-                    // https://kotlinlang.org/docs/mobile/concurrency-and-coroutines.html#multithreaded-coroutines
-                    version { strictly(Versions.coroutines) }
-                }
-                implementation("io.ktor:ktor-client-core:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-logging:${Versions.ktor}")
+                implementation(libs.kotlinx.serialization.json)
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.serialization)
+                implementation(libs.ktor.client.logging)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
-                implementation("io.ktor:ktor-client-mock:${Versions.ktor}")
+                implementation(libs.ktor.client.mock)
             }
         }
         val androidMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-android:${Versions.ktor}")
-                implementation("androidx.compose.ui:ui:${Versions.compose}")
+                implementation(libs.ktor.client.android)
+                implementation(libs.compose.ui)
             }
         }
         val androidAndroidTestRelease by getting
@@ -68,7 +67,7 @@ kotlin {
         }
         val iosMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
+                implementation(libs.ktor.client.ios)
             }
         }
         val iosTest by getting
@@ -76,10 +75,10 @@ kotlin {
 }
 
 android {
-    compileSdk = Versions.androidCompileSdk
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = Versions.androidMinSdk
+        minSdk = libs.versions.android.minSdk.get().toInt()
         consumerProguardFiles("consumer-rules.pro")
     }
     buildTypes {
