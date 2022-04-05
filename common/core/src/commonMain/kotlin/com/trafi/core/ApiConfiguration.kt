@@ -5,8 +5,8 @@ package com.trafi.core
  * [logger] - if specified, logs all network requests & responses.
  */
 data class ApiConfiguration(
-    val baseUrl: String,
-    val apiKey: String,
+    val baseUrl: String = "https://whitelabel-app-api-wl.trafi.dev.trafi.com/",
+    val apiKey: String = "",
     val getIdToken: () -> String? = { null },
     val logger: Logger? = null,
 )
