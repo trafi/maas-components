@@ -18,13 +18,11 @@ import io.ktor.client.request.parameter
 
 class LocationsApi internal constructor(
     config: ApiConfiguration,
-    private val regionId: String,
     httpClient: HttpClient,
 ) : ConfiguredApi by config.api() {
 
-    constructor(config: ApiConfiguration, regionId: String) : this(
+    constructor(config: ApiConfiguration) : this(
         config = config,
-        regionId = regionId,
         httpClient = config.defaultHttpClient(),
     )
 
@@ -38,9 +36,8 @@ class LocationsApi internal constructor(
         query: String,
         coordinate: LatLng? = null,
     ): ApiResult<AutoCompleteLocations> = try {
-        val result = httpClient.get<AutoCompleteLocations>(baseApiUrl + "v1/autocomplete") {
+        val result = httpClient.get<AutoCompleteLocations>(baseApiUrl + "v1/location") {
             parameter("q", query)
-            parameter("regionId", regionId)
             parameter("subregionId", null)
             parameter("lat", coordinate?.lat)
             parameter("lng", coordinate?.lng)
@@ -52,7 +49,7 @@ class LocationsApi internal constructor(
 
     suspend fun resolveLocation(location: AutoCompleteLocation): ApiResult<Location> = try {
         location.toLocation()?.let { ApiResult.Success(it) }
-            ?: httpClient.get<AutoCompleteLocation>(baseApiUrl + "v1/autocomplete/id/${location.id}")
+            ?: httpClient.get<AutoCompleteLocation>(baseApiUrl + "v1/location/id/${location.id}")
                 .toLocation()?.let { ApiResult.Success(it) }
             ?: ApiResult.Failure.Generic(IllegalArgumentException("Failed to resolve coordinate for location id ${location.id}"))
     } catch (e: Throwable) {
@@ -62,6 +59,7 @@ class LocationsApi internal constructor(
     suspend fun resolveAddress(coordinate: LatLng): ApiResult<ReverseGeocodeResponse> = try {
         val result =
             httpClient.get<ReverseGeocodeResponse>(baseApiUrl + "v1/location/reversegeocode") {
+                parameter("regionId", "switzerland")
                 parameter("lat", coordinate.lat)
                 parameter("lng", coordinate.lng)
             }

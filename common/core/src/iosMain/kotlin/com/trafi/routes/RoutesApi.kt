@@ -6,7 +6,7 @@ import com.trafi.core.ApiResult
 import com.trafi.core.CFlow
 import com.trafi.core.cFlow
 import com.trafi.core.model.Location
-import com.trafi.core.model.RoutesResult
+import com.trafi.core.model.RouteSearchResponse
 
-fun RoutesApi.search(start: Location, end: Location): CFlow<ApiResult<RoutesResult>> =
+fun RoutesApi.search(start: Location, end: Location): CFlow<ApiResult<RouteSearchResponse>> =
     cFlow { emit(search(start, end)) }
