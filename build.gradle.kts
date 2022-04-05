@@ -15,7 +15,7 @@ buildscript {
 
 allprojects {
     group = "com.trafi.maas"
-    version = "0.1.0-dev07-SNAPSHOT"
+    version = "0.1.0-dev05"
 
     repositories {
         google()
