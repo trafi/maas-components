@@ -17,10 +17,10 @@ import kotlinx.serialization.json.Json
  * The generic upper bound [Any] is specified due to limitations in
  * [interop with Objective-C](https://kotlinlang.org/docs/reference/native/objc_interop.html#generics).
  */
-sealed class ApiResult<out T : Any> {
-    class Success<T : Any>(val value: T) : ApiResult<T>()
+sealed class ApiResult<out T : Any?> {
+    class Success<T : Any?>(val value: T) : ApiResult<T>()
 
-    sealed class Failure<T : Any>(val throwable: Throwable) : ApiResult<T>() {
+    sealed class Failure<T : Any?>(val throwable: Throwable) : ApiResult<T>() {
         /**
          * The server returned 401 Unauthorized.
          * The Authorization header Bearer token retrieved using [ApiConfiguration.getIdToken]
