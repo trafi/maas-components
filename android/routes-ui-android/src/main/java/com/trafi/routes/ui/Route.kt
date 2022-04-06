@@ -20,17 +20,17 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.trafi.core.model.DisruptionSeverity
+import com.trafi.core.model.PersonalVehicleType
 import com.trafi.core.model.Route
-import com.trafi.core.model.RouteDisruption
 import com.trafi.core.model.RouteSegment
-import com.trafi.core.model.RouteSegmentPersonalVehicle
-import com.trafi.core.model.mockRoute
+import com.trafi.core.model.RouteSegmentMode
+import com.trafi.core.model.mock.mockRoute
 import com.trafi.routes.ui.internal.endTimeMillis
 import com.trafi.routes.ui.internal.startTimeMillis
 import com.trafi.ui.theme.MaasTheme
 import java.text.DateFormat
-import java.util.Date
-import java.util.TimeZone
+import java.util.*
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -62,10 +62,10 @@ public fun Route(route: Route, onClick: () -> Unit, modifier: Modifier = Modifie
                     disruption.title?.let { disruptionTitle ->
                         val vector = painterResource(
                             when (disruption.severity) {
-                                RouteDisruption.Severity.NOT_AFFECTED,
-                                RouteDisruption.Severity.INFORMATION -> com.trafi.ui.R.drawable.warning_info_s
-                                RouteDisruption.Severity.WARNING -> com.trafi.ui.R.drawable.warning_warning_s
-                                RouteDisruption.Severity.ALERT -> com.trafi.ui.R.drawable.warning_alert_s
+                                DisruptionSeverity.NOT_AFFECTED,
+                                DisruptionSeverity.INFORMATION -> com.trafi.ui.R.drawable.warning_info_s
+                                DisruptionSeverity.WARNING -> com.trafi.ui.R.drawable.warning_warning_s
+                                DisruptionSeverity.ALERT -> com.trafi.ui.R.drawable.warning_alert_s
                             }
                         )
                         Row(modifier = Modifier.padding(top = 8.dp)) {
@@ -134,17 +134,18 @@ private val Route.accessibilityLabel: String get() {
 private val RouteSegment.accessibilityLabel: String? get() {
     val minutes = maxOf((endTimeMillis - startTimeMillis).millisToMins, 1)
     return when (mode) {
-        RouteSegment.Mode.TRANSIT -> transit?.schedule?.run {
+        RouteSegmentMode.TRANSIT -> transit?.schedule?.run {
             listOfNotNull(transportType, name).joinToString(separator = " ")
         }
-        RouteSegment.Mode.RIDE_HAILING -> rideHailing?.provider?.name
-        RouteSegment.Mode.SHARING -> sharing?.provider?.name
-        RouteSegment.Mode.WALKING -> "Walk $minutes min"
-        RouteSegment.Mode.PERSONAL_VEHICLE -> when (personalVehicle?.vehicle) {
-            RouteSegmentPersonalVehicle.Vehicle.BICYCLE -> "Ride bicycle $minutes min"
-            RouteSegmentPersonalVehicle.Vehicle.KICK_SCOOTER -> "Ride kick-scooter $minutes min"
-            null -> null
+        RouteSegmentMode.RIDE_HAILING -> rideHailing?.provider?.name
+        RouteSegmentMode.SHARING -> sharing?.provider?.name
+        RouteSegmentMode.WALKING -> "Walk $minutes min"
+        RouteSegmentMode.PERSONAL_VEHICLE -> when (personalVehicle?.vehicle) {
+            PersonalVehicleType.BICYCLE -> "Ride bicycle $minutes min"
+            PersonalVehicleType.KICK_SCOOTER -> "Ride kick-scooter $minutes min"
+            else -> null
         }
+        else -> null
     }
 }
 

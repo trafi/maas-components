@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.trafi.core.model.ext.FilterItem
+import com.trafi.core.model.FilterItem
 import com.trafi.core.model.mock.mockFilters
 import com.trafi.maas.transit.ui.internal.NearbyTransitFilterItemConstants
 import com.trafi.ui.component.MultiSelectFilter

@@ -57,7 +57,7 @@ public fun RoutesScreen(
     initialStart: Location? = null,
     initialEnd: Location? = null,
 ) {
-    val factory = ViewModelFactory(apiConfig, regionId)
+    val factory = ViewModelFactory(apiConfig)
     val routesViewModel: RoutesViewModel = viewModel(factory = factory)
     val locationViewModel: LocationSearchViewModel = viewModel(factory = factory)
 
@@ -270,10 +270,9 @@ private fun RouteSearchTabsListPreview() {
     )
 }
 
-private class ViewModelFactory(apiConfig: ApiConfiguration, regionId: String) :
-    ViewModelProvider.Factory {
+private class ViewModelFactory(apiConfig: ApiConfiguration) : ViewModelProvider.Factory {
 
-    private val locationsApi: LocationsApi by lazy { LocationsApi(apiConfig, regionId) }
+    private val locationsApi: LocationsApi by lazy { LocationsApi(apiConfig) }
     private val routesApi: RoutesApi by lazy { RoutesApi(apiConfig) }
 
     @Suppress("UNCHECKED_CAST")

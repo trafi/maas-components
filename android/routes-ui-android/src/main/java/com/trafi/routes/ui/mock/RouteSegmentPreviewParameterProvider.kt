@@ -2,9 +2,9 @@ package com.trafi.routes.ui.mock
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.trafi.core.model.RouteSegment
-import com.trafi.core.model.mockSegment1
-import com.trafi.core.model.mockSegment2
-import com.trafi.core.model.mockSegment3
+import com.trafi.core.model.mock.mockSegment1
+import com.trafi.core.model.mock.mockSegment2
+import com.trafi.core.model.mock.mockSegment3
 
 internal class RouteSegmentPreviewParameterProvider : PreviewParameterProvider<RouteSegment> {
     override val values: Sequence<RouteSegment>

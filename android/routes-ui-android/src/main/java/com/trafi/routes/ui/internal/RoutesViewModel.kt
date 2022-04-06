@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.trafi.core.ApiResult
 import com.trafi.core.model.Location
-import com.trafi.core.model.RoutesResult
+import com.trafi.core.model.RouteSearchResponse
 import com.trafi.routes.RoutesApi
 import kotlinx.coroutines.launch
 
@@ -31,5 +31,5 @@ internal class RoutesViewModel(private val routesApi: RoutesApi) : ViewModel() {
 internal sealed class RoutesResultState {
     object NoResults : RoutesResultState()
     object Loading : RoutesResultState()
-    data class Loaded(val result: RoutesResult) : RoutesResultState()
+    data class Loaded(val result: RouteSearchResponse) : RoutesResultState()
 }

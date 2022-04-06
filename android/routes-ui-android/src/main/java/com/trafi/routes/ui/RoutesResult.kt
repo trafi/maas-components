@@ -8,13 +8,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.trafi.core.model.Route
-import com.trafi.core.model.RoutesResult
-import com.trafi.core.model.mockResult
+import com.trafi.core.model.RouteSearchResponse
+import com.trafi.core.model.mock.mockResult
 import com.trafi.ui.theme.MaasTheme
 
 @Composable
 public fun RoutesResult(
-    result: RoutesResult,
+    result: RouteSearchResponse,
     onRouteClick: (Route) -> Unit,
     modifier: Modifier = Modifier
 ) {

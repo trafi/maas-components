@@ -45,7 +45,7 @@ private fun AppContent() {
         composable("routes") {
             RoutesScreen(
                 apiConfig = apiConfig,
-                regionId = BuildConfig.REGION_ID,
+                regionId = "switzerland",
                 onRouteClick = {},
                 onBackClick = { navController.popBackStack() },
             )
@@ -55,7 +55,7 @@ private fun AppContent() {
 
 private val apiConfig: ApiConfiguration =
     ApiConfiguration(
-        baseUrl = BuildConfig.API_BASE_URL,
+        baseUrl = "https://whitelabel-app-api-wl.trafi.dev.trafi.com/",
         apiKey = BuildConfig.API_KEY,
         logger = AndroidLogger(tag = "demo-app"),
     )

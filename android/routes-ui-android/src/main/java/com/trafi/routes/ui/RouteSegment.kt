@@ -8,7 +8,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -16,26 +15,26 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.trafi.core.model.PersonalVehicleType
 import com.trafi.core.model.Provider
 import com.trafi.core.model.RouteSegment
-import com.trafi.core.model.RouteSegmentPersonalVehicle
+import com.trafi.core.model.RouteSegmentMode
 import com.trafi.core.model.Schedule
-import com.trafi.core.model.SharedVehicle
+import com.trafi.core.model.VehicleType
 import com.trafi.routes.ui.internal.endTimeMillis
 import com.trafi.routes.ui.internal.startTimeMillis
 import com.trafi.routes.ui.mock.RouteSegmentPreviewParameterProvider
+import com.trafi.ui.R
 import com.trafi.ui.component.Badge
 import com.trafi.ui.component.BadgeInfo
 import com.trafi.ui.component.BadgeType
 import com.trafi.ui.theme.MaasTheme
 import com.trafi.ui.theme.internal.type.toColor
 
-private typealias PersonalVehicleType = RouteSegmentPersonalVehicle.Vehicle
-
 @Composable
 public fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
     when (segment.mode) {
-        RouteSegment.Mode.TRANSIT -> {
+        RouteSegmentMode.TRANSIT -> {
             val transit = segment.transit ?: return
             val badge = transit.schedule.toBadgeInfo()
             val alternativeBadges = transit.alternatives.map { it.schedule.toBadgeInfo() }
@@ -58,7 +57,7 @@ public fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
                 modifier = modifier
             )
         }
-        RouteSegment.Mode.RIDE_HAILING -> {
+        RouteSegmentMode.RIDE_HAILING -> {
             val hailing = segment.rideHailing ?: return
             val badge = hailing.provider?.toBadgeInfo()
             val vector = painterResource(
@@ -76,23 +75,24 @@ public fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
                 )
             }
         }
-        RouteSegment.Mode.SHARING -> {
+        RouteSegmentMode.SHARING -> {
             val sharing = segment.sharing ?: return
             val badge = sharing.provider?.toBadgeInfo()
             val providerIconRes = when (sharing.provider?.icon) {
-                "tier" -> com.trafi.ui.R.drawable.providers_tier_xs
-                "voi" -> com.trafi.ui.R.drawable.providers_voi_xs
-                "emmy" -> com.trafi.ui.R.drawable.providers_emmy_xs
-                "nextbike" -> com.trafi.ui.R.drawable.providers_nextbike_xs
-                "driveby" -> com.trafi.ui.R.drawable.providers_driveby_xs
+                "tier" -> R.drawable.providers_tier_xs
+                "voi" -> R.drawable.providers_voi_xs
+                "emmy" -> R.drawable.providers_emmy_xs
+                "nextbike" -> R.drawable.providers_nextbike_xs
+                "driveby" -> R.drawable.providers_driveby_xs
                 else -> null
             }
-            val transportIconRes = sharing.vehicle?.vehicleType?.let { vehicleType ->
+            val transportIconRes = sharing.vehicle?.type?.let { vehicleType ->
                 when (vehicleType) {
-                    SharedVehicle.VehicleType.CAR -> com.trafi.ui.R.drawable.transport_car_xs
-                    SharedVehicle.VehicleType.BICYCLE -> com.trafi.ui.R.drawable.transport_bike_xs
-                    SharedVehicle.VehicleType.SCOOTER -> com.trafi.ui.R.drawable.transport_scooter_xs
-                    SharedVehicle.VehicleType.KICK_SCOOTER -> com.trafi.ui.R.drawable.transport_kickscooter_xs
+                    VehicleType.CAR -> R.drawable.transport_car_xs
+                    VehicleType.BIKE -> R.drawable.transport_bike_xs
+                    VehicleType.SCOOTER -> R.drawable.transport_scooter_xs
+                    VehicleType.KICK_SCOOTER -> R.drawable.transport_kickscooter_xs
+                    VehicleType.UNKNOWN -> null
                 }
             }
             val vector = (providerIconRes ?: transportIconRes)?.let { painterResource(it) }
@@ -105,7 +105,7 @@ public fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
                 )
             }
         }
-        RouteSegment.Mode.WALKING -> {
+        RouteSegmentMode.WALKING -> {
             val vector = painterResource(com.trafi.ui.R.drawable.ic_route_search_walking_s)
             val durationMillis = segment.endTimeMillis - segment.startTimeMillis
             Row(modifier = modifier.defaultMinSize(minHeight = 24.dp)) {
@@ -123,12 +123,13 @@ public fun RouteSegment(segment: RouteSegment, modifier: Modifier = Modifier) {
                 )
             }
         }
-        RouteSegment.Mode.PERSONAL_VEHICLE -> {
+        RouteSegmentMode.PERSONAL_VEHICLE -> {
             val personalVehicle = segment.personalVehicle ?: return
             val vector = painterResource(
                 when (personalVehicle.vehicle) {
                     PersonalVehicleType.BICYCLE -> com.trafi.ui.R.drawable.ic_route_search_bike_s
                     PersonalVehicleType.KICK_SCOOTER -> com.trafi.ui.R.drawable.ic_route_search_scooter_s
+                    else -> return
                 }
             )
             val durationMillis = segment.endTimeMillis - segment.startTimeMillis
@@ -158,7 +159,7 @@ private fun Schedule.toBadgeInfo(): BadgeInfo = BadgeInfo(
 
 private fun Provider.toBadgeInfo(): BadgeInfo = BadgeInfo(
     text = name,
-    backgroundColor = color?.toColor() ?: Color.Black
+    backgroundColor = color.toColor()
 )
 
 private val Long.millisToDurationText: String

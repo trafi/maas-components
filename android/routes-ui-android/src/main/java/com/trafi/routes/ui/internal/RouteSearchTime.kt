@@ -1,8 +1,8 @@
 package com.trafi.routes.ui.internal
 
 import com.trafi.core.model.Route
+import com.trafi.core.model.RouteSearchResponse
 import com.trafi.core.model.RouteSegment
-import com.trafi.core.model.RoutesResult
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
@@ -15,7 +15,7 @@ internal object RouteSearchTime {
     }
 }
 
-internal val RoutesResult.nowMillis: Long
+internal val RouteSearchResponse.nowMillis: Long
     get() = RouteSearchTime.format.parse(now)?.time ?: 0L
 
 internal val RouteSegment.startTimeMillis: Long
